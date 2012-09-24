@@ -1,4 +1,4 @@
-package by.vsu.model;
+package by.vsu.emdsproject.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

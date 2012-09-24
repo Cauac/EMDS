@@ -59,7 +59,7 @@
     </bean>
 
     <aop:config>
-        <aop:pointcut id="webMethods" expression="execution(* by.vsu.web.*.*(..))" />
+        <aop:pointcut id="webMethods" expression="execution(* by.vsu.emdsproject.web.*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="webMethods" />
     </aop:config>
 

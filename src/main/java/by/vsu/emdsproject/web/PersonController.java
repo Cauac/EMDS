@@ -1,7 +1,7 @@
-package by.vsu.web;
+package by.vsu.emdsproject.web;
 
+import by.vsu.emdsproject.model.Person;
 import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +9,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import by.vsu.model.Person;
 
 @Controller
 public class PersonController {
