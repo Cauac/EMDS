@@ -49,3 +49,25 @@ service_sat
 rank varchar(20) NULL,
 PRIMARY KEY("id_student")
 );
+
+CREATE TABLE subject (
+id_subject SERIAL,
+PRIMARY KEY("id_subject")
+);
+
+CREATE TABLE speciality_subject (
+subject_id int NULL,
+speciality_id int NULL,
+CONSTRAINT FK_SPECIALITY FOREIGN KEY (speciality_id) REFERENCES speciality(id_speciality) ON DELETE SET NULL ON UPDATE CASCADE,
+CONSTRAINT FK_SUBJECT FOREIGN KEY (subject_id) REFERENCES subject(id_subject) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+CREATE TABLE course (
+id_course SERIAL,
+teacher_id int NULL,
+subject_id int NULL,
+group_id int NULL,
+CONSTRAINT FK_COURSE_TEACHER FOREIGN KEY (teacher_id) REFERENCES teacher(id_teacher) ON DELETE SET NULL ON UPDATE CASCADE,
+CONSTRAINT FK_COURSE_SUBJECT FOREIGN KEY (subject_id) REFERENCES subject(id_subject) ON DELETE SET NULL ON UPDATE CASCADE,
+CONSTRAINT FK_COURSE_GROUP FOREIGN KEY (group_id) REFERENCES group(id_group) ON DELETE SET NULL ON UPDATE CASCADE
+);
