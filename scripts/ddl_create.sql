@@ -56,7 +56,7 @@ PRIMARY KEY("id_student")
 
 CREATE TABLE subject (
 id_subject SERIAL,
-"name" varchar(100) NOT NULL,
+"title" varchar(100) NOT NULL,
 PRIMARY KEY("id_subject")
 );
 
