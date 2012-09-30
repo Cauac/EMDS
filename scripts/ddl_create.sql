@@ -24,7 +24,7 @@ CONSTRAINT FK_GROUP_SPECIALITY FOREIGN KEY (speciality_id) REFERENCES speciality
 
 CREATE TABLE teacher (
 id_teacher SERIAL,
-"name" varchar(50) NOT NULL,
+first_name varchar(50) NOT NULL,
 last_name  varchar(50) NOT NULL,
 middle_name  varchar(50) NOT NULL,
 rank varchar(20),
@@ -33,7 +33,7 @@ PRIMARY KEY("id_teacher")
 
 CREATE TABLE student (
 id_student SERIAL,
-"name" varchar(50) NOT NULL,
+first_name varchar(50) NOT NULL,
 last_name  varchar(50) NOT NULL,
 middle_name  varchar(50) NOT NULL,
 birth_year varchar (4),
