@@ -5,7 +5,7 @@
     </head>
     <body>
         <mytags:menu />
-        <h2>Hello World!</h2>
+        <h2>Uporot shtole?!</h2>
         <mytags:footer/>
     </body>
 </html>

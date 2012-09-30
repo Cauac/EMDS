@@ -1,1 +1,1 @@
-<span id="footer">EMDSproject by <a href="http://www.highwise.com">Highwise</a></span>
+<span id="footer">EMDSproject bleat!</span>

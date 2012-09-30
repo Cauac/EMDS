@@ -4,4 +4,5 @@ INSERT INTO public.teacher ("name", surname, patronymic, rank) VALUES ('Василий'
 -- address
 INSERT INTO public.address (city, street, house, apartment) VALUES ('Витебск', 'Ленина', '14', '5'); 
 
--- group
+-- speciality
+INSERT INTO public.speciality (title) VALUES ('Чочочеведение');
