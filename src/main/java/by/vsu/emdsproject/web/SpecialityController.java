@@ -4,7 +4,6 @@
  */
 package by.vsu.emdsproject.web;
 
-import by.vsu.emdsproject.model.Person;
 import by.vsu.emdsproject.model.Speciality;
 import java.util.List;
 import org.hibernate.SessionFactory;

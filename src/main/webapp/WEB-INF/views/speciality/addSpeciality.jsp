@@ -6,13 +6,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags"%>
-<%@page contentType="text/html" pageEncoding="windows-1251"%>
+<%@page contentType="text/html" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <mytags:jquery />
         <mytags:style />
-        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>JSP Page</title>
     </head>
     <body>

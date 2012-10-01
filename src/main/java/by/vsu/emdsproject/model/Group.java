@@ -8,14 +8,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "group")
+@Table(name = "Group")
 public class Group {
 
     @Id
     @Column(name = "id_group")
     private Long id;
     @Column(name = "title", length = 10)
-    private String description;
+    private String title;
     @ManyToOne
     @JoinColumn(name = "speciality")
     private Speciality speciality;
@@ -28,12 +28,12 @@ public class Group {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Speciality getSpeciality() {
