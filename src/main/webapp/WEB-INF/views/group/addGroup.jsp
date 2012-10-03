@@ -12,6 +12,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <mytags:menu />
+        <h4>New Group</h4>
+        <form method="post" action="addGroup.htm">
+            <label for="title">Title:</label>
+            <input type="text" name="title" /><br />
+            <label for="speciality_id">Speciality_id</label>
+            <input type="text" name="speciality_id" /><br />
+            <input type="submit" value="Add"/>
+            <input type="reset" />
+        </form>
+        <mytags:footer/>
     </body>
 </html>

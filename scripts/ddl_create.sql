@@ -14,7 +14,7 @@ title varchar (100) NOT NULL,
 PRIMARY KEY("id_speciality")
 );
 
-CREATE TABLE "group" (
+CREATE TABLE "study_group" (
 id_group SERIAL,
 title varchar (10) UNIQUE NOT NULL,
 speciality_id int NOT NULL,
@@ -74,7 +74,7 @@ subject_id int NOT NULL,
 group_id int NOT NULL,
 CONSTRAINT FK_COURSE_TEACHER FOREIGN KEY (teacher_id) REFERENCES teacher(id_teacher) ON DELETE CASCADE ON UPDATE CASCADE,
 CONSTRAINT FK_COURSE_SUBJECT FOREIGN KEY (subject_id) REFERENCES subject(id_subject) ON DELETE CASCADE ON UPDATE CASCADE,
-CONSTRAINT FK_COURSE_GROUP FOREIGN KEY (group_id) REFERENCES "group"(id_group) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT FK_COURSE_GROUP FOREIGN KEY (group_id) REFERENCES study_group(id_group) ON DELETE CASCADE ON UPDATE CASCADE,
 PRIMARY KEY("id_course")
 );
 
