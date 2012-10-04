@@ -15,15 +15,27 @@ import javax.persistence.Table;
 public class Group {
 
     private Long id;
+    private Long speciality_id;
     private String title;
-    private Speciality speciality_id;
+    private Speciality speciality;
 
     public Group() {
     }
 
     public Group(String title, Speciality speciality) {
         this.title = title;
-        this.speciality_id = speciality;
+        this.speciality = speciality;
+    }
+
+    public Group(String title, Long speciality_id) {
+        this.title = title;
+        this.speciality_id = speciality_id;
+    }
+
+    public Group(Long speciality_id, String title, Speciality speciality) {
+        this.speciality_id = speciality_id;
+        this.title = title;
+        this.speciality = speciality;
     }
 
     @Id
@@ -46,14 +58,22 @@ public class Group {
         this.title = title;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "speciality_id")
-    public Speciality getSpeciality() {
+    @Column(name = "speciality_id", nullable = false)
+    public Long getSpeciality_id() {
         return speciality_id;
     }
 
+    public void setSpeciality_id(Long speciality_id) {
+        this.speciality_id = speciality_id;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "speciality_id", insertable=false, updatable=false)
+    public Speciality getSpeciality() {
+        return speciality;
+    }
+
     public void setSpeciality(Speciality speciality) {
-        this.speciality_id = speciality;
-    }   
-    
+        this.speciality = speciality;
+    }
 }
