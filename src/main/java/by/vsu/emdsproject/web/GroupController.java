@@ -41,7 +41,10 @@ public class GroupController {
             mav.addObject("errors", errors);
             return mav;
         }
-
+        
+//        Speciality s = new Speciality();
+//        s.setId(p.)
+//        p.setSpeciality(new Speciality);
         sessionFactory.getCurrentSession().save(p);
         return new ModelAndView("redirect:/allGroups.htm");
     }

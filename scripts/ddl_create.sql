@@ -14,7 +14,7 @@ title varchar (100) NOT NULL,
 PRIMARY KEY("id_speciality")
 );
 
-CREATE TABLE "study_group" (
+CREATE TABLE study_group (
 id_group SERIAL,
 title varchar (10) UNIQUE NOT NULL,
 speciality_id int NOT NULL,

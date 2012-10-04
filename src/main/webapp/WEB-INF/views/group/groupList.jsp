@@ -20,16 +20,12 @@
             <table border=1>
                 <tr>
                     <th>Title</th>
-                </tr>
-                <tr>
                     <th>Speciality</th>
                 </tr>
                 <c:forEach var="group" items="${groups}">
                     <tr>
                         <td><c:out value="${group.title}"/></td>
-                    </tr>
-                    <tr>
-                        <td><c:out value="${group.speciality}"/></td>
+                        <td><c:out value="${group.speciality.title}"/></td>
                     </tr>
                 </c:forEach>
             </table>
