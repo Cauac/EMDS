@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "subject")
-public class Subject {
+public class Subject implements AbstractEntity{
 
     private Long id;
     private String description;

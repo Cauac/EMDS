@@ -5,6 +5,7 @@
 package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.model.Group;
+import by.vsu.emdsproject.model.Speciality;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +36,18 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/addGroup.htm", method = RequestMethod.POST)
-    public ModelAndView addGroup(Group p, Errors errors) {
+    public ModelAndView addGroup(Group p, Long speciality_id, Errors errors) {
         if (errors.hasErrors()) {
             ModelAndView mav = new ModelAndView("addGroup");
             mav.addObject("errors", errors);
             return mav;
         }
+
         
-//        Speciality s = new Speciality();
-//        s.setId(p.)
-//        p.setSpeciality(new Speciality);
+        Speciality s = new Speciality();
+        s.setId(speciality_id);
+        p.setSpeciality(s);
+        
         sessionFactory.getCurrentSession().save(p);
         return new ModelAndView("redirect:/allGroups.htm");
     }

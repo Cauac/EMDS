@@ -5,10 +5,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Study_group")
-public class Group {
+public class Group implements AbstractEntity{
 
     private Long id;
-    private Long speciality_id;
+    //private Long speciality_id;
     private String title;
     private Speciality speciality;
     private Set<Student> students;
@@ -17,17 +17,6 @@ public class Group {
     }
 
     public Group(String title, Speciality speciality) {
-        this.title = title;
-        this.speciality = speciality;
-    }
-
-    public Group(String title, Long speciality_id) {
-        this.title = title;
-        this.speciality_id = speciality_id;
-    }
-
-    public Group(Long speciality_id, String title, Speciality speciality) {
-        this.speciality_id = speciality_id;
         this.title = title;
         this.speciality = speciality;
     }
@@ -50,15 +39,6 @@ public class Group {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    @Column(name = "speciality_id", nullable = false)
-    public Long getSpeciality_id() {
-        return speciality_id;
-    }
-
-    public void setSpeciality_id(Long speciality_id) {
-        this.speciality_id = speciality_id;
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
