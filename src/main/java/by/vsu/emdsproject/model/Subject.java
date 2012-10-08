@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "subject")
-public class Subject {
+public class Subject implements AbstractEntity{
     
     @Id
     @Column(name = "id_subject")

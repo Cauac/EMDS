@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements AbstractEntity{
 
     @Id
     @Column(name = "id_student")
