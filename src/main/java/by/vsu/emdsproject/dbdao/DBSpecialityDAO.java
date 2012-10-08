@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package by.vsu.emdsproject.dbdao;
 
 import by.vsu.emdsproject.dao.SpecialityDAO;
@@ -13,13 +12,14 @@ import java.util.List;
  *
  * @author Max
  */
-public class DBSpecialityDAO extends AbstractDBDAO<Speciality> implements SpecialityDAO{
+public class DBSpecialityDAO extends AbstractDBDAO<Speciality> implements SpecialityDAO {
 
     public void create(Speciality e) {
         sessionFactory.getCurrentSession().save(e);
     }
 
     public Speciality read(Long id) {
+        return null;
         //sessionFactory.getCurrentSession().createQuery("FROM Speciality"). 
         //return new Speciality();
     }
@@ -36,5 +36,4 @@ public class DBSpecialityDAO extends AbstractDBDAO<Speciality> implements Specia
         return sessionFactory.getCurrentSession().
                 createQuery("FROM Speciality").list();
     }
-
 }

@@ -43,15 +43,15 @@ public class GroupController {
             return mav;
         }
 
-        
+
         Speciality s = new Speciality();
         s.setId(speciality_id);
         p.setSpeciality(s);
-        
+
         sessionFactory.getCurrentSession().save(p);
         return new ModelAndView("redirect:/allGroups.htm");
     }
-    
+
     @RequestMapping(value = "/addGroup.htm")
     public String addGroup() {
         return "group/addGroup";

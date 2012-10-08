@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Study_group")
-public class Group implements AbstractEntity{
+public class Group implements AbstractEntity {
 
     private Long id;
     //private Long speciality_id;
@@ -42,7 +42,7 @@ public class Group implements AbstractEntity{
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "speciality_id", insertable=false, updatable=false)
+    @JoinColumn(name = "speciality_id", insertable = false, updatable = false)
     public Speciality getSpeciality() {
         return speciality;
     }

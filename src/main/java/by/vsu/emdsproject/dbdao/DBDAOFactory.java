@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package by.vsu.emdsproject.dbdao;
 
 import by.vsu.emdsproject.dao.AbstractDAOFactory;
@@ -17,7 +16,7 @@ import by.vsu.emdsproject.dao.TeacherDAO;
  *
  * @author Max
  */
-public class DBDAOFactory implements AbstractDAOFactory{
+public class DBDAOFactory implements AbstractDAOFactory {
 
     public GroupDAO getGroupDAO() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -42,5 +41,4 @@ public class DBDAOFactory implements AbstractDAOFactory{
     public TeacherDAO getTeacherDAO() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }

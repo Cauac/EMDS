@@ -4,14 +4,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "subject")
-public class Subject implements AbstractEntity{
+public class Subject implements AbstractEntity {
 
     private Long id;
     private String description;
 
     public Subject() {
     }
-    
+
     public Subject(String description) {
         this.description = description;
     }

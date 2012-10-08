@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package by.vsu.emdsproject.dbdao;
 
 import by.vsu.emdsproject.dao.GroupDAO;
@@ -13,7 +12,7 @@ import java.util.List;
  *
  * @author Max
  */
-public class DBGroupDAO extends AbstractDBDAO<Group> implements GroupDAO{
+public class DBGroupDAO extends AbstractDBDAO<Group> implements GroupDAO {
 
     public void create(Group e) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -34,5 +33,4 @@ public class DBGroupDAO extends AbstractDBDAO<Group> implements GroupDAO{
     public List<Group> getList() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }

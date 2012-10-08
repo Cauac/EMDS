@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "address")
-public class Address implements AbstractEntity{
+public class Address implements AbstractEntity {
 
     private Long id;
     private String city;
@@ -71,5 +71,4 @@ public class Address implements AbstractEntity{
     public void setApartment(String apartment) {
         this.apartment = apartment;
     }
-    
 }

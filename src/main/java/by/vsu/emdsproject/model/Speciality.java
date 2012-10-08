@@ -5,12 +5,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "speciality")
-public class Speciality implements AbstractEntity{
+public class Speciality implements AbstractEntity {
 
     private Long id;
     private String title;
     private Set<Group> groups;
-
 
     public Speciality() {
     }
@@ -18,7 +17,7 @@ public class Speciality implements AbstractEntity{
     public Speciality(String title) {
         this.title = title;
     }
-    
+
     public Speciality(Speciality s) {
         this.title = s.getTitle();
     }
@@ -42,6 +41,7 @@ public class Speciality implements AbstractEntity{
     public void setTitle(String title) {
         this.title = title;
     }
+
     @OneToMany
     public Set<Group> getGroups() {
         return groups;
@@ -50,5 +50,4 @@ public class Speciality implements AbstractEntity{
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
     }
-    
 }

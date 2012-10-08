@@ -12,9 +12,14 @@ import java.util.List;
  * @author Max
  */
 public interface TeacherDAO extends AbstractDAO<Teacher> {
+
     public void create(Teacher e);
+
     public Teacher read(Long id);
+
     public void update(Teacher e);
+
     public void delete(Long id);
-    List<Teacher> getList ();
+
+    List<Teacher> getList();
 }

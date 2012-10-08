@@ -14,8 +14,12 @@ import java.util.List;
 public interface SpecialityDAO extends AbstractDAO<Speciality> {
 
     public void create(Speciality e);
+
     public Speciality read(Long id);
+
     public void update(Speciality e);
+
     public void delete(Long id);
-    List<Speciality> getList ();
+
+    List<Speciality> getList();
 }

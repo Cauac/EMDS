@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "student")
-public class Student implements AbstractEntity{
+public class Student implements AbstractEntity {
 
     private Long id;
     private String fisrtName;
@@ -206,5 +206,4 @@ public class Student implements AbstractEntity{
     public void setRank(String rank) {
         this.rank = rank;
     }
-    
 }

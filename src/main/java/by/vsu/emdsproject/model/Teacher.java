@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "teacher")
-public class Teacher implements AbstractEntity{
+public class Teacher implements AbstractEntity {
 
     private Long id;
     private String fisrtName;
