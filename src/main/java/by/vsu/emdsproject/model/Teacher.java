@@ -67,5 +67,4 @@ public class Teacher {
     public void setRank(String rank) {
         this.rank = rank;
     }
-    
 }
