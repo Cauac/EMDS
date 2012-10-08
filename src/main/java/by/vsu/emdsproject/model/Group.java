@@ -1,14 +1,7 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Study_group")
@@ -18,6 +11,7 @@ public class Group {
     private Long speciality_id;
     private String title;
     private Speciality speciality;
+    private Set<Student> students;
 
     public Group() {
     }
@@ -75,5 +69,14 @@ public class Group {
 
     public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
+    }
+
+    @OneToMany
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }

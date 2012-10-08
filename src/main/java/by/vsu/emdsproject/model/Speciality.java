@@ -1,11 +1,7 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "speciality")
@@ -13,10 +9,16 @@ public class Speciality {
 
     private Long id;
     private String title;
+    private Set<Group> groups;
+
 
     public Speciality() {
     }
 
+    public Speciality(String title) {
+        this.title = title;
+    }
+    
     public Speciality(Speciality s) {
         this.title = s.getTitle();
     }
@@ -39,6 +41,14 @@ public class Speciality {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    @OneToMany
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
     }
     
 }
