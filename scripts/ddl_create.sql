@@ -40,6 +40,7 @@ birth_year varchar (4),
 birth_place varchar (50),
 address_id int,
 parents_address_id int,
+group_id int,
 admission_year varchar (4),
 recruitment_office varchar (40),
 faculty varchar (30),
@@ -51,7 +52,8 @@ education_start Date,
 education_end Date, 
 characteristic varchar(10000),
 rank varchar(20),
-PRIMARY KEY("id_student")
+PRIMARY KEY("id_student"),
+CONSTRAINT FK_STUDENT_GROUP FOREIGN KEY (group_id) REFERENCES speciality(id_group) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE subject (
