@@ -75,6 +75,8 @@ public class Student implements AbstractEntity {
         return parentAddress;
     }
     
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_id", insertable = false, updatable = false)
     public Group getGroup() {
         return group;
     }
