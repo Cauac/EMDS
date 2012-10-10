@@ -19,26 +19,26 @@ import by.vsu.emdsproject.dao.TeacherDAO;
 public class DBDAOFactory implements AbstractDAOFactory {
 
     public GroupDAO getGroupDAO() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new DBGroupDAO();
     }
 
     public SpecialityDAO getSpecialtyDAO() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new DBSpecialityDAO();
     }
 
     public SubjectDAO getSubjectDAO() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new DBSubjectDAO();
     }
 
     public AddressDAO getAddressDAO() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new DBAddressDAO();
     }
 
     public StudentDAO getStudentDAO() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new DBStudentDAO();
     }
 
     public TeacherDAO getTeacherDAO() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new DBTeacherDAO();
     }
 }

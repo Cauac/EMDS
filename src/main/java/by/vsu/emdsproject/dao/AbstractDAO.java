@@ -18,7 +18,7 @@ public interface AbstractDAO<Entity> {
 
     void update(Entity e);
 
-    void delete(Long id);
+    void delete(Entity e);
 
     List<Entity> getList();
 }

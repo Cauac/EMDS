@@ -19,7 +19,7 @@ public interface StudentDAO extends AbstractDAO<Student> {
 
     public void update(Student e);
 
-    public void delete(Long id);
+    public void delete(Student e);
 
     List<Student> getList();
 }

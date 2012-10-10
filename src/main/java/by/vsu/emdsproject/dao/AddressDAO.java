@@ -19,7 +19,7 @@ public interface AddressDAO extends AbstractDAO<Address> {
 
     public void update(Address e);
 
-    public void delete(Long id);
+    public void delete(Address e);
 
     List<Address> getList();
 }

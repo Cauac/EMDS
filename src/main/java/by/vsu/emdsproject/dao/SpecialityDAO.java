@@ -19,7 +19,7 @@ public interface SpecialityDAO extends AbstractDAO<Speciality> {
 
     public void update(Speciality e);
 
-    public void delete(Long id);
+    public void delete(Speciality e);
 
     List<Speciality> getList();
 }

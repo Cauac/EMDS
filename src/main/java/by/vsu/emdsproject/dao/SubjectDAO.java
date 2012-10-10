@@ -19,7 +19,7 @@ public interface SubjectDAO extends AbstractDAO<Subject> {
 
     public void update(Subject e);
 
-    public void delete(Long id);
+    public void delete(Subject e);
 
     List<Subject> getList();
 }

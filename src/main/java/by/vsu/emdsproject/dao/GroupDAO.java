@@ -19,7 +19,7 @@ public interface GroupDAO extends AbstractDAO<Group> {
 
     public void update(Group e);
 
-    public void delete(Long id);
+    public void delete(Group e);
 
     List<Group> getList();
 }
