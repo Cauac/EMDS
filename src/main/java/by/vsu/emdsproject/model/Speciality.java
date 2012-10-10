@@ -42,7 +42,7 @@ public class Speciality implements AbstractEntity {
         this.title = title;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy="speciality", cascade = CascadeType.ALL)
     public Set<Group> getGroups() {
         return groups;
     }
