@@ -8,7 +8,6 @@ import javax.persistence.*;
 public class Group implements AbstractEntity {
 
     private Long id;
-    //private Long speciality_id;
     private String title;
     private Speciality speciality;
     private Set<Student> students;
