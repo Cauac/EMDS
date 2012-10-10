@@ -63,11 +63,13 @@ public class Student implements AbstractEntity {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     public Address getAddress() {
         return address;
     }
 
     @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     public Address getParentAddress() {
         return parentAddress;
     }
