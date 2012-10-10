@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package by.vsu.emdsproject.dbdao;
 
 import by.vsu.emdsproject.dao.AbstractDAOFactory;
@@ -12,11 +8,7 @@ import by.vsu.emdsproject.dao.StudentDAO;
 import by.vsu.emdsproject.dao.SubjectDAO;
 import by.vsu.emdsproject.dao.TeacherDAO;
 
-/**
- *
- * @author Max
- */
-public class DBDAOFactory implements AbstractDAOFactory {
+public final class DBDAOFactory implements AbstractDAOFactory {
 
     public GroupDAO getGroupDAO() {
         return new DBGroupDAO();
