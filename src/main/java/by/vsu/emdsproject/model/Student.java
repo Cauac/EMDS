@@ -15,6 +15,7 @@ public class Student implements AbstractEntity {
     private String birthPlace;
     private Address address;
     private Address parentAddress;
+    private Group group;
     private String admissionYear;
     private String recruitmentOffice;
     private String faculty;
@@ -72,6 +73,10 @@ public class Student implements AbstractEntity {
     @PrimaryKeyJoinColumn
     public Address getParentAddress() {
         return parentAddress;
+    }
+    
+    public Group getGroup() {
+        return group;
     }
 
     @Column(name = "admission_year", length = 4)
@@ -159,6 +164,10 @@ public class Student implements AbstractEntity {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+    
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     public void setParentAddress(Address parentAddress) {
