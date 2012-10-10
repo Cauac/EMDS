@@ -50,7 +50,7 @@ public class Group implements AbstractEntity {
         this.speciality = speciality;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy="group", cascade = CascadeType.ALL)
     public Set<Student> getStudents() {
         return students;
     }
