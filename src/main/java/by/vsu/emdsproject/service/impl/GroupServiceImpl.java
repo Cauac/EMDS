@@ -32,7 +32,12 @@ public class GroupServiceImpl implements GroupService{
     public List<Group> listGroup() {
         return groupDAO.getList();
     }
-
+    
+    @Transactional
+    public Group readGroup(Long id) {
+        return groupDAO.read(id);
+    }
+    
     @Transactional
     public void removeGroup(Long id) {
         Group toDel = new Group();

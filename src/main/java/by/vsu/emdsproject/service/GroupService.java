@@ -15,6 +15,7 @@ public interface GroupService {
 
     public void addGroup(Group group);
     public List<Group> listGroup();
+    public Group readGroup (Long id);
     public void removeGroup(Long id);
     
 }

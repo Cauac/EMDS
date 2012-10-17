@@ -15,7 +15,8 @@ public interface SpecialityService {
     
     public void addSpeciality(Speciality speciality);
     public List<Speciality> listSpeciality();
-    public void removeSpeciality(Integer id);
+    public Speciality readSpeciality (Long id);
+    public void removeSpeciality(Long id);
     
     
 }

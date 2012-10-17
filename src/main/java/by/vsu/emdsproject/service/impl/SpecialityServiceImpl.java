@@ -7,15 +7,18 @@ package by.vsu.emdsproject.service.impl;
 
 import by.vsu.emdsproject.dao.SpecialityDAO;
 import by.vsu.emdsproject.model.Speciality;
+import by.vsu.emdsproject.service.SpecialityService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Max
  */
-public class SpecialityServiceImpl {
+@Service
+public class SpecialityServiceImpl implements SpecialityService{
     
     @Autowired
     private SpecialityDAO specialityDAO;
@@ -28,6 +31,11 @@ public class SpecialityServiceImpl {
     @Transactional
     public List<Speciality> listSpeciality() {
         return specialityDAO.getList();
+    }
+    
+    @Transactional
+    public Speciality readSpeciality(Long id) {
+        return specialityDAO.read(id);
     }
 
     @Transactional

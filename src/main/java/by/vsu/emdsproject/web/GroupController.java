@@ -8,6 +8,8 @@ import by.vsu.emdsproject.dao.GroupDAO;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Speciality;
 import by.vsu.emdsproject.service.GroupService;
+import by.vsu.emdsproject.service.SpecialityService;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class GroupController {
 
     @Autowired
     private GroupService groupService;
+    
+    @Autowired
+    private SpecialityService specialityService;
 
     @RequestMapping("/allGroups.htm")
     public ModelAndView allGroups() {
@@ -43,7 +48,7 @@ public class GroupController {
             return mav;
         }
 
-        p.setSpeciality(new Speciality(speciality_id));
+        p.setSpeciality(specialityService.readSpeciality(speciality_id));
         groupService.addGroup(p);
         return new ModelAndView("redirect:/allGroups.htm");
     }
