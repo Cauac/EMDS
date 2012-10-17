@@ -1,5 +1,10 @@
+ /*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package by.vsu.emdsproject.web;
 
+import by.vsu.emdsproject.dao.SpecialityDAO;
 import by.vsu.emdsproject.model.Speciality;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -10,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ *
+ * @author Max
+ */
 @Controller
 public class SpecialityController {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    private SpecialityDAO specialityDAO;
 
     @RequestMapping(value = "/addSpeciality.htm", method = RequestMethod.POST)
     public ModelAndView addSpeciality(Speciality s, Errors errors) {
@@ -24,7 +33,7 @@ public class SpecialityController {
             return mav;
         }
 
-        sessionFactory.getCurrentSession().save(s);
+        specialityDAO.save(s);
         return new ModelAndView("redirect:/allSpecialities.htm");
     }
 
@@ -35,9 +44,7 @@ public class SpecialityController {
 
     @RequestMapping("/allSpecialities.htm")
     public ModelAndView allSpecialities() {
-        List<Speciality> specialities = sessionFactory.getCurrentSession().
-                createQuery("FROM Speciality").list();
-
+        List<Speciality> specialities = specialityDAO.getList();
         ModelAndView mav = new ModelAndView("speciality/specialityList");
         mav.addObject("specialities", specialities);
         return mav;

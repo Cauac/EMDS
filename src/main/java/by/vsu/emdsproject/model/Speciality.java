@@ -14,6 +14,10 @@ public class Speciality implements AbstractEntity {
     public Speciality() {
     }
 
+    public Speciality (Long id) {
+        this.id = id; 
+    }
+    
     public Speciality(String title) {
         this.title = title;
     }

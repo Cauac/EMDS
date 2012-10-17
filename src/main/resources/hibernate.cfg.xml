@@ -5,9 +5,12 @@
 <hibernate-configuration>
     
     <session-factory>
-        <mapping class="by.vsu.emdsproject.model.Person"/> 
         <mapping class="by.vsu.emdsproject.model.Speciality"/>
         <mapping class="by.vsu.emdsproject.model.Group"/>
+        <mapping class="by.vsu.emdsproject.model.Address"/>
+        <mapping class="by.vsu.emdsproject.model.Student"/>
+        <mapping class="by.vsu.emdsproject.model.Subject"/>
+        <mapping class="by.vsu.emdsproject.model.Teacher"/>
     </session-factory>
 
 </hibernate-configuration>

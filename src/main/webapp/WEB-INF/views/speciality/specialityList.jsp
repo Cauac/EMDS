@@ -19,10 +19,12 @@
         <c:if test="${fn:length(specialities) gt 0}">
             <table border=1>
                 <tr>
+                    <th>Id</th>
                     <th>Title</th>
                 </tr>
                 <c:forEach var="spec" items="${specialities}">
                     <tr>
+                        <td><c:out value="${spec.id}"/></td>
                         <td><c:out value="${spec.title}"/></td>
                     </tr>
                 </c:forEach>

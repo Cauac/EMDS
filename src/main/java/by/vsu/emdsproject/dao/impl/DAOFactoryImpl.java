@@ -1,4 +1,8 @@
-package by.vsu.emdsproject.dbdao;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package by.vsu.emdsproject.dao.impl;
 
 import by.vsu.emdsproject.dao.AbstractDAOFactory;
 import by.vsu.emdsproject.dao.AddressDAO;
@@ -8,29 +12,33 @@ import by.vsu.emdsproject.dao.StudentDAO;
 import by.vsu.emdsproject.dao.SubjectDAO;
 import by.vsu.emdsproject.dao.TeacherDAO;
 
-public final class DBDAOFactory implements AbstractDAOFactory {
+/**
+ *
+ * @author Max
+ */
+public class DAOFactoryImpl implements AbstractDAOFactory {
 
     public GroupDAO getGroupDAO() {
-        return new DBGroupDAO();
+        return new GroupDAOImpl();
     }
 
     public SpecialityDAO getSpecialtyDAO() {
-        return new DBSpecialityDAO();
+        return new SpecialityDAOImpl();
     }
 
     public SubjectDAO getSubjectDAO() {
-        return new DBSubjectDAO();
+        return new SubjectDAOImpl();
     }
 
     public AddressDAO getAddressDAO() {
-        return new DBAddressDAO();
+        return new AddressDAOImpl();
     }
 
     public StudentDAO getStudentDAO() {
-        return new DBStudentDAO();
+        return new StudentDAOImpl();
     }
 
     public TeacherDAO getTeacherDAO() {
-        return new DBTeacherDAO();
+        return new TeacherDAOImpl();
     }
 }
