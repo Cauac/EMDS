@@ -32,6 +32,7 @@
                 <value>by.vsu.emdsproject.model.Student</value>
                 <value>by.vsu.emdsproject.model.Subject</value>
                 <value>by.vsu.emdsproject.model.Teacher</value>
+                <value>by.vsu.emdsproject.model.Questionnaire</value>
             </list>
         </property>
         <property name="hibernateProperties">

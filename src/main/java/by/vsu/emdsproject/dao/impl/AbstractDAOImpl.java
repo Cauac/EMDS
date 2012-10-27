@@ -7,14 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- *
- * @author Max
- */
 public abstract class AbstractDAOImpl<TypeEn extends AbstractEntity> implements AbstractDAO<TypeEn> {
 
     private Class<TypeEn> clazz;
-    
     @Autowired
     SessionFactory sessionFactory;
 
@@ -52,5 +47,4 @@ public abstract class AbstractDAOImpl<TypeEn extends AbstractEntity> implements 
     protected final Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
-
 }
