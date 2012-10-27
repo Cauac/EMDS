@@ -80,13 +80,56 @@ create table course (
     PRIMARY KEY("id_course")
 );
 
-create table progress (
-    id_progress SERIAL,
-    student_id int NOT NULL,
-    subject_id int NOT NULL,
-    progress_result varchar (1),
-    progress_date date NOT NULL,
-    CONSTRAINT FK_PROGRESS_SUBJECT FOREIGN KEY (subject_id) REFERENCES subject(id_subject) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT FK_PROGRESS_STUDENT FOREIGN KEY (student_id) REFERENCES student(id_student) ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY("id_progress")
+CREATE TABLE progress (
+id_progress SERIAL,
+student_id int NOT NULL,
+subject_id int NOT NULL,
+progress_result varchar (1),
+progress_date date NOT NULL,
+CONSTRAINT FK_PROGRESS_SUBJECT FOREIGN KEY (subject_id) REFERENCES subject(id_subject) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT FK_PROGRESS_STUDENT FOREIGN KEY (student_id) REFERENCES student(id_student) ON DELETE CASCADE ON UPDATE CASCADE,
+PRIMARY KEY("id_progress")
+);
+
+CREATE TABLE questionnaire(
+id_questionnaire SERIAL,
+birth_place varchar (50),
+nationality varchar (20),
+passport_number varchar(10),
+address_id int,
+mobile_tel varchar(10),
+home_tel varchar(10),
+
+admission_year varchar (4),
+faculty varchar (30),
+speciality varchar (30),
+course int,
+study_group varchar (10),
+study_progress real,
+curator varchar (30),
+curator_tel varchar (10),
+education varchar (100), 
+education_start Date, 
+education_end Date, 
+education_type varchar (20),
+
+family_status varchar (20),
+mother varchar (100),
+father varchar (100),
+parents_address_id int,
+passport_office varchar(100),
+recruitment_office varchar (100),
+parent_tel varchar(10),
+
+education_before varchar (100),
+faculty_public_life varchar (100),
+hobby varchar (100),
+public_organization varchar (100),
+employment varchar (100),
+how_did_you_hear_about varchar (100),
+desire_to_continue varchar (100),
+think_about_study varchar (100),
+think_about_duty varchar (100),
+duty_start date,
+duty_end date
 );
