@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.model.Group;
@@ -11,15 +7,10 @@ import by.vsu.emdsproject.service.SpecialityService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- *
- * @author Max
- */
 @Controller
 public class GroupController {
 

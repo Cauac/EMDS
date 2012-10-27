@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "questionnaire")
-public class Questionnaire {
+public class Questionnaire implements AbstractEntity {
 
     private Long id;
     private String birthPlace;
