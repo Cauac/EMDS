@@ -13,6 +13,7 @@ public class Student implements AbstractEntity {
     private String middleName;
     private Date birthDate;
     private Group group;
+    private Questionnaire questionnaire;
     private String characteristic;
     private String rank;
 
@@ -63,6 +64,13 @@ public class Student implements AbstractEntity {
         return rank;
     }
 
+    @Column(name = "questionnaire")
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -94,4 +102,9 @@ public class Student implements AbstractEntity {
     public void setCharacteristic(String characteristic) {
         this.characteristic = characteristic;
     }
+
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
+    }
+    
 }
