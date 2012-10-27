@@ -1,6 +1,5 @@
 package by.vsu.emdsproject.web;
 
-import by.vsu.emdsproject.dao.SpecialityDAO;
 import by.vsu.emdsproject.model.Speciality;
 import by.vsu.emdsproject.service.SpecialityService;
 import java.util.List;
