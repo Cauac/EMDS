@@ -12,11 +12,15 @@ import java.util.List;
  */
 public interface AbstractDAO<Entity> {
 
-    void save(Entity e);
+    public Entity findOne(final Long id);
 
-    Entity read(Long id);
+    public List<Entity> findAll();
 
-    void delete(Entity e);
+    public void save(Entity entity);
 
-    List<Entity> getList();
+    public void update(Entity entity);
+
+    public void delete(Entity entity);
+
+    public void deleteById(Long entityId);
 }

@@ -6,8 +6,8 @@ package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.dao.SpecialityDAO;
 import by.vsu.emdsproject.model.Speciality;
+import by.vsu.emdsproject.service.SpecialityService;
 import java.util.List;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class SpecialityController {
 
     @Autowired
-    private SpecialityDAO specialityDAO;
+    private SpecialityService specialityService;
 
     @RequestMapping(value = "/addSpeciality.htm", method = RequestMethod.POST)
     public ModelAndView addSpeciality(Speciality s, Errors errors) {
@@ -33,7 +33,7 @@ public class SpecialityController {
             return mav;
         }
 
-        specialityDAO.save(s);
+        specialityService.addSpeciality(s);
         return new ModelAndView("redirect:/allSpecialities.htm");
     }
 
@@ -44,7 +44,7 @@ public class SpecialityController {
 
     @RequestMapping("/allSpecialities.htm")
     public ModelAndView allSpecialities() {
-        List<Speciality> specialities = specialityDAO.getList();
+        List<Speciality> specialities = specialityService.listSpeciality();
         ModelAndView mav = new ModelAndView("speciality/specialityList");
         mav.addObject("specialities", specialities);
         return mav;

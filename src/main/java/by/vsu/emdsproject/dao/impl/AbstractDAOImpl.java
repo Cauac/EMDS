@@ -1,17 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package by.vsu.emdsproject.dao.impl;
 
 import by.vsu.emdsproject.dao.AbstractDAO;
 import by.vsu.emdsproject.model.AbstractEntity;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -19,32 +13,44 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public abstract class AbstractDAOImpl<TypeEn extends AbstractEntity> implements AbstractDAO<TypeEn> {
 
-    private HibernateTemplate hibernateTemplate;
-
+    private Class<TypeEn> clazz;
+    
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        hibernateTemplate = new HibernateTemplate(sessionFactory);
+    SessionFactory sessionFactory;
+
+    public void setClazz(final Class<TypeEn> clazzToSet) {
+        clazz = clazzToSet;
     }
 
-    @Transactional(readOnly = false)
-    public void save(TypeEn e) {
-        hibernateTemplate.saveOrUpdate(e);
+    @SuppressWarnings("unchecked")
+    public TypeEn findOne(final Long id) {
+        return (TypeEn) getCurrentSession().get(clazz, id);
     }
 
-    public TypeEn read(Long id) {
-        ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
-        Class realType = (Class) pt.getActualTypeArguments()[0];
-        return (TypeEn) hibernateTemplate.get(realType, id);
+    @SuppressWarnings("unchecked")
+    public List<TypeEn> findAll() {
+        return getCurrentSession().createQuery("from " + clazz.getName()).list();
     }
 
-    public void delete(TypeEn e) {
-        hibernateTemplate.delete(e);
+    public void save(TypeEn entity) {
+        getCurrentSession().persist(entity);
     }
 
-    @Transactional(readOnly = false)
-    public List<TypeEn> getList() {
-        ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
-        Class realType = (Class) pt.getActualTypeArguments()[0];
-        return (List<TypeEn>) hibernateTemplate.find("from " + realType.getName());
+    public void update(TypeEn entity) {
+        getCurrentSession().merge(entity);
     }
+
+    public void delete(TypeEn entity) {
+        getCurrentSession().delete(entity);
+    }
+
+    public void deleteById(Long entityId) {
+        TypeEn entity = findOne(entityId);
+        delete(entity);
+    }
+
+    protected final Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
 }

@@ -15,4 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SpecialityDAOImpl extends AbstractDAOImpl<Speciality> implements SpecialityDAO {
 
+    public SpecialityDAOImpl() {
+        setClazz(Speciality.class);
+    }
+
 }

@@ -1,29 +1,23 @@
-CREATE TABLE PARAMS (
-PKEY CHAR(15) UNIQUE NOT NULL,
-PVALUE CHAR(50) );
+drop table params;
+drop table user_roles;
+drop table users;
 
-CREATE TABLE ROLES (
-ID_ROLE INTEGER NOT NULL,
-NAME_ROLE CHAR(30) NOT NULL,
-PRIMARY KEY (ID_ROLE));
+create table params (
+    pkey varchar(15)    unique not null,
+    pvalue varchar(50) 
+);
 
-CREATE TABLE ACTIONS (
-ID_ACTION INTEGER NOT NULL,
-NAME_ACTION CHAR(30) NOT NULL,
-PRIMARY KEY (ID_ACTION));
+create table users (
+    id int not null,
+    person_id int,
+    login varchar(20) unique not null,
+    password varchar(30) not null,
+    enabled int,
+    primary key (id)
+);
 
-CREATE TABLE USERS (
-ID_USER INTEGER NOT NULL,
-PERSON_ID INTEGER,
-ROLE_ID INTEGER NOT NULL,
-LOGIN CHAR(20) UNIQUE NOT NULL,
-PASSWORD CHAR(30) NOT NULL,
-PRIMARY KEY (ID_USER),
-CONSTRAINT FK_USERS_ROLES FOREIGN KEY (ROLE_ID) REFERENCES ROLES(ID_ROLE) ON DELETE RESTRICT ON UPDATE CASCADE);
-
-CREATE TABLE ROLE_ACTION (
-ROLE_ID INTEGER NOT NULL,
-ACTION_ID INTEGER NOT NULL,
-PRIMARY KEY (ROLE_ID, ACTION_ID),
-CONSTRAINT FK_ROL_ACT_ROLE FOREIGN KEY (ROLE_ID) REFERENCES ROLES(ID_ROLE) ON DELETE CASCADE ON UPDATE CASCADE,
-CONSTRAINT FK_ROL_ACT_ACTION FOREIGN KEY (ACTION_ID) REFERENCES ACTIONS(ID_ACTION) ON DELETE CASCADE ON UPDATE CASCADE);
+create table user_roles (
+    user_id     int     not null,
+    authority 	varchar(45)    not null,
+    foreign key (user_id) references users (id) on delete cascade on update cascade
+);

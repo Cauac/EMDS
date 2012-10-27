@@ -14,4 +14,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class TeacherDAOImpl extends AbstractDAOImpl<Teacher> implements TeacherDAO {
+    
+    public TeacherDAOImpl() {
+        setClazz(Teacher.class);
+    }
+    
 }

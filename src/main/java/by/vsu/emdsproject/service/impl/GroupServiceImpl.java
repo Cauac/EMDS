@@ -30,19 +30,17 @@ public class GroupServiceImpl implements GroupService{
 
     @Transactional
     public List<Group> listGroup() {
-        return groupDAO.getList();
+        return groupDAO.findAll();
     }
     
     @Transactional
     public Group readGroup(Long id) {
-        return groupDAO.read(id);
+        return groupDAO.findOne(id);
     }
     
     @Transactional
     public void removeGroup(Long id) {
-        Group toDel = new Group();
-        toDel.setId(id);
-        groupDAO.delete(toDel);
+        groupDAO.deleteById(id);
     }
 
 }

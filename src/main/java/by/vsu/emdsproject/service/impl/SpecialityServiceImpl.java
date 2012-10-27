@@ -30,19 +30,17 @@ public class SpecialityServiceImpl implements SpecialityService{
 
     @Transactional
     public List<Speciality> listSpeciality() {
-        return specialityDAO.getList();
+        return specialityDAO.findAll();
     }
     
     @Transactional
     public Speciality readSpeciality(Long id) {
-        return specialityDAO.read(id);
+        return specialityDAO.findOne(id);
     }
 
     @Transactional
     public void removeSpeciality(Long id) {
-        Speciality toDel = new Speciality();
-        toDel.setId(id);
-        specialityDAO.delete(toDel);
+        specialityDAO.deleteById(id);
     }
     
 }

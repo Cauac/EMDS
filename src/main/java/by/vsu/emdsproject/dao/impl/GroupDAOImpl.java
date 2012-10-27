@@ -15,4 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class GroupDAOImpl extends AbstractDAOImpl<Group> implements GroupDAO {
 
+    public GroupDAOImpl() {
+        setClazz(Group.class);
+    }
+    
 }

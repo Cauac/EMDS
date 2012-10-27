@@ -15,4 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AddressDAOImpl extends AbstractDAOImpl<Address> implements AddressDAO {
 
+    public AddressDAOImpl() {
+        setClazz(Address.class);
+    }
+    
 }
