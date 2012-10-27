@@ -44,7 +44,7 @@ rank varchar(20),
 service_start Date, 
 service_end Date,
 PRIMARY KEY("id_student"),
-CONSTRAINT FK_STUDENT_GROUP FOREIGN KEY (group_id) REFERENCES speciality(id_group) ON DELETE SET NULL ON UPDATE CASCADE
+CONSTRAINT FK_STUDENT_GROUP FOREIGN KEY (group_id) REFERENCES study_group(id_group) ON DELETE SET NULL ON UPDATE CASCADE
 CONSTRAINT FK_STUDENT_QUESTIONNAIRE FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id_questionnaire_id) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
@@ -97,7 +97,7 @@ faculty varchar (30),
 speciality varchar (30),
 course int,
 study_group varchar (10),
-study_progress varchar (3),
+study_progress real,
 curator varchar (30),
 curator_tel varchar (10),
 education varchar (100), 
@@ -110,7 +110,7 @@ mother varchar (100),
 father varchar (100),
 parents_address_id int,
 passport_office varchar(100),
-recruitment_office varchar (40),
+recruitment_office varchar (100),
 parent_tel varchar(10),
 
 education_before varchar (100),
