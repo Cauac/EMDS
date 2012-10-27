@@ -4,14 +4,11 @@
  */
 package by.vsu.emdsproject.web;
 
-import by.vsu.emdsproject.dao.GroupDAO;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Speciality;
 import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.SpecialityService;
-import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -47,8 +44,8 @@ public class GroupController {
             mav.addObject("errors", errors);
             return mav;
         }
-
-        p.setSpeciality(specialityService.readSpeciality(speciality_id));
+        Speciality sp = specialityService.readSpeciality(speciality_id);
+        p.setSpeciality(sp);
         groupService.addGroup(p);
         return new ModelAndView("redirect:/allGroups.htm");
     }

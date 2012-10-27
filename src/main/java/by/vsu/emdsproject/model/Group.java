@@ -15,6 +15,10 @@ public class Group implements AbstractEntity {
     public Group() {
     }
 
+    public Group(String title) {
+        this.title = title;
+    }
+    
     public Group(String title, Speciality speciality) {
         this.title = title;
         this.speciality = speciality;
@@ -41,7 +45,7 @@ public class Group implements AbstractEntity {
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "speciality_id", insertable = false, updatable = false)
+    @JoinColumn(name = "speciality_id")
     public Speciality getSpeciality() {
         return speciality;
     }
