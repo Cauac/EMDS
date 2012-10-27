@@ -70,7 +70,7 @@ public class Questionnaire {
         return passportNumber;
     }
 
-    @Column(name = "address_id")
+    //@Column(name = "address_id")
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     public Address getAddress() {
@@ -164,7 +164,7 @@ public class Questionnaire {
         return father;
     }
 
-    @Column(name = "parent_address_id")
+    //@Column(name = "parent_address_id")
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     public Address getParentAddress() {

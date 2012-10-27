@@ -64,7 +64,7 @@ public class Student implements AbstractEntity {
         return rank;
     }
 
-    @Column(name = "questionnaire")
+    //@Column(name = "questionnaire")
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     public Questionnaire getQuestionnaire() {

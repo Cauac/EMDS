@@ -40,7 +40,7 @@
 
     
     <servlet>
-        <servlet-name>springDispatcherServlet</servlet-name>
+        <servlet-name>EMDSProject</servlet-name>
         <servlet-class>
             org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
@@ -51,8 +51,8 @@
     </servlet>
     
     <servlet-mapping>
-        <servlet-name>springDispatcherServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>EMDSProject</servlet-name>        <!--springDispatcherServlet-->
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
     
     <session-config>
