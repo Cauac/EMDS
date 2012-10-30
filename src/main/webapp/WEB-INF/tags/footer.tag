@@ -1,1 +1,1 @@
-<span id="footer">EMDSproject bleat!</span>
+<span id="footer">EMDSproject bl!</span>

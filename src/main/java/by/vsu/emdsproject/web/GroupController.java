@@ -13,10 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GroupController {
-
+    
     @Autowired
     private GroupService groupService;
-    
     @Autowired
     private SpecialityService specialityService;
     
@@ -30,15 +29,14 @@ public class GroupController {
 
     @RequestMapping(value = "/addGroup.htm", method = RequestMethod.POST)
     public ModelAndView addGroup(Group p, Long speciality_id) {
-        
-            ModelAndView mav = new ModelAndView("addGroup");
+
+//            ModelAndView mav = new ModelAndView("addGroup");
 //            mav.addObject("errors", errors);
-            
-        
-//        Speciality s = new Speciality(speciality_id);
-            Speciality s = specialityService.readSpeciality(speciality_id);
+//            Speciality s = new Speciality(speciality_id);
+
+        Speciality s = specialityService.readSpeciality(speciality_id);
         p.setSpeciality(s);
-        
+
         groupService.addGroup(p);
         return new ModelAndView("redirect:/allGroups.htm");
     }
