@@ -106,5 +106,4 @@ public class Student implements AbstractEntity {
     public void setQuestionnaire(Questionnaire questionnaire) {
         this.questionnaire = questionnaire;
     }
-    
 }

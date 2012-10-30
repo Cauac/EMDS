@@ -14,10 +14,10 @@ public class Speciality implements AbstractEntity {
     public Speciality() {
     }
 
-    public Speciality (Long id) {
-        this.id = id; 
+    public Speciality(Long id) {
+        this.id = id;
     }
-    
+
     public Speciality(String title) {
         this.title = title;
     }
@@ -46,7 +46,7 @@ public class Speciality implements AbstractEntity {
         this.title = title;
     }
 
-    @OneToMany(mappedBy="speciality", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "speciality", cascade = CascadeType.ALL)
     public Set<Group> getGroups() {
         return groups;
     }
