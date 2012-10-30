@@ -12,7 +12,6 @@
     http://www.springframework.org/schema/aop    http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
        
     <tx:annotation-driven/>
-<!--    <context:annotation-config />-->
     <mvc:annotation-driven />
     <context:component-scan base-package="by.vsu.emdsproject"/>
     
