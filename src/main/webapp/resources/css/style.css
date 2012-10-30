@@ -1,8 +1,9 @@
 
-backgroung
+body {
 background: #060606;
-background-image: url("zenbg-1.png"), url("zenbg-2.png");
+background-image: url("/resources/images/zenbg-1.png"), url("/resources/images/zenbg-2.png");
 background-repeat: repeat-x, repeat;
+}
 
 .error {
     color: red;

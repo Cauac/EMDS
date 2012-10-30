@@ -10,6 +10,9 @@
     <url>http://vsu.by</url>
     
     <properties> 
+        
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
         <hibernate.version>4.1.7.Final</hibernate.version>
         <spring.version>3.1.2.RELEASE</spring.version>
         <postgre.version>9.1-901-1.jdbc4</postgre.version>
