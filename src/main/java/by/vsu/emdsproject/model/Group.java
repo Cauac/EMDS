@@ -18,7 +18,7 @@ public class Group implements AbstractEntity {
     public Group(String title) {
         this.title = title;
     }
-    
+
     public Group(String title, Speciality speciality) {
         this.title = title;
         this.speciality = speciality;
@@ -54,7 +54,7 @@ public class Group implements AbstractEntity {
         this.speciality = speciality;
     }
 
-    @OneToMany(mappedBy="group", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     public Set<Student> getStudents() {
         return students;
     }
