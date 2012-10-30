@@ -48,7 +48,7 @@ public class Student implements AbstractEntity {
         return birthDate;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "group_id")
     public Group getGroup() {
         return group;
@@ -64,7 +64,6 @@ public class Student implements AbstractEntity {
         return rank;
     }
 
-    //@Column(name = "questionnaire")
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     public Questionnaire getQuestionnaire() {

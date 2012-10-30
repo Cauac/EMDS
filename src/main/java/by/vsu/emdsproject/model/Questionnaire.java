@@ -16,7 +16,7 @@ public class Questionnaire implements AbstractEntity {
     private String homeTel;
     private String admissionYear;
     private String faculty;
-    private String speciality;
+    private String studySpeciality;
     private Integer course;
     private String studyGroup;
     private float studyProgress;
@@ -97,9 +97,9 @@ public class Questionnaire implements AbstractEntity {
         return faculty;
     }
 
-    @Column(name = "speciality", length = 30)
-    public String getSpeciality() {
-        return speciality;
+    @Column(name = "study_speciality", length = 30)
+    public String getStudySpeciality() {
+        return studySpeciality;
     }
 
     @Column(name = "course")
@@ -279,8 +279,8 @@ public class Questionnaire implements AbstractEntity {
         this.faculty = faculty;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public void setStudySpeciality(String speciality) {
+        this.studySpeciality = speciality;
     }
 
     public void setCourse(Integer course) {
