@@ -13,12 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GroupController {
-    
+
     @Autowired
     private GroupService groupService;
     @Autowired
     private SpecialityService specialityService;
-    
+
     @RequestMapping("/allGroups.htm")
     public ModelAndView allGroups() {
         List<Group> groups = groupService.listGroup();
