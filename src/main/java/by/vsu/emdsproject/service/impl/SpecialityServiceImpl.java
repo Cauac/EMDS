@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class SpecialityServiceImpl implements SpecialityService{
-    
+public class SpecialityServiceImpl implements SpecialityService {
+
     @Autowired
     private SpecialityDAO specialityDAO;
 
@@ -23,7 +23,7 @@ public class SpecialityServiceImpl implements SpecialityService{
     public List<Speciality> listSpeciality() {
         return specialityDAO.findAll();
     }
-    
+
     @Transactional
     public Speciality readSpeciality(Long id) {
         return specialityDAO.findOne(id);
@@ -33,5 +33,9 @@ public class SpecialityServiceImpl implements SpecialityService{
     public void removeSpeciality(Long id) {
         specialityDAO.deleteById(id);
     }
-    
+
+    @Transactional
+    public void removeSpeciality(Speciality speciality) {
+        specialityDAO.delete(speciality);
+    }
 }

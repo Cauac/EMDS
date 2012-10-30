@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class GroupServiceImpl implements GroupService{
-    
+public class GroupServiceImpl implements GroupService {
+
     @Autowired
     private GroupDAO groupDAO;
 
@@ -23,15 +23,19 @@ public class GroupServiceImpl implements GroupService{
     public List<Group> listGroup() {
         return groupDAO.findAll();
     }
-    
+
     @Transactional
     public Group readGroup(Long id) {
         return groupDAO.findOne(id);
     }
-    
+
     @Transactional
     public void removeGroup(Long id) {
         groupDAO.deleteById(id);
     }
 
+    @Transactional
+    public void removeGroup(Group group) {
+        groupDAO.delete(group);
+    }
 }
