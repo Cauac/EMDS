@@ -10,5 +10,4 @@ public class AddressDAOImpl extends AbstractDAOImpl<Address> implements AddressD
     public AddressDAOImpl() {
         setClazz(Address.class);
     }
-    
 }
