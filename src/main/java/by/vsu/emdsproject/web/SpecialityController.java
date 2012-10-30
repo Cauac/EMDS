@@ -16,7 +16,7 @@ public class SpecialityController {
     @Autowired
     private SpecialityService specialityService;
 
-    @RequestMapping(value = "/addSpeciality.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "/addSpeciality", method = RequestMethod.POST)
     public ModelAndView addSpeciality(Speciality s, Errors errors) {
         if (errors.hasErrors()) {
             ModelAndView mav = new ModelAndView("addSpeciality");
@@ -25,15 +25,15 @@ public class SpecialityController {
         }
 
         specialityService.addSpeciality(s);
-        return new ModelAndView("redirect:/allSpecialities.htm");
+        return new ModelAndView("redirect:/allSpecialities");
     }
 
-    @RequestMapping(value = "/addSpeciality.htm")
+    @RequestMapping(value = "/addSpeciality")
     public String addSpeciality() {
         return "speciality/addSpeciality";
     }
 
-    @RequestMapping("/allSpecialities.htm")
+    @RequestMapping("/allSpecialities")
     public ModelAndView allSpecialities() {
         List<Speciality> specialities = specialityService.listSpeciality();
         ModelAndView mav = new ModelAndView("speciality/specialityList");

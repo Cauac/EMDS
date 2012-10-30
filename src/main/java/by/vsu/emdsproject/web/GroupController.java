@@ -19,7 +19,7 @@ public class GroupController {
     @Autowired
     private SpecialityService specialityService;
 
-    @RequestMapping("/allGroups.htm")
+    @RequestMapping("/allGroups")
     public ModelAndView allGroups() {
         List<Group> groups = groupService.listGroup();
         ModelAndView mav = new ModelAndView("group/groupList");
@@ -27,7 +27,7 @@ public class GroupController {
         return mav;
     }
 
-    @RequestMapping(value = "/addGroup.htm", method = RequestMethod.POST)
+    @RequestMapping(value = "/addGroup", method = RequestMethod.POST)
     public ModelAndView addGroup(Group p, Long speciality_id) {
 
 //            ModelAndView mav = new ModelAndView("addGroup");
@@ -41,7 +41,7 @@ public class GroupController {
         return new ModelAndView("redirect:/allGroups.htm");
     }
 
-    @RequestMapping(value = "/addGroup.htm")
+    @RequestMapping(value = "/addGroup")
     public String addGroup() {
         return "group/addGroup";
     }

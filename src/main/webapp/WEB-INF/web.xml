@@ -37,9 +37,6 @@
             </param-value>
         </init-param>
     </servlet>
-    
-    <!--Security-->
-
 
     <!--Log4j-->
 <!--    <context-param>
@@ -52,11 +49,7 @@
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>-->
 
-    <!--Security-->
-   
-    
 
-    
     <servlet-mapping>
         <servlet-name>EMDSproject</servlet-name>
         <url-pattern>/</url-pattern>

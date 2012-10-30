@@ -1,6 +1,6 @@
-<a href="welcome">Home</a>
-<a href="allSpecialities.htm">View specialities (NEW!)</a>
-<a href="addSpeciality.htm">Add speciality (NEW!)</a>
-<a href="allGroups.htm">View groups (NEW!)</a>
-<a href="addGroup.htm">Add group (NEW!)</a>
+<a href="./">Home</a>
+<a href="allSpecialities">View specialities</a>
+<a href="addSpeciality">Add speciality</a>
+<a href="allGroups">View groups</a>
+<a href="addGroup">Add group</a>
 <hr />

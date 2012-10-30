@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "/welcome")
+    @RequestMapping(value = "")
     public String welcome(ModelMap model) {
-        return "index";
+        return "forward:/index.jsp";
+    }
+    
+    @RequestMapping(value = "/403")
+    public String accessDenied(ModelMap model) {
+        return "error403";
     }
 
     @RequestMapping(value = "/login")
