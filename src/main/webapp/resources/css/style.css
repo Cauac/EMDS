@@ -1,13 +1,11 @@
+
+backgroung
+background: #060606;
+background-image: url("zenbg-1.png"), url("zenbg-2.png");
+background-repeat: repeat-x, repeat;
+
 .error {
     color: red;
-}
-
-.senior {
-    background-color: lightblue;
-}
-
-.junior {
-    background-color: lightgrey;
 }
 
 #footer {
