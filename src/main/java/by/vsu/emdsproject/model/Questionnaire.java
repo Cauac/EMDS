@@ -71,7 +71,7 @@ public class Questionnaire implements AbstractEntity {
     }
 
     @OneToOne
-    @JoinColumn(name = 'address_id', cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", cascade = CascadeType.ALL)
     public Address getAddress() {
         return address;
     }
@@ -164,7 +164,7 @@ public class Questionnaire implements AbstractEntity {
     }
 
     @OneToOne
-    @JoinColumn(name = 'parent_address_id', cascade = CascadeType.ALL)
+    @JoinColumn(name = "parent_address_id", cascade = CascadeType.ALL)
     public Address getParentAddress() {
         return parentAddress;
     }
