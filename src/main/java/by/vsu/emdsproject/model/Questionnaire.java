@@ -70,8 +70,8 @@ public class Questionnaire implements AbstractEntity {
         return passportNumber;
     }
 
-    @OneToOne
-    @JoinColumn(name = "address_id", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
     public Address getAddress() {
         return address;
     }
@@ -163,8 +163,8 @@ public class Questionnaire implements AbstractEntity {
         return father;
     }
 
-    @OneToOne
-    @JoinColumn(name = "parent_address_id", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parent_address_id")
     public Address getParentAddress() {
         return parentAddress;
     }

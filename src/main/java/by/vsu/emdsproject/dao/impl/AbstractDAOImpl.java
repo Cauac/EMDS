@@ -19,7 +19,7 @@ public abstract class AbstractDAOImpl<TypeEn extends AbstractEntity> implements 
 
     @SuppressWarnings("unchecked")
     public TypeEn findOne(final Long id) {
-        return (TypeEn) getCurrentSession().get(clazz, id);
+        return (TypeEn) getCurrentSession().load(clazz, id);
     }
 
     @SuppressWarnings("unchecked")

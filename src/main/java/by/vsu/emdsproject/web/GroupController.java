@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.web;
 
+import by.vsu.emdsproject.dao.SpecialityDAO;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Speciality;
 import by.vsu.emdsproject.service.GroupService;
@@ -18,7 +19,7 @@ public class GroupController {
     private GroupService groupService;
     @Autowired
     private SpecialityService specialityService;
-
+    
     @RequestMapping("/allGroups")
     public ModelAndView allGroups() {
         List<Group> groups = groupService.listGroup();

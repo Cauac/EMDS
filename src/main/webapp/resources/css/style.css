@@ -1,8 +1,7 @@
-
 body {
-background: #060606;
-background-image: url("/resources/images/zenbg-1.png"), url("/resources/images/zenbg-2.png");
-background-repeat: repeat-x, repeat;
+    color:white;
+    background-image: url(../images/ZenBG-1.png);
+    background-repeat: repeat-x, repeat;
 }
 
 .error {

@@ -7,15 +7,15 @@
 
     <display-name>VSU Military Department</display-name>
     
-     <context-param>
+     <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <context-param>
         <description>The Spring configuration file</description>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/spring/emds-web-context.xml</param-value>
     </context-param>
-
-     <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
     
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>

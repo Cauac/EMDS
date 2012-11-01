@@ -5,8 +5,10 @@ import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.service.StudentService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 
     @Autowired

@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -9,7 +10,7 @@ public class Speciality implements AbstractEntity {
 
     private Long id;
     private String title;
-    private Set<Group> groups;
+    private Set<Group> groups = new HashSet<Group>();
 
     public Speciality() {
     }
@@ -46,7 +47,7 @@ public class Speciality implements AbstractEntity {
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "speciality", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "speciality", cascade = CascadeType.MERGE)
     public Set<Group> getGroups() {
         return groups;
     }

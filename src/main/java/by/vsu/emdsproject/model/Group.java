@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ public class Group implements AbstractEntity {
     private Long id;
     private String title;
     private Speciality speciality;
-    private Set<Student> students;
+    private Set<Student> students = new HashSet<Student>();
 
     public Group() {
     }
@@ -44,7 +45,7 @@ public class Group implements AbstractEntity {
         this.title = title;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.MERGE)
     @JoinColumn(name = "speciality_id")
     public Speciality getSpeciality() {
         return speciality;
