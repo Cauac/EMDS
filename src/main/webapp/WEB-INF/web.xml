@@ -39,7 +39,7 @@
     </servlet>
 
     <!--Log4j-->
-<!--    <context-param>
+    <context-param>
         <description>Log4j config</description>
         <param-name>log4jConfigLocation</param-name>
         <param-value>classpath:/log4j/log4j.xml</param-value>
@@ -47,7 +47,7 @@
 
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-    </listener>-->
+    </listener>
 
 
     <servlet-mapping>

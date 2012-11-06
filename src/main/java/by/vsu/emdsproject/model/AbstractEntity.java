@@ -1,6 +1,8 @@
 package by.vsu.emdsproject.model;
 
-public interface AbstractEntity {
+import java.io.Serializable;
+
+public interface AbstractEntity extends Serializable{
 
     public Long getId();
 
