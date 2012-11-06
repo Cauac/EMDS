@@ -45,7 +45,7 @@ public class Group implements AbstractEntity {
         this.title = title;
     }
 
-    @ManyToOne(cascade= CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "speciality_id")
     public Speciality getSpeciality() {
         return speciality;
