@@ -47,7 +47,7 @@ public class Speciality implements AbstractEntity {
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "speciality", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "speciality", cascade = CascadeType.ALL)
     public Set<Group> getGroups() {
         return groups;
     }
