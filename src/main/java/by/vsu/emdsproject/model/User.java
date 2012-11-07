@@ -70,7 +70,7 @@ public class User implements AbstractEntity {
         return personType;
     }
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = {
         @JoinColumn(name = "user_id")},
     inverseJoinColumns = {
