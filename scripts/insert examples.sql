@@ -18,10 +18,10 @@ DELETE FROM user_role;
 -- -- group
 -- INSERT INTO public.study_group (title, speciality_id) VALUES ('��1', 7);
 
--- authentification
-insert into public.users (id, login, password, enabled) values (1, 'admin', 'admin', 1);
-insert into public.users (id, person_id, person_type, login, password, enabled) values (2, 2, 'teacher', 'teacher', 'teacher', 1);
-insert into public.users (id, person_id, person_type, login, password, enabled) values (3, 3, 'student', 'student', 'student', 1);
+-- authentication
+insert into public.users (id, login, password, enabled) values (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1);
+insert into public.users (id, person_id, person_type, login, password, enabled) values (2, 2, 'teacher', 'teacher', '8d788385431273d11e8b43bb78f3aa41', 1);
+insert into public.users (id, person_id, person_type, login, password, enabled) values (3, 3, 'student', 'student', 'cd73502828457d15655bbd7a63fb0bc8', 1);
 
 insert into public.roles (id, authority) values (1, 'ROLE_ADMIN');
 insert into public.roles (id, authority) values (2, 'ROLE_TEACHER');

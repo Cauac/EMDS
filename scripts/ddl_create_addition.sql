@@ -13,7 +13,7 @@ create table users (
     person_id int,
     person_type varchar(10),
     login varchar(20) unique not null,
-    password varchar(30) not null,
+    password varchar(32) not null,
     enabled int,
     primary key (id)
 );
