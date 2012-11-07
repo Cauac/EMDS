@@ -23,9 +23,9 @@
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <commons-lang.version>2.6</commons-lang.version>
         <log4j.version>1.2.17</log4j.version>
-        <slf4j.version>1.6.6</slf4j.version>
+        <slf4j.version>1.7.2</slf4j.version>
         <cglib.version>2.2</cglib.version>
-        <tiles.version>3.0.1</tiles.version>
+        <tiles.version>2.2.2</tiles.version>
         
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
@@ -171,7 +171,19 @@
             
             <dependency>
                 <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
                                     
@@ -270,10 +282,19 @@
         
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <scope>test</scope>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
-        
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+                
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
