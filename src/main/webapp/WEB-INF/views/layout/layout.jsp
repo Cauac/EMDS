@@ -43,7 +43,7 @@
         </div>
 
         <!-- scripts -->
-    <tiles:insertAttribute name="scripts" />
+        <tiles:insertAttribute name="scripts" />
 
-</body>
+    </body>
 </html>

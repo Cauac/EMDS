@@ -2,7 +2,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags"%>
 <html>
     <head>
-<!--        <link href="./resources/css/style.css" rel="stylesheet" type="text/css"/>-->
+        <!--        <link href="./resources/css/style.css" rel="stylesheet" type="text/css"/>-->
         <mytags:style />
     </head>
     <body>

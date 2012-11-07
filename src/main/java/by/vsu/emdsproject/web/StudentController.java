@@ -15,7 +15,7 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
-    
+
     @RequestMapping("/allStudents")
     public ModelAndView allStudents() {
         List<Student> students = studentService.listStudent();
@@ -23,17 +23,15 @@ public class StudentController {
         mav.addObject("students", students);
         return mav;
     }
-    
-    @RequestMapping(value="/addStudent", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
     public ModelAndView addStudent(Student s) {
         studentService.addStudent(s);
         return new ModelAndView("redirect:/student/studentList");
     }
-    
-    
+
     @RequestMapping("/addStudent")
     public String addStudent() {
         return "student/addStudent";
     }
-    
 }

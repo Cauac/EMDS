@@ -19,7 +19,7 @@ public class GroupController {
     private GroupService groupService;
     @Autowired
     private SpecialityService specialityService;
-    
+
     @RequestMapping("/allGroups")
     public ModelAndView allGroups() {
         List<Group> groups = groupService.listGroup();

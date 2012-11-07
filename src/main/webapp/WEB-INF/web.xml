@@ -7,7 +7,7 @@
 
     <display-name>VSU Military Department</display-name>
     
-     <listener>
+    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
-public class Role implements AbstractEntity{
+public class Role implements AbstractEntity {
 
     private Long id;
     private String authority;
@@ -30,7 +30,7 @@ public class Role implements AbstractEntity{
         this.id = id;
         this.authority = authority;
     }
-    
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,11 +48,10 @@ public class Role implements AbstractEntity{
         return users;
     }
 
-    
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public void setAuthority(String authority) {
         this.authority = authority;
     }
@@ -60,6 +59,4 @@ public class Role implements AbstractEntity{
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-
-    
 }

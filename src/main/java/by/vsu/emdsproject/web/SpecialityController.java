@@ -25,11 +25,11 @@ public class SpecialityController {
             mav.addObject("errors", errors);
             return mav;
         }
-        
+
         Speciality s1 = specialityService.readSpeciality(1l);
 
-        Set <Group> assa = s1.getGroups();
-        
+        Set<Group> assa = s1.getGroups();
+
         specialityService.addSpeciality(s);
         return new ModelAndView("redirect:/allSpecialities");
     }

@@ -79,6 +79,10 @@ public class User implements AbstractEntity {
         return roles;
     }
 
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;;
+    }
+
     public void setPersonId(Long personId) {
         this.personId = personId;
     }
@@ -101,5 +105,14 @@ public class User implements AbstractEntity {
 
     public void setEnabled(int enabled) {
         this.enabled = enabled;
+    }
+
+    public boolean hasRole(String role) {
+        for (Role r : roles) {
+            if (r.getAuthority().equals(role)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

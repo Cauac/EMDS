@@ -15,7 +15,7 @@ public class SubjectController {
 
     @Autowired
     private SubjectService subjectService;
-    
+
     @RequestMapping("/allSubjects")
     public ModelAndView allSubject() {
         List<Subject> subjects = subjectService.listSubject();
@@ -23,16 +23,15 @@ public class SubjectController {
         mav.addObject("subjects", subjects);
         return mav;
     }
-    
-    @RequestMapping(value="/addSubject", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
     public ModelAndView addSubject(Subject s) {
         subjectService.addSubject(s);
         return new ModelAndView("redirect:/subject/subjectList");
     }
-    
+
     @RequestMapping("/addSubject")
     public String addSubject() {
         return "subject/addSubject";
     }
-    
 }

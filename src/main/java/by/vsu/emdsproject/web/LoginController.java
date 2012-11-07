@@ -11,7 +11,7 @@ public class LoginController {
     public String welcome(ModelMap model) {
         return "forward:/index.jsp";
     }
-    
+
     @RequestMapping(value = "/403")
     public String accessDenied(ModelMap model) {
         return "error403";
