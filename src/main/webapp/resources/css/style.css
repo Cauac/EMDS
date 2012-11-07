@@ -1,7 +1,7 @@
 body {
-    color:white;
-    background-image: url(../images/ZenBG-1.png);
-    background-repeat: repeat-x, repeat;
+    background-image: url(../images/texture.png);
+    background-repeat: repeat;
+/*    color: #0ca3d2;*/
 }
 
 .error {

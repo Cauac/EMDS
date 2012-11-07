@@ -6,7 +6,4 @@
 
 <div class="emds-footer">
     <mytags:footer/>
-    <a class="emds-footer-logo" href="#"> 
-        <img class="emds-footer-logo-image" src="${logoURL}" alt="">
-    </a>
 </div>

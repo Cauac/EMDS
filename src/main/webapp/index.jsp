@@ -7,7 +7,7 @@
     </head>
     <body>
         <mytags:menu />
-        <h1>Uporot shtole?!</h1>
+        <h1>??? Uporot shtole?!</h1>
         <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
         <mytags:footer/>
     </body>
