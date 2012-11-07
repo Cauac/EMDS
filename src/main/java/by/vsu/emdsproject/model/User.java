@@ -1,22 +1,30 @@
 package by.vsu.emdsproject.model;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User implements AbstractEntity{
-    
+public class User implements AbstractEntity {
+
     private Long id;
     private Long personId;
     private String personType;
     private String login;
     private String password;
     private int enabled;
+    private Set<Role> roles = new HashSet<Role>();
 
     public User() {
     }
@@ -36,17 +44,17 @@ public class User implements AbstractEntity{
     public Long getId() {
         return id;
     }
-    
+
     @Column(name = "login")
     public String getLogin() {
         return login;
     }
-    
+
     @Column(name = "password")
     public String getPassword() {
         return password;
     }
-    
+
     @Column(name = "enabled")
     public int getEnabled() {
         return enabled;
@@ -62,8 +70,15 @@ public class User implements AbstractEntity{
         return personType;
     }
 
-    
-    
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinTable(name = "user_role", joinColumns = {
+        @JoinColumn(name = "user_id")},
+    inverseJoinColumns = {
+        @JoinColumn(name = "role_id")})
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
     public void setPersonId(Long personId) {
         this.personId = personId;
     }
@@ -71,7 +86,7 @@ public class User implements AbstractEntity{
     public void setPersonType(String personType) {
         this.personType = personType;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -87,5 +102,4 @@ public class User implements AbstractEntity{
     public void setEnabled(int enabled) {
         this.enabled = enabled;
     }
-    
 }
