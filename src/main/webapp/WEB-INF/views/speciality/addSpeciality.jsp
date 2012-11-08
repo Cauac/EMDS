@@ -16,6 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <mytags:header />
         <mytags:menu />
         <h4>New Speciality</h4>
         <form method="post" action="addSpeciality.htm">

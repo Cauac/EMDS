@@ -1,10 +1,8 @@
 package by.vsu.emdsproject.web;
 
-import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Speciality;
 import by.vsu.emdsproject.service.SpecialityService;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -25,11 +23,6 @@ public class SpecialityController {
             mav.addObject("errors", errors);
             return mav;
         }
-
-        Speciality s1 = specialityService.readSpeciality(1l);
-
-        Set<Group> assa = s1.getGroups();
-
         specialityService.addSpeciality(s);
         return new ModelAndView("redirect:/allSpecialities");
     }

@@ -15,6 +15,7 @@
         <title>Speciality list</title>
     </head>
     <body>
+        <mytags:header />
         <mytags:menu />
         <h1>Speciality list here!</h1>
         <c:if test="${fn:length(specialities) gt 0}">

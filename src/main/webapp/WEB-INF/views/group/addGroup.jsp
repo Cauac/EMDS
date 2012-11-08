@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <mytags:style />
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
         <title>JSP Page</title>
     </head>

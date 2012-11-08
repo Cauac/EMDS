@@ -25,7 +25,7 @@
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.2</slf4j.version>
         <cglib.version>2.2</cglib.version>
-        <tiles.version>2.2.2</tiles.version>
+        <!--<tiles.version>2.2.2</tiles.version>-->
         
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
@@ -104,40 +104,6 @@
             </dependency>
 
             <!--*************-->
-
-            <!--Apache Tiles-->
-            
-            <dependency>
-                <groupId>org.apache.tiles</groupId>
-                <artifactId>tiles-api</artifactId>
-                <version>${tiles.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.tiles</groupId>
-                <artifactId>tiles-core</artifactId>
-                <version>${tiles.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.tiles</groupId>
-                <artifactId>tiles-jsp</artifactId>
-                <version>${tiles.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.tiles</groupId>
-                <artifactId>tiles-servlet</artifactId>
-                <version>${tiles.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.tiles</groupId>
-                <artifactId>tiles-template</artifactId>
-                <version>${tiles.version}</version>
-            </dependency>
-            
-            <!--************-->
 
             <dependency>
                 <groupId>postgresql</groupId>
@@ -298,32 +264,6 @@
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
-        </dependency>
-
-        
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-jsp</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-servlet</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-template</artifactId>
         </dependency>
                         
     </dependencies>

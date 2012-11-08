@@ -4,7 +4,7 @@
  * 1. Corrects font size not being inherited in all browsers
  * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
  * 3. Improves appearance and consistency in all browsers
- */
+*/
 
 button,
 input,
@@ -18,7 +18,7 @@ textarea {
 
 /*
  * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
- */
+*/
 
 button,
 input {
@@ -30,7 +30,7 @@ input {
  * 2. Corrects inability to style clickable 'input' types in iOS
  * 3. Removes inner spacing in IE7 without affecting normal text inputs
  *    Known issue: inner spacing remains in IE6
- */
+*/
 
 button,
 input[type="button"],
@@ -46,7 +46,7 @@ input[type="submit"] {
  * 2. Removes excess padding in IE8/9
  * 3. Removes excess padding in IE7
       Known issue: excess padding remains in IE6
- */
+*/
 
 input[type="checkbox"],
 input[type="radio"] {
@@ -59,7 +59,7 @@ input[type="radio"] {
 /*
  * Removes inner padding and border in FF3+
  * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
- */
+*/
 
 button::-moz-focus-inner,
 input::-moz-focus-inner {
