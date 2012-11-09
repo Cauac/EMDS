@@ -1,5 +1,6 @@
-package by.vsu.emdsproject.report;
+package by.vsu.emdsproject.report.jasper;
 
+import by.vsu.emdsproject.report.IReport;
 import java.util.Collection;
 import java.util.HashMap;
 
