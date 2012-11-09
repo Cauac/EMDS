@@ -47,5 +47,8 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="personCardReport" class="by.vsu.emdsproject.report.PersonCardReport">
+    <property name="templateFileName" value="r1.jrxml"/>
+    </bean>
 
 </beans>
