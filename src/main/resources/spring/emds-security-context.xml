@@ -37,7 +37,7 @@
                         
         <security:intercept-url pattern="/student/**" access="ROLE_STUDENT"/>
         <security:intercept-url pattern="/teacher/**" access="ROLE_TEACHER" />
-        <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+        <!--<security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />-->
         
         <!--Resourses -->
         <security:intercept-url pattern="/external/**"
@@ -59,8 +59,8 @@
 		      from users where login=?" 
  
                                         authorities-by-username-query="
-		      select u.login, r.authority from users u, roles r, user_role ur 
-		      where u.id = ur.user_id and r.id = ur.role_id and u.login=?" />
+		      select u.login, r.authority from users u, roles r
+		      where u.role_id = r.id and u.login=?" />
         </security:authentication-provider>
     </security:authentication-manager>
 </beans:beans>

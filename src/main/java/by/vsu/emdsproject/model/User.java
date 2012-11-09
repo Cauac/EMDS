@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +25,7 @@ public class User implements AbstractEntity {
     private String login;
     private String password;
     private int enabled;
-    private Set<Role> roles = new HashSet<Role>();
+    private Role role;
 
     public User() {
     }
@@ -70,17 +71,14 @@ public class User implements AbstractEntity {
         return personType;
     }
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = {
-        @JoinColumn(name = "user_id")},
-    inverseJoinColumns = {
-        @JoinColumn(name = "role_id")})
-    public Set<Role> getRoles() {
-        return roles;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public void setPersonId(Long personId) {
@@ -105,14 +103,5 @@ public class User implements AbstractEntity {
 
     public void setEnabled(int enabled) {
         this.enabled = enabled;
-    }
-
-    public boolean hasRole(String role) {
-        for (Role r : roles) {
-            if (r.getAuthority().equals(role)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
