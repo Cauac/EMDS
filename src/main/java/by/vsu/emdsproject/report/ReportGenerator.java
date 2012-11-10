@@ -1,11 +1,8 @@
 package by.vsu.emdsproject.report;
 
+import by.vsu.emdsproject.model.Student;
+
 public interface ReportGenerator {
 
-    static class ReportName {
-
-        public static final String PERSON_CARD_REPORT = "personCardRepost";
-    }
-
-    public void createReport(IReport report);
+    public void generatePersonCardReport(Student student);
 }
