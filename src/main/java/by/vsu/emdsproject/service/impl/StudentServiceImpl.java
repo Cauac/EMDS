@@ -15,27 +15,27 @@ public class StudentServiceImpl implements StudentService {
     private StudentDAO studentDAO;
 
     @Transactional
-    public void addStudent(Student student) {
+    public void add(Student student) {
         studentDAO.save(student);
     }
 
     @Transactional
-    public List<Student> listStudent() {
+    public List<Student> list() {
         return studentDAO.findAll();
     }
 
     @Transactional
-    public Student readStudent(Long id) {
+    public Student read(Long id) {
         return studentDAO.findOne(id);
     }
 
     @Transactional
-    public void removeStudent(Long id) {
+    public void remove(Long id) {
         studentDAO.deleteById(id);
     }
 
     @Transactional
-    public void removeStudent(Student student) {
+    public void remove(Student student) {
         studentDAO.delete(student);
     }
 }

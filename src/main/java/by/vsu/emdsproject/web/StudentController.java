@@ -1,37 +1,24 @@
 package by.vsu.emdsproject.web;
 
-import by.vsu.emdsproject.model.Student;
-import by.vsu.emdsproject.service.StudentService;
-import java.util.List;
+import by.vsu.emdsproject.common.EMDSContext;
+import by.vsu.emdsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/teacher/student/")
+@RequestMapping("student")
 public class StudentController {
 
     @Autowired
-    private StudentService studentService;
+    private UserService userService;
 
-    @RequestMapping("/allStudents")
-    public ModelAndView allStudents() {
-        List<Student> students = studentService.listStudent();
-        ModelAndView mav = new ModelAndView("student/studentList");
-        mav.addObject("students", students);
+    @RequestMapping("")
+    public ModelAndView mainPage () {
+        ModelAndView mav = new ModelAndView("student/studentMain");
+        mav.addObject("currUser", EMDSContext.getInstance().getCurrentUser().getUsername());
         return mav;
     }
-
-    @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
-    public ModelAndView addStudent(Student s) {
-        studentService.addStudent(s);
-        return new ModelAndView("redirect:/student/studentList");
-    }
-
-    @RequestMapping("/addStudent")
-    public String addStudent() {
-        return "student/addStudent";
-    }
+    
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public class QuestionnaireDAOImpl extends AbstractDAOImpl<Questionnaire> implements QuestionnaireDAO {
 
     public QuestionnaireDAOImpl() {
+        super();
         setClazz(Questionnaire.class);
     }
 }

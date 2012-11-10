@@ -15,27 +15,27 @@ public class SpecialityServiceImpl implements SpecialityService {
     private SpecialityDAO specialityDAO;
 
     @Transactional
-    public void addSpeciality(Speciality speciality) {
+    public void add(Speciality speciality) {
         specialityDAO.save(speciality);
     }
 
     @Transactional
-    public List<Speciality> listSpeciality() {
+    public List<Speciality> list() {
         return specialityDAO.findAll();
     }
 
     @Transactional
-    public Speciality readSpeciality(Long id) {
+    public Speciality read(Long id) {
         return specialityDAO.findOne(id);
     }
 
     @Transactional
-    public void removeSpeciality(Long id) {
+    public void remove(Long id) {
         specialityDAO.deleteById(id);
     }
 
     @Transactional
-    public void removeSpeciality(Speciality speciality) {
+    public void remove(Speciality speciality) {
         specialityDAO.delete(speciality);
     }
 }

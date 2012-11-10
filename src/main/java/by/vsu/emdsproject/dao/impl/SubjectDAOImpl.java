@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public class SubjectDAOImpl extends AbstractDAOImpl<Subject> implements SubjectDAO {
 
     public SubjectDAOImpl() {
+        super();
         setClazz(Subject.class);
     }
 }

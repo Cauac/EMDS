@@ -1,1 +1,0 @@
-<span id="footer">EMDSproject bl!</span>

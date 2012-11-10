@@ -15,27 +15,27 @@ public class SubjectServiceImpl implements SubjectService {
     private SubjectDAO subjectDAO;
 
     @Transactional
-    public void addSubject(Subject subject) {
+    public void add(Subject subject) {
         subjectDAO.save(subject);
     }
 
     @Transactional
-    public List<Subject> listSubject() {
+    public List<Subject> list() {
         return subjectDAO.findAll();
     }
 
     @Transactional
-    public Subject readSubject(Long id) {
+    public Subject read(Long id) {
         return subjectDAO.findOne(id);
     }
 
     @Transactional
-    public void removeSubject(Long id) {
+    public void remove(Long id) {
         subjectDAO.deleteById(id);
     }
 
     @Transactional
-    public void removeSubject(Subject subject) {
+    public void remove(Subject subject) {
         subjectDAO.delete(subject);
     }
 }

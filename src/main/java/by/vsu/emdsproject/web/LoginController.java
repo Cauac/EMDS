@@ -1,5 +1,9 @@
 package by.vsu.emdsproject.web;
 
+import by.vsu.emdsproject.common.EMDSContext;
+import by.vsu.emdsproject.model.User;
+import by.vsu.emdsproject.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,9 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "")
+    @Autowired
+    private UserService userService;
+    
+    @RequestMapping(value = "/index")
     public String welcome(ModelMap model) {
-        return "forward:/index.jsp";
+        String username = EMDSContext.getInstance().getCurrentUser().getUsername();
+        User currentUser = userService.getByLogin(username);
+        if (currentUser.getRole().getAuthority().equals("ROLE_TEACHER")) {
+            return "redirect:teacher";
+        }
+        if (currentUser.getRole().getAuthority().equals("ROLE_STUDENT")) {
+            return "redirect:student";
+        }
+        return "forward:index.jsp";
     }
 
     @RequestMapping(value = "/403")

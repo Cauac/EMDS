@@ -23,7 +23,7 @@ public class SpecialityController {
             mav.addObject("errors", errors);
             return mav;
         }
-        specialityService.addSpeciality(s);
+        specialityService.add(s);
         return new ModelAndView("redirect:/allSpecialities");
     }
 
@@ -34,7 +34,7 @@ public class SpecialityController {
 
     @RequestMapping("/allSpecialities")
     public ModelAndView allSpecialities() {
-        List<Speciality> specialities = specialityService.listSpeciality();
+        List<Speciality> specialities = specialityService.list();
         ModelAndView mav = new ModelAndView("speciality/specialityList");
         mav.addObject("specialities", specialities);
         return mav;

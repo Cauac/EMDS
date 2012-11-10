@@ -1,6 +1,5 @@
 package by.vsu.emdsproject.web;
 
-import by.vsu.emdsproject.dao.SpecialityDAO;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Speciality;
 import by.vsu.emdsproject.service.GroupService;
@@ -22,7 +21,7 @@ public class GroupController {
 
     @RequestMapping("/allGroups")
     public ModelAndView allGroups() {
-        List<Group> groups = groupService.listGroup();
+        List<Group> groups = groupService.list();
         ModelAndView mav = new ModelAndView("group/groupList");
         mav.addObject("groups", groups);
         return mav;
@@ -35,10 +34,10 @@ public class GroupController {
 //            mav.addObject("errors", errors);
 //            Speciality s = new Speciality(speciality_id);
 
-        Speciality s = specialityService.readSpeciality(speciality_id);
+        Speciality s = specialityService.read(speciality_id);
         p.setSpeciality(s);
 
-        groupService.addGroup(p);
+        groupService.add(p);
         return new ModelAndView("redirect:/allGroups.htm");
     }
 

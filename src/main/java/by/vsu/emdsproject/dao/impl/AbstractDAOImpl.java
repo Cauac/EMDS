@@ -11,7 +11,7 @@ public abstract class AbstractDAOImpl<TypeEn extends AbstractEntity> implements 
 
     private Class<TypeEn> clazz;
     @Autowired
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     public void setClazz(final Class<TypeEn> clazzToSet) {
         clazz = clazzToSet;

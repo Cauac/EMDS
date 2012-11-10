@@ -15,27 +15,27 @@ public class GroupServiceImpl implements GroupService {
     private GroupDAO groupDAO;
 
     @Transactional
-    public void addGroup(Group group) {
+    public void add(Group group) {
         groupDAO.save(group);
     }
 
     @Transactional
-    public List<Group> listGroup() {
+    public List<Group> list() {
         return groupDAO.findAll();
     }
 
     @Transactional
-    public Group readGroup(Long id) {
+    public Group read(Long id) {
         return groupDAO.findOne(id);
     }
 
     @Transactional
-    public void removeGroup(Long id) {
+    public void remove(Long id) {
         groupDAO.deleteById(id);
     }
 
     @Transactional
-    public void removeGroup(Group group) {
+    public void remove(Group group) {
         groupDAO.delete(group);
     }
 }

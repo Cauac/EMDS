@@ -15,27 +15,27 @@ public class TeacherServiceImpl implements TeacherService {
     private TeacherDAO teacherDAO;
 
     @Transactional
-    public void addTeacher(Teacher teacher) {
+    public void add(Teacher teacher) {
         teacherDAO.save(teacher);
     }
 
     @Transactional
-    public List<Teacher> listTeacher() {
+    public List<Teacher> list() {
         return teacherDAO.findAll();
     }
 
     @Transactional
-    public Teacher readTeacher(Long id) {
+    public Teacher read(Long id) {
         return teacherDAO.findOne(id);
     }
 
     @Transactional
-    public void removeTeacher(Long id) {
+    public void remove(Long id) {
         teacherDAO.deleteById(id);
     }
 
     @Transactional
-    public void removeTeacher(Teacher teacher) {
+    public void remove(Teacher teacher) {
         teacherDAO.delete(teacher);
     }
 }

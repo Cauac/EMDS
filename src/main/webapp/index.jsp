@@ -2,13 +2,9 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags"%>
 <html>
     <head>
-        <!--        <link href="./resources/css/style.css" rel="stylesheet" type="text/css"/>-->
-        <mytags:style />
+        <meta http-equiv="Refresh" content="0; url=./index">        
     </head>
     <body>
-        <mytags:menu />
-        <h1>??? Uporot shtole?!</h1>
-        <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
-        <mytags:footer/>
+        Redirecting..
     </body>
 </html>
