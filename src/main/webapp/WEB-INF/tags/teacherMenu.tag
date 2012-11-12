@@ -9,7 +9,7 @@
         <c:url value="/teacher/abiturients" var="abits" />
         <c:url value="/teacher/reports" var="reports" />
         <c:url value="/teacher/teachers" var="teachers" />
-        <c:url value="/teacher/specialities" var="specs" />
+        <c:url value="/teacher/specialties" var="specs" />
         <c:url value="/teacher/groups" var="groups" />
         
 

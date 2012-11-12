@@ -11,12 +11,14 @@
     </head>
     <body>
         <mytags:header />
-        <h4>Новая специальность</h4>
-        <form method="post" action="addSpeciality.htm">
-            <label for="name">Title:</label>
-            <input type="text" name="title" /><br />
-            <input type="submit" value="Add"/>
-            <input type="reset" />
-        </form>
+        <mytags:teacherMenu number="4"/>
+        <div>
+            <h4>Новая специальность</h4>
+            <form method="post" action="../specialties/add">
+                <input type="text" name="title" /><br />
+                <input type="submit" value="Add"/>
+                <a class="btn" href="../specialties"> Назад </a>
+            </form>
+        </div>
     </body>
 </html>

@@ -10,7 +10,7 @@ public class Group implements AbstractEntity {
 
     private Long id;
     private String title;
-    private Speciality speciality;
+    private Specialty specialty;
     private Set<Student> students = new HashSet<Student>();
 
     public Group() {
@@ -20,9 +20,9 @@ public class Group implements AbstractEntity {
         this.title = title;
     }
 
-    public Group(String title, Speciality speciality) {
+    public Group(String title, Specialty specialty) {
         this.title = title;
-        this.speciality = speciality;
+        this.specialty = specialty;
     }
 
     @Id
@@ -46,16 +46,16 @@ public class Group implements AbstractEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "speciality_id")
-    public Speciality getSpeciality() {
-        return speciality;
+    @JoinColumn(name = "specialty_id")
+    public Specialty getSpecialty() {
+        return specialty;
     }
 
-    public void setSpeciality(Speciality speciality) {
-        this.speciality = speciality;
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
     }
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch= FetchType.EAGER)
     public Set<Student> getStudents() {
         return students;
     }

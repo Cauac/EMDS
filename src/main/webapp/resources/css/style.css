@@ -7,8 +7,12 @@ body {
     text-align:center;
 }
 
+input {
+	height: 32px !important;
+}
+
 .loginButton {
-    width: 120px!important; 
+    width: 120px !important; 
 }
 
 .error {

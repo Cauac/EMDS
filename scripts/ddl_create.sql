@@ -8,18 +8,18 @@ create table address (
     PRIMARY KEY("id_address")
 );
 
-create table speciality (
-    id_speciality SERIAL,
+create table specialty (
+    id_specialty SERIAL,
     title varchar (100) NOT NULL,
-    PRIMARY KEY("id_speciality")
+    PRIMARY KEY("id_specialty")
 );
 
 create table study_group (
     id_group SERIAL,
     title varchar (10) UNIQUE NOT NULL,
-    speciality_id int NOT NULL,
+    specialty_id int NOT NULL,
     PRIMARY KEY("id_group"),
-    CONSTRAINT FK_GROUP_SPECIALITY FOREIGN KEY (speciality_id) REFERENCES speciality(id_speciality) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT FK_GROUP_SPECIALTY FOREIGN KEY (specialty_id) REFERENCES specialty(id_specialty) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE questionnaire(
@@ -33,7 +33,7 @@ CREATE TABLE questionnaire(
     
     admission_year varchar (4),
     faculty varchar (30),
-    speciality varchar (30),
+    specialty varchar (30),
     course int,
     study_group varchar (10),
     study_progress real,
@@ -100,10 +100,10 @@ create table subject (
     PRIMARY KEY("id_subject")
 );
 
-create table speciality_subject (
+create table specialty_subject (
     subject_id int NOT NULL,
-    speciality_id int NOT NULL,
-    CONSTRAINT FK_SPECIALITY FOREIGN KEY (speciality_id) REFERENCES speciality(id_speciality) ON DELETE CASCADE ON UPDATE CASCADE,
+    specialty_id int NOT NULL,
+    CONSTRAINT FK_SPECIALTY FOREIGN KEY (specialty_id) REFERENCES specialty(id_specialty) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT FK_SUBJECT FOREIGN KEY (subject_id) REFERENCES subject(id_subject) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -128,5 +128,3 @@ CREATE TABLE progress (
     CONSTRAINT FK_PROGRESS_STUDENT FOREIGN KEY (student_id) REFERENCES student(id_student) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY("id_progress")
 );
-
-

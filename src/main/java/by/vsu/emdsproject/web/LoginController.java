@@ -3,6 +3,7 @@ package by.vsu.emdsproject.web;
 import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.model.User;
 import by.vsu.emdsproject.service.UserService;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,11 +14,15 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
-    
+
     @RequestMapping(value = "/index")
-    public String welcome(ModelMap model) {
+    public String welcome(ModelMap model, HttpServletRequest request) {
+        
         String username = EMDSContext.getInstance().getCurrentUser().getUsername();
         User currentUser = userService.getByLogin(username);
+        
+        request.getSession().setAttribute("currentUser", currentUser);
+        
         if (currentUser.getRole().getAuthority().equals("ROLE_TEACHER")) {
             return "redirect:teacher";
         }
@@ -33,7 +38,18 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login")
-    public String login(ModelMap model) {
+    public String login(ModelMap model, HttpServletRequest request) {
+        
+        User user = (User) request.getSession().getAttribute("currentUser");
+        
+        if (user != null) {
+            if (user.getRole().getAuthority().equals("ROLE_TEACHER")) {
+                return "redirect:teacher";
+            }
+            if (user.getRole().getAuthority().equals("ROLE_STUDENT")) {
+                return "redirect:student";
+            }
+        }
         return "login";
     }
 

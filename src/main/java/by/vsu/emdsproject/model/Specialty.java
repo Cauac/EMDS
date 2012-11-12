@@ -5,30 +5,30 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "speciality")
-public class Speciality implements AbstractEntity {
+@Table(name = "specialty")
+public class Specialty implements AbstractEntity {
 
     private Long id;
     private String title;
     private Set<Group> groups = new HashSet<Group>();
 
-    public Speciality() {
+    public Specialty() {
     }
 
-    public Speciality(Long id) {
+    public Specialty(Long id) {
         this.id = id;
     }
 
-    public Speciality(String title) {
+    public Specialty(String title) {
         this.title = title;
     }
 
-    public Speciality(Speciality s) {
+    public Specialty(Specialty s) {
         this.title = s.getTitle();
     }
 
     @Id
-    @Column(name = "id_speciality")
+    @Column(name = "id_specialty")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
@@ -47,7 +47,7 @@ public class Speciality implements AbstractEntity {
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "speciality", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+    @OneToMany(mappedBy = "specialty", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
     public Set<Group> getGroups() {
         return groups;
     }
