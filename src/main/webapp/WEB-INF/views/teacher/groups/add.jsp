@@ -1,8 +1,3 @@
-<%-- 
-    Document   : addGroup
-    Created on : 01.10.2012, 9:54:35
-    Author     : 21vek
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags"%>
@@ -10,21 +5,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <mytags:style />
-        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-        <title>JSP Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <mytags:style/>
+        <title>ВК ВГУ :: Группы</title>
     </head>
     <body>
-        <mytags:menu/>
-        <h4>New Group</h4>
-        <form method="post" action="addGroup.htm">
-            <label for="title">Title:</label>
-            <input type="text" name="title" /><br />
-            <label for="speciality_id">Speciality_id</label>
-            <input type="text" name="speciality_id" /><br />
-            <input type="submit" value="Add"/>
-            <input type="reset" />
-        </form>
-        <mytags:footer/>
+        <mytags:header />
+        <mytags:teacherMenu number="4"/>
+        <div>
+            <h4>Новая группа</h4>
+            <form method="post" action="../groups/add">
+                <label for="title">Название:</label>
+                <input type="text" name="title" /><br />
+                <select>
+                    <c:forEach var="spec" items="${specialties}">
+                        <option value="${spec.id}">${spec.title}</option>
+                    </c:forEach>
+                </select>
+                <input type="submit" value="Добавить"/>
+                <a class="btn" href="../groups"> Назад </a>
+            </form>
+        </div>
     </body>
 </html>

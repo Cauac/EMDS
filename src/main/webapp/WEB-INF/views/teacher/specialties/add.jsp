@@ -16,7 +16,7 @@
             <h4>Новая специальность</h4>
             <form method="post" action="../specialties/add">
                 <input type="text" name="title" /><br />
-                <input type="submit" value="Add"/>
+                <input type="submit" value="Добавить"/>
                 <a class="btn" href="../specialties"> Назад </a>
             </form>
         </div>
