@@ -20,6 +20,13 @@
     <import resource="classpath:/spring/emds-model-context.xml"/>
     <import resource="classpath:/spring/emds-security-context.xml"/>
     
+    <mvc:interceptors>
+        <bean
+            class="org.springframework.orm.hibernate4.support.OpenSessionInViewInterceptor">
+            <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+    </mvc:interceptors>
+
     <bean name="mainResolver"
               class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/" />
