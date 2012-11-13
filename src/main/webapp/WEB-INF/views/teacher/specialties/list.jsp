@@ -32,12 +32,12 @@
                     <tr>
                         <td><c:out value="${spec.title}"/></td>
                         <td>
-                            <a href="./specialty/edit?id=<c:out value="${spec.id}" />">
+                            <a href="./specialties/edit?id=<c:out value="${spec.id}" />">
                                 <i title="Edit specialty" class="icon-edit"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="./specialty/remove?id=<c:out value="${spec.id}" />">
+                            <a href="./specialties/remove?id=<c:out value="${spec.id}" />">
                                 <i title="Remove specialty" class="icon-remove"></i>
                             </a>
                         </td>

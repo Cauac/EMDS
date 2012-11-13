@@ -55,7 +55,7 @@ public class Group implements AbstractEntity {
         this.specialty = specialty;
     }
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
     public Set<Student> getStudents() {
         return students;
     }

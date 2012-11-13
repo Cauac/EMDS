@@ -17,9 +17,9 @@ create table specialty (
 create table study_group (
     id_group SERIAL,
     title varchar (10) UNIQUE NOT NULL,
-    specialty_id int NOT NULL,
+    specialty_id int,
     PRIMARY KEY("id_group"),
-    CONSTRAINT FK_GROUP_SPECIALTY FOREIGN KEY (specialty_id) REFERENCES specialty(id_specialty) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT FK_GROUP_SPECIALTY FOREIGN KEY (specialty_id) REFERENCES specialty(id_specialty) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE questionnaire(
@@ -90,7 +90,7 @@ create table student (
     service_end Date,
     rank varchar(20),
     PRIMARY KEY("id_student"),
-    CONSTRAINT FK_STUDENT_GROUP FOREIGN KEY (group_id) REFERENCES study_group(id_group) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT FK_STUDENT_GROUP FOREIGN KEY (group_id) REFERENCES study_group(id_group) ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT FK_STUDENT_QUESTIONNAIRE FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id_questionnaire) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

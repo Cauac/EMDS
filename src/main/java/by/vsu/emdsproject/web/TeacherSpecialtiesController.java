@@ -44,7 +44,7 @@ public class TeacherSpecialtiesController {
     @RequestMapping(value = "/specialties/remove")
     public String removeSpecialty(String id) {
         specialtyService.remove(Long.parseLong(id));
-        return "redirect:teacher/specialties";
+        return "redirect:/teacher/specialties";
     }
 
 }

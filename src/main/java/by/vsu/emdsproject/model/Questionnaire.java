@@ -96,7 +96,7 @@ public class Questionnaire implements AbstractEntity {
         return faculty;
     }
 
-    @Column(name = "study_specialty", length = 30)
+    @Column(name = "specialty", length = 30)
     public String getStudySpecialty() {
         return studySpecialty;
     }
@@ -164,7 +164,7 @@ public class Questionnaire implements AbstractEntity {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_address_id")
+    @JoinColumn(name = "parents_address_id")
     public Address getParentAddress() {
         return parentAddress;
     }

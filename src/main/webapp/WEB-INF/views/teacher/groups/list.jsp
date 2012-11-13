@@ -21,13 +21,13 @@
         
         <br> <br>
         <c:if test="${fn:length(groups) gt 0}">
-            <table border=1>
-                <tr>
+            <table class="table table-condensed table-bordered offset1 span11">
+                <tr class="thead">
                     <th>Группа</th>
                     <th>Специальность</th>
                 </tr>
                 <c:forEach var="group" items="${groups}">
-                    <tr>
+                    <tr class="tbody">
                         <td><c:out value="${group.title}"/></td>
                         <td><c:out value="${group.specialty.title}"/></td>
                     </tr>

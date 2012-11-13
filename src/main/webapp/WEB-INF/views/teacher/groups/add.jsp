@@ -11,13 +11,13 @@
     </head>
     <body>
         <mytags:header />
-        <mytags:teacherMenu number="4"/>
+        <mytags:teacherMenu number="5"/>
         <div>
             <h4>Новая группа</h4>
             <form method="post" action="../groups/add">
                 <label for="title">Название:</label>
                 <input type="text" name="title" /><br />
-                <select>
+                <select name="specId">
                     <c:forEach var="spec" items="${specialties}">
                         <option value="${spec.id}">${spec.title}</option>
                     </c:forEach>
