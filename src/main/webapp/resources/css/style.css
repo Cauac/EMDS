@@ -3,11 +3,11 @@ body {
 /*    width: 900px!important;*/
 }
 
-.centerTxt {
+.center {
     text-align:center;
 }
 
-input {
+.loginInput {
 	height: 32px !important;
 }
 

@@ -18,6 +18,11 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     public void add(Specialty specialty) {
         specialtyDAO.save(specialty);
     }
+    
+    @Transactional
+    public void update(Specialty specialty) {
+        specialtyDAO.update(specialty);
+    }
 
     @Transactional
     public List<Specialty> list() {

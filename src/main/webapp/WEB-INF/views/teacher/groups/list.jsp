@@ -14,25 +14,36 @@
         <mytags:header/>
         <mytags:teacherMenu number="5" />
         <br>
-        
-        <a class="offset1 btn btn-primary" href="./groups/add" >
-            <i class="icon-plus icon-white"></i> Новая группа
-        </a>
-        
-        <br> <br>
+
         <c:if test="${fn:length(groups) gt 0}">
-            <table class="table table-condensed table-bordered offset1 span11">
+            <table class="table table-condensed offset2 span9">
                 <tr class="thead">
                     <th>Группа</th>
                     <th>Специальность</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 <c:forEach var="group" items="${groups}">
                     <tr class="tbody">
                         <td><c:out value="${group.title}"/></td>
                         <td><c:out value="${group.specialty.title}"/></td>
+                        <td> 
+                            <a href="./groups/edit?id=<c:out value="${group.id}" />">
+                                <i title="Редактировать группу" class="icon-edit"></i> </a>
+                        </td>
+                        <td> <a onclick="return confirm('Вы действительно хотите удалить группу?')" href="./groups/remove?id=<c:out value="${group.id}" />">
+                                <i title="Удалить группу" class="icon-remove"></i> </a> 
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
         </c:if>
+
+        <div class="offset1 span11">
+            <a style="width: 180px" class="offset4 btn btn-primary" href="./groups/add" >
+                <i class="icon-plus icon-white"></i> Добавить группу
+            </a>
+        </div>
+
     </body>
 </html>

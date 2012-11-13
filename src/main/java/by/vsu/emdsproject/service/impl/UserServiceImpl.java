@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService{
     public void add(User entity) {
         userDao.save(entity);
     }
-
+    
     @Transactional
     public List<User> list() {
         return userDao.findAll();
@@ -52,6 +52,10 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public List<User> getTeachers() {
         return userDao.getTeachers();
+    }
+
+    public void update(User entity) {
+        userDao.update(entity);
     }
     
 }

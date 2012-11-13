@@ -18,6 +18,11 @@ public class GroupServiceImpl implements GroupService {
     public void add(Group group) {
         groupDAO.save(group);
     }
+    
+    @Transactional
+    public void update(Group group) {
+        groupDAO.update(group);
+    }
 
     @Transactional
     public List<Group> list() {

@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:url value="/j_spring_security_logout" var="logout"/>
+<c:url value="/exit" var="logout"/>
 
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">

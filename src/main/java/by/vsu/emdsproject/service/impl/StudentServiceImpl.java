@@ -18,6 +18,11 @@ public class StudentServiceImpl implements StudentService {
     public void add(Student student) {
         studentDAO.save(student);
     }
+    
+    @Transactional
+    public void update(Student student) {
+        studentDAO.update(student);
+    }
 
     @Transactional
     public List<Student> list() {

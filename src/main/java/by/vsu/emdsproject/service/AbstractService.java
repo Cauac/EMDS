@@ -7,6 +7,8 @@ public interface AbstractService<T extends AbstractEntity> {
 
     public void add(T entity);
 
+    public void update(T entity);
+
     public List<T> list();
 
     public T read(Long id);

@@ -38,4 +38,8 @@ public class TeacherServiceImpl implements TeacherService {
     public void remove(Teacher teacher) {
         teacherDAO.delete(teacher);
     }
+
+    public void update(Teacher entity) {
+        teacherDAO.update(entity);
+    }
 }

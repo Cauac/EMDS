@@ -14,15 +14,9 @@
         <mytags:header/>
         <mytags:teacherMenu number="4" />
         <br>
-        
-        <a class="offset1 btn btn-primary" href="./specialties/add" >
-            <i class="icon-plus icon-white"></i> Новая специальность
-        </a>
-        
-        <br> <br>
-        
+
         <c:if test="${fn:length(specialties) gt 0}">
-            <table class="table table-condensed table-bordered offset1 span11">
+            <table class="table table-condensed offset2 span9">
                 <tr>
                     <th>Специальность</th>
                     <th></th>
@@ -33,18 +27,24 @@
                         <td><c:out value="${spec.title}"/></td>
                         <td>
                             <a href="./specialties/edit?id=<c:out value="${spec.id}" />">
-                                <i title="Edit specialty" class="icon-edit"></i>
+                                <i title="Редактировать" class="icon-edit"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="./specialties/remove?id=<c:out value="${spec.id}" />">
-                                <i title="Remove specialty" class="icon-remove"></i>
+                            <a onclick="return confirm('Вы действительно хотите удалить специальность?')" href="./specialties/remove?id=<c:out value="${spec.id}" />">
+                                <i title="Удалить" class="icon-remove"></i>
                             </a>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
         </c:if>
-        <br>
+
+        <div class="offset1 span11">
+            <a class="offset4 btn btn-primary" href="./specialties/add" >
+                <i class="icon-plus icon-white"></i> Добавить специальность
+            </a>
+        </div>
+
     </body>
 </html>
