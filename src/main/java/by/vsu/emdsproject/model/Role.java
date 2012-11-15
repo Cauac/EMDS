@@ -44,7 +44,7 @@ public class Role implements AbstractEntity {
         return authority;
     }
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<User> getUsers() {
         return users;
     }

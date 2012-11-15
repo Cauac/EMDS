@@ -13,34 +13,34 @@
     <body>
         <mytags:header/>
         <mytags:teacherMenu number="1" />
-        
-        
+
+
         <c:if test="${fn:length(students) gt 0}">
-	<table class="table table-condensed table-bordered offset1 span11">
-		<tr>
-			<th>Login</th>
-			<th></th>
-			<th></th>
-		</tr>
-		<c:forEach var="student" items="${students}">
-			<tr>
-				<td><c:out value="${student.login}" /></td>
-				<td>
-					<a href="./editUser?id=<c:out value="${user.id}" />">
-						<i title="Edit user" class="icon-edit"></i>
-					</a>
-				</td>
-				<td>
-					<a href="./remUser?id=<c:out value="${user.id}" />">
-						<i title="Remove user" class="icon-remove"></i>
-					</a>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-</c:if>
-        
-        
-        
+            <table class="table table-condensed table-bordered offset1 span11">
+                <tr>
+                    <th>Login</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <c:forEach var="student" items="${students}">
+                    <tr>
+                        <td><c:out value="${student.login}" /></td>
+                        <td>
+                            <a href="./editUser?id=<c:out value="${user.id}" />">
+                                <i title="Edit user" class="icon-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="./remUser?id=<c:out value="${user.id}" />">
+                                <i title="Remove user" class="icon-remove"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:if>
+
+
+
     </body>
 </html>

@@ -48,8 +48,8 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="personCardReport" class="by.vsu.emdsproject.report.jasper.JasperReportTemlate">
-    <property name="templateFileName" value="r1.jrxml"/>
-    <property name="compileFileName" value="r1.jasper"/>
+        <property name="templateFileName" value="r1.jrxml"/>
+        <property name="compileFileName" value="r1.jasper"/>
     </bean>
 
 </beans>

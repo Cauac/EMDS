@@ -15,10 +15,9 @@ public class StudentMainController {
     private UserService userService;
 
     @RequestMapping("")
-    public ModelAndView mainPage () {
+    public ModelAndView mainPage() {
         ModelAndView mav = new ModelAndView("student/studentMain");
         mav.addObject("currUser", EMDSContext.getInstance().getCurrentUser().getUsername());
         return mav;
     }
-    
 }

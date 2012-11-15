@@ -46,7 +46,6 @@ public class GroupsController {
         return new ModelAndView("redirect:/teacher/groups");
     }
 
-    
     @RequestMapping("/groups/edit")
     public ModelAndView editGroup(String id) {
         ModelAndView mav = new ModelAndView("teacher/groups/edit");
@@ -63,7 +62,6 @@ public class GroupsController {
         return new ModelAndView("redirect:/teacher/groups");
     }
 
-    
     @RequestMapping(value = "/groups/remove")
     public String removeGroup(String id) {
         groupService.remove(Long.parseLong(id));

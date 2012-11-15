@@ -48,7 +48,7 @@ public class JasperReportGenerator implements ReportGenerator {
 
     public void generatePersonCardReport(Student student) {
         try {
-            HashMap map=new HashMap();
+            HashMap map = new HashMap();
             JasperReportTemlate t = ReportTemplateFactory
                     .getReportTemplate(ReportTemplateFactory.ReportName.PERSON_CARD_REPORT);
             JasperReport jasperReport = JasperCompileManager

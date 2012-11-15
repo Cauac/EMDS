@@ -14,29 +14,27 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
-    
+
 //    @Autowired
 //    private TeacherService teacherService;
 //    
 //    @Autowired
 //    private StudentService studentService;
-    
-    
     @RequestMapping(value = "/index")
     public String welcome(ModelMap model, HttpServletRequest request) {
-        
+
         String username = EMDSContext.getInstance().getCurrentUser().getUsername();
         User currentUser = userService.getByLogin(username);
-        
+
         request.getSession().setAttribute("currentUser", currentUser);
-        
+
 //        if (currentUser.getPersonType().equals("teacher")) {
 //            request.getSession().setAttribute("currentPerson", teacherService.read(currentUser.getPersonId()).getLastName());
 //        } else {
 //            request.getSession().setAttribute("currentPerson", studentService.read(currentUser.getPersonId()).getLastName());
 //        }
-        
-        
+
+
         if (currentUser.getRole().getAuthority().equals("ROLE_TEACHER")) {
             return "redirect:teacher";
         }
@@ -53,9 +51,9 @@ public class LoginController {
 
     @RequestMapping(value = "/login")
     public String login(ModelMap model, HttpServletRequest request) {
-        
+
         User user = (User) request.getSession().getAttribute("currentUser");
-        
+
         if (user != null) {
             if (user.getRole().getAuthority().equals("ROLE_TEACHER")) {
                 return "redirect:teacher";
@@ -77,10 +75,9 @@ public class LoginController {
     public String logout(ModelMap model) {
         return "login";
     }
-    
+
     @RequestMapping(value = "/exit")
     public String exit(ModelMap model) {
         return "redirect:/j_spring_security_logout";
     }
-    
 }

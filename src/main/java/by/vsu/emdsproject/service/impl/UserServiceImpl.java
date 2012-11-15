@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDao;
-    
+
     @Transactional
     public void add(User entity) {
         userDao.save(entity);
     }
-    
+
     @Transactional
     public List<User> list() {
         return userDao.findAll();
@@ -63,5 +63,4 @@ public class UserServiceImpl implements UserService{
     public User getByPersonId(Long personId) {
         return userDao.getByPersonId(personId);
     }
-    
 }

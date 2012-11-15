@@ -19,7 +19,7 @@
             <form class="form-horizontal" method="post" action="../groups/edit">
 
                 <input type="hidden" name="id" value="<c:out value="${group.id}"/>">
-                
+
                 <div id="nameDiv" class="control-group">
                     <label class="control-label" for="title">Название:</label>
                     <div class="controls">

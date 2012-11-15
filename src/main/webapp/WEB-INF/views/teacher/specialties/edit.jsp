@@ -15,9 +15,9 @@
         <div class="well offset4 span5">
             <h3 class="center">Редактировать специальность</h3>
             <form class="form-horizontal" method="post" action="../specialties/edit">
-                
+
                 <input type="hidden" name="id" value="<c:out value="${spec.id}"/>">
- 
+
                 <div id="nameDiv" class="control-group">
                     <label class="control-label" for="title">Название:</label>
                     <div class="controls">

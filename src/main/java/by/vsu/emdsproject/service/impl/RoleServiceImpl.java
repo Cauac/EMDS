@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private RoleDAO roleDAO;
-    
+
     @Transactional
     public void add(Role entity) {
         roleDAO.save(entity);
@@ -45,8 +45,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Transactional
-    public Role getByName(String name){
+    public Role getByName(String name) {
         return roleDAO.getByName(name);
     }
-    
 }

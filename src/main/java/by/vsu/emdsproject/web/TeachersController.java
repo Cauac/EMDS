@@ -21,13 +21,11 @@ public class TeachersController {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private TeacherService teacherService;
-
     @Autowired
     private RoleService roleService;
-    
+
     @RequestMapping("/teachers")
     public ModelAndView teachers() {
         ModelAndView mav = new ModelAndView("teacher/teachers/list");
@@ -48,14 +46,13 @@ public class TeachersController {
         teacherService.add(teacher);
 
         Role role = roleService.getByName("ROLE_TEACHER");
-        String username = Transliterator.transliterate(teacher.getLastName()+teacher.getFirstName().charAt(0)+teacher.getMiddleName().charAt(0));
+        String username = Transliterator.transliterate(teacher.getLastName() + teacher.getFirstName().charAt(0) + teacher.getMiddleName().charAt(0));
         User user = new User(teacher.getId(), "teacher", username, PasswordUtils.encode("12345"), 1, role);
-        
+
         userService.add(user);
         return "redirect:/teacher/teachers";
     }
-    
-    
+
     @RequestMapping("/teachers/edit")
     public ModelAndView editTeacher(String id) {
         ModelAndView mav = new ModelAndView("teacher/teachers/edit");
@@ -70,8 +67,7 @@ public class TeachersController {
         teacherService.update(teacher);
         return "redirect:/teacher/teachers";
     }
-    
-    
+
     @RequestMapping("/teachers/remove")
     public String removeTeacher(String id) {
         User user = userService.getByPersonId(Long.parseLong(id));
@@ -79,5 +75,4 @@ public class TeachersController {
         teacherService.remove(Long.parseLong(id));
         return "redirect:/teacher/teachers";
     }
-    
 }

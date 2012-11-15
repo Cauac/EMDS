@@ -13,9 +13,9 @@
         <mytags:header />
         <mytags:teacherMenu number="4"/>
         <div class="well offset4 span5">
-            
+
             <h3 class="center">Добавить специальность</h3> 
-            
+
             <form class="form-horizontal" method="post" action="../specialties/add">
 
                 <div id="nameDiv" class="control-group">
@@ -30,7 +30,7 @@
                     <input class="btn btn-primary" type="submit" value="Добавить"/>
                     <a class="btn" href="../specialties"> Назад </a>
                 </div>
-                
+
             </form>
         </div>
     </body>

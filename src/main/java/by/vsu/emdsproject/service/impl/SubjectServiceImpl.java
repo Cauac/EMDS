@@ -18,7 +18,7 @@ public class SubjectServiceImpl implements SubjectService {
     public void add(Subject subject) {
         subjectDAO.save(subject);
     }
-    
+
     @Transactional
     public void update(Subject subject) {
         subjectDAO.update(subject);
