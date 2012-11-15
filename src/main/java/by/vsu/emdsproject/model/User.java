@@ -24,13 +24,13 @@ public class User implements AbstractEntity {
     public User() {
     }
 
-    public User(Long id, Long personId, String personType, String login, String password, int enabled) {
-        this.id = id;
+    public User(Long personId, String personType, String login, String password, int enabled, Role role) {
         this.personId = personId;
         this.personType = personType;
         this.login = login;
         this.password = password;
         this.enabled = enabled;
+        this.role = role;
     }
 
     @Id

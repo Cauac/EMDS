@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/teacher")
-public class TeacherGroupsController {
+public class GroupsController {
 
     @Autowired
     private GroupService groupService;

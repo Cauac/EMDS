@@ -26,5 +26,10 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
     public List<User> getTeachers() {
         return getCurrentSession().createCriteria(User.class).add( Restrictions.like("personType", "teacher") ).list();
     }
+
+    public User getByPersonId(Long personId) {
+        List<User> list = getCurrentSession().createCriteria(User.class).add( Restrictions.eq("personId", personId) ).list();
+        return list.get(0);
+    }
     
 }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Teacher implements AbstractEntity {
 
     private Long id;
-    private String fisrtName;
+    private String firstName;
     private String lastName;
     private String middleName;
     private String rank;
@@ -15,8 +15,8 @@ public class Teacher implements AbstractEntity {
     public Teacher() {
     }
 
-    public Teacher(String fisrtName, String lastName, String middleName) {
-        this.fisrtName = fisrtName;
+    public Teacher(String firstName, String lastName, String middleName) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
     }
@@ -28,9 +28,9 @@ public class Teacher implements AbstractEntity {
         return id;
     }
 
-    @Column(name = "fisrt_name", nullable = false, length = 25)
-    public String getFisrtName() {
-        return fisrtName;
+    @Column(name = "first_name", nullable = false, length = 25)
+    public String getFirstName() {
+        return firstName;
     }
 
     @Column(name = "last_name", nullable = false, length = 50)
@@ -52,8 +52,8 @@ public class Teacher implements AbstractEntity {
         this.id = id;
     }
 
-    public void setFisrtName(String fisrtName) {
-        this.fisrtName = fisrtName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {

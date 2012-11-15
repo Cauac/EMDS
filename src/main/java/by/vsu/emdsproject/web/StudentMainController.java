@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("student")
-public class StudentController {
+public class StudentMainController {
 
     @Autowired
     private UserService userService;

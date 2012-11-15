@@ -54,8 +54,14 @@ public class UserServiceImpl implements UserService{
         return userDao.getTeachers();
     }
 
+    @Transactional
     public void update(User entity) {
         userDao.update(entity);
+    }
+
+    @Transactional
+    public User getByPersonId(Long personId) {
+        return userDao.getByPersonId(personId);
     }
     
 }

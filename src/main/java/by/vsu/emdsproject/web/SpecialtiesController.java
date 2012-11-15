@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/teacher")
-public class TeacherSpecialtiesController {
+public class SpecialtiesController {
 
     @Autowired
     private SpecialtyService specialtyService;

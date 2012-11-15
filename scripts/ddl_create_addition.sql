@@ -18,7 +18,7 @@ create table roles(
 
 create table users (
     id serial,
-    person_id int,
+    person_id bigint,
     person_type varchar(10),
     role_id int,
     login varchar(20) unique not null,

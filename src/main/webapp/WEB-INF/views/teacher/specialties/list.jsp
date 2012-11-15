@@ -17,13 +17,13 @@
 
         <c:if test="${fn:length(specialties) gt 0}">
             <table class="table table-condensed offset2 span9">
-                <tr>
+                <tr class="thead">
                     <th>Специальность</th>
                     <th></th>
                     <th></th>
                 </tr>
                 <c:forEach var="spec" items="${specialties}">
-                    <tr>
+                    <tr class="tbody"> 
                         <td><c:out value="${spec.title}"/></td>
                         <td>
                             <a href="./specialties/edit?id=<c:out value="${spec.id}" />">

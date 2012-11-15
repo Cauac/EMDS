@@ -39,6 +39,7 @@ public class TeacherServiceImpl implements TeacherService {
         teacherDAO.delete(teacher);
     }
 
+    @Transactional
     public void update(Teacher entity) {
         teacherDAO.update(entity);
     }

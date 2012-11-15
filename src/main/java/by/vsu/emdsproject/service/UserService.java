@@ -6,6 +6,8 @@ import java.util.List;
 public interface UserService extends AbstractService<User> {
 
     User getByLogin(String login);
+    User getByPersonId(Long personId);
     List<User> getStudents ();
     List<User> getTeachers ();
+    
 }

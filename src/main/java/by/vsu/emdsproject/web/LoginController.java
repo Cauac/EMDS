@@ -14,7 +14,14 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
-
+    
+//    @Autowired
+//    private TeacherService teacherService;
+//    
+//    @Autowired
+//    private StudentService studentService;
+    
+    
     @RequestMapping(value = "/index")
     public String welcome(ModelMap model, HttpServletRequest request) {
         
@@ -22,6 +29,13 @@ public class LoginController {
         User currentUser = userService.getByLogin(username);
         
         request.getSession().setAttribute("currentUser", currentUser);
+        
+//        if (currentUser.getPersonType().equals("teacher")) {
+//            request.getSession().setAttribute("currentPerson", teacherService.read(currentUser.getPersonId()).getLastName());
+//        } else {
+//            request.getSession().setAttribute("currentPerson", studentService.read(currentUser.getPersonId()).getLastName());
+//        }
+        
         
         if (currentUser.getRole().getAuthority().equals("ROLE_TEACHER")) {
             return "redirect:teacher";
