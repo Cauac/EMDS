@@ -1,3 +1,14 @@
+drop table progress;
+drop table course;
+drop table specialty_subject;
+drop table subject;
+drop table student;
+drop table teacher;
+drop table questionnaire;
+drop table study_group;
+drop table specialty;
+drop table address;
+
 create table address (
     id_address SERIAL,
     city varchar(30) NOT NULL,
@@ -88,7 +99,7 @@ create table student (
     characteristic varchar(10000),
     service_start Date, 
     service_end Date,
-    rank varchar(20),
+    rank varchar(50),
     PRIMARY KEY("id_student"),
     CONSTRAINT FK_STUDENT_GROUP FOREIGN KEY (group_id) REFERENCES study_group(id_group) ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT FK_STUDENT_QUESTIONNAIRE FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id_questionnaire) ON DELETE CASCADE ON UPDATE CASCADE
