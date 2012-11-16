@@ -35,7 +35,7 @@
                             </c:forEach></td>
                         <td>
                             <a href="./teachers/edit?id=<c:out value="${teacher.id}" />">
-                                <i title="Edit user" class="icon-edit"></i>
+                                <i title="Редактировать" class="icon-edit"></i>
                             </a>
                         </td>
                         <td>

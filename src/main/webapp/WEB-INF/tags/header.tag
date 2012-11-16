@@ -13,7 +13,8 @@
             </a>
             <sec:authorize ifAnyGranted="ROLE_TEACHER,ROLE_STUDENT">
                 <ul class="nav pull-right">
-                    <li class="pull-right"><p class="navbar-text"> Вы вошли как: <c:out value="${currentUser.login}"/> </p></li>
+                    <li class="pull-right"><p class="navbar-text"> Вы вошли как: 
+                            <a href="${pageContext.servletContext.contextPath}/personal"><c:out value="${currentUser.login}"/></a> </p></li>
                     <li class="pull-right"><a href="${logout}">Выйти</a></li>
                 </ul>
             </sec:authorize>

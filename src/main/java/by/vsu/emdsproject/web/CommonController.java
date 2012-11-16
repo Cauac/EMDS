@@ -1,6 +1,7 @@
 package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.common.EMDSContext;
+import by.vsu.emdsproject.common.PasswordUtils;
 import by.vsu.emdsproject.model.User;
 import by.vsu.emdsproject.service.UserService;
 import javax.servlet.http.HttpServletRequest;
@@ -8,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class LoginController {
+public class CommonController {
 
     @Autowired
     private UserService userService;
@@ -74,6 +77,25 @@ public class LoginController {
     @RequestMapping(value = "/logout")
     public String logout(ModelMap model) {
         return "login";
+    }
+
+    @RequestMapping("/personal")
+    public String personalPageView() {
+        return "personal";
+    }
+
+    @RequestMapping(value = "/personal", method = RequestMethod.POST)
+    public ModelAndView personalPageSave(String oldPass, String newPass, String confirm) {
+        ModelAndView mav = new ModelAndView("personal");
+        User u = userService.getByLogin(EMDSContext.getInstance().getCurrentUser().getUsername());
+        if (u.getPassword().equals(PasswordUtils.encode(oldPass)) && newPass.equals(confirm)) {
+            u.setPassword(PasswordUtils.encode(newPass));
+            userService.update(u);
+            mav.addObject("win", "Пароль успешно изменен");
+        } else {
+            mav.addObject("win", "Проверьте правильность ввода");
+        }
+        return mav;
     }
 
     @RequestMapping(value = "/exit")
