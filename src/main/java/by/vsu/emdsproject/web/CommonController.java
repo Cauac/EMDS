@@ -29,21 +29,18 @@ public class CommonController {
         String username = EMDSContext.getInstance().getCurrentUser().getUsername();
         User currentUser = userService.getByLogin(username);
 
+        if (currentUser.isDefaultPassword()) {
+            request.getSession().setAttribute("defPass", "true");
+        }
+
         request.getSession().setAttribute("currentUser", currentUser);
-
-//        if (currentUser.getPersonType().equals("teacher")) {
-//            request.getSession().setAttribute("currentPerson", teacherService.read(currentUser.getPersonId()).getLastName());
-//        } else {
-//            request.getSession().setAttribute("currentPerson", studentService.read(currentUser.getPersonId()).getLastName());
-//        }
-
 
         if (currentUser.getRole().getAuthority().equals("ROLE_TEACHER")) {
             return "redirect:teacher";
-        }
-        if (currentUser.getRole().getAuthority().equals("ROLE_STUDENT")) {
+        } else if (currentUser.getRole().getAuthority().equals("ROLE_STUDENT")) {
             return "redirect:student";
         }
+        
         return "forward:index.jsp";
     }
 
@@ -85,15 +82,17 @@ public class CommonController {
     }
 
     @RequestMapping(value = "/personal", method = RequestMethod.POST)
-    public ModelAndView personalPageSave(String oldPass, String newPass, String confirm) {
+    public ModelAndView personalPageSave(String oldPass, String newPass, String confirm, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("personal");
         User u = userService.getByLogin(EMDSContext.getInstance().getCurrentUser().getUsername());
         if (u.getPassword().equals(PasswordUtils.encode(oldPass)) && newPass.equals(confirm)) {
             u.setPassword(PasswordUtils.encode(newPass));
+            request.getSession().removeAttribute("defPass");
+            u.setDefaultPassword(false);
             userService.update(u);
             mav.addObject("win", "Пароль успешно изменен");
         } else {
-            mav.addObject("win", "Проверьте правильность ввода");
+            mav.addObject("fail", "Проверьте правильность ввода");
         }
         return mav;
     }

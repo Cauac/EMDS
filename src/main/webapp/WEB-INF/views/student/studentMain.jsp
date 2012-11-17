@@ -9,6 +9,7 @@
     </head>
     <body>
         <mytags:header/>
+        <mytags:changePassword /> <br>
         <h1>student main!</h1>
     </body>
 </html>

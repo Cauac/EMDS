@@ -9,6 +9,8 @@ import by.vsu.emdsproject.service.RoleService;
 import by.vsu.emdsproject.service.TeacherService;
 import by.vsu.emdsproject.service.UserService;
 import java.util.List;
+import java.util.Random;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,14 +44,20 @@ public class TeachersController {
     }
 
     @RequestMapping(value = "/teachers/add", method = RequestMethod.POST)
-    public String addTeacher(Teacher teacher) {
+    public String addTeacher(Teacher teacher, HttpServletRequest request) {
+        Random random = new Random();
+        String pass = String.valueOf(random.nextInt(900000)+100000);
+        
         teacherService.add(teacher);
-
+        
         Role role = roleService.getByName("ROLE_TEACHER");
         String username = Transliterator.transliterate(teacher.getLastName() + teacher.getFirstName().charAt(0) + teacher.getMiddleName().charAt(0));
-        User user = new User(teacher.getId(), "teacher", username, PasswordUtils.encode("12345"), 1, role);
+        User user = new User(teacher.getId(), "teacher", username, PasswordUtils.encode(pass), 1, role);
+        user.setDefaultPassword(true);
 
         userService.add(user);
+        
+        request.getSession().setAttribute("password", pass);
         return "redirect:/teacher/teachers";
     }
 
@@ -69,7 +77,7 @@ public class TeachersController {
     }
 
     @RequestMapping("/teachers/remove")
-    public String removeTeacher(String id) {
+    public String removeTeacher(String id, HttpServletRequest request) {
         User user = userService.getByPersonId(Long.parseLong(id));
         userService.remove(user);
         teacherService.remove(Long.parseLong(id));

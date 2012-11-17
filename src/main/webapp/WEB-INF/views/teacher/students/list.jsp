@@ -13,6 +13,7 @@
     <body>
         <mytags:header/>
         <mytags:teacherMenu number="1" />
+        <mytags:changePassword />
 
 
         <c:if test="${fn:length(students) gt 0}">

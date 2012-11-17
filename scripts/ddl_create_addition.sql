@@ -24,6 +24,7 @@ create table users (
     login varchar(20) unique not null,
     password varchar(32) not null,
     enabled int,
+    default_password boolean default true,
     primary key (id),
     foreign key (role_id) references roles(id) on delete no action on update cascade
 );

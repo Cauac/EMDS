@@ -20,7 +20,9 @@ public class User implements AbstractEntity {
     private String password;
     private int enabled;
     private Role role;
+    private boolean defaultPassword;
 
+    
     public User() {
     }
 
@@ -70,7 +72,17 @@ public class User implements AbstractEntity {
     public Role getRole() {
         return role;
     }
+    
+    @Column(name = "default_password")
+    public boolean isDefaultPassword() {
+        return defaultPassword;
+    }
 
+    
+    public void setDefaultPassword(boolean defaultPassword) {
+        this.defaultPassword = defaultPassword;
+    }
+    
     public void setRole(Role role) {
         this.role = role;
     }
@@ -98,4 +110,5 @@ public class User implements AbstractEntity {
     public void setEnabled(int enabled) {
         this.enabled = enabled;
     }
+
 }

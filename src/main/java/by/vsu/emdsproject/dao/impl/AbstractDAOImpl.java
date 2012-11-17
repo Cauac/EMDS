@@ -28,7 +28,7 @@ public abstract class AbstractDAOImpl<TypeEn extends AbstractEntity> implements 
     }
 
     public void save(TypeEn entity) {
-        getCurrentSession().persist(entity);
+        getCurrentSession().save(entity);
     }
 
     public void update(TypeEn entity) {

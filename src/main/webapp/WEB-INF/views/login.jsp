@@ -16,6 +16,7 @@
                 <div class="alert alert-error offset1 span2">   
                     Неверный логин/пароль
                 </div>
+                <c:remove var="error"/>
             </c:if>
             <div>
                 <form class="center" method="post" action="./j_spring_security_check">
