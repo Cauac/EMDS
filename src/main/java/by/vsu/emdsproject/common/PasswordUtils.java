@@ -1,13 +1,13 @@
 package by.vsu.emdsproject.common;
 
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
 public class PasswordUtils {
 
     private static String SALT = "";
 
     public static String encode(String password) {
-        Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
-        return md5PasswordEncoder.encodePassword(password, SALT);
+        ShaPasswordEncoder shaPasswordEncoder = new ShaPasswordEncoder(256);
+        return shaPasswordEncoder.encodePassword(password, SALT);
     }
 }

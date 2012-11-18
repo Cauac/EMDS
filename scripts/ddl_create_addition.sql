@@ -1,5 +1,4 @@
 drop table params;
--- drop table user_role;
 drop table users;
 drop table roles;
 
@@ -7,6 +6,7 @@ drop table roles;
 create table params (
     pkey varchar(15)    unique not null,
     pvalue varchar(300) 
+    primary key (pkey)
 );
 
 
@@ -22,7 +22,7 @@ create table users (
     person_type varchar(10),
     role_id int,
     login varchar(20) unique not null,
-    password varchar(32) not null,
+    password varchar(64) not null,
     enabled int,
     default_password boolean default true,
     primary key (id),
