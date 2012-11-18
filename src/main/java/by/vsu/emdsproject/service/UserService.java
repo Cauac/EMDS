@@ -7,7 +7,9 @@ public interface UserService extends AbstractService<User> {
 
     User getByLogin(String login);
 
-    User getByPersonId(Long personId);
+    User getByStudentId(Long personId);
+
+    User getByTeacherId(Long personId);
 
     List<User> getStudents();
 

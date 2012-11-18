@@ -31,10 +31,8 @@ public class TeachersController {
     @RequestMapping("/teachers")
     public ModelAndView teachers() {
         ModelAndView mav = new ModelAndView("teacher/teachers/list");
-        List<Teacher> teachers = teacherService.list();
-        List<User> users = userService.getTeachers();
-        mav.addObject("teachers", teachers);
-        mav.addObject("users", users);
+        mav.addObject("teachers", teacherService.list());
+        mav.addObject("users", userService.getTeachers());
         return mav;
     }
 
@@ -77,8 +75,8 @@ public class TeachersController {
     }
 
     @RequestMapping("/teachers/remove")
-    public String removeTeacher(String id, HttpServletRequest request) {
-        User user = userService.getByPersonId(Long.parseLong(id));
+    public String removeTeacher(String id) {
+        User user = userService.getByTeacherId(Long.parseLong(id));
         userService.remove(user);
         teacherService.remove(Long.parseLong(id));
         return "redirect:/teacher/teachers";

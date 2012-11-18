@@ -19,7 +19,6 @@
                 <input type="hidden" name="id" value="<c:out value="${spec.id}"/>">
 
                 <div id="oldPassDiv" class="control-group">
-                    <!--<label class="control-label" for="oldPass">Пароль:</label>-->
                     <div class="controls">
                         <input class="input" type="password" id="oldPass" name="oldPass" placeholder="Пароль">
                         <span class="help-inline" ></span>
@@ -27,7 +26,6 @@
                 </div>
 
                 <div id="newPassDiv" class="control-group">
-                    <!--<label class="control-label" for="newPass">Новый пароль:</label>-->
                     <div class="controls">
                         <input class="input" type="password" id="newPass" name="newPass" placeholder="Новый пароль">
                         <span class="help-inline" ></span>
@@ -35,7 +33,6 @@
                 </div>
 
                 <div id="confirmDiv" class="control-group">
-                    <!--<label class="control-label" for="confirm">Повторите пароль:</label>-->
                     <div class="controls">
                         <input class="input" type="password" id="confirm" name="confirm" placeholder="Повторите пароль">
                         <span class="help-inline" ></span>

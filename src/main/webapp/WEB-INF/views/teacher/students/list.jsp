@@ -17,31 +17,43 @@
 
 
         <c:if test="${fn:length(students) gt 0}">
-            <table class="table table-condensed table-bordered offset1 span11">
+            <table class="table table-condensed offset1 span11">
                 <tr>
-                    <th>Login</th>
+                    <th>ФИО</th>
+                    <th>Специальность</th>
+                    <th>Группа</th>
+                    <th>Логин</th>
                     <th></th>
                     <th></th>
                 </tr>
                 <c:forEach var="student" items="${students}">
                     <tr>
-                        <td><c:out value="${student.login}" /></td>
+                        <td><c:out value="${student.lastName}" /> <c:out value="${student.firstName}" /> <c:out value="${student.middleName}" /></td>
+                        <td><c:out value="${student.group.specialty.title}" /> </td>
+                        <td><c:out value="${student.group.title}" /> </td>
+                        <td><c:forEach items="${users}" var="user">
+                                <c:if test="${user.personId eq student.id}">
+                                    <c:out value="${user.login}"/>
+                                </c:if>
+                            </c:forEach></td>
                         <td>
-                            <a href="./editUser?id=<c:out value="${user.id}" />">
-                                <i title="Edit user" class="icon-edit"></i>
+                            <a href="./students/edit?id=<c:out value="${student.id}" />">
+                                <i title="Редактировать" class="icon-edit"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="./remUser?id=<c:out value="${user.id}" />">
-                                <i title="Remove user" class="icon-remove"></i>
+                            <a onclick="return confirm('Вы действительно хотите удалить студента?')" href="./students/remove?id=<c:out value="${student.id}" />">
+                                <i title="Удалить студента" class="icon-remove"></i>
                             </a>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
         </c:if>
-
-
-
+        <div class="offset1 span11">
+            <a class="offset4 btn btn-primary" href="./students/add" >
+                <i class="icon-plus icon-white"></i> Добавить студента
+            </a>
+        </div>
     </body>
 </html>

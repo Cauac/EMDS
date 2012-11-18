@@ -15,20 +15,32 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
     }
 
     public User getUserByLogin(String login) {
-        List<User> list = getCurrentSession().createCriteria(User.class).add(Restrictions.like("login", login)).list();
+        List<User> list = getCurrentSession().createCriteria(User.class)
+                .add(Restrictions.like("login", login)).list();
         return list.get(0);
     }
 
     public List<User> getStudents() {
-        return getCurrentSession().createCriteria(User.class).add(Restrictions.like("personType", "student")).list();
+        return getCurrentSession().createCriteria(User.class)
+                .add(Restrictions.like("personType", "student")).list();
     }
 
     public List<User> getTeachers() {
-        return getCurrentSession().createCriteria(User.class).add(Restrictions.like("personType", "teacher")).list();
+        return getCurrentSession().createCriteria(User.class)
+                .add(Restrictions.like("personType", "teacher")).list();
     }
 
-    public User getByPersonId(Long personId) {
-        List<User> list = getCurrentSession().createCriteria(User.class).add(Restrictions.eq("personId", personId)).list();
+    public User getByStudentId(Long personId) {
+        List<User> list = getCurrentSession().createCriteria(User.class)
+                .add(Restrictions.eq("personId", personId))
+                .add(Restrictions.like("personType", "student")).list();
+        return list.get(0);
+    }
+    
+    public User getByTeacherId(Long personId) {
+        List<User> list = getCurrentSession().createCriteria(User.class)
+                .add(Restrictions.eq("personId", personId))
+                .add(Restrictions.like("personType", "teacher")).list();
         return list.get(0);
     }
 }

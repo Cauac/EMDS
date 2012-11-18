@@ -13,14 +13,7 @@
     <body>
         <mytags:header/>
         <mytags:teacherMenu number="6" />
-        
-
-        <c:if test="${password ne null}">
-            <div class="alert alert-info center offset2 span9">  
-                <c:out value="Учетная запись добавлена. Текущий пароль: ${password}. Рекомендуется сменить после входа." />
-                <c:remove var="password"/>
-            </div>
-        </c:if>
+        <mytags:newAccount/>
 
         <c:if test="${fn:length(teachers) gt 0}">
             <table class="table table-condensed offset1 span11">
@@ -55,13 +48,11 @@
             </table>
         </c:if>
 
-
         <div class="offset1 span11">
             <a class="offset4 btn btn-primary" href="./teachers/add" >
                 <i class="icon-plus icon-white"></i> Добавить преподавателя
             </a>
         </div>
-
 
     </body>
 </html>

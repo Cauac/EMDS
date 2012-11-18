@@ -60,7 +60,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional
-    public User getByPersonId(Long personId) {
-        return userDao.getByPersonId(personId);
+    public User getByStudentId(Long personId) {
+        return userDao.getByStudentId(personId);
+    }
+    
+    @Transactional
+    public User getByTeacherId(Long personId) {
+        return userDao.getByTeacherId(personId);
     }
 }
