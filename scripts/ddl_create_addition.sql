@@ -4,8 +4,8 @@ drop table roles;
 
 
 create table params (
-    pkey varchar(15)    unique not null,
-    pvalue varchar(300) 
+    pkey varchar(15) unique not null,
+    pvalue varchar(300),
     primary key (pkey)
 );
 

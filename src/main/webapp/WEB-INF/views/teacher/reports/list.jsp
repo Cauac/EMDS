@@ -13,8 +13,8 @@
         <mytags:teacherMenu number="6"/>
         <div class="well offset4 span5">
             <h3 class="center">Создать отчет</h3>
-            <form action="/teacher/reports" method="POST">
-                <select>
+            <form action="../teacher/reports" method="POST">
+                <select name="id">
                     <c:forEach items="${students}" var="student">
                         <option value="<c:out value="${student.id}"/>"><c:out value="${student.lastName}"/> <c:out value="${student.firstName}"/></option>
                     </c:forEach>

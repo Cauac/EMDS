@@ -266,9 +266,9 @@
             <artifactId>cglib</artifactId>
         </dependency>
         <dependency>
-            <groupId>jasperreports</groupId>
+            <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>3.5.3</version>
+            <version>4.8.0</version>
         </dependency>
     </dependencies>
     <build>

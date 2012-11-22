@@ -1,8 +1,11 @@
 package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.model.Student;
+import by.vsu.emdsproject.report.ReportGenerator;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.UserService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,25 +18,23 @@ public class ReportsController {
 
     @Autowired
     private UserService userService;
-    
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private ReportGenerator reportGenerator;
 
     @RequestMapping("/reports")
     public ModelAndView reportsPage() {
-        ModelAndView mav = new ModelAndView("teacher/reports/list");
+        ModelAndView mav = new ModelAndView("/teacher/reports/list");
         mav.addObject("students", studentService.list());
         return mav;
     }
 
     @RequestMapping(value = "/reports", method = RequestMethod.POST)
-    public String reportsPageDo(String id) {
+    public ModelAndView reportsPageDo(String id,HttpServletRequest request,HttpServletResponse response) {
         Student student = studentService.read(Long.parseLong(id));
-        
-        // .........
-        // ????????
-        // PROFIT
-        
-        return "index";
+
+       reportGenerator.generatePersonCardReport(student,response);
+        return null;
     }
 }
