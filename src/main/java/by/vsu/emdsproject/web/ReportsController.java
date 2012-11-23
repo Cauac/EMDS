@@ -2,9 +2,9 @@ package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.report.ReportGenerator;
+import by.vsu.emdsproject.report.ReportGeneratorFactory;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.UserService;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +20,6 @@ public class ReportsController {
     private UserService userService;
     @Autowired
     private StudentService studentService;
-    @Autowired
-    private ReportGenerator reportGenerator;
 
     @RequestMapping("/reports")
     public ModelAndView reportsPage() {
@@ -31,10 +29,10 @@ public class ReportsController {
     }
 
     @RequestMapping(value = "/reports", method = RequestMethod.POST)
-    public ModelAndView reportsPageDo(String id,HttpServletRequest request,HttpServletResponse response) {
+    public ModelAndView reportsPageDo(HttpServletResponse response, String id) {
         Student student = studentService.read(Long.parseLong(id));
-
-       reportGenerator.generatePersonCardReport(student,response);
+        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
+        generator.generatePersonCardReport(student, response);
         return null;
     }
 }

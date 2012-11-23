@@ -26,8 +26,6 @@
         <slf4j.version>1.7.2</slf4j.version>
         <cglib.version>2.2</cglib.version>
         <!--<tiles.version>2.2.2</tiles.version>-->
-        
-        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
     
     <dependencyManagement>
