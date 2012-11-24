@@ -12,7 +12,7 @@ public class ReportGeneratorFactory {
      */
     protected static ApplicationContext reportContext;
 
-    {
+    static{
         reportContext = new ClassPathXmlApplicationContext("report-factory.xml");
     }
 
