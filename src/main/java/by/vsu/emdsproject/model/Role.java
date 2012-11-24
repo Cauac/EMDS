@@ -14,9 +14,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
-public class Role implements AbstractEntity {
+public class Role extends AbstractEntity {
 
-    private Long id;
     private String authority;
     private Set<User> users = new HashSet<User>();
 
@@ -47,10 +46,6 @@ public class Role implements AbstractEntity {
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<User> getUsers() {
         return users;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setAuthority(String authority) {

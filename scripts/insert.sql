@@ -28,10 +28,13 @@ alter sequence public.roles_id_seq restart with 2;
 insert into public.teacher (id_teacher, first_name, last_name, middle_name, rank) values (0, 'Сергей','Машеро','Аркадьевич','Подполковник');
 alter sequence public.teacher_id_teacher_seq restart with 1;
 
+insert into public.questionnaire (id_questionnaire, nationality) values (0, 'Чукча');
+alter sequence public.questionnaire_id_questionnaire_seq restart with 1;
+
 insert into public.student (id_student, first_name,last_name,middle_name,birth_date,rank, group_id)
-values (0, 'Антон','Спирченок','Олегович','21/01/1992','Студент 2 курса', 5);
-insert into public.student (id_student, first_name,last_name,middle_name,birth_date,rank, group_id)
-values (1, 'Павел','Авсейко','Павлович','20/08/1992','Студент 2 курса', 5);
+values (0, 'Антон','Спирченок','Витальевич','21/01/1992','Студент 2 курса', 5);
+insert into public.student (id_student, first_name,last_name,middle_name,birth_date,rank, group_id, questionnaire_id)
+values (1, 'Павел','Авсейко','Павлович','20/10/1991','Студент 2 курса', 5, 0);
 alter sequence public.student_id_student_seq restart with 2;
 
 insert into public.users (id, person_id, person_type, login, password, enabled, role_id) values (0, 0, 'teacher', 'MasheroSA', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 1, 0);

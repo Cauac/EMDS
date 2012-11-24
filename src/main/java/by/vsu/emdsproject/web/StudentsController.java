@@ -2,6 +2,7 @@ package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.User;
+import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class StudentsController {
     private StudentService studentService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private GroupService groupService;
 
     @RequestMapping("/students")
     public ModelAndView students() {
@@ -28,8 +31,10 @@ public class StudentsController {
     }
 
     @RequestMapping("/students/add")
-    public String addStudent() {
-        return "teacher/students/add";
+    public ModelAndView addStudent() {
+        ModelAndView mav = new ModelAndView("teacher/students/add");
+        mav.addObject("groups", groupService.list());
+        return mav;
     }
 
     @RequestMapping(value = "/students/add", method = RequestMethod.POST)
@@ -54,4 +59,12 @@ public class StudentsController {
         studentService.remove(Long.parseLong(id));
         return "redirect:/teacher/students";
     }
+    
+    @RequestMapping(value= "/students/info")
+    public ModelAndView fullInfoView (String id) {
+        ModelAndView mav = new ModelAndView("teacher/students/fullInfo");
+        mav.addObject("student", studentService.read(Long.parseLong(id)));
+        return mav;
+    }
+    
 }

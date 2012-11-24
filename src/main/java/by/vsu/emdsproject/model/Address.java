@@ -4,13 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "address")
-public class Address implements AbstractEntity {
+public class Address extends AbstractEntity {
 
-    private Long id;
     private String city;
     private String street;
     private String house;
-    private String block;
     private String apartment;
 
     public Address() {
@@ -38,18 +36,9 @@ public class Address implements AbstractEntity {
         return house;
     }
 
-    @Column(name = "block", length = 3)
-    public String getBlock() {
-        return block;
-    }
-
     @Column(name = "apartment", length = 4)
     public String getApartment() {
         return apartment;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setCity(String city) {
@@ -62,10 +51,6 @@ public class Address implements AbstractEntity {
 
     public void setHouse(String house) {
         this.house = house;
-    }
-
-    public void setBlock(String block) {
-        this.block = block;
     }
 
     public void setApartment(String apartment) {

@@ -11,9 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User implements AbstractEntity {
+public class User extends AbstractEntity {
 
-    private Long id;
     private Long personId;
     private String personType;
     private String login;
@@ -93,10 +92,6 @@ public class User implements AbstractEntity {
 
     public void setPersonType(String personType) {
         this.personType = personType;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setLogin(String login) {

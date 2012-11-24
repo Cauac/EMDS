@@ -19,7 +19,7 @@
     
     <import resource="classpath:/spring/emds-model-context.xml"/>
     <import resource="classpath:/spring/emds-security-context.xml"/>
-    <import resource="classpath:/config/report-factory.xml"/>
+    <import resource="classpath:/spring/emds-reports-context.xml"/>
     
     <mvc:interceptors>
         <bean

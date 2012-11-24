@@ -5,9 +5,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "questionnaire")
-public class Questionnaire implements AbstractEntity {
+public class Questionnaire extends AbstractEntity {
 
-    private Long id;
     private String birthPlace;
     private String nationality;
     private String passportNumber;
@@ -19,7 +18,7 @@ public class Questionnaire implements AbstractEntity {
     private String studySpecialty;
     private Integer course;
     private String studyGroup;
-    private float studyProgress;
+    private Float studyProgress;
     private String curator;
     private String curatorTel;
     private String education;
@@ -112,7 +111,7 @@ public class Questionnaire implements AbstractEntity {
     }
 
     @Column(name = "study_progress")
-    public float getStudyProgress() {
+    public Float getStudyProgress() {
         return studyProgress;
     }
 
@@ -241,10 +240,6 @@ public class Questionnaire implements AbstractEntity {
         return dutyEnd;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setBirthPlace(String birthPlace) {
         this.birthPlace = birthPlace;
     }
@@ -289,7 +284,7 @@ public class Questionnaire implements AbstractEntity {
         this.studyGroup = studyGroup;
     }
 
-    public void setStudyProgress(float studyProgress) {
+    public void setStudyProgress(Float studyProgress) {
         this.studyProgress = studyProgress;
     }
 

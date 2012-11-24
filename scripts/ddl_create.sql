@@ -14,7 +14,6 @@ create table address (
     city varchar(30) NOT NULL,
     street varchar (50) NOT NULL,
     house varchar (3) NOT NULL,
-    block varchar (3),
     apartment varchar (4),
     PRIMARY KEY("id_address")
 );

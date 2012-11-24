@@ -4,9 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "teacher")
-public class Teacher implements AbstractEntity {
+public class Teacher extends AbstractEntity {
 
-    private Long id;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -46,10 +45,6 @@ public class Teacher implements AbstractEntity {
     @Column(name = "rank", length = 20)
     public String getRank() {
         return rank;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setFirstName(String firstName) {

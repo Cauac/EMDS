@@ -12,8 +12,9 @@
     </head>
     <body>
         <mytags:header/>
-        <mytags:teacherMenu number="1" />
         <mytags:changePassword />
+        <mytags:teacherMenu number="1" />
+        
 
 
         <c:if test="${fn:length(students) gt 0}">
@@ -28,7 +29,7 @@
                 </tr>
                 <c:forEach var="student" items="${students}">
                     <tr>
-                        <td><c:out value="${student.lastName}" /> <c:out value="${student.firstName}" /> <c:out value="${student.middleName}" /></td>
+                        <td> <a href="./students/info?id=<c:out value="${student.id}" />"> <c:out value="${student.lastName}" /> <c:out value="${student.firstName}" /> <c:out value="${student.middleName}" /> </a> </td>
                         <td><c:out value="${student.group.specialty.title}" /> </td>
                         <td><c:out value="${student.group.title}" /> </td>
                         <td><c:forEach items="${users}" var="user">

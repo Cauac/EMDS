@@ -5,9 +5,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "student")
-public class Student implements AbstractEntity {
+public class Student extends AbstractEntity {
 
-    private Long id;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -27,17 +26,17 @@ public class Student implements AbstractEntity {
         return id;
     }
 
-    @Column(name = "first_name", nullable = false, length = 25)
+    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
 
-    @Column(name = "last_name", nullable = false, length = 50)
+    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
 
-    @Column(name = "middle_name", nullable = false, length = 30)
+    @Column(name = "middle_name", nullable = false)
     public String getMiddleName() {
         return middleName;
     }
@@ -54,12 +53,12 @@ public class Student implements AbstractEntity {
         return group;
     }
 
-    @Column(name = "characteristic", length = 10000)
+    @Column(name = "characteristic")
     public String getCharacteristic() {
         return characteristic;
     }
 
-    @Column(name = "rank", length = 20)
+    @Column(name = "rank")
     public String getRank() {
         return rank;
     }
@@ -68,10 +67,6 @@ public class Student implements AbstractEntity {
     @PrimaryKeyJoinColumn
     public Questionnaire getQuestionnaire() {
         return questionnaire;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setFirstName(String fisrtName) {

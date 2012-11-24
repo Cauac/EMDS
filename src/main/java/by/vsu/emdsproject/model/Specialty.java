@@ -6,9 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "specialty")
-public class Specialty implements AbstractEntity {
+public class Specialty extends AbstractEntity {
 
-    private Long id;
     private String title;
     private Set<Group> groups = new HashSet<Group>();
 
@@ -32,10 +31,6 @@ public class Specialty implements AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Column(name = "title", nullable = false, length = 100)
