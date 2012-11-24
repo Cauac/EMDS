@@ -5,5 +5,5 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface ReportGenerator {
 
-    public void generatePersonCardReport(Student student,HttpServletResponse response);
+    public void generatePersonCardReport(Student student, HttpServletResponse response);
 }

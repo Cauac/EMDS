@@ -4,21 +4,24 @@ import by.vsu.emdsproject.model.Student;
 import java.util.HashMap;
 
 /**
- *
- * вытягивает все необходимые данные для отчета и заполняет map
+ * вытягивает все необходимые данные для отчета персональной карточки студента
  */
-public class PersonCardDataSourseWrapper {
+public class PersonCardReportDSWrapper implements ReportDataSourceWrapper {
 
     private Student student;
-    public static final String templateName = "r1";
+    public static final String templateName = "/home/anton/r1.jasper";
 
     public static class Parametr {
 
         public static final String FIO = "fio";
     }
 
-    public PersonCardDataSourseWrapper(Student student) {
+    public PersonCardReportDSWrapper(Student student) {
         this.student = student;
+    }
+
+    public String getTemplateName() {
+        return templateName;
     }
 
     public HashMap getDataSource() {
