@@ -17,7 +17,10 @@ public class Questionnaire extends AbstractEntity {
     private String faculty;
     private String studySpecialty;
     private Integer course;
-    private String studyGroup;
+    private String studyGroup2;
+    private String studyGroup3;
+    private String studyGroup4;
+    private String studyGroup5;
     private Float studyProgress;
     private String curator;
     private String curatorTel;
@@ -105,9 +108,24 @@ public class Questionnaire extends AbstractEntity {
         return course;
     }
 
-    @Column(name = "study_group", length = 10)
-    public String getStudyGroup() {
-        return studyGroup;
+    @Column(name = "study_group_2", length = 10)
+    public String getStudyGroup2() {
+        return studyGroup2;
+    }
+    
+    @Column(name = "study_group_3", length = 10)
+    public String getStudyGroup3() {
+        return studyGroup3;
+    }
+    
+    @Column(name = "study_group_4", length = 10)
+    public String getStudyGroup4() {
+        return studyGroup4;
+    }
+    
+    @Column(name = "study_group_5", length = 10)
+    public String getStudyGroup5() {
+        return studyGroup5;
     }
 
     @Column(name = "study_progress")
@@ -280,8 +298,20 @@ public class Questionnaire extends AbstractEntity {
         this.course = course;
     }
 
-    public void setStudyGroup(String studyGroup) {
-        this.studyGroup = studyGroup;
+    public void setStudyGroup2(String studyGroup) {
+        this.studyGroup2 = studyGroup;
+    }
+    
+    public void setStudyGroup3(String studyGroup) {
+        this.studyGroup3 = studyGroup;
+    }
+    
+    public void setStudyGroup4(String studyGroup) {
+        this.studyGroup4 = studyGroup;
+    }
+    
+    public void setStudyGroup5(String studyGroup) {
+        this.studyGroup5 = studyGroup;
     }
 
     public void setStudyProgress(Float studyProgress) {
