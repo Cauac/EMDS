@@ -259,8 +259,7 @@ public class Questionnaire extends AbstractEntity {
         return dutyEnd;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedBy = "questionnaire", fetch = FetchType.LAZY)
     public Student getStudent() {
         return student;
     }

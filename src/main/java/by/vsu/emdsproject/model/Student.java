@@ -63,7 +63,8 @@ public class Student extends AbstractEntity {
         return rank;
     }
 
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "questionnaire_id")
     public Questionnaire getQuestionnaire() {
         return questionnaire;
     }

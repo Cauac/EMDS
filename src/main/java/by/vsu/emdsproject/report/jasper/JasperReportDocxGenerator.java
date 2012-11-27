@@ -12,9 +12,6 @@ public class JasperReportDocxGenerator extends JasperReportGenerator {
     public static final String CONTENT_HEADER = "inline; filename=\"file.docx\"";
     public static final String CONTENT_DISCRIPTION = "Content-Disposition";
 
-    protected JasperReportDocxGenerator() {
-    }
-
     @Override
     protected JRAbstractExporter getExporter() {
         return new JRDocxExporter();
