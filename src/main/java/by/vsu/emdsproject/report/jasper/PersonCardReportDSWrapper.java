@@ -41,10 +41,10 @@ public class PersonCardReportDSWrapper implements ReportDataSourceWrapper {
     public HashMap getDataSource() {
         Questionnaire questionnaire = student.getQuestionnaire();
         HashMap map = new HashMap();
-        map.put(Parameter.CARD_NUMBER, student.getId());
+        map.put(Parameter.CARD_NUMBER, student.getId().toString());
         map.put(Parameter.FIO, student.getLastName() + " " + student.getFirstName() + " " + student.getMiddleName());
-        map.put(Parameter.ADMISSION_YEAR, questionnaire.getAdmissionYear());
-        map.put(Parameter.BITH_YEAR, student.getBirthDate().getYear());
+        map.put(Parameter.ADMISSION_YEAR, questionnaire.getAdmissionYear().toString());
+        map.put(Parameter.BITH_YEAR, student.getBirthDate().getYear()+"");
         map.put(Parameter.BITH_PLACE, questionnaire.getBirthPlace());
         map.put(Parameter.RECRUIT_OFFICE, questionnaire.getRecruitmentOffice());
         map.put(Parameter.FACULTY, questionnaire.getFaculty());
@@ -54,11 +54,11 @@ public class PersonCardReportDSWrapper implements ReportDataSourceWrapper {
             duty = "c " + questionnaire.getDutyStart() + " по " + questionnaire.getDutyEnd();
         }
         map.put(Parameter.DUTY, duty);
-        map.put(Parameter.EDUCATION_START, questionnaire.getEducationStartDate());
-        map.put(Parameter.EDUCATION_END, questionnaire.getEducationEndDate());
+        map.put(Parameter.EDUCATION_START, questionnaire.getEducationStartDate()+"");
+        map.put(Parameter.EDUCATION_END, questionnaire.getEducationEndDate()+"");
         map.put(Parameter.RANK, student.getRank());
-        map.put(Parameter.PARENT_ADDRESS, questionnaire.getParentAddress());
-        map.put(Parameter.ADDRESS, questionnaire.getAddress());
+        map.put(Parameter.PARENT_ADDRESS, questionnaire.getParentAddress()+"");
+        map.put(Parameter.ADDRESS, questionnaire.getAddress()+"");
         return map;
     }
 }
