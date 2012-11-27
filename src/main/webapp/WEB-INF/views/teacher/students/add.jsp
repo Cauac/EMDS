@@ -13,11 +13,6 @@
         <mytags:header />
         <mytags:teacherMenu number="1"/>
 
-        <!--        <div style="clear:both;"></div>
-        
-                <h2 class="center">Новый студент</h2> 
-                <br>-->
-
         <div style="clear:both;"></div>
 
         <form class="form-horizontal" method="post" action="../students/add">
@@ -72,7 +67,32 @@
                             </select>
                         </div>
                     </div>
+
+                    <div id="characteristicDiv" class="control-group">
+                        <label class="control-label" for="characteristic">Характеристика:</label>
+                        <div class="controls">
+                            <textarea class="input" maxlength="10000" id="characteristic" name="characteristic">
+                            </textarea>
+                            <span class="help-inline" ></span>
+                        </div>
+                    </div>
+
+                    <div id="rankDiv" class="control-group">
+                        <label class="control-label" for="rank">Звание:</label>
+                        <div class="controls">
+                            <input class="input" type="text" id="rank" name="rank">
+                            <span class="help-inline" ></span>
+                        </div>
+                    </div>
+
+
+
                 </div>
+
+
+
+
+
 
 
 
@@ -127,10 +147,10 @@
 
                     <div id="addr1Div" class="control-group">
                         <div>
-                            <input class="input input-small" type="text" id="city1" name="city1" placeholder="Город">
-                            <input class="input input-medium" type="text" id="street1" name="street1" placeholder="Улица">
-                           д. <input class="input input-mini" type="text" id="house1" name="house1">
-                           кв. <input class="input input-mini" type="text" id="flat1" name="flat1">
+                            <input class="input input-small" type="text" id="city" name="city" placeholder="Город">
+                            <input class="input input-medium" type="text" id="street" name="street" placeholder="Улица">
+                            д. <input class="input input-mini" type="text" id="house" name="house">
+                            кв. <input class="input input-mini" type="text" id="apartment" name="apartment">
                         </div>
                     </div>
 

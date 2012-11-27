@@ -46,6 +46,7 @@ public class Questionnaire extends AbstractEntity {
     private String thinkAboutDuty;
     private Date dutyStart;
     private Date dutyEnd;
+    private Student student;
 
     public Questionnaire() {
     }
@@ -112,17 +113,17 @@ public class Questionnaire extends AbstractEntity {
     public String getStudyGroup2() {
         return studyGroup2;
     }
-    
+
     @Column(name = "study_group_3", length = 10)
     public String getStudyGroup3() {
         return studyGroup3;
     }
-    
+
     @Column(name = "study_group_4", length = 10)
     public String getStudyGroup4() {
         return studyGroup4;
     }
-    
+
     @Column(name = "study_group_5", length = 10)
     public String getStudyGroup5() {
         return studyGroup5;
@@ -258,6 +259,12 @@ public class Questionnaire extends AbstractEntity {
         return dutyEnd;
     }
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
+    public Student getStudent() {
+        return student;
+    }
+
     public void setBirthPlace(String birthPlace) {
         this.birthPlace = birthPlace;
     }
@@ -301,15 +308,15 @@ public class Questionnaire extends AbstractEntity {
     public void setStudyGroup2(String studyGroup) {
         this.studyGroup2 = studyGroup;
     }
-    
+
     public void setStudyGroup3(String studyGroup) {
         this.studyGroup3 = studyGroup;
     }
-    
+
     public void setStudyGroup4(String studyGroup) {
         this.studyGroup4 = studyGroup;
     }
-    
+
     public void setStudyGroup5(String studyGroup) {
         this.studyGroup5 = studyGroup;
     }
@@ -412,5 +419,9 @@ public class Questionnaire extends AbstractEntity {
 
     public void setDutyEnd(Date dutyEnd) {
         this.dutyEnd = dutyEnd;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }
