@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags"%>
+<%@taglib tagdir="/WEB-INF/tags" prefix="mytags"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,7 +10,7 @@
     </head>
     <body>
         <mytags:header/>
-        <mytags:teacherMenu number="6"/>
+        <mytags:teacherMenu number="3"/>
         <div class="well offset4 span5">
             <h3 class="center">Создать отчет</h3>
             <form action="../teacher/reports" method="POST">

@@ -13,7 +13,7 @@ public class ReportGeneratorFactory {
     protected static ApplicationContext reportContext;
 
     static{
-        reportContext = new ClassPathXmlApplicationContext("emds-reports-context.xml");
+        reportContext = new ClassPathXmlApplicationContext("spring/emds-reports-context.xml");
     }
 
     public static ReportGenerator getDocxReportGenerator() {

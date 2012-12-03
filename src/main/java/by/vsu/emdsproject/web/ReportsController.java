@@ -3,7 +3,6 @@ package by.vsu.emdsproject.web;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.report.ReportGenerator;
 import by.vsu.emdsproject.report.ReportGeneratorFactory;
-import by.vsu.emdsproject.report.jasper.JasperReportDocxGenerator;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.UserService;
 import javax.servlet.http.HttpServletResponse;
@@ -32,9 +31,7 @@ public class ReportsController {
     @RequestMapping(value = "/reports", method = RequestMethod.POST)
     public ModelAndView reportsPageDo(HttpServletResponse response, String id) {
         Student student = studentService.read(Long.parseLong(id));
-        //пока пусть будет так////////////////////////////////
-        ReportGenerator generator = new JasperReportDocxGenerator();
-        /////////////////////////////////////////////////////
+        ReportGenerator generator=ReportGeneratorFactory.getDocxReportGenerator();
         generator.generatePersonCardReport(student, response);
         return null;
     }

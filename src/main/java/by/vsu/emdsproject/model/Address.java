@@ -56,4 +56,10 @@ public class Address extends AbstractEntity {
     public void setApartment(String apartment) {
         this.apartment = apartment;
     }
+    
+    @Override
+    public String toString () {
+        return city + " ул." + street + " д." + house + " кв." + apartment;
+    }
+    
 }

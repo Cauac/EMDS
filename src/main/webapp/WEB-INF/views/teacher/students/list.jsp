@@ -52,7 +52,7 @@
             </table>
         </c:if>
         <div class="offset1 span11">
-            <a class="offset4 btn btn-primary" href="./students/add" >
+            <a class="offset4 btn btn-primary" title="Beta" href="./students/add" >
                 <i class="icon-plus icon-white"></i> Добавить студента
             </a>
         </div>

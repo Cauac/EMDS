@@ -12,7 +12,7 @@
     <body>
         <mytags:header/>
         <mytags:teacherMenu number="1" />
-        <h1><c:out value="${student.lastName}"/></h1>
+        <h1><c:out value="${student.lastName}"/><c:out value="${student.lastName}"/><c:out value="${student.middleName}"/></h1>
         <h1><c:out value="${student.questionnaire.nationality}"/></h1>
     </body>
 </html>
