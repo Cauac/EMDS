@@ -62,8 +62,8 @@ public class PersonCardReportDSWrapper implements ReportDataSourceWrapper {
         map.put(Parameter.EDUCATION_START, questionnaire.getEducationStartDate().toString());
         map.put(Parameter.EDUCATION_END, questionnaire.getEducationEndDate().toString());
         map.put(Parameter.RANK, student.getRank());
-        map.put(Parameter.PARENT_ADDRESS, questionnaire.getParentAddress());
-        map.put(Parameter.ADDRESS, questionnaire.getAddress());
+        map.put(Parameter.PARENT_ADDRESS, questionnaire.getParentAddress()+"");
+        map.put(Parameter.ADDRESS, questionnaire.getAddress()+"");
         return map;
     }
 }
