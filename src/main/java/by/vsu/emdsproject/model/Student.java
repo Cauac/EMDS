@@ -15,6 +15,7 @@ public class Student extends AbstractEntity {
     private Questionnaire questionnaire;
     private String characteristic;
     private String rank;
+    private DocumentsBringing documents;
 
     public Student() {
     }
@@ -69,6 +70,12 @@ public class Student extends AbstractEntity {
         return questionnaire;
     }
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "documents_id")
+    public DocumentsBringing getDocuments() {
+        return documents;
+    }
+
     public void setFirstName(String fisrtName) {
         this.firstName = fisrtName;
     }
@@ -100,4 +107,17 @@ public class Student extends AbstractEntity {
     public void setQuestionnaire(Questionnaire questionnaire) {
         this.questionnaire = questionnaire;
     }
+
+    public void setDocuments(DocumentsBringing documents) {
+        this.documents = documents;
+    }
+    
+    public void toStudent() {
+        rank = "student";
+    }
+    
+    public void toAbiturient() {
+        rank = "abiturient";
+    }
+    
 }

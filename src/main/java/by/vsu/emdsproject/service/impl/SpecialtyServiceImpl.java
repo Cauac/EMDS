@@ -24,12 +24,12 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         specialtyDAO.update(specialty);
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public List<Specialty> list() {
         return specialtyDAO.findAll();
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public Specialty read(Long id) {
         return specialtyDAO.findOne(id);
     }

@@ -5,7 +5,6 @@ import by.vsu.emdsproject.model.Specialty;
 import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.SpecialtyService;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +39,6 @@ public class GroupsController {
     @RequestMapping(value = "/groups/add", method = RequestMethod.POST)
     public ModelAndView addGroup(Group group, Long specId) {
         Specialty spec = specService.read(specId);
-        Set<Group> groups = spec.getGroups();
         group.setSpecialty(spec);
         groupService.add(group);
         return new ModelAndView("redirect:/teacher/groups");

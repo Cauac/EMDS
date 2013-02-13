@@ -24,12 +24,12 @@ public class SubjectServiceImpl implements SubjectService {
         subjectDAO.update(subject);
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public List<Subject> list() {
         return subjectDAO.findAll();
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public Subject read(Long id) {
         return subjectDAO.findOne(id);
     }

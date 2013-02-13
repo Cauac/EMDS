@@ -24,12 +24,12 @@ public class GroupServiceImpl implements GroupService {
         groupDAO.update(group);
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public List<Group> list() {
         return groupDAO.findAll();
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public Group read(Long id) {
         return groupDAO.findOne(id);
     }

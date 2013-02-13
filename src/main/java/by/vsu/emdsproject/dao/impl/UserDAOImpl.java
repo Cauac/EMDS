@@ -15,9 +15,8 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
     }
 
     public User getUserByLogin(String login) {
-        List<User> list = getCurrentSession().createCriteria(User.class)
-                .add(Restrictions.like("login", login)).list();
-        return list.get(0);
+        return (User) getCurrentSession().createCriteria(User.class)
+                .add(Restrictions.like("login", login)).uniqueResult();
     }
 
     public List<User> getStudents() {
@@ -31,16 +30,14 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
     }
 
     public User getByStudentId(Long personId) {
-        List<User> list = getCurrentSession().createCriteria(User.class)
+        return (User) getCurrentSession().createCriteria(User.class)
                 .add(Restrictions.eq("personId", personId))
-                .add(Restrictions.like("personType", "student")).list();
-        return list.get(0);
+                .add(Restrictions.like("personType", "student")).uniqueResult();
     }
-    
+
     public User getByTeacherId(Long personId) {
-        List<User> list = getCurrentSession().createCriteria(User.class)
+        return (User) getCurrentSession().createCriteria(User.class)
                 .add(Restrictions.eq("personId", personId))
-                .add(Restrictions.like("personType", "teacher")).list();
-        return list.get(0);
+                .add(Restrictions.like("personType", "teacher")).uniqueResult();
     }
 }

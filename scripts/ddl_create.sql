@@ -8,6 +8,7 @@ drop table questionnaire;
 drop table study_group;
 drop table specialty;
 drop table address;
+drop table documents_bringing;
 
 create table address (
     id_address SERIAL,
@@ -81,6 +82,12 @@ CREATE TABLE questionnaire(
     PRIMARY KEY("id_questionnaire")
 );
 
+create table documents_bringing (
+    id_documents_bringing SERIAL,
+    statement_to_dep boolean,
+    statement_commentary varchar(500)
+);
+
 create table teacher (
     id_teacher SERIAL,
     first_name varchar(50) NOT NULL,
@@ -97,7 +104,8 @@ create table student (
     middle_name  varchar(50) NOT NULL,
     birth_date date,
     group_id int,
-    questionnaire_id int, 
+    questionnaire_id int,
+    documents_id int,
     characteristic varchar(10000),
     service_start Date, 
     service_end Date,

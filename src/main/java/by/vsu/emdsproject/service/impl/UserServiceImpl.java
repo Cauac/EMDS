@@ -19,12 +19,12 @@ public class UserServiceImpl implements UserService {
         userDao.save(entity);
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public List<User> list() {
         return userDao.findAll();
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public User read(Long id) {
         return userDao.findOne(id);
     }

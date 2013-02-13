@@ -24,12 +24,12 @@ public class RoleServiceImpl implements RoleService {
         roleDAO.update(entity);
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public List<Role> list() {
         return roleDAO.findAll();
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public Role read(Long id) {
         return roleDAO.findOne(id);
     }

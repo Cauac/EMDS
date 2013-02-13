@@ -35,6 +35,7 @@
                 <value>by.vsu.emdsproject.model.Questionnaire</value>
                 <value>by.vsu.emdsproject.model.User</value>
                 <value>by.vsu.emdsproject.model.Role</value>
+                <value>by.vsu.emdsproject.model.DocumentsBringing</value>
             </list>
         </property>
         <property name="hibernateProperties">

@@ -19,12 +19,12 @@ public class TeacherServiceImpl implements TeacherService {
         teacherDAO.save(teacher);
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public List<Teacher> list() {
         return teacherDAO.findAll();
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public Teacher read(Long id) {
         return teacherDAO.findOne(id);
     }

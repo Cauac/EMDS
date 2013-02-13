@@ -12,7 +12,7 @@ public class PersonCardReportDSWrapper implements ReportDataSourceWrapper {
 
     private Student student;
     //public static final String templateName = "/home/anton/PersonCardReport.jasper";
-    public static final String templateName = "C:\\TEMP\\test.jasper";
+    public static final String templateName = "C:\\TEMP\\test1.jasper";
 
     public static class Parameter {
 

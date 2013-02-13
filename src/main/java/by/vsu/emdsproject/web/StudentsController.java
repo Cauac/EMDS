@@ -2,7 +2,6 @@ package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.common.PasswordUtils;
 import by.vsu.emdsproject.common.Transliterator;
-import by.vsu.emdsproject.exception.EMDSException;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Questionnaire;
 import by.vsu.emdsproject.model.Role;
@@ -13,11 +12,8 @@ import by.vsu.emdsproject.service.QuestionnaireService;
 import by.vsu.emdsproject.service.RoleService;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.UserService;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +39,7 @@ public class StudentsController {
     @RequestMapping("/students")
     public ModelAndView students() {
         ModelAndView mav = new ModelAndView("teacher/students/list");
-        mav.addObject("students", studentService.list());
+        mav.addObject("students", studentService.getStudents());
         mav.addObject("users", userService.getStudents());
         return mav;
     }
@@ -58,35 +54,18 @@ public class StudentsController {
     @RequestMapping(value = "/students/add", method = RequestMethod.POST)
     public ModelAndView addStudent(Student s, String group, Questionnaire q,
             String dob, HttpServletRequest request) {
-        Date d;
         ModelAndView mav;
         try {
-            //questionnaireService.add(q);
+            Date d = new SimpleDateFormat("dd.MM.yyyy").parse(dob);
             Group g = groupService.read(Long.parseLong(group));
-
-            d = new SimpleDateFormat("dd.MM.yyyy").parse(dob);
-            s.setQuestionnaire(q);
-            q.setStudent(s);
-            s.setBirthDate(d);
-            s.setGroup(g);
-            studentService.add(s);
-
-            Role role = roleService.getByName("ROLE_STUDENT");
-            String username = Transliterator.transliterate(s.getLastName()
-                    + s.getFirstName().charAt(0) + s.getMiddleName().charAt(0));
-            User user = new User(s.getId(), "student", username,
-                    PasswordUtils.encode("12345"), 1, role);
-            user.setDefaultPassword(true);
-            userService.add(user);
-
+            studentService.add(s, d, g, q);
             mav = new ModelAndView("redirect:/teacher/students");
             request.getSession().setAttribute("win", "Студент добавлен");
-            return mav;
         } catch (Exception ex) {
             mav = new ModelAndView("redirect:/teacher/students/add");
             request.getSession().setAttribute("fail", "Ошибка при добавлении студента");
-            return mav;
         }
+            return mav;
     }
 
     @RequestMapping("/students/edit")
