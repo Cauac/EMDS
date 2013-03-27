@@ -1,46 +1,47 @@
 package by.vsu.emdsproject.service.impl;
 
-import by.vsu.emdsproject.dao.SubjectDAO;
 import by.vsu.emdsproject.model.Subject;
+import by.vsu.emdsproject.repository.SubjectRepository;
 import by.vsu.emdsproject.service.SubjectService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
-    private SubjectDAO subjectDAO;
+    private SubjectRepository subjectRepository;
 
     @Transactional
     public void add(Subject subject) {
-        subjectDAO.save(subject);
+        subjectRepository.save(subject);
     }
 
     @Transactional
     public void update(Subject subject) {
-        subjectDAO.update(subject);
+        subjectRepository.save(subject);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Subject> list() {
-        return subjectDAO.findAll();
+        return subjectRepository.findAll();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public Subject read(Long id) {
-        return subjectDAO.findOne(id);
+        return subjectRepository.findOne(id);
     }
 
     @Transactional
     public void remove(Long id) {
-        subjectDAO.deleteById(id);
+        subjectRepository.delete(id);
     }
 
     @Transactional
     public void remove(Subject subject) {
-        subjectDAO.delete(subject);
+        subjectRepository.delete(subject);
     }
 }

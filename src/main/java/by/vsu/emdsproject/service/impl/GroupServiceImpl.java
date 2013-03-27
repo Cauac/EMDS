@@ -1,46 +1,47 @@
 package by.vsu.emdsproject.service.impl;
 
-import by.vsu.emdsproject.dao.GroupDAO;
 import by.vsu.emdsproject.model.Group;
+import by.vsu.emdsproject.repository.GroupRepository;
 import by.vsu.emdsproject.service.GroupService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class GroupServiceImpl implements GroupService {
 
     @Autowired
-    private GroupDAO groupDAO;
+    private GroupRepository groupRepository;
 
     @Transactional
     public void add(Group group) {
-        groupDAO.save(group);
+        groupRepository.save(group);
     }
 
     @Transactional
     public void update(Group group) {
-        groupDAO.update(group);
+        groupRepository.save(group);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Group> list() {
-        return groupDAO.findAll();
+        return groupRepository.findAll();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public Group read(Long id) {
-        return groupDAO.findOne(id);
+        return groupRepository.findOne(id);
     }
 
     @Transactional
     public void remove(Long id) {
-        groupDAO.deleteById(id);
+        groupRepository.delete(id);
     }
 
     @Transactional
     public void remove(Group group) {
-        groupDAO.delete(group);
+        groupRepository.delete(group);
     }
 }

@@ -1,46 +1,47 @@
 package by.vsu.emdsproject.service.impl;
 
-import by.vsu.emdsproject.dao.TeacherDAO;
 import by.vsu.emdsproject.model.Teacher;
+import by.vsu.emdsproject.repository.TeacherRepository;
 import by.vsu.emdsproject.service.TeacherService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
-    private TeacherDAO teacherDAO;
+    private TeacherRepository teacherRepository;
 
     @Transactional
     public void add(Teacher teacher) {
-        teacherDAO.save(teacher);
+        teacherRepository.save(teacher);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Teacher> list() {
-        return teacherDAO.findAll();
+        return teacherRepository.findAll();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public Teacher read(Long id) {
-        return teacherDAO.findOne(id);
+        return teacherRepository.findOne(id);
     }
 
     @Transactional
     public void remove(Long id) {
-        teacherDAO.deleteById(id);
+        teacherRepository.delete(id);
     }
 
     @Transactional
     public void remove(Teacher teacher) {
-        teacherDAO.delete(teacher);
+        teacherRepository.delete(teacher);
     }
 
     @Transactional
     public void update(Teacher entity) {
-        teacherDAO.update(entity);
+        teacherRepository.save(entity);
     }
 }

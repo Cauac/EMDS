@@ -1,25 +1,20 @@
 package by.vsu.emdsproject.web;
 
-import by.vsu.emdsproject.common.PasswordUtils;
-import by.vsu.emdsproject.common.Transliterator;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Questionnaire;
-import by.vsu.emdsproject.model.Role;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.User;
-import by.vsu.emdsproject.service.GroupService;
-import by.vsu.emdsproject.service.QuestionnaireService;
-import by.vsu.emdsproject.service.RoleService;
-import by.vsu.emdsproject.service.StudentService;
-import by.vsu.emdsproject.service.UserService;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.servlet.http.HttpServletRequest;
+import by.vsu.emdsproject.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("teacher")
@@ -40,6 +35,7 @@ public class StudentsController {
     public ModelAndView students() {
         ModelAndView mav = new ModelAndView("teacher/students/list");
         mav.addObject("students", studentService.getStudents());
+        List<Student> studentList = studentService.getStudents();
         mav.addObject("users", userService.getStudents());
         return mav;
     }
@@ -53,7 +49,7 @@ public class StudentsController {
 
     @RequestMapping(value = "/students/add", method = RequestMethod.POST)
     public ModelAndView addStudent(Student s, String group, Questionnaire q,
-            String dob, HttpServletRequest request) {
+                                   String dob, HttpServletRequest request) {
         ModelAndView mav;
         try {
             Date d = new SimpleDateFormat("dd.MM.yyyy").parse(dob);
@@ -65,7 +61,7 @@ public class StudentsController {
             mav = new ModelAndView("redirect:/teacher/students/add");
             request.getSession().setAttribute("fail", "Ошибка при добавлении студента");
         }
-            return mav;
+        return mav;
     }
 
     @RequestMapping("/students/edit")

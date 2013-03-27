@@ -1,71 +1,76 @@
 package by.vsu.emdsproject.service.impl;
 
-import by.vsu.emdsproject.dao.UserDAO;
 import by.vsu.emdsproject.model.User;
+import by.vsu.emdsproject.repository.UserRepository;
 import by.vsu.emdsproject.service.UserService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDAO userDao;
+    private UserRepository userRepository;
 
     @Transactional
     public void add(User entity) {
-        userDao.save(entity);
+        userRepository.save(entity);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<User> list() {
-        return userDao.findAll();
+        return userRepository.findAll();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public User read(Long id) {
-        return userDao.findOne(id);
+        return userRepository.findOne(id);
     }
 
     @Transactional
     public void remove(Long id) {
-        userDao.deleteById(id);
+        userRepository.delete(id);
     }
 
     @Transactional
     public void remove(User entity) {
-        userDao.delete(entity);
-    }
-
-    @Transactional
-    public User getByLogin(String login) {
-        return userDao.getUserByLogin(login);
-    }
-
-    @Transactional
-    public List<User> getStudents() {
-        return userDao.getStudents();
-    }
-
-    @Transactional
-    public List<User> getTeachers() {
-        return userDao.getTeachers();
+        userRepository.delete(entity);
     }
 
     @Transactional
     public void update(User entity) {
-        userDao.update(entity);
+        userRepository.save(entity);
     }
 
-    @Transactional
-    public User getByStudentId(Long personId) {
-        return userDao.getByStudentId(personId);
+    public void addUser(String personType, Long personId) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
-    
-    @Transactional
+
+    @Transactional(readOnly = true)
+    public User getByLogin(String login) {
+        return userRepository.findByLogin(login);
+    }
+
+    @Transactional(readOnly = true)
+    public List<User> getStudents() {
+        return userRepository.findByPersonType("student");
+    }
+
+    @Transactional(readOnly = true)
+    public List<User> getTeachers() {
+        return userRepository.findByPersonType("teacher");
+    }
+
+    @Transactional(readOnly = true)
+    public User getByStudentId(Long personId) {
+        return userRepository.findByPersonTypeAndId("student", personId);
+    }
+
+    @Transactional(readOnly = true)
     public User getByTeacherId(Long personId) {
-        return userDao.getByTeacherId(personId);
+        return userRepository.findByPersonTypeAndId("teacher", personId);
     }
 }

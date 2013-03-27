@@ -1,20 +1,15 @@
 package by.vsu.emdsproject.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "roles")
 public class Role extends AbstractEntity {
+
+    public static final String STUDENT = "ROLE_STUDENT";
+    public static final String TEACHER = "ROLE_TEACHER";
 
     private String authority;
     private Set<User> users = new HashSet<User>();

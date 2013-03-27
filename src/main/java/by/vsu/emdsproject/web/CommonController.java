@@ -2,9 +2,9 @@ package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.common.PasswordUtils;
+import by.vsu.emdsproject.model.Role;
 import by.vsu.emdsproject.model.User;
 import by.vsu.emdsproject.service.UserService;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class CommonController {
 
     @Autowired
     private UserService userService;
 
-//    @Autowired
+    //    @Autowired
 //    private TeacherService teacherService;
 //    
 //    @Autowired
@@ -35,12 +37,12 @@ public class CommonController {
 
         request.getSession().setAttribute("currentUser", currentUser);
 
-        if (currentUser.getRole().getAuthority().equals("ROLE_TEACHER")) {
+        if (currentUser.getRole().getAuthority().equals(Role.TEACHER)) {
             return "redirect:teacher";
-        } else if (currentUser.getRole().getAuthority().equals("ROLE_STUDENT")) {
+        } else if (currentUser.getRole().getAuthority().equals(Role.STUDENT)) {
             return "redirect:student";
         }
-        
+
         return "forward:index.jsp";
     }
 
@@ -55,10 +57,10 @@ public class CommonController {
         User user = (User) request.getSession().getAttribute("currentUser");
 
         if (user != null) {
-            if (user.getRole().getAuthority().equals("ROLE_TEACHER")) {
+            if (user.getRole().getAuthority().equals(Role.TEACHER)) {
                 return "redirect:teacher";
             }
-            if (user.getRole().getAuthority().equals("ROLE_STUDENT")) {
+            if (user.getRole().getAuthority().equals(Role.STUDENT)) {
                 return "redirect:student";
             }
         }

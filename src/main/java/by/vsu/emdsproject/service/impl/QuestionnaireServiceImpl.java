@@ -1,46 +1,47 @@
 package by.vsu.emdsproject.service.impl;
 
-import by.vsu.emdsproject.dao.QuestionnaireDAO;
 import by.vsu.emdsproject.model.Questionnaire;
+import by.vsu.emdsproject.repository.QuestionnaireRepository;
 import by.vsu.emdsproject.service.QuestionnaireService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class QuestionnaireServiceImpl implements QuestionnaireService {
 
     @Autowired
-    private QuestionnaireDAO questionnaireDAO;
+    private QuestionnaireRepository questionnaireRepository;
 
     @Transactional
     public void add(Questionnaire entity) {
-        questionnaireDAO.save(entity);
+        questionnaireRepository.save(entity);
     }
 
     @Transactional
     public void update(Questionnaire entity) {
-        questionnaireDAO.update(entity);
+        questionnaireRepository.save(entity);
     }
 
     @Transactional(readOnly = true)
     public List<Questionnaire> list() {
-        return questionnaireDAO.findAll();
+        return questionnaireRepository.findAll();
     }
 
     @Transactional(readOnly = true)
     public Questionnaire read(Long id) {
-        return questionnaireDAO.findOne(id);
+        return questionnaireRepository.findOne(id);
     }
 
     @Transactional
     public void remove(Long id) {
-        questionnaireDAO.deleteById(id);
+        questionnaireRepository.delete(id);
     }
 
     @Transactional
     public void remove(Questionnaire entity) {
-        questionnaireDAO.delete(entity);
+        questionnaireRepository.delete(entity);
     }
 }

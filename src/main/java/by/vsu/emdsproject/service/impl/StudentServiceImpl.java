@@ -5,19 +5,14 @@ import by.vsu.emdsproject.common.Transliterator;
 import by.vsu.emdsproject.dao.RoleDAO;
 import by.vsu.emdsproject.dao.StudentDAO;
 import by.vsu.emdsproject.dao.UserDAO;
-import by.vsu.emdsproject.model.Group;
-import by.vsu.emdsproject.model.Questionnaire;
-import by.vsu.emdsproject.model.Role;
-import by.vsu.emdsproject.model.Student;
-import by.vsu.emdsproject.model.User;
+import by.vsu.emdsproject.model.*;
 import by.vsu.emdsproject.service.StudentService;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -43,7 +38,7 @@ public class StudentServiceImpl implements StudentService {
         s.setGroup(g);
         studentDAO.save(s);
 
-        Role role = roleDAO.getByName("ROLE_STUDENT");
+        Role role = roleDAO.getByName(Role.STUDENT);
         String username = Transliterator.transliterate(s.getLastName()
                 + s.getFirstName().charAt(0) + s.getMiddleName().charAt(0));
         User user = new User(s.getId(), "student", username,
@@ -51,12 +46,12 @@ public class StudentServiceImpl implements StudentService {
         user.setDefaultPassword(true);
         userDAO.save(user);
     }
-    
+
     @Transactional
     public void transformAbiturientToStudent(Student s) {
         s.toStudent();
         studentDAO.save(s);
-        Role role = roleDAO.getByName("ROLE_STUDENT");
+        Role role = roleDAO.getByName(Role.STUDENT);
         String username = Transliterator.transliterate(s.getLastName()
                 + s.getFirstName().charAt(0) + s.getMiddleName().charAt(0));
         User user = new User(s.getId(), "student", username,

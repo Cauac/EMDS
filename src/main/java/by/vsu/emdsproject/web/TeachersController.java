@@ -8,14 +8,14 @@ import by.vsu.emdsproject.model.User;
 import by.vsu.emdsproject.service.RoleService;
 import by.vsu.emdsproject.service.TeacherService;
 import by.vsu.emdsproject.service.UserService;
-import java.util.List;
-import java.util.Random;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/teacher")
@@ -44,17 +44,17 @@ public class TeachersController {
     @RequestMapping(value = "/teachers/add", method = RequestMethod.POST)
     public String addTeacher(Teacher teacher, HttpServletRequest request) {
         Random random = new Random();
-        String pass = String.valueOf(random.nextInt(900000)+100000);
-        
+        String pass = String.valueOf(random.nextInt(900000) + 100000);
+
         teacherService.add(teacher);
-        
-        Role role = roleService.getByName("ROLE_TEACHER");
+
+        Role role = roleService.getByName(Role.TEACHER);
         String username = Transliterator.transliterate(teacher.getLastName() + teacher.getFirstName().charAt(0) + teacher.getMiddleName().charAt(0));
         User user = new User(teacher.getId(), "teacher", username, PasswordUtils.encode(pass), 1, role);
         user.setDefaultPassword(true);
 
         userService.add(user);
-        
+
         request.getSession().setAttribute("password", pass);
         return "redirect:/teacher/teachers";
     }
