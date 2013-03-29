@@ -1,11 +1,7 @@
 package by.vsu.emdsproject.web;
 
-import by.vsu.emdsproject.common.PasswordUtils;
-import by.vsu.emdsproject.common.Transliterator;
-import by.vsu.emdsproject.model.Role;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.model.User;
-import by.vsu.emdsproject.service.RoleService;
 import by.vsu.emdsproject.service.TeacherService;
 import by.vsu.emdsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Random;
 
 @Controller
 @RequestMapping("/teacher")
@@ -25,8 +20,6 @@ public class TeachersController {
     private UserService userService;
     @Autowired
     private TeacherService teacherService;
-    @Autowired
-    private RoleService roleService;
 
     @RequestMapping("/teachers")
     public ModelAndView teachers() {
@@ -43,19 +36,9 @@ public class TeachersController {
 
     @RequestMapping(value = "/teachers/add", method = RequestMethod.POST)
     public String addTeacher(Teacher teacher, HttpServletRequest request) {
-        Random random = new Random();
-        String pass = String.valueOf(random.nextInt(900000) + 100000);
-
         teacherService.add(teacher);
-
-        Role role = roleService.getByName(Role.TEACHER);
-        String username = Transliterator.transliterate(teacher.getLastName() + teacher.getFirstName().charAt(0) + teacher.getMiddleName().charAt(0));
-        User user = new User(teacher.getId(), "teacher", username, PasswordUtils.encode(pass), 1, role);
-        user.setDefaultPassword(true);
-
-        userService.add(user);
-
-        request.getSession().setAttribute("password", pass);
+        userService.addUserToPerson(User.TEACHER, teacher);
+        request.getSession().setAttribute("password", "12345");
         return "redirect:/teacher/teachers";
     }
 
@@ -74,9 +57,10 @@ public class TeachersController {
         return "redirect:/teacher/teachers";
     }
 
+    // TODO: check if this teacher is current user
     @RequestMapping("/teachers/remove")
     public String removeTeacher(String id) {
-        User user = userService.getByTeacherId(Long.parseLong(id));
+        User user = userService.getTeacherById(Long.parseLong(id));
         userService.remove(user);
         teacherService.remove(Long.parseLong(id));
         return "redirect:/teacher/teachers";

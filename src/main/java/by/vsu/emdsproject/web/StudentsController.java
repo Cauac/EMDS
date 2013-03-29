@@ -1,10 +1,11 @@
 package by.vsu.emdsproject.web;
 
-import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Questionnaire;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.User;
-import by.vsu.emdsproject.service.*;
+import by.vsu.emdsproject.service.GroupService;
+import by.vsu.emdsproject.service.StudentService;
+import by.vsu.emdsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("teacher")
@@ -26,16 +25,11 @@ public class StudentsController {
     private UserService userService;
     @Autowired
     private GroupService groupService;
-    @Autowired
-    private RoleService roleService;
-    @Autowired
-    private QuestionnaireService questionnaireService;
 
     @RequestMapping("/students")
     public ModelAndView students() {
         ModelAndView mav = new ModelAndView("teacher/students/list");
         mav.addObject("students", studentService.getStudents());
-        List<Student> studentList = studentService.getStudents();
         mav.addObject("users", userService.getStudents());
         return mav;
     }
@@ -48,13 +42,15 @@ public class StudentsController {
     }
 
     @RequestMapping(value = "/students/add", method = RequestMethod.POST)
-    public ModelAndView addStudent(Student s, String group, Questionnaire q,
-                                   String dob, HttpServletRequest request) {
+    public ModelAndView addStudent(Student student, String group, Questionnaire questionnaire,
+                                   String dateOfBirth, HttpServletRequest request) {
         ModelAndView mav;
         try {
-            Date d = new SimpleDateFormat("dd.MM.yyyy").parse(dob);
-            Group g = groupService.read(Long.parseLong(group));
-            studentService.add(s, d, g, q);
+            student.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(dateOfBirth));
+            student.setGroup(groupService.read(Long.parseLong(group)));
+            student.setQuestionnaire(questionnaire);
+            studentService.add(student);
+            userService.addUserToPerson(User.STUDENT, student);
             mav = new ModelAndView("redirect:/teacher/students");
             request.getSession().setAttribute("win", "Студент добавлен");
         } catch (Exception ex) {
@@ -73,7 +69,7 @@ public class StudentsController {
 
     @RequestMapping(value = "/students/remove")
     public String removeStudent(String id) {
-        User user = userService.getByStudentId(Long.parseLong(id));
+        User user = userService.getStudentById(Long.parseLong(id));
         userService.remove(user);
         studentService.remove(Long.parseLong(id));
         return "redirect:/teacher/students";

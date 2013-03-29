@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *         Time: 23:16
  */
 public interface RoleRepository extends JpaRepository<Role, Long> {
-    public Role findByAuthority(Role role);
+    public Role findByAuthority(String authority);
 }

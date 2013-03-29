@@ -16,13 +16,13 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     private SpecialtyRepository specialtyRepository;
 
     @Transactional
-    public void add(Specialty specialty) {
-        specialtyRepository.save(specialty);
+    public Specialty add(Specialty specialty) {
+        return specialtyRepository.save(specialty);
     }
 
     @Transactional
-    public void update(Specialty specialty) {
-        specialtyRepository.save(specialty);
+    public Specialty update(Specialty specialty) {
+        return specialtyRepository.save(specialty);
     }
 
     @Transactional(readOnly = true)

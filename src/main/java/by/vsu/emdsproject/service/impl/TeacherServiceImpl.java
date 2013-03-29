@@ -15,9 +15,14 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
 
+    /**
+     * Add new teacher to the system and creates his account with default password: "12345"
+     *
+     * @param teacher teacher to add
+     */
     @Transactional
-    public void add(Teacher teacher) {
-        teacherRepository.save(teacher);
+    public Teacher add(Teacher teacher) {
+        return teacherRepository.save(teacher);
     }
 
     @Transactional(readOnly = true)
@@ -41,7 +46,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Transactional
-    public void update(Teacher entity) {
-        teacherRepository.save(entity);
+    public Teacher update(Teacher entity) {
+        return teacherRepository.save(entity);
     }
 }

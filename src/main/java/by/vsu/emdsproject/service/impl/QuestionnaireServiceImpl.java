@@ -16,13 +16,13 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     private QuestionnaireRepository questionnaireRepository;
 
     @Transactional
-    public void add(Questionnaire entity) {
-        questionnaireRepository.save(entity);
+    public Questionnaire add(Questionnaire entity) {
+        return questionnaireRepository.save(entity);
     }
 
     @Transactional
-    public void update(Questionnaire entity) {
-        questionnaireRepository.save(entity);
+    public Questionnaire update(Questionnaire entity) {
+        return questionnaireRepository.save(entity);
     }
 
     @Transactional(readOnly = true)

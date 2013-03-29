@@ -1,13 +1,16 @@
 package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.model.Student;
+import by.vsu.emdsproject.model.User;
 import by.vsu.emdsproject.service.StudentService;
-import java.util.List;
+import by.vsu.emdsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/teacher")
@@ -15,6 +18,9 @@ public class AbiturientsController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/abiturients")
     public ModelAndView abiturients() {
@@ -39,13 +45,14 @@ public class AbiturientsController {
         studentService.add(student);
         return new ModelAndView("redirect:/teacher/abiturients");
     }
-    
-    @RequestMapping(value="/abiturients/studentialize")
-    public String toStudent (Long id) {
-        Student s = studentService.read(id);
-        s.toStudent();
-        studentService.update(s);
+
+    @RequestMapping(value = "/abiturients/studentialize")
+    public String toStudent(Long id) {
+        Student student = studentService.read(id);
+        student.toStudent();
+        userService.addUserToPerson(User.STUDENT, student);
+        studentService.update(student);
         return "redirect:/teacher/abiturients";
     }
-    
+
 }

@@ -16,13 +16,13 @@ public class SubjectServiceImpl implements SubjectService {
     private SubjectRepository subjectRepository;
 
     @Transactional
-    public void add(Subject subject) {
-        subjectRepository.save(subject);
+    public Subject add(Subject subject) {
+        return subjectRepository.save(subject);
     }
 
     @Transactional
-    public void update(Subject subject) {
-        subjectRepository.save(subject);
+    public Subject update(Subject subject) {
+        return subjectRepository.save(subject);
     }
 
     @Transactional(readOnly = true)

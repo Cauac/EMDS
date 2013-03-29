@@ -16,13 +16,13 @@ public class GroupServiceImpl implements GroupService {
     private GroupRepository groupRepository;
 
     @Transactional
-    public void add(Group group) {
-        groupRepository.save(group);
+    public Group add(Group group) {
+        return groupRepository.save(group);
     }
 
     @Transactional
-    public void update(Group group) {
-        groupRepository.save(group);
+    public Group update(Group group) {
+        return groupRepository.save(group);
     }
 
     @Transactional(readOnly = true)

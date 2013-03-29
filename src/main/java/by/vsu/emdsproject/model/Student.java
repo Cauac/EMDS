@@ -1,15 +1,15 @@
 package by.vsu.emdsproject.model;
 
-import java.util.Date;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "student")
-public class Student extends AbstractEntity {
+public class Student extends Person {
 
-    private String firstName;
-    private String lastName;
-    private String middleName;
+    public static final String STUDENT = "student";
+    public static final String ABITURIENT = "abiturient";
+
     private Date birthDate;
     private Group group;
     private Questionnaire questionnaire;
@@ -76,18 +76,6 @@ public class Student extends AbstractEntity {
         return documents;
     }
 
-    public void setFirstName(String fisrtName) {
-        this.firstName = fisrtName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
@@ -111,13 +99,13 @@ public class Student extends AbstractEntity {
     public void setDocuments(DocumentsBringing documents) {
         this.documents = documents;
     }
-    
+
     public void toStudent() {
-        rank = "student";
+        rank = STUDENT;
     }
-    
+
     public void toAbiturient() {
-        rank = "abiturient";
+        rank = ABITURIENT;
     }
-    
+
 }

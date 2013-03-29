@@ -1,17 +1,15 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User extends AbstractEntity {
+
+    public static final String STUDENT = "student";
+    public static final String TEACHER = "teacher";
+    public static final int ENABLED = 1;
+    public static final int DISABLED = 0;
 
     private Long personId;
     private String personType;
@@ -21,7 +19,7 @@ public class User extends AbstractEntity {
     private Role role;
     private boolean defaultPassword;
 
-    
+
     public User() {
     }
 
@@ -71,17 +69,17 @@ public class User extends AbstractEntity {
     public Role getRole() {
         return role;
     }
-    
+
     @Column(name = "default_password")
     public boolean isDefaultPassword() {
         return defaultPassword;
     }
 
-    
+
     public void setDefaultPassword(boolean defaultPassword) {
         this.defaultPassword = defaultPassword;
     }
-    
+
     public void setRole(Role role) {
         this.role = role;
     }

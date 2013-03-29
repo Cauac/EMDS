@@ -4,11 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "teacher")
-public class Teacher extends AbstractEntity {
+public class Teacher extends Person {
 
-    private String firstName;
-    private String lastName;
-    private String middleName;
     private String rank;
 
     public Teacher() {
@@ -27,17 +24,17 @@ public class Teacher extends AbstractEntity {
         return id;
     }
 
-    @Column(name = "first_name", nullable = false, length = 25)
+    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
 
-    @Column(name = "last_name", nullable = false, length = 50)
+    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
 
-    @Column(name = "middle_name", nullable = false, length = 30)
+    @Column(name = "middle_name", nullable = false)
     public String getMiddleName() {
         return middleName;
     }
@@ -45,18 +42,6 @@ public class Teacher extends AbstractEntity {
     @Column(name = "rank", length = 20)
     public String getRank() {
         return rank;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
     }
 
     public void setRank(String rank) {
