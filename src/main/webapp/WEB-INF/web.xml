@@ -54,6 +54,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
+                classpath:/spring/emds-web-context.xml
             </param-value>
         </init-param>
     </servlet>

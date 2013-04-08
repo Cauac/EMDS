@@ -1,9 +1,11 @@
 package by.vsu.emdsproject.web;
 
+import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.model.User;
 import by.vsu.emdsproject.service.TeacherService;
 import by.vsu.emdsproject.service.UserService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,12 +59,14 @@ public class TeachersController {
         return "redirect:/teacher/teachers";
     }
 
-    // TODO: check if this teacher is current user
     @RequestMapping("/teachers/remove")
-    public String removeTeacher(String id) {
-        User user = userService.getTeacherById(Long.parseLong(id));
-        userService.remove(user);
-        teacherService.remove(Long.parseLong(id));
-        return "redirect:/teacher/teachers";
+    public ModelAndView removeTeacher(String id) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/teacher/teachers");
+        User user = userService.getUserByTeacherId(Long.parseLong(id));
+        if (!StringUtils.equals(EMDSContext.getInstance().getCurrentUser().getUsername(), user.getLogin())) {
+            userService.remove(user.getId());
+            teacherService.remove(Long.parseLong(id));
+        }
+        return modelAndView;
     }
 }

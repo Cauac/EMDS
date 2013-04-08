@@ -1,13 +1,14 @@
 package by.vsu.emdsproject.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "specialty")
-public class Specialty extends AbstractEntity {
+public class Specialty implements AbstractEntity {
 
+    private Long id;
     private String title;
     private Set<Group> groups = new HashSet<Group>();
 
@@ -22,15 +23,17 @@ public class Specialty extends AbstractEntity {
         this.title = title;
     }
 
-    public Specialty(Specialty s) {
-        this.title = s.getTitle();
-    }
-
     @Id
-    @Column(name = "id_specialty")
+    @Override
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Column(name = "title", nullable = false, length = 100)

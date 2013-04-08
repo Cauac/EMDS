@@ -17,7 +17,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Transactional
     public Student add(Student student) {
-        student.toStudent();
         return studentRepository.save(student);
     }
 

@@ -4,13 +4,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User extends AbstractEntity {
+public class User implements AbstractEntity {
 
     public static final String STUDENT = "student";
     public static final String TEACHER = "teacher";
     public static final int ENABLED = 1;
     public static final int DISABLED = 0;
-
+    private Long id;
     private Long personId;
     private String personType;
     private String login;
@@ -33,10 +33,16 @@ public class User extends AbstractEntity {
     }
 
     @Id
+    @Override
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Column(name = "login")
@@ -44,9 +50,17 @@ public class User extends AbstractEntity {
         return login;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     @Column(name = "password")
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Column(name = "enabled")
@@ -54,14 +68,26 @@ public class User extends AbstractEntity {
         return enabled;
     }
 
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
+
     @Column(name = "person_id")
     public Long getPersonId() {
         return personId;
     }
 
+    public void setPersonId(Long personId) {
+        this.personId = personId;
+    }
+
     @Column(name = "person_type")
     public String getPersonType() {
         return personType;
+    }
+
+    public void setPersonType(String personType) {
+        this.personType = personType;
     }
 
     @ManyToOne
@@ -70,38 +96,17 @@ public class User extends AbstractEntity {
         return role;
     }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Column(name = "default_password")
     public boolean isDefaultPassword() {
         return defaultPassword;
     }
 
-
     public void setDefaultPassword(boolean defaultPassword) {
         this.defaultPassword = defaultPassword;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public void setPersonId(Long personId) {
-        this.personId = personId;
-    }
-
-    public void setPersonType(String personType) {
-        this.personType = personType;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEnabled(int enabled) {
-        this.enabled = enabled;
     }
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Table(name = "teacher")
 public class Teacher extends Person {
 
+    private Long id;
     private String rank;
 
     public Teacher() {
@@ -18,10 +19,16 @@ public class Teacher extends Person {
     }
 
     @Id
-    @Column(name = "id_teacher")
+    @Override
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Column(name = "first_name", nullable = false)

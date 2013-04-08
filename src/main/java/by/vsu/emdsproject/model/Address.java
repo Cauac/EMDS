@@ -4,8 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "address")
-public class Address extends AbstractEntity {
+public class Address implements AbstractEntity {
 
+    private Long id;
     private String city;
     private String street;
     private String house;
@@ -15,10 +16,16 @@ public class Address extends AbstractEntity {
     }
 
     @Id
-    @Column(name = "id_address")
+    @Override
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Column(name = "city", length = 30)
@@ -26,9 +33,17 @@ public class Address extends AbstractEntity {
         return city;
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     @Column(name = "street", length = 30)
     public String getStreet() {
         return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     @Column(name = "house", length = 3)
@@ -36,30 +51,22 @@ public class Address extends AbstractEntity {
         return house;
     }
 
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
     @Column(name = "apartment", length = 4)
     public String getApartment() {
         return apartment;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setHouse(String house) {
-        this.house = house;
-    }
-
     public void setApartment(String apartment) {
         this.apartment = apartment;
     }
-    
+
     @Override
-    public String toString () {
+    public String toString() {
         return city + " ул." + street + " д." + house + " кв." + apartment;
     }
-    
+
 }

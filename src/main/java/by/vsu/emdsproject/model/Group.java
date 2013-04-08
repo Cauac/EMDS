@@ -1,16 +1,16 @@
 package by.vsu.emdsproject.model;
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Study_group")
-public class Group extends AbstractEntity {
+public class Group implements AbstractEntity {
 
+    private Long id;
     private String title;
     private Specialty specialty;
-    private Set<Student> students = new HashSet<Student>();
+    private Set<Student> students;
 
     public Group() {
     }
@@ -25,10 +25,16 @@ public class Group extends AbstractEntity {
     }
 
     @Id
-    @Column(name = "id_group")
+    @Override
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Column(name = "title", nullable = false, length = 10)

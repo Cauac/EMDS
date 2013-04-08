@@ -44,20 +44,21 @@ public class StudentsController {
     @RequestMapping(value = "/students/add", method = RequestMethod.POST)
     public ModelAndView addStudent(Student student, String group, Questionnaire questionnaire,
                                    String dateOfBirth, HttpServletRequest request) {
-        ModelAndView mav;
+        ModelAndView modelAndView;
         try {
             student.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(dateOfBirth));
             student.setGroup(groupService.read(Long.parseLong(group)));
             student.setQuestionnaire(questionnaire);
+            student.setRank(Student.STUDENT);
             studentService.add(student);
             userService.addUserToPerson(User.STUDENT, student);
-            mav = new ModelAndView("redirect:/teacher/students");
+            modelAndView = new ModelAndView("redirect:/teacher/students");
             request.getSession().setAttribute("win", "Студент добавлен");
         } catch (Exception ex) {
-            mav = new ModelAndView("redirect:/teacher/students/add");
+            modelAndView = new ModelAndView("redirect:/teacher/students/add");
             request.getSession().setAttribute("fail", "Ошибка при добавлении студента");
         }
-        return mav;
+        return modelAndView;
     }
 
     @RequestMapping("/students/edit")
@@ -69,8 +70,8 @@ public class StudentsController {
 
     @RequestMapping(value = "/students/remove")
     public String removeStudent(String id) {
-        User user = userService.getStudentById(Long.parseLong(id));
-        userService.remove(user);
+        User user = userService.getUserByStudentId(Long.parseLong(id));
+        userService.remove(user.getId());
         studentService.remove(Long.parseLong(id));
         return "redirect:/teacher/students";
     }

@@ -15,11 +15,6 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
 
-    /**
-     * Add new teacher to the system and creates his account with default password: "12345"
-     *
-     * @param teacher teacher to add
-     */
     @Transactional
     public Teacher add(Teacher teacher) {
         return teacherRepository.save(teacher);

@@ -1,12 +1,13 @@
 package by.vsu.emdsproject.model;
 
-import java.util.Date;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "questionnaire")
-public class Questionnaire extends AbstractEntity {
+public class Questionnaire implements AbstractEntity {
 
+    private Long id;
     private String birthPlace;
     private String nationality;
     private String passportNumber;
@@ -52,10 +53,16 @@ public class Questionnaire extends AbstractEntity {
     }
 
     @Id
-    @Column(name = "id_questionnaire")
+    @Override
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Column(name = "birth_place", length = 50)
@@ -63,14 +70,26 @@ public class Questionnaire extends AbstractEntity {
         return birthPlace;
     }
 
+    public void setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
+    }
+
     @Column(name = "nationality", length = 20)
     public String getNationality() {
         return nationality;
     }
 
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
     @Column(name = "passport_number", length = 10)
     public String getPassportNumber() {
         return passportNumber;
+    }
+
+    public void setPassportNumber(String passportNumber) {
+        this.passportNumber = passportNumber;
     }
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -79,9 +98,17 @@ public class Questionnaire extends AbstractEntity {
         return address;
     }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Column(name = "mobile_tel", length = 10)
     public String getMobileTel() {
         return mobileTel;
+    }
+
+    public void setMobileTel(String mobileTel) {
+        this.mobileTel = mobileTel;
     }
 
     @Column(name = "home_tel", length = 10)
@@ -89,9 +116,17 @@ public class Questionnaire extends AbstractEntity {
         return homeTel;
     }
 
+    public void setHomeTel(String homeTel) {
+        this.homeTel = homeTel;
+    }
+
     @Column(name = "admission_year", length = 4)
     public String getAdmissionYear() {
         return admissionYear;
+    }
+
+    public void setAdmissionYear(String admissionYear) {
+        this.admissionYear = admissionYear;
     }
 
     @Column(name = "faculty", length = 30)
@@ -99,9 +134,17 @@ public class Questionnaire extends AbstractEntity {
         return faculty;
     }
 
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
     @Column(name = "specialty", length = 30)
     public String getStudySpecialty() {
         return studySpecialty;
+    }
+
+    public void setStudySpecialty(String specialty) {
+        this.studySpecialty = specialty;
     }
 
     @Column(name = "course")
@@ -109,9 +152,17 @@ public class Questionnaire extends AbstractEntity {
         return course;
     }
 
+    public void setCourse(Integer course) {
+        this.course = course;
+    }
+
     @Column(name = "study_group_2", length = 10)
     public String getStudyGroup2() {
         return studyGroup2;
+    }
+
+    public void setStudyGroup2(String studyGroup) {
+        this.studyGroup2 = studyGroup;
     }
 
     @Column(name = "study_group_3", length = 10)
@@ -119,9 +170,17 @@ public class Questionnaire extends AbstractEntity {
         return studyGroup3;
     }
 
+    public void setStudyGroup3(String studyGroup) {
+        this.studyGroup3 = studyGroup;
+    }
+
     @Column(name = "study_group_4", length = 10)
     public String getStudyGroup4() {
         return studyGroup4;
+    }
+
+    public void setStudyGroup4(String studyGroup) {
+        this.studyGroup4 = studyGroup;
     }
 
     @Column(name = "study_group_5", length = 10)
@@ -129,9 +188,17 @@ public class Questionnaire extends AbstractEntity {
         return studyGroup5;
     }
 
+    public void setStudyGroup5(String studyGroup) {
+        this.studyGroup5 = studyGroup;
+    }
+
     @Column(name = "study_progress")
     public Float getStudyProgress() {
         return studyProgress;
+    }
+
+    public void setStudyProgress(Float studyProgress) {
+        this.studyProgress = studyProgress;
     }
 
     @Column(name = "curator", length = 30)
@@ -139,14 +206,26 @@ public class Questionnaire extends AbstractEntity {
         return curator;
     }
 
+    public void setCurator(String curator) {
+        this.curator = curator;
+    }
+
     @Column(name = "curator_tel", length = 10)
     public String getCuratorTel() {
         return curatorTel;
     }
 
+    public void setCuratorTel(String curatorTel) {
+        this.curatorTel = curatorTel;
+    }
+
     @Column(name = "education", length = 100)
     public String getEducation() {
         return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
     }
 
     @Column(name = "education_start")
@@ -155,10 +234,18 @@ public class Questionnaire extends AbstractEntity {
         return educationStartDate;
     }
 
+    public void setEducationStartDate(Date educationStartDate) {
+        this.educationStartDate = educationStartDate;
+    }
+
     @Column(name = "education_end")
     @Temporal(TemporalType.DATE)
     public Date getEducationEndDate() {
         return educationEndDate;
+    }
+
+    public void setEducationEndDate(Date educationEndDate) {
+        this.educationEndDate = educationEndDate;
     }
 
     @Column(name = "education_type", length = 20)
@@ -166,9 +253,17 @@ public class Questionnaire extends AbstractEntity {
         return educationType;
     }
 
+    public void setEducationType(String educationType) {
+        this.educationType = educationType;
+    }
+
     @Column(name = "family_status", length = 20)
     public String getFamilyStatus() {
         return familyStatus;
+    }
+
+    public void setFamilyStatus(String familyStatus) {
+        this.familyStatus = familyStatus;
     }
 
     @Column(name = "mother", length = 100)
@@ -176,9 +271,17 @@ public class Questionnaire extends AbstractEntity {
         return mother;
     }
 
+    public void setMother(String mother) {
+        this.mother = mother;
+    }
+
     @Column(name = "father", length = 100)
     public String getFather() {
         return father;
+    }
+
+    public void setFather(String father) {
+        this.father = father;
     }
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -187,9 +290,17 @@ public class Questionnaire extends AbstractEntity {
         return parentAddress;
     }
 
+    public void setParentAddress(Address parentAddress) {
+        this.parentAddress = parentAddress;
+    }
+
     @Column(name = "passport_office", length = 100)
     public String getPassportOffice() {
         return passportOffice;
+    }
+
+    public void setPassportOffice(String passportOffice) {
+        this.passportOffice = passportOffice;
     }
 
     @Column(name = "recruitment_office", length = 100)
@@ -197,9 +308,17 @@ public class Questionnaire extends AbstractEntity {
         return recruitmentOffice;
     }
 
+    public void setRecruitmentOffice(String recruitmentOffice) {
+        this.recruitmentOffice = recruitmentOffice;
+    }
+
     @Column(name = "parent_tel", length = 10)
     public String getParentTel() {
         return parentTel;
+    }
+
+    public void setParentTel(String parentTel) {
+        this.parentTel = parentTel;
     }
 
     @Column(name = "education_before", length = 100)
@@ -207,9 +326,17 @@ public class Questionnaire extends AbstractEntity {
         return educationBefore;
     }
 
+    public void setEducationBefore(String educationBefore) {
+        this.educationBefore = educationBefore;
+    }
+
     @Column(name = "faculty_public_life", length = 100)
     public String getFacultyPublicLife() {
         return facultyPublicLife;
+    }
+
+    public void setFacultyPublicLife(String facultyPublicLife) {
+        this.facultyPublicLife = facultyPublicLife;
     }
 
     @Column(name = "hobby", length = 100)
@@ -217,9 +344,17 @@ public class Questionnaire extends AbstractEntity {
         return hobby;
     }
 
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
     @Column(name = "public_organization", length = 100)
     public String getPublicOrganization() {
         return publicOrganization;
+    }
+
+    public void setPublicOrganization(String publicOrganization) {
+        this.publicOrganization = publicOrganization;
     }
 
     @Column(name = "employment", length = 100)
@@ -227,9 +362,17 @@ public class Questionnaire extends AbstractEntity {
         return employment;
     }
 
+    public void setEmployment(String employment) {
+        this.employment = employment;
+    }
+
     @Column(name = "how_did_you_hear_about", length = 100)
     public String getHowDidYouHearAbout() {
         return howDidYouHearAbout;
+    }
+
+    public void setHowDidYouHearAbout(String howDidYouHearAbout) {
+        this.howDidYouHearAbout = howDidYouHearAbout;
     }
 
     @Column(name = "desire_to_continue", length = 100)
@@ -237,14 +380,26 @@ public class Questionnaire extends AbstractEntity {
         return desireToContinue;
     }
 
+    public void setDesireToContinue(String desireToContinue) {
+        this.desireToContinue = desireToContinue;
+    }
+
     @Column(name = "think_about_study", length = 100)
     public String getThinkAboutStudy() {
         return thinkAboutStudy;
     }
 
+    public void setThinkAboutStudy(String thinkAboutStudy) {
+        this.thinkAboutStudy = thinkAboutStudy;
+    }
+
     @Column(name = "think_about_duty", length = 100)
     public String getThinkAboutDuty() {
         return thinkAboutDuty;
+    }
+
+    public void setThinkAboutDuty(String thinkAboutDuty) {
+        this.thinkAboutDuty = thinkAboutDuty;
     }
 
     @Column(name = "duty_start")
@@ -253,171 +408,23 @@ public class Questionnaire extends AbstractEntity {
         return dutyStart;
     }
 
+    public void setDutyStart(Date dutyStart) {
+        this.dutyStart = dutyStart;
+    }
+
     @Column(name = "duty_end")
     @Temporal(TemporalType.DATE)
     public Date getDutyEnd() {
         return dutyEnd;
     }
 
+    public void setDutyEnd(Date dutyEnd) {
+        this.dutyEnd = dutyEnd;
+    }
+
     @OneToOne(mappedBy = "questionnaire", fetch = FetchType.LAZY)
     public Student getStudent() {
         return student;
-    }
-
-    public void setBirthPlace(String birthPlace) {
-        this.birthPlace = birthPlace;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public void setPassportNumber(String passportNumber) {
-        this.passportNumber = passportNumber;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public void setMobileTel(String mobileTel) {
-        this.mobileTel = mobileTel;
-    }
-
-    public void setHomeTel(String homeTel) {
-        this.homeTel = homeTel;
-    }
-
-    public void setAdmissionYear(String admissionYear) {
-        this.admissionYear = admissionYear;
-    }
-
-    public void setFaculty(String faculty) {
-        this.faculty = faculty;
-    }
-
-    public void setStudySpecialty(String specialty) {
-        this.studySpecialty = specialty;
-    }
-
-    public void setCourse(Integer course) {
-        this.course = course;
-    }
-
-    public void setStudyGroup2(String studyGroup) {
-        this.studyGroup2 = studyGroup;
-    }
-
-    public void setStudyGroup3(String studyGroup) {
-        this.studyGroup3 = studyGroup;
-    }
-
-    public void setStudyGroup4(String studyGroup) {
-        this.studyGroup4 = studyGroup;
-    }
-
-    public void setStudyGroup5(String studyGroup) {
-        this.studyGroup5 = studyGroup;
-    }
-
-    public void setStudyProgress(Float studyProgress) {
-        this.studyProgress = studyProgress;
-    }
-
-    public void setCurator(String curator) {
-        this.curator = curator;
-    }
-
-    public void setCuratorTel(String curatorTel) {
-        this.curatorTel = curatorTel;
-    }
-
-    public void setEducation(String education) {
-        this.education = education;
-    }
-
-    public void setEducationStartDate(Date educationStartDate) {
-        this.educationStartDate = educationStartDate;
-    }
-
-    public void setEducationEndDate(Date educationEndDate) {
-        this.educationEndDate = educationEndDate;
-    }
-
-    public void setEducationType(String educationType) {
-        this.educationType = educationType;
-    }
-
-    public void setFamilyStatus(String familyStatus) {
-        this.familyStatus = familyStatus;
-    }
-
-    public void setMother(String mother) {
-        this.mother = mother;
-    }
-
-    public void setFather(String father) {
-        this.father = father;
-    }
-
-    public void setParentAddress(Address parentAddress) {
-        this.parentAddress = parentAddress;
-    }
-
-    public void setPassportOffice(String passportOffice) {
-        this.passportOffice = passportOffice;
-    }
-
-    public void setRecruitmentOffice(String recruitmentOffice) {
-        this.recruitmentOffice = recruitmentOffice;
-    }
-
-    public void setParentTel(String parentTel) {
-        this.parentTel = parentTel;
-    }
-
-    public void setEducationBefore(String educationBefore) {
-        this.educationBefore = educationBefore;
-    }
-
-    public void setFacultyPublicLife(String facultyPublicLife) {
-        this.facultyPublicLife = facultyPublicLife;
-    }
-
-    public void setHobby(String hobby) {
-        this.hobby = hobby;
-    }
-
-    public void setPublicOrganization(String publicOrganization) {
-        this.publicOrganization = publicOrganization;
-    }
-
-    public void setEmployment(String employment) {
-        this.employment = employment;
-    }
-
-    public void setHowDidYouHearAbout(String howDidYouHearAbout) {
-        this.howDidYouHearAbout = howDidYouHearAbout;
-    }
-
-    public void setDesireToContinue(String desireToContinue) {
-        this.desireToContinue = desireToContinue;
-    }
-
-    public void setThinkAboutStudy(String thinkAboutStudy) {
-        this.thinkAboutStudy = thinkAboutStudy;
-    }
-
-    public void setThinkAboutDuty(String thinkAboutDuty) {
-        this.thinkAboutDuty = thinkAboutDuty;
-    }
-
-    public void setDutyStart(Date dutyStart) {
-        this.dutyStart = dutyStart;
-    }
-
-    public void setDutyEnd(Date dutyEnd) {
-        this.dutyEnd = dutyEnd;
     }
 
     public void setStudent(Student student) {

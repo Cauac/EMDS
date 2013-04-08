@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.service.impl;
 
+import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.common.PasswordUtils;
 import by.vsu.emdsproject.common.Transliterator;
 import by.vsu.emdsproject.model.Person;
@@ -84,13 +85,24 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByPersonType("teacher");
     }
 
-    @Transactional(readOnly = true)
-    public User getStudentById(Long personId) {
-        return userRepository.findByPersonTypeAndId("student", personId);
+    public boolean changePassword(String oldPassword, String newPassword, String confirm) {
+        User currentUser = userRepository.findByLogin(EMDSContext.getInstance().getCurrentUser().getUsername());
+        if (currentUser.getPassword().equals(PasswordUtils.encode(oldPassword)) && newPassword.equals(confirm)) {
+            currentUser.setPassword(PasswordUtils.encode(newPassword));
+            currentUser.setDefaultPassword(false);
+            userRepository.save(currentUser);
+            return true;
+        }
+        return false;
     }
 
     @Transactional(readOnly = true)
-    public User getTeacherById(Long personId) {
-        return userRepository.findByPersonTypeAndId("teacher", personId);
+    public User getUserByStudentId(Long personId) {
+        return userRepository.findByPersonTypeAndPersonId("student", personId);
+    }
+
+    @Transactional(readOnly = true)
+    public User getUserByTeacherId(Long personId) {
+        return userRepository.findByPersonTypeAndPersonId("teacher", personId);
     }
 }

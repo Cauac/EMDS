@@ -24,7 +24,7 @@ public class AbiturientsController {
 
     @RequestMapping("/abiturients")
     public ModelAndView abiturients() {
-        ModelAndView mav = new ModelAndView("teacher/abiturients/list");
+        ModelAndView mav = new ModelAndView("/teacher/abiturients/list");
         List<Student> abiturients = studentService.getAbiturients();
         mav.addObject("abiturients", abiturients);
         return mav;
@@ -41,7 +41,7 @@ public class AbiturientsController {
         student.setFirstName(fname);
         student.setLastName(lname);
         student.setMiddleName(mname);
-        student.toAbiturient();
+        student.setRank(Student.ABITURIENT);
         studentService.add(student);
         return new ModelAndView("redirect:/teacher/abiturients");
     }
@@ -49,10 +49,18 @@ public class AbiturientsController {
     @RequestMapping(value = "/abiturients/studentialize")
     public String toStudent(Long id) {
         Student student = studentService.read(id);
-        student.toStudent();
+        student.setRank(Student.STUDENT);
         userService.addUserToPerson(User.STUDENT, student);
         studentService.update(student);
         return "redirect:/teacher/abiturients";
+    }
+
+    @RequestMapping(value = "/abiturients/documents")
+    public ModelAndView documentsList() {
+        ModelAndView modelAndView = new ModelAndView("/teacher/documents/list");
+
+        // todo: complete
+        return modelAndView;
     }
 
 }

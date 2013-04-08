@@ -2,13 +2,10 @@ package by.vsu.emdsproject.model;
 
 import java.io.Serializable;
 
-public abstract class AbstractEntity implements Serializable {
+// todo: spring form validation
+public interface AbstractEntity extends Serializable {
 
-    protected Long id;
-    
-    public abstract Long getId();
+    public Long getId();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id);
 }

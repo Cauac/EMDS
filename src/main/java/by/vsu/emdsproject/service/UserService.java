@@ -11,11 +11,13 @@ public interface UserService extends AbstractService<User> {
 
     User getByLogin(String login);
 
-    User getStudentById(Long studentId);
+    User getUserByStudentId(Long studentId);
 
-    User getTeacherById(Long teacherId);
+    User getUserByTeacherId(Long teacherId);
 
     List<User> getStudents();
 
     List<User> getTeachers();
+
+    boolean changePassword(String oldPassword, String newPassword, String confirm);
 }

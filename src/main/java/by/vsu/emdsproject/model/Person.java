@@ -5,8 +5,7 @@ package by.vsu.emdsproject.model;
  *         Date: 28.03.13
  *         Time: 22:35
  */
-public abstract class Person extends AbstractEntity {
-
+public abstract class Person implements AbstractEntity {
 
     protected String firstName;
 
@@ -17,25 +16,19 @@ public abstract class Person extends AbstractEntity {
     protected Person() {
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    abstract public String getFirstName();
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
+    abstract public String getLastName();
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getMiddleName() {
-        return middleName;
-    }
+    abstract public String getMiddleName();
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
