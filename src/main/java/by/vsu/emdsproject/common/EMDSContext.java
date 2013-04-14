@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.User;
 
 public class EMDSContext {
 
-    private static EMDSContext instance = new EMDSContext();
+    private final static EMDSContext instance = new EMDSContext();
 
     private EMDSContext() {
     }

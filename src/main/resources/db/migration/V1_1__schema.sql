@@ -2,7 +2,7 @@
 -- EMDS DB SCHEMA CREATE
 --
 
-DROP TABLE IF EXISTS brought_documents;
+DROP TABLE IF EXISTS student_documents;
 DROP TABLE IF EXISTS document;
 DROP TABLE IF EXISTS document_info;
 DROP TABLE IF EXISTS student;
@@ -114,26 +114,27 @@ CREATE TABLE student (
 );
 
 CREATE TABLE document (
-  id    SERIAL,
-  title CHARACTER VARYING(50),
+  id           SERIAL,
+  title        CHARACTER VARYING(50),
+  system_title CHARACTER VARYING(50),
   CONSTRAINT PK_DOCUMENT PRIMARY KEY (id)
 );
 
 CREATE TABLE document_info (
   id         SERIAL,
-  is_brought BOOLEAN,
+  brought    BOOLEAN,
   commentary CHARACTER VARYING(500),
   CONSTRAINT PK_DOCUMENT_INFO PRIMARY KEY (id)
 );
 
-CREATE TABLE brought_documents (
-  student_id    BIGINT NOT NULL,
-  documents_id  BIGINT NOT NULL,
-  documents_key BIGINT NOT NULL,
-  CONSTRAINT PK_BROUGHT_DOCUMENTS PRIMARY KEY (student_id, documents_key),
-  CONSTRAINT FK_BD_DOCUMENT FOREIGN KEY (documents_key) REFERENCES document (id),
-  CONSTRAINT FK_BD_DOCUMENT_INFO FOREIGN KEY (documents_id) REFERENCES document_info (id),
-  CONSTRAINT FK_BD_STUDENT FOREIGN KEY (student_id) REFERENCES student (id)
+CREATE TABLE student_documents (
+  student       BIGINT NOT NULL,
+  document      BIGINT NOT NULL,
+  document_info BIGINT NOT NULL,
+  CONSTRAINT PK_STUDENT_DOCUMENTS PRIMARY KEY (student, document),
+  CONSTRAINT FK_SD_DOCUMENT FOREIGN KEY (document) REFERENCES document (id),
+  CONSTRAINT FK_SD_DOCUMENT_INFO FOREIGN KEY (document_info) REFERENCES document_info (id),
+  CONSTRAINT FK_SD_STUDENT FOREIGN KEY (student) REFERENCES student (id)
 );
 
 CREATE TABLE roles (

@@ -11,18 +11,18 @@ import javax.persistence.*;
 @Table(name = "document")
 public class Document implements AbstractEntity {
 
+    public static final int STATEMENT = 0;
+    public static final int QUESTIONNAIRE = 1;
+    public static final int PASSPORT_COPY = 2;
+    public static final int REGISTRATION_SERTIFICATE_COPY = 3;
+    public static final int CHARACTERISTIC = 4;
+    public static final int COMISSION_SERTIFICATE = 5;
+
     private Long id;
     private String title;
-
-    /*
-     todo: something else..
-     */
+    private String systemTitle;
 
     public Document() {
-    }
-
-    public Document(String title) {
-        this.title = title;
     }
 
     @Id
@@ -47,4 +47,32 @@ public class Document implements AbstractEntity {
         this.title = title;
     }
 
+    @Column(name = "system_title", length = 50)
+    public String getSystemTitle() {
+        return systemTitle;
+    }
+
+    public void setSystemTitle(String systemTitle) {
+        this.systemTitle = systemTitle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Document)) return false;
+
+        Document document = (Document) o;
+
+        if (id != null ? !id.equals(document.id) : document.id != null) return false;
+        if (title != null ? !title.equals(document.title) : document.title != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        return result;
+    }
 }

@@ -4,7 +4,7 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
 public class PasswordUtils {
 
-    private static String SALT = "";
+    private static final String SALT = "";
 
     public static String encode(String password) {
         ShaPasswordEncoder shaPasswordEncoder = new ShaPasswordEncoder(256);

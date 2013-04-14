@@ -1,6 +1,10 @@
 package by.vsu.emdsproject.service.impl;
 
+import by.vsu.emdsproject.model.Document;
+import by.vsu.emdsproject.model.DocumentInfo;
 import by.vsu.emdsproject.model.Student;
+import by.vsu.emdsproject.repository.DocumentInfoRepository;
+import by.vsu.emdsproject.repository.DocumentRepository;
 import by.vsu.emdsproject.repository.StudentRepository;
 import by.vsu.emdsproject.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +14,25 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private DocumentRepository documentRepository;
+    @Autowired
+    private DocumentInfoRepository documentInfoRepository;
 
-    @Transactional
     public Student add(Student student) {
+        for (Document document : documentRepository.findAll()) {
+            DocumentInfo documentInfo = new DocumentInfo(false, "");
+            documentInfoRepository.save(documentInfo);
+            student.getDocuments().put(document, documentInfo);
+        }
         return studentRepository.save(student);
     }
 
-    @Transactional
     public Student update(Student student) {
         return studentRepository.save(student);
     }
@@ -35,23 +47,38 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findOne(id);
     }
 
-    @Transactional
     public void remove(Long id) {
-        studentRepository.delete(id);
+        Student toRemove = studentRepository.findOne(id);
+        toRemove.getDocuments().clear();
+        studentRepository.delete(toRemove);
     }
 
-    @Transactional
     public void remove(Student student) {
+        student.getDocuments().clear();
         studentRepository.delete(student);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Student> getStudents() {
         return studentRepository.findByRank(Student.STUDENT);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Student> getAbiturients() {
         return studentRepository.findByRank(Student.ABITURIENT);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public boolean readyToTake(Student abiturient) {
+        Student student = studentRepository.findOne(abiturient.getId());
+        for (Document document : documentRepository.findAll()) {
+            if (!student.getDocuments().get(document).getBrought()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }

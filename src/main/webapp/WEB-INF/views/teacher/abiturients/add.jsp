@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
 <!DOCTYPE html>
 <html>
@@ -40,6 +41,18 @@
             <div class="controls">
                 <input class="input" type="text" id="mname" name="mname">
                 <span class="help-inline"></span>
+            </div>
+        </div>
+
+        <div id="facultyDiv" class="control-group">
+            <label class="control-label" for="faculty">Факультет:</label>
+
+            <div class="controls">
+                <select name="faculty" id="faculty">
+                    <c:forEach var="fac" items="${faculties}">
+                        <option value="${fac}">${fac}</option>
+                    </c:forEach>
+                </select>
             </div>
         </div>
 

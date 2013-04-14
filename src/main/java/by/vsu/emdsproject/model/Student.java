@@ -2,6 +2,7 @@ package by.vsu.emdsproject.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Entity
@@ -16,7 +17,7 @@ public class Student extends Person {
     private Questionnaire questionnaire;
     private String characteristic;
     private String rank;
-    private Map<Document, DocumentInfo> documents;
+    private Map<Document, DocumentInfo> documents = new HashMap<Document, DocumentInfo>();
 
     public Student() {
     }
@@ -97,11 +98,11 @@ public class Student extends Person {
         this.questionnaire = questionnaire;
     }
 
-    @ElementCollection(fetch = FetchType.LAZY, targetClass = DocumentInfo.class)
-    @CollectionTable(name = "brought_documents", joinColumns = @JoinColumn(name = "student_id"))
-    @MapKeyClass(value = by.vsu.emdsproject.model.Document.class)
-    @MapKeyColumn(name = "document_id")
-    @Column(name = "document_info_id")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "student_documents",
+            joinColumns = @JoinColumn(name = "student"),
+            inverseJoinColumns = @JoinColumn(name = "document_info"))
+    @MapKeyJoinColumn(name = "document")
     public Map<Document, DocumentInfo> getDocuments() {
         return documents;
     }

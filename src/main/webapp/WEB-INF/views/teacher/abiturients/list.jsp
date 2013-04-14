@@ -13,29 +13,58 @@
 <mytags:header/>
 <mytags:teacherMenu number="2"/>
 <br>
+<!--  ✓  ✗  -->
+
+<c:if test="${fn:length(abiturients) eq 0}">
+    <br>
+</c:if>
 
 <c:if test="${fn:length(abiturients) gt 0}">
-    <table class="table table-condensed offset2 span9">
+    <table class="table table-condensed offset1 span11">
         <tr class="thead">
-            <th>ФИО</th>
-            <th>Документ</th>
             <th></th>
-            <c:if test="${isReady}">
-                <th></th>
-            </c:if>
+            <th>Факультет</th>
+            <c:forEach var="document" items="${documents}">
+                <th><p style="text-align: center"><c:out value="${document.title}"/></p></th>
+            </c:forEach>
+            <th></th>
         </tr>
         <c:forEach var="abiturient" items="${abiturients}">
             <tr class="tbody">
                 <td><c:out value="${abiturient.lastName}"/> <c:out value="${abiturient.firstName}"/>
                     <c:out value="${abiturient.middleName}"/></td>
-                <td>
 
-                </td>
-                <c:if test="${isReady}">
-                    <td><a href="./abiturients/studentialize?id=<c:out value="${abiturient.id}" />">
-                        <i title="Перевести в студенты" class="icon-forward"></i> </a>
-                    </td>
-                </c:if>
+                <td><p style="text-align: center"><c:out value="${abiturient.questionnaire.faculty}"/></p></td>
+
+                <c:forEach var="document" items="${documents}">
+                    <c:choose>
+                        <c:when test="${abiturient.documents.get(document).brought eq true}">
+                            <td style="text-align: center; color: green">
+                                <p title="${abiturient.documents.get(document).commentary}">✓</p></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td style="text-align: center"><a
+                                    href="./documents/${document.systemTitle}?id=${abiturient.id}">добавить</a></td>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+                <c:choose>
+                    <c:when test="${readiness.get(abiturient)}">
+                        <td><a href="./abiturients/studentialize?id=<c:out value="${abiturient.id}" />">
+                            <i title="Перевести в студенты" class="icon-forward"></i> </a>
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td>
+                            <a onclick="return confirm('Вы действительно хотите удалить абитуриента?')"
+                               href="./abiturients/remove?id=<c:out value="${abiturient.id}" />">
+                                <i title="Удалить абитуриента" class="icon-remove"></i>
+                            </a>
+                        </td>
+                    </c:otherwise>
+                </c:choose>
+
             </tr>
         </c:forEach>
     </table>

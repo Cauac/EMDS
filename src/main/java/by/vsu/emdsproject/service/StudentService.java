@@ -9,4 +9,6 @@ public interface StudentService extends AbstractService<Student> {
     List<Student> getStudents();
 
     List<Student> getAbiturients();
+
+    boolean readyToTake(Student abiturient);
 }

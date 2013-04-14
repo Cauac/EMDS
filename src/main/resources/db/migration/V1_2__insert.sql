@@ -41,3 +41,11 @@ INSERT INTO public.users (id, person_id, person_type, login, password, enabled, 
 INSERT INTO public.users (id, person_id, person_type, login, password, enabled, role_id) VALUES (1, 0, 'student', 'SpirchenokAO', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 1, 1);
 INSERT INTO public.users (id, person_id, person_type, login, password, enabled, role_id) VALUES (2, 1, 'student', 'AvseikoPP', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 1, 1);
 ALTER SEQUENCE public.users_id_seq RESTART WITH 3;
+
+INSERT INTO public.document (id, title, system_title) VALUES (0, 'Заявление', 'statement');
+INSERT INTO public.document (id, title, system_title) VALUES (1, 'Анкета', 'questionnaire');
+INSERT INTO public.document (id, title, system_title) VALUES (2, 'Ксерокопия паспорта', 'passport');
+INSERT INTO public.document (id, title, system_title) VALUES (3, 'Копия приписного свидетельства', 'registration');
+INSERT INTO public.document (id, title, system_title) VALUES (4, 'Характеристика', 'characteristic');
+INSERT INTO public.document (id, title, system_title) VALUES (5, 'Справка ВВК', 'sertificate');
+ALTER SEQUENCE public.document_id_seq RESTART WITH 6;
