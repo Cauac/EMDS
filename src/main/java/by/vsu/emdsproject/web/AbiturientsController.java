@@ -1,10 +1,11 @@
 package by.vsu.emdsproject.web;
 
+import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Questionnaire;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.User;
-import by.vsu.emdsproject.service.DocumentInfoService;
 import by.vsu.emdsproject.service.DocumentService;
+import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
 
 @Controller
-@RequestMapping("/teacher/abiturients")
+@RequestMapping("/teacher")
 public class AbiturientsController {
 
     @Autowired
@@ -26,9 +27,9 @@ public class AbiturientsController {
     @Autowired
     private DocumentService documentService;
     @Autowired
-    private DocumentInfoService documentInfoService;
+    private GroupService groupService;
 
-    @RequestMapping("")
+    @RequestMapping("/abiturients")
     public ModelAndView abiturients() {
         ModelAndView mav = new ModelAndView("/teacher/abiturients/list");
         List<Student> abiturients = studentService.getAbiturients();
@@ -48,7 +49,7 @@ public class AbiturientsController {
         return mav;
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/abiturients/add")
     public ModelAndView addAbiturients() {
         ModelAndView mav = new ModelAndView("teacher/abiturients/add");
         List<String> faculties = new ArrayList<String>();
@@ -67,8 +68,8 @@ public class AbiturientsController {
         return mav;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addAbiturient(String fname, String lname, String mname, String faculty) {
+    @RequestMapping(value = "/abiturients/add", method = RequestMethod.POST)
+    public String addAbiturient(String fname, String lname, String mname, String faculty) {
         Student student = new Student();
         student.setFirstName(fname);
         student.setLastName(lname);
@@ -78,10 +79,10 @@ public class AbiturientsController {
         questionnaire.setFaculty(faculty);
         student.setQuestionnaire(questionnaire);
         studentService.add(student);
-        return new ModelAndView("redirect:/teacher/abiturients");
+        return "redirect:/teacher/abiturients";
     }
 
-    @RequestMapping(value = "/remove")
+    @RequestMapping(value = "/abiturients/remove")
     public String removeAbiturient(String id) {
         Student abiturient = studentService.read(Long.parseLong(id));
         abiturient.getDocuments().clear();
@@ -89,13 +90,25 @@ public class AbiturientsController {
         return "redirect:/teacher/abiturients";
     }
 
-    @RequestMapping(value = "/studentialize")
-    public String toStudent(Long id) {
+    @RequestMapping(value = "/abiturients/studentialize")
+    public ModelAndView toStudent(Long id) {
+        ModelAndView modelAndView = new ModelAndView("/teacher/abiturients/studentialize");
+        modelAndView.addObject("abiturient", studentService.read(id));
+        modelAndView.addObject("groups", groupService.list());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/abiturients/studentialize", method = RequestMethod.POST)
+    public String doToStudent(Long id, Long groupId) {
         Student student = studentService.read(id);
         student.setRank(Student.STUDENT);
         userService.addUserToPerson(User.STUDENT, student);
+        Group group = groupService.read(groupId);
+        group.getStudents().add(student);
+        student.setGroup(group);
         studentService.update(student);
-        return "redirect:/teacher/abiturients";
+        groupService.update(group);
+        return "redirect:/teacher/students";
     }
 
 }

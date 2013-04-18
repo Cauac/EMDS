@@ -11,12 +11,12 @@ import javax.persistence.*;
 @Table(name = "document")
 public class Document implements AbstractEntity {
 
-    public static final int STATEMENT = 0;
-    public static final int QUESTIONNAIRE = 1;
-    public static final int PASSPORT_COPY = 2;
-    public static final int REGISTRATION_SERTIFICATE_COPY = 3;
-    public static final int CHARACTERISTIC = 4;
-    public static final int COMISSION_SERTIFICATE = 5;
+    public static final Long STATEMENT = 0L;
+    public static final Long QUESTIONNAIRE = 1L;
+    public static final Long PASSPORT_COPY = 2L;
+    public static final Long REGISTRATION_SERTIFICATE_COPY = 3L;
+    public static final Long CHARACTERISTIC = 4L;
+    public static final Long COMISSION_SERTIFICATE = 5L;
 
     private Long id;
     private String title;

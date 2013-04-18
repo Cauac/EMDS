@@ -68,6 +68,11 @@ public class StudentsController {
         return mav;
     }
 
+    @RequestMapping(value = "/students/edit", method = RequestMethod.POST)
+    public String doEditStudent(Student student) {
+        return "redirect:/teacher/students";
+    }
+
     @RequestMapping(value = "/students/remove")
     public String removeStudent(String id) {
         User user = userService.getUserByStudentId(Long.parseLong(id));

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/teacher/groups")
+@RequestMapping("/teacher")
 public class GroupsController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class GroupsController {
     @Autowired
     private SpecialtyService specService;
 
-    @RequestMapping("")
+    @RequestMapping("/groups")
     public ModelAndView groups() {
         ModelAndView mav = new ModelAndView("teacher/groups/list");
         List<Group> groups = groupService.list();
@@ -29,7 +29,7 @@ public class GroupsController {
         return mav;
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/groups/add")
     public ModelAndView addGroup() {
         ModelAndView mav = new ModelAndView("teacher/groups/add");
         List<Specialty> list = specService.list();
@@ -37,7 +37,7 @@ public class GroupsController {
         return mav;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/groups/add", method = RequestMethod.POST)
     public ModelAndView addGroup(Group group, Long specId) {
         Specialty spec = specService.read(specId);
         group.setSpecialty(spec);
@@ -45,7 +45,7 @@ public class GroupsController {
         return new ModelAndView("redirect:/teacher/groups");
     }
 
-    @RequestMapping("/edit")
+    @RequestMapping("/groups/edit")
     public ModelAndView editGroup(String id) {
         ModelAndView mav = new ModelAndView("teacher/groups/edit");
         List<Specialty> list = specService.list();
@@ -54,14 +54,14 @@ public class GroupsController {
         return mav;
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/groups/edit", method = RequestMethod.POST)
     public ModelAndView editGroup(Group group, Long specId) {
         group.setSpecialty(specService.read(specId));
         groupService.update(group);
         return new ModelAndView("redirect:/teacher/groups");
     }
 
-    @RequestMapping(value = "/remove")
+    @RequestMapping(value = "/groups/remove")
     public String removeGroup(String id) {
         groupService.remove(Long.parseLong(id));
         return "redirect:/teacher/groups";

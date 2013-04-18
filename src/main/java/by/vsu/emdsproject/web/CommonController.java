@@ -2,7 +2,9 @@ package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.model.Role;
+import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.model.User;
+import by.vsu.emdsproject.service.TeacherService;
 import by.vsu.emdsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ public class CommonController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private TeacherService teacherService;
 
     @RequestMapping(value = "/index")
     public String welcome(HttpServletRequest request) {
@@ -26,6 +30,8 @@ public class CommonController {
         User currentUser = userService.getByLogin(username);
 
         request.getSession().setAttribute("currentUser", currentUser);
+        Teacher teacher = teacherService.read(currentUser.getPersonId());
+        request.getSession().setAttribute("currentName", teacher);
 
         if (currentUser.getRole().getAuthority().equals(Role.TEACHER)) {
             return "redirect:teacher";

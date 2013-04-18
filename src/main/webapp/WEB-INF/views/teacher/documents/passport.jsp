@@ -1,3 +1,5 @@
+<%--  Author: Max --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
@@ -5,7 +7,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <mytags:style/>
-    <title>ВК ВГУ :: Заявление</title>
+    <title>ВК ВГУ :: Ксерокопия паспорта</title>
 </head>
 <body>
 <mytags:header/>
@@ -13,11 +15,11 @@
 
 <div style="clear:both;"></div>
 
-<spring:url value="/teacher/documents/statement" var="documentURL"/>
+<spring:url value="/teacher/documents/passport" var="documentURL"/>
 
 <div class="well offset3 span7">
 
-    <h4 class="center"> ${abiturient.lastName} ${abiturient.firstName} :: Заявление</h4>
+    <h4 class="center"> ${abiturient.lastName} ${abiturient.firstName} :: Ксерокопия паспорта</h4>
 
     <form method="post" action="${documentURL}">
 

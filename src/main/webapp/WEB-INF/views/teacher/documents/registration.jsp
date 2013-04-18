@@ -1,3 +1,9 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Max
+  Date: 18.04.13
+  Time: 21:05
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
@@ -13,15 +19,17 @@
 
 <div style="clear:both;"></div>
 
-<spring:url value="/teacher/documents/statement" var="documentURL"/>
+<spring:url value="/teacher/documents/registration" var="documentURL"/>
 
 <div class="well offset3 span7">
 
-    <h4 class="center"> ${abiturient.lastName} ${abiturient.firstName} :: Заявление</h4>
+    <h4 class="center"> ${abiturient.lastName} ${abiturient.firstName} :: Копия приписного свидетельства</h4>
 
     <form method="post" action="${documentURL}">
 
         <input type="hidden" name="id" id="id" value="${abiturient.id}"/>
+
+        <br>
 
         <div id="commentaryDiv" class="control-group">
             <div class="controls">

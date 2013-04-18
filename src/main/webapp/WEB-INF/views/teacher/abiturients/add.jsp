@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
 <!DOCTYPE html>
 <html>
@@ -11,11 +12,13 @@
 <body>
 <mytags:header/>
 <mytags:teacherMenu number="2"/>
+<spring:url value="/teacher/abiturients/add" var="addAbiturient"/>
+<spring:url value="/teacher/abiturients" var="abiturients"/>
 <div class="well offset4 span5">
 
     <h3 class="center">Новый поступающий</h3>
 
-    <form class="form-horizontal" method="post" action="../abiturients/add">
+    <form class="form-horizontal" method="post" action="${addAbiturient}">
 
         <div id="lnameDiv" class="control-group">
             <label class="control-label" for="lname">Фамилия:</label>
@@ -58,7 +61,7 @@
 
         <div class="center">
             <input class="btn btn-primary" type="submit" value="Добавить"/>
-            <a class="btn" href="../abiturients"> Назад </a>
+            <a class="btn" href="${abiturients}"> Назад </a>
         </div>
     </form>
 

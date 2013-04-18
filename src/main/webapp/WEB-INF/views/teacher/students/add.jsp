@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
 <%@page contentType="text/html" pageEncoding="utf-8" %>
 <!DOCTYPE html>
-<%--todo:complete--%>
+<%-- todo:complete student addition ? --%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,15 +17,14 @@
 
 <div style="clear:both;"></div>
 
-<form class="form-horizontal" method="post" action="../students/add">
-
+<spring:url var="addStudent" value="/teacher/students/add"/>
+<form class="form-horizontal" method="post" action="${addStudent}">
 
     <div class="well offset1 span11">
 
         <div class="span5">
 
             <h3 class="center">Основная информация</h3>
-
 
             <div id="lNameDiv" class="control-group">
                 <label class="control-label" for="lastName">Фамилия:</label>
