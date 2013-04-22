@@ -1,16 +1,19 @@
 package by.vsu.emdsproject.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
+// todo: add criterias(or just repository methods) to get students by group, specialty, etc.)
 @Entity
 @Table(name = "Study_group")
-public class Group implements AbstractEntity {
+public class Group extends AbstractEntity {
 
-    private Long id;
     private String title;
     private Specialty specialty;
-    private Set<Student> students;
+    private Set<Student> students = new HashSet<Student>();
 
     public Group() {
     }
@@ -24,19 +27,8 @@ public class Group implements AbstractEntity {
         this.specialty = specialty;
     }
 
-    @Id
-    @Override
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    @NotNull
+    @Size(max = 10)
     @Column(name = "title", nullable = false, length = 10)
     public String getTitle() {
         return title;

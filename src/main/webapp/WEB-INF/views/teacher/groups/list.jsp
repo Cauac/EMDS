@@ -17,7 +17,7 @@
 <br>
 
 <c:if test="${fn:length(groups) gt 0}">
-    <table class="table table-condensed offset2 span9">
+    <table class="table table-condensed offset3 span7">
         <tr class="thead">
             <th>Группа</th>
             <th>Специальность</th>

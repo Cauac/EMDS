@@ -1,6 +1,10 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * @author Max
@@ -9,7 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "document")
-public class Document implements AbstractEntity {
+public class Document extends AbstractEntity {
 
     public static final Long STATEMENT = 0L;
     public static final Long QUESTIONNAIRE = 1L;
@@ -18,26 +22,14 @@ public class Document implements AbstractEntity {
     public static final Long CHARACTERISTIC = 4L;
     public static final Long COMISSION_SERTIFICATE = 5L;
 
-    private Long id;
     private String title;
     private String systemTitle;
 
     public Document() {
     }
 
-    @Id
-    @Override
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    @NotNull
+    @Size(max = 50)
     @Column(name = "title", length = 50)
     public String getTitle() {
         return title;
@@ -47,6 +39,8 @@ public class Document implements AbstractEntity {
         this.title = title;
     }
 
+    @NotNull
+    @Size(max = 50)
     @Column(name = "system_title", length = 50)
     public String getSystemTitle() {
         return systemTitle;

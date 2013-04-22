@@ -1,13 +1,13 @@
 package by.vsu.emdsproject.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 @Table(name = "questionnaire")
-public class Questionnaire implements AbstractEntity {
+public class Questionnaire extends AbstractEntity {
 
-    private Long id;
     private String birthPlace;
     private String nationality;
     private String passportNumber;
@@ -52,19 +52,7 @@ public class Questionnaire implements AbstractEntity {
     public Questionnaire() {
     }
 
-    @Id
-    @Override
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    @Size(max = 50)
     @Column(name = "birth_place", length = 50)
     public String getBirthPlace() {
         return birthPlace;

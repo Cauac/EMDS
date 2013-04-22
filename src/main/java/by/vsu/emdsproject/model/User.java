@@ -1,16 +1,17 @@
 package by.vsu.emdsproject.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
-public class User implements AbstractEntity {
+public class User extends AbstractEntity {
 
     public static final String STUDENT = "student";
     public static final String TEACHER = "teacher";
     public static final int ENABLED = 1;
     public static final int DISABLED = 0;
-    private Long id;
     private Long personId;
     private String personType;
     private String login;
@@ -32,20 +33,9 @@ public class User implements AbstractEntity {
         this.role = role;
     }
 
-    @Id
-    @Override
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column(name = "login")
+    @NotNull
+    @Size(max = 52)
+    @Column(name = "login", length = 52)
     public String getLogin() {
         return login;
     }
@@ -54,7 +44,9 @@ public class User implements AbstractEntity {
         this.login = login;
     }
 
-    @Column(name = "password")
+    @NotNull
+    @Size(max = 64)
+    @Column(name = "password", length = 64)
     public String getPassword() {
         return password;
     }

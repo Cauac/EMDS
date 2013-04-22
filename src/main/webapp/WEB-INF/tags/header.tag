@@ -15,7 +15,7 @@
             </a>
             <sec:authorize ifAnyGranted="ROLE_TEACHER,ROLE_STUDENT">
                 <ul class="nav pull-right">
-                    <li class="pull-right"><p class="navbar-text"> Вы вошли как:
+                    <li class="pull-right"><p class="navbar-text">
                         <a href="${personal}"><c:out value="${currentName.lastName}"/> <c:out
                                 value="${currentName.firstName}"/> <c:out value="${currentName.middleName}"/></a></p>
                     </li>

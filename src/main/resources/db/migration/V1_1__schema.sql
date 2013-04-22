@@ -148,7 +148,7 @@ CREATE TABLE users (
   person_id        BIGINT,
   person_type      VARCHAR(10),
   role_id          INT,
-  login            VARCHAR(20) UNIQUE NOT NULL,
+  login            VARCHAR(52) UNIQUE NOT NULL,
   password         VARCHAR(64)        NOT NULL,
   enabled          INT,
   default_password BOOLEAN DEFAULT TRUE,

@@ -2,13 +2,14 @@ package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.model.Specialty;
 import by.vsu.emdsproject.service.SpecialtyService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/teacher")
@@ -42,19 +43,14 @@ public class SpecialtiesController {
     }
 
     @RequestMapping(value = "/specialties/edit")
-    public ModelAndView editSpecialty(String id) {
+    public ModelAndView editSpecialty(Long id) {
         ModelAndView mav = new ModelAndView("teacher/specialties/edit");
-        mav.addObject("spec", specialtyService.read(Long.parseLong(id)));
+        mav.addObject("specialty", specialtyService.read(id));
         return mav;
     }
 
     @RequestMapping(value = "/specialties/edit", method = RequestMethod.POST)
-    public ModelAndView editSpecialty(Specialty specialty, Errors errors) {
-        if (errors.hasErrors()) {
-            ModelAndView mav = new ModelAndView("teacher/specialties/add");
-            mav.addObject("errors", errors);
-            return mav;
-        }
+    public ModelAndView editSpecialty(Specialty specialty) {
         specialtyService.update(specialty);
         return new ModelAndView("redirect:/teacher/specialties");
     }

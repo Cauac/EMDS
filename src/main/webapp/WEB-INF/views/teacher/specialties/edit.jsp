@@ -18,13 +18,13 @@
     <spring:url var="editSpeciality" value="/teacher/specialties/edit"/>
     <form class="form-horizontal" method="post" action="${editSpeciality}">
 
-        <input type="hidden" name="id" value="<c:out value="${spec.id}"/>">
+        <input type="hidden" name="id" value="<c:out value="${specialty.id}"/>">
 
         <div id="nameDiv" class="control-group">
             <label class="control-label" for="title">Название:</label>
 
             <div class="controls">
-                <input class="input" type="text" id="title" name="title" value="<c:out value="${spec.title}"/>">
+                <input class="input" type="text" id="title" name="title" value="<c:out value="${specialty.title}"/>">
                 <span class="help-inline"></span>
             </div>
         </div>

@@ -2,54 +2,50 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <mytags:style/>
-    <title>ВК ВГУ :: <c:out value="${group.title}"/></title>
+    <title>ВК ВГУ :: ${group.title}</title>
 </head>
 <body>
 <mytags:header/>
 <mytags:teacherMenu number="5"/>
 <div class="well offset4 span5">
 
-    <h3 class="center">Редактировать группу</h3>
+    <h3 class="center">Учебная группа</h3>
 
-    <spring:url var="editGroup" value="/teacher/groups/edit"/>
-    <form class="form-horizontal" method="post" action="${editGroup}">
+    <spring:url var="saveGroup" value="/teacher/groups/save"/>
+    <form:form action="${saveGroup}" method="post" cssClass="form-horizontal" modelAttribute="group">
 
-        <input type="hidden" name="id" value="<c:out value="${group.id}"/>">
+        <form:hidden path="id"/>
 
-        <div id="nameDiv" class="control-group">
-            <label class="control-label" for="title">Название:</label>
-
+        <div id="nameDiv" class="control-group <spring:hasBindErrors name="group">error</spring:hasBindErrors>">
+            <form:label path="title" cssClass="control-label">Название:</form:label>
             <div class="controls">
-                <input class="input" type="text" id="title" name="title" value="<c:out value="${group.title}"/>">
-                <span class="help-inline"></span>
+                <form:input path="title"/>
+                <span class="help-inline"><form:errors path="title"/></span>
             </div>
         </div>
 
         <div id="specDiv" class="control-group">
-            <label class="control-label" for="specId">Специальность:</label>
-
+            <form:label path="title" cssClass="control-label">Специальность:</form:label>
             <div class="controls">
-                <select name="specId" id="specId">
-                    <c:forEach var="spec" items="${specialties}">
-                        <option value="${spec.id}"
-                                <c:if test="${spec.id eq group.specialty.id}">selected</c:if>>${spec.title}</option>
-                    </c:forEach>
-                </select>
+                <form:select path="specialty">
+                    <form:options items="${specialties}" itemValue="id" itemLabel="title"/>
+                </form:select>
             </div>
         </div>
 
         <div class="center">
             <spring:url var="groups" value="/teacher/groups"/>
             <input class="btn btn-primary" type="submit" value="Сохранить"/>
-            <a class="btn" href="${groups}"> Назад </a>
+            <a class="btn" href="${groups}"> Отмена </a>
         </div>
-    </form>
+    </form:form>
 
 </div>
 </body>

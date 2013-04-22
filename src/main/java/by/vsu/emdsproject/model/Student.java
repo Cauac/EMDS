@@ -11,7 +11,6 @@ public class Student extends Person {
 
     public static final String STUDENT = "student";
     public static final String ABITURIENT = "abiturient";
-    private Long id;
     private Date birthDate;
     private Group group;
     private Questionnaire questionnaire;
@@ -22,32 +21,8 @@ public class Student extends Person {
     public Student() {
     }
 
-    @Id
-    @Override
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column(name = "first_name", nullable = false)
-    public String getFirstName() {
-        return firstName;
-    }
-
-    @Column(name = "last_name", nullable = false)
-    public String getLastName() {
-        return lastName;
-    }
-
-    @Column(name = "middle_name", nullable = false)
-    public String getMiddleName() {
-        return middleName;
+    public Student(String firstName, String lastName, String middleName) {
+        super(firstName, lastName, middleName);
     }
 
     @Column(name = "birth_date")

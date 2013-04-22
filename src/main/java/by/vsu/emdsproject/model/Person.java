@@ -1,34 +1,59 @@
 package by.vsu.emdsproject.model;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * @author Max
  *         Date: 28.03.13
  *         Time: 22:35
  */
-public abstract class Person implements AbstractEntity {
+@MappedSuperclass
+public abstract class Person extends AbstractEntity {
 
     protected String firstName;
-
     protected String lastName;
-
     protected String middleName;
 
     protected Person() {
     }
 
-    abstract public String getFirstName();
+    protected Person(String firstName, String lastName, String middleName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+    }
+
+    @NotNull
+    @Size(max = 50)
+    @Column(name = "first_name", nullable = false, length = 50)
+    public String getFirstName() {
+        return firstName;
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    abstract public String getLastName();
+    @NotNull
+    @Size(max = 50)
+    @Column(name = "last_name", nullable = false, length = 50)
+    public String getLastName() {
+        return lastName;
+    }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    abstract public String getMiddleName();
+    @NotNull
+    @Size(max = 50)
+    @Column(name = "middle_name", nullable = false, length = 50)
+    public String getMiddleName() {
+        return middleName;
+    }
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;

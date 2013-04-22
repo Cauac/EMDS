@@ -1,6 +1,10 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * @author Max
@@ -9,9 +13,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "document_info")
-public class DocumentInfo implements AbstractEntity {
+public class DocumentInfo extends AbstractEntity {
 
-    private Long id;
     private Boolean isBrought;
     private String commentary;
 
@@ -23,19 +26,7 @@ public class DocumentInfo implements AbstractEntity {
         this.commentary = commentary;
     }
 
-    @Id
-    @Override
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    @NotNull
     @Column(name = "brought")
     public Boolean getBrought() {
         return isBrought;
@@ -45,6 +36,7 @@ public class DocumentInfo implements AbstractEntity {
         isBrought = brought;
     }
 
+    @Size(max = 500)
     @Column(name = "commentary", length = 500)
     public String getCommentary() {
         return commentary;

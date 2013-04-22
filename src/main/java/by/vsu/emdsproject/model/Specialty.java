@@ -6,9 +6,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "specialty")
-public class Specialty implements AbstractEntity {
+public class Specialty extends AbstractEntity {
 
-    private Long id;
     private String title;
     private Set<Group> groups = new HashSet<Group>();
 
@@ -21,19 +20,6 @@ public class Specialty implements AbstractEntity {
 
     public Specialty(String title) {
         this.title = title;
-    }
-
-    @Id
-    @Override
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Column(name = "title", nullable = false, length = 100)
@@ -52,5 +38,22 @@ public class Specialty implements AbstractEntity {
 
     public void setGroups(Set<Group> groups) {
         this.groups = groups;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Specialty)) return false;
+
+        Specialty specialty = (Specialty) o;
+
+        if (!title.equals(specialty.title)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return title.hashCode();
     }
 }

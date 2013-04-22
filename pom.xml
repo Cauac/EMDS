@@ -29,7 +29,9 @@
         <cglib.version>2.2</cglib.version>
         <jasper.version>4.8.0</jasper.version>
         <hibernate-jpa.version>1.0.1.Final</hibernate-jpa.version>
+        <hibernate-validation.version>4.3.1.Final</hibernate-validation.version>
         <flyway.version>2.1</flyway.version>
+        <validation.version>1.0.0.GA</validation.version>
     </properties>
 
     <dependencyManagement>
@@ -54,6 +56,11 @@
                 <artifactId>servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation.version}</version>
             </dependency>
 
             <!--Spring framework-->
@@ -137,6 +144,13 @@
                 <artifactId>hibernate-c3p0</artifactId>
                 <version>${hibernate.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validation.version}</version>
+            </dependency>
+
 
             <!--*************-->
 
@@ -223,6 +237,11 @@
         </dependency>
 
         <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
         </dependency>
@@ -292,6 +311,10 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
         </dependency>
 
         <dependency>
