@@ -58,14 +58,62 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.delete(student);
     }
 
-    @Transactional(readOnly = true)
-    public List<Student> getStudents() {
-        return studentRepository.findByRank(Student.STUDENT);
-    }
-
+    @Override
     @Transactional(readOnly = true)
     public List<Student> getAbiturients() {
-        return studentRepository.findByRank(Student.ABITURIENT);
+        return studentRepository.findByType(Student.ABITURIENT);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Student> getJuniors() {
+        return studentRepository.findByType(Student.JUNIOR);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Student> getOfficers() {
+        return studentRepository.findByType(Student.OFFICER);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Student> getReserve() {
+        return studentRepository.findByType(Student.RESERVE);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Student> getFailed() {
+        return studentRepository.findByType(Student.FAILED);
+    }
+
+    @Override
+    @Transactional
+    public void toJunior(Student student) {
+        student.setType(Student.JUNIOR);
+        studentRepository.save(student);
+    }
+
+    @Override
+    @Transactional
+    public void toOfficer(Student student) {
+        student.setType(Student.OFFICER);
+        studentRepository.save(student);
+    }
+
+    @Override
+    @Transactional
+    public void toReserve(Student student) {
+        student.setType(Student.RESERVE);
+        studentRepository.save(student);
+    }
+
+    @Override
+    @Transactional
+    public void toArchive(Student student) {
+        student.setType(Student.FAILED);
+        studentRepository.save(student);
     }
 
     @Override

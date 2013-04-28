@@ -31,10 +31,10 @@ ALTER SEQUENCE public.teacher_id_seq RESTART WITH 1;
 INSERT INTO public.questionnaire (id, nationality) VALUES (0, 'Чукча');
 ALTER SEQUENCE public.questionnaire_id_seq RESTART WITH 1;
 
-INSERT INTO public.student (id, first_name, last_name, middle_name, birth_date, rank, group_id)
-  VALUES (0, 'Антон', 'Спирченок', 'Витальевич', '21/01/1992', 'student', 5);
-INSERT INTO public.student (id, first_name, last_name, middle_name, birth_date, rank, group_id, questionnaire_id)
-  VALUES (1, 'Павел', 'Авсейко', 'Павлович', '20/10/1991', 'student', 5, 0);
+INSERT INTO public.student (id, first_name, last_name, middle_name, birth_date, rank, group_id, student_type)
+  VALUES (0, 'Антон', 'Спирченок', 'Витальевич', '21/01/1992', 'unknown', 5, 'officer');
+INSERT INTO public.student (id, first_name, last_name, middle_name, birth_date, rank, group_id, questionnaire_id, student_type)
+  VALUES (1, 'Павел', 'Авсейко', 'Павлович', '20/10/1991', 'unknown', 5, 0, 'junior');
 ALTER SEQUENCE public.student_id_seq RESTART WITH 2;
 
 INSERT INTO public.users (id, person_id, person_type, login, password, enabled, role_id) VALUES (0, 0, 'teacher', 'MasheroSA', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 1, 0);
@@ -47,5 +47,6 @@ INSERT INTO public.document (id, title, system_title) VALUES (1, 'Анкета',
 INSERT INTO public.document (id, title, system_title) VALUES (2, 'Ксерокопия паспорта', 'passport');
 INSERT INTO public.document (id, title, system_title) VALUES (3, 'Копия приписного свидетельства', 'registration');
 INSERT INTO public.document (id, title, system_title) VALUES (4, 'Характеристика', 'characteristic');
-INSERT INTO public.document (id, title, system_title) VALUES (5, 'Справка ВВК', 'sertificate');
-ALTER SEQUENCE public.document_id_seq RESTART WITH 6;
+INSERT INTO public.document (id, title, system_title) VALUES (5, 'Направление на ВВК', 'direction');
+INSERT INTO public.document (id, title, system_title) VALUES (6, 'Справка ВВК', 'certificate');
+ALTER SEQUENCE public.document_id_seq RESTART WITH 7;

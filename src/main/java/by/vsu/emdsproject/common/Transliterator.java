@@ -74,7 +74,6 @@ public class Transliterator {
         charMap.put('э', "e");
         charMap.put('ю', "u");
         charMap.put('я', "ya");
-
     }
 
     public static String transliterate(String string) {

@@ -9,13 +9,17 @@ import java.util.Map;
 @Table(name = "student")
 public class Student extends Person {
 
-    public static final String STUDENT = "student";
     public static final String ABITURIENT = "abiturient";
+    public static final String JUNIOR = "junior";
+    public static final String OFFICER = "officer";
+    public static final String RESERVE = "reserve";
+    public static final String FAILED = "failed";
     private Date birthDate;
     private Group group;
     private Questionnaire questionnaire;
     private String characteristic;
     private String rank;
+    private String type;
     private Map<Document, DocumentInfo> documents = new HashMap<Document, DocumentInfo>();
 
     public Student() {
@@ -61,6 +65,15 @@ public class Student extends Person {
 
     public void setRank(String rank) {
         this.rank = rank;
+    }
+
+    @Column(name = "student_type")
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

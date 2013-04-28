@@ -18,9 +18,10 @@ public class Document extends AbstractEntity {
     public static final Long STATEMENT = 0L;
     public static final Long QUESTIONNAIRE = 1L;
     public static final Long PASSPORT_COPY = 2L;
-    public static final Long REGISTRATION_SERTIFICATE_COPY = 3L;
+    public static final Long REGISTRATION_CERTIFICATE_COPY = 3L;
     public static final Long CHARACTERISTIC = 4L;
-    public static final Long COMISSION_SERTIFICATE = 5L;
+    public static final Long COMMISSION_DIRECTION = 5L;
+    public static final Long COMMISSION_CERTIFICATE = 6L;
 
     private String title;
     private String systemTitle;

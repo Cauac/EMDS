@@ -2,6 +2,7 @@ package by.vsu.emdsproject.report.jasper;
 
 import by.vsu.emdsproject.model.Questionnaire;
 import by.vsu.emdsproject.model.Student;
+
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
@@ -46,24 +47,25 @@ public class PersonCardReportDSWrapper implements ReportDataSourceWrapper {
         map.put(Parameter.CARD_NUMBER, student.getId().toString());
         map.put(Parameter.FIO, student.getLastName() + " " + student.getFirstName() + " " + student.getMiddleName());
         map.put(Parameter.ADMISSION_YEAR, questionnaire.getAdmissionYear());
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-        
+
         map.put(Parameter.BIRTH_YEAR, sdf.format(student.getBirthDate()));
         map.put(Parameter.BIRTH_PLACE, questionnaire.getBirthPlace());
         map.put(Parameter.RECRUIT_OFFICE, questionnaire.getRecruitmentOffice());
         map.put(Parameter.FACULTY, questionnaire.getFaculty());
         map.put(Parameter.EDUCATION, questionnaire.getEducation());
-        String duty = "не служил";
+        /*String duty = "не служил";
         if (questionnaire.getDutyStart() != null && questionnaire.getDutyEnd() != null) {
             duty = "c " + questionnaire.getDutyStart() + " по " + questionnaire.getDutyEnd();
-        }
+        }*/
+        String duty = questionnaire.getDuty();
         map.put(Parameter.DUTY, duty);
         map.put(Parameter.EDUCATION_START, questionnaire.getEducationStartDate().toString());
         map.put(Parameter.EDUCATION_END, questionnaire.getEducationEndDate().toString());
         map.put(Parameter.RANK, student.getRank());
-        map.put(Parameter.PARENT_ADDRESS, questionnaire.getParentAddress()+"");
-        map.put(Parameter.ADDRESS, questionnaire.getAddress()+"");
+        map.put(Parameter.PARENT_ADDRESS, questionnaire.getParentAddress() + "");
+        map.put(Parameter.ADDRESS, questionnaire.getAddress() + "");
         return map;
     }
 }

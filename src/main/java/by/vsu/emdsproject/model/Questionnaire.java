@@ -11,18 +11,19 @@ public class Questionnaire extends AbstractEntity {
     private String birthPlace;
     private String nationality;
     private String passportNumber;
+    private String personalNumber;
     private Address address;
     private String mobileTel;
     private String homeTel;
     private String admissionYear;
     private String faculty;
     private String studySpecialty;
-    private Integer course;
+    private String course;
     private String studyGroup2;
     private String studyGroup3;
     private String studyGroup4;
     private String studyGroup5;
-    private Float studyProgress;
+    private String studyProgress;
     private String curator;
     private String curatorTel;
     private String education;
@@ -45,8 +46,7 @@ public class Questionnaire extends AbstractEntity {
     private String desireToContinue;
     private String thinkAboutStudy;
     private String thinkAboutDuty;
-    private Date dutyStart;
-    private Date dutyEnd;
+    private String duty;
     private Student student;
 
     public Questionnaire() {
@@ -78,6 +78,15 @@ public class Questionnaire extends AbstractEntity {
 
     public void setPassportNumber(String passportNumber) {
         this.passportNumber = passportNumber;
+    }
+
+    @Column(name = "personal_number", length = 20)
+    public String getPersonalNumber() {
+        return personalNumber;
+    }
+
+    public void setPersonalNumber(String personalNumber) {
+        this.personalNumber = personalNumber;
     }
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -136,11 +145,11 @@ public class Questionnaire extends AbstractEntity {
     }
 
     @Column(name = "course")
-    public Integer getCourse() {
+    public String getCourse() {
         return course;
     }
 
-    public void setCourse(Integer course) {
+    public void setCourse(String course) {
         this.course = course;
     }
 
@@ -180,12 +189,12 @@ public class Questionnaire extends AbstractEntity {
         this.studyGroup5 = studyGroup;
     }
 
-    @Column(name = "study_progress")
-    public Float getStudyProgress() {
+    @Column(name = "study_progress", length = 20)
+    public String getStudyProgress() {
         return studyProgress;
     }
 
-    public void setStudyProgress(Float studyProgress) {
+    public void setStudyProgress(String studyProgress) {
         this.studyProgress = studyProgress;
     }
 
@@ -300,7 +309,7 @@ public class Questionnaire extends AbstractEntity {
         this.recruitmentOffice = recruitmentOffice;
     }
 
-    @Column(name = "parent_tel", length = 10)
+    @Column(name = "parent_tel", length = 50)
     public String getParentTel() {
         return parentTel;
     }
@@ -390,25 +399,15 @@ public class Questionnaire extends AbstractEntity {
         this.thinkAboutDuty = thinkAboutDuty;
     }
 
-    @Column(name = "duty_start")
-    @Temporal(TemporalType.DATE)
-    public Date getDutyStart() {
-        return dutyStart;
+    @Column(name = "duty", length = 100)
+    public String getDuty() {
+        return duty;
     }
 
-    public void setDutyStart(Date dutyStart) {
-        this.dutyStart = dutyStart;
+    public void setDuty(String duty) {
+        this.duty = duty;
     }
 
-    @Column(name = "duty_end")
-    @Temporal(TemporalType.DATE)
-    public Date getDutyEnd() {
-        return dutyEnd;
-    }
-
-    public void setDutyEnd(Date dutyEnd) {
-        this.dutyEnd = dutyEnd;
-    }
 
     @OneToOne(mappedBy = "questionnaire", fetch = FetchType.LAZY)
     public Student getStudent() {

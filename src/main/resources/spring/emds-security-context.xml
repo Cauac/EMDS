@@ -8,15 +8,18 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
+    <beans:bean id="authSuccessHandler" class="by.vsu.emdsproject.web.filter.AuthorisationSuccess"/>
+
     <security:global-method-security secured-annotations="enabled"/>
 
     <security:http auto-config="true">
 
         <security:form-login login-page="/login" default-target-url="/index"
-                             authentication-failure-url="/loginfailed"/>
+                             authentication-failure-url="/loginfailed"
+                             authentication-success-handler-ref="authSuccessHandler"/>
+
         <security:logout logout-success-url="/logout"/>
         <security:access-denied-handler error-page="/403"/>
-
         <security:intercept-url pattern="/"
                                 access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 

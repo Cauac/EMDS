@@ -1,7 +1,8 @@
 package by.vsu.emdsproject.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,8 +28,8 @@ public class Group extends AbstractEntity {
         this.specialty = specialty;
     }
 
-    @NotNull
-    @Size(max = 10)
+    @NotEmpty(message = "Введите название")
+    @Size(max = 10, message = "Не более 10 символов")
     @Column(name = "title", nullable = false, length = 10)
     public String getTitle() {
         return title;
