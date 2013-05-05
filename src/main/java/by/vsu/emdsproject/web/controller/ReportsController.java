@@ -3,8 +3,10 @@ package by.vsu.emdsproject.web.controller;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.report.ReportGenerator;
 import by.vsu.emdsproject.report.ReportGeneratorFactory;
+import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.UserService;
+import by.vsu.emdsproject.web.form.PersonCardForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,8 @@ public class ReportsController {
     private UserService userService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private GroupService groupService;
 
     @RequestMapping("")
     public ModelAndView reportsPage() {
@@ -36,4 +40,10 @@ public class ReportsController {
         generator.generatePersonCardReport(student, response);
         return null;
     }
+
+    @RequestMapping("personCard")
+    public ModelAndView personCard() {
+        return new ModelAndView("/reports/personCard", "personCardForm", new PersonCardForm());
+    }
+
 }

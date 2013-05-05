@@ -32,6 +32,7 @@
         <hibernate-validation.version>4.3.1.Final</hibernate-validation.version>
         <flyway.version>2.1</flyway.version>
         <validation.version>1.0.0.GA</validation.version>
+        <jackson.version>1.9.12</jackson.version>
 
     </properties>
 

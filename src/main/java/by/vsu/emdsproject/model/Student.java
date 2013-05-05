@@ -1,5 +1,7 @@
 package by.vsu.emdsproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashMap;
@@ -7,6 +9,7 @@ import java.util.Map;
 
 @Entity
 @Table(name = "student")
+@JsonIgnoreProperties({"group", "questionnaire", "documents"})
 public class Student extends Person {
 
     public static final String ABITURIENT = "abiturient";

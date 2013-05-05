@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.service;
 
+import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public interface StudentService extends AbstractService<Student> {
     List<Student> getReserve();
 
     List<Student> getFailed();
+
+    List<Student> findByGroup(Group group);
 
     boolean readyToTake(Student abiturient);
 

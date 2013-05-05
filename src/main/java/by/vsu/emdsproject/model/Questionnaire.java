@@ -1,5 +1,7 @@
 package by.vsu.emdsproject.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -47,6 +49,7 @@ public class Questionnaire extends AbstractEntity {
     private String thinkAboutStudy;
     private String thinkAboutDuty;
     private String duty;
+    @JsonBackReference
     private Student student;
 
     public Questionnaire() {

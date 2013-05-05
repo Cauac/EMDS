@@ -2,12 +2,14 @@ package by.vsu.emdsproject.service.impl;
 
 import by.vsu.emdsproject.model.Document;
 import by.vsu.emdsproject.model.DocumentInfo;
+import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.repository.DocumentInfoRepository;
 import by.vsu.emdsproject.repository.DocumentRepository;
 import by.vsu.emdsproject.repository.StudentRepository;
 import by.vsu.emdsproject.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,16 +45,19 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional(readOnly = true)
+    @Cacheable(value = "students", key = "#id")
     public Student read(Long id) {
         return studentRepository.findOne(id);
     }
 
+    @Override
     public void remove(Long id) {
         Student toRemove = studentRepository.findOne(id);
         toRemove.getDocuments().clear();
         studentRepository.delete(toRemove);
     }
 
+    @Override
     public void remove(Student student) {
         student.getDocuments().clear();
         studentRepository.delete(student);
@@ -89,31 +94,32 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
     public void toJunior(Student student) {
         student.setType(Student.JUNIOR);
         studentRepository.save(student);
     }
 
     @Override
-    @Transactional
     public void toOfficer(Student student) {
         student.setType(Student.OFFICER);
         studentRepository.save(student);
     }
 
     @Override
-    @Transactional
     public void toReserve(Student student) {
         student.setType(Student.RESERVE);
         studentRepository.save(student);
     }
 
     @Override
-    @Transactional
     public void toArchive(Student student) {
         student.setType(Student.FAILED);
         studentRepository.save(student);
+    }
+
+    @Override
+    public List<Student> findByGroup(Group group) {
+        return studentRepository.findByGroup(group);
     }
 
     @Override

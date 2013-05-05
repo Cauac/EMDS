@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -7,9 +8,10 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-// todo: add criterias(or just repository methods) to get students by group, specialty, etc.)
+// todo: add criterias(or just repository methods) to get students by group, specialty, etc.)    .. group added
 @Entity
 @Table(name = "Study_group")
+@JsonIgnoreProperties({"specialty", "students"})
 public class Group extends AbstractEntity {
 
     private String title;
