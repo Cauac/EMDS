@@ -14,22 +14,27 @@
 <body>
 <emds:header/>
 <emds:teacherMenu number="3"/>
-<spring:url value="/reports/..." var="act"/>
-<form:form name="personCard" id="personCard" modelAttribute="personCardForm" method="POST" action="${act}">
-    <form:select path="group" id="groups">
-    </form:select>
-    <form:select path="student" id="students">
-    </form:select>
-</form:form>
+<spring:url value="/reports/personCard" var="act"/>
+<div class="well offset3 span3">
+    <h3 class="center">Параметры</h3>
+    <form name="personCard" id="personCard" method="POST" action="${act}">
+        <select id="group">
+        </select>
+        <br>
+        <select id="student" name="student">
+        </select>
+        <input class="btn btn-primary" type="submit" value="Создать отчёт"/>
+    </form>
+</div>
 
 <%-- ajax --%>
-<spring:url value="/ajax/allGroups" var="groups"/>
-<spring:url value="/ajax/studentsByGroup" var="students"/>
+<spring:url value="/ajax/allGroups" var="group"/>
+<spring:url value="/ajax/studentsByGroup" var="student"/>
 <script type="text/javascript">
     $(document).ready(
             // load groups list
             function () {
-                $.getJSON('${groups}', {
+                $.getJSON('${group}', {
                     ajax: 'true'
                 }, function (data) {
                     var html = '<option value="">Выберите группу</option>';
@@ -39,13 +44,13 @@
                                 + data[i].title + '</option>';
                     }
                     html += '</option>';
-                    $('#groups').html(html);
+                    $('#group').html(html);
                 });
 
                 // load students list when group is selected
-                $('#groups').change(
+                $('#group').change(
                         function () {
-                            $.getJSON('${students}', {
+                            $.getJSON('${student}', {
                                 groupId: $(this).val(),
                                 ajax: 'true'
                             }, function (data) {
@@ -57,7 +62,7 @@
                                 }
                                 html += '</option>';
 
-                                $('#students').html(html);
+                                $('#student').html(html);
                             });
                         });
             });

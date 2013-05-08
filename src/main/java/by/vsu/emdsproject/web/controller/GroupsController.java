@@ -25,7 +25,9 @@ public class GroupsController {
     private GroupService groupService;
     @Autowired
     private SpecialtyService specialtyService;
-
+    /*
+    TODO выпилить
+     */
     @ModelAttribute("group")
     public Group setGroup(Long id) {
         if (id != null) {
