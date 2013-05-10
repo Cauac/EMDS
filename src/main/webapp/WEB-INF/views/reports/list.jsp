@@ -12,18 +12,27 @@
 <body>
 <mytags:header/>
 <mytags:teacherMenu number="3"/>
-<div class="well offset4 span5">
+<div class="well offset1 span10">
     <h3 class="center">Создать отчет</h3>
-    <spring:url var="reports" value="/reports"/>
-    <form action="${reports}" method="POST">
-        <select name="id">
-            <c:forEach items="${students}" var="student">
-                <option value="<c:out value="${student.id}"/>"><c:out value="${student.lastName}"/> <c:out
-                        value="${student.firstName}"/></option>
-            </c:forEach>
-        </select> <br>
-        <input type="submit" class="btn btn-primary btn-large" value="Создать">
-    </form>
+    <ul class="nav nav-tabs nav-stacked">
+        <li>
+            <spring:url var="personCard" value="/reports/personCard"/>
+            <a href="${personCard}">Личная карточка</a>
+        </li>
+        <li>
+            <spring:url var="examStatement" value="/reports/examStatement"/>
+            <a href="${examStatement}">Зачетно-экаменационная ведомость</a>
+        </li>
+
+        <li>
+            <spring:url var="commissionProtocol" value="/reports/selectGroup"/>
+            <a href="${commissionProtocol}">Протокол заседания выпускной экзаменационной комиссии</a>
+        </li>
+        <li>
+            <spring:url var="allowedList" value="/reports/selectGroup"/>
+            <a href="${allowedList}">Список допущенных</a>
+        </li>
+    </ul>
 </div>
 </body>
 </html>

@@ -12,8 +12,8 @@ import java.util.HashMap;
 public class PersonCardReportDSWrapper implements ReportDataSourceWrapper {
 
     private Student student;
-    //public static final String templateName = "/home/anton/PersonCardReport.jasper";
-    public static final String templateName = "C:\\TEMP\\test1.jasper";
+    public static final String templateName = "/home/anton/PersonCardReport.jasper";
+//    public static final String templateName = "C:\\TEMP\\test1.jasper";
 
     public static class Parameter {
 
@@ -61,9 +61,12 @@ public class PersonCardReportDSWrapper implements ReportDataSourceWrapper {
         }*/
         String duty = questionnaire.getDuty();
         map.put(Parameter.DUTY, duty);
-        map.put(Parameter.EDUCATION_START, questionnaire.getEducationStartDate().toString());
-        map.put(Parameter.EDUCATION_END, questionnaire.getEducationEndDate().toString());
+        map.put(Parameter.EDUCATION_START, "12.12.2011");
+        map.put(Parameter.EDUCATION_END, "12.12.2012");
+        /*map.put(Parameter.EDUCATION_START, questionnaire.getEducationStartDate().toString());
+        map.put(Parameter.EDUCATION_END, questionnaire.getEducationEndDate().toString());*/
         map.put(Parameter.RANK, student.getRank());
+        map.put(Parameter.RANK, "Студент");
         map.put(Parameter.PARENT_ADDRESS, questionnaire.getParentAddress() + "");
         map.put(Parameter.ADDRESS, questionnaire.getAddress() + "");
         return map;

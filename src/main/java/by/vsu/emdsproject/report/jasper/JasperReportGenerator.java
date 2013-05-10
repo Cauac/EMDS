@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.report.jasper;
 
+import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.report.ReportGenerator;
 import java.io.File;
@@ -104,5 +105,10 @@ public abstract class JasperReportGenerator implements ReportGenerator {
         } catch (JRException ex) {
             Logger.getLogger(JasperReportGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void generateExamStatementReport(Group group, HttpServletResponse response) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -79,7 +79,7 @@ public class Student extends Person {
         this.type = type;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "questionnaire_id")
     public Questionnaire getQuestionnaire() {
         return questionnaire;

@@ -13,7 +13,7 @@
 
 <div style="clear:both;"></div>
 
-<spring:url value="/documents/sertificate" var="documentURL"/>
+<spring:url value="/documents/certificate" var="documentURL"/>
 
 <div class="well offset3 span7">
 
