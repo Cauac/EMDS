@@ -8,17 +8,19 @@ import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
 import java.util.*;
 
 // todo: @ControllerAdvice for all controllers?
 @Controller
 @RequestMapping("/abiturients")
+@SessionAttributes("list")
 public class AbiturientsController {
 
     @Autowired
@@ -38,8 +40,8 @@ public class AbiturientsController {
     }
 
     @RequestMapping("")
-    public ModelAndView abiturients(HttpSession session) {
-        session.setAttribute("list", 3);
+    public ModelAndView abiturients(@ModelAttribute("list") Integer list, ModelMap modelMap) {
+        modelMap.addAttribute("list", 3);
         ModelAndView mav = new ModelAndView("/abiturients/list");
         List<Student> abiturients = studentService.getAbiturients();
         Collections.sort(abiturients, new Comparator<Student>() {

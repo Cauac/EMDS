@@ -41,8 +41,8 @@ public class ReportsController {
         return null;
     }
 
-    @RequestMapping("personCard")
-    public ModelAndView personCard() {
+    @RequestMapping("personCard")                      //       |
+    public ModelAndView personCard() {                // remove v
         return new ModelAndView("/reports/personCard", "personCardForm", new PersonCardForm());
     }
 

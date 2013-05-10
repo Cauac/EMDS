@@ -1,6 +1,7 @@
 package by.vsu.emdsproject.service.impl;
 
 import by.vsu.emdsproject.model.Group;
+import by.vsu.emdsproject.model.Specialty;
 import by.vsu.emdsproject.repository.GroupRepository;
 import by.vsu.emdsproject.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,10 @@ public class GroupServiceImpl implements GroupService {
     @Transactional
     public void remove(Group group) {
         groupRepository.delete(group);
+    }
+
+    @Override
+    public List<Group> findBySpecialty(Specialty specialty) {
+        return groupRepository.findBySpecialty(specialty);
     }
 }

@@ -8,7 +8,6 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-// todo: add criterias(or just repository methods) to get students by group, specialty, etc.)    .. group added
 @Entity
 @Table(name = "Study_group")
 @JsonIgnoreProperties({"specialty", "students"})

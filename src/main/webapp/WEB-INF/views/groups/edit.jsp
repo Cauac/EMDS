@@ -17,7 +17,6 @@
 <div class="well offset4 span5">
 
     <h3 class="center">Учебная группа</h3>
-
     <spring:url var="saveGroup" value="/groups/save"/>
     <form:form action="${saveGroup}" method="post" cssClass="form-horizontal" modelAttribute="group">
 
