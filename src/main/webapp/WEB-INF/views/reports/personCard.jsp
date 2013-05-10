@@ -15,14 +15,18 @@
 <emds:header/>
 <emds:teacherMenu number="3"/>
 <spring:url value="/reports/personCard" var="act"/>
-<div class="well offset3 span3">
-    <h3 class="center">Параметры</h3>
+<div class="well offset3 span6">
+    <h3 class="center">"Личная карточка"</h3>
+    <h3 class="center">Параметры отчета</h3>
     <form name="personCard" id="personCard" method="POST" action="${act}">
+        <p>Группа: </p>
         <select id="group">
         </select>
         <br>
+        <p>Студент: </p>
         <select id="student" name="student">
         </select>
+        <br>
         <input class="btn btn-primary" type="submit" value="Создать отчёт"/>
     </form>
 </div>

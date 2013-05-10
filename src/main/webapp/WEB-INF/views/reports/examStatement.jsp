@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ВК ВГУ :: Личная карточка</title>
+    <title>ВК ВГУ :: Зачетно-экзаменационная ведомость</title>
     <emds:style/>
     <emds:jquery/>
 </head>
@@ -15,9 +15,11 @@
 <emds:header/>
 <emds:teacherMenu number="3"/>
 <spring:url value="/reports/examStatement" var="act"/>
-<div class="well offset3 span3">
-    <h3 class="center">Параметры отчета Зачетно-экзаменационная ведомость</h3>
+<div class="well offset3 span6">
+    <h3 class="center">"Зачетно-экзаменационная ведомость"</h3>
+    <h3 class="center">Параметры отчета</h3>
     <form name="examStatement" id="examStatement" method="POST" action="${act}">
+        <p>Группа: </p>
         <select name="group" id="group">
             <c:forEach var="gr" items="${groups}">
                 <option value="${gr.id}">${gr.title}</option>

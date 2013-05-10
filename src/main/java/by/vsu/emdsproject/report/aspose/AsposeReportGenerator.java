@@ -3,7 +3,10 @@ package by.vsu.emdsproject.report.aspose;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.report.ReportGenerator;
+import by.vsu.emdsproject.report.aspose.docx.ExamStatementReport;
+import by.vsu.emdsproject.report.aspose.docx.PersonCardReport;
 import com.aspose.words.Document;
+import org.springframework.core.io.ClassPathResource;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +20,7 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
 
     protected abstract String getContentHeader();
 
-    protected abstract String getContentDiscription();
+    protected abstract String getContentDescription();
 
     protected abstract int getSaveFormat();
 
@@ -25,19 +28,20 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
     static {
         com.aspose.words.License wordsLicense = new com.aspose.words.License();
         try {
-            wordsLicense.setLicense("/home/anton/Aspose.Total.Java.lic");
+            ClassPathResource resource = new ClassPathResource("../lib/Aspose.Total.Java.lic");
+            wordsLicense.setLicense(resource.getURL().getPath());
         } catch (Exception e) {
             Logger.getLogger(AsposeReportGenerator.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
-    public void exportReportInServlet(Document document, HttpServletResponse response) throws Exception {
+    public void exportDocumentInServlet(Document document, HttpServletResponse response) throws Exception {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         document.save(stream, getSaveFormat());
 
         response.setContentLength(stream.size());
         response.setContentType(getContentType());
-        response.setHeader(getContentDiscription(), getContentHeader());
+        response.setHeader(getContentDescription(), getContentHeader());
 
         ServletOutputStream servletStream = response.getOutputStream();
         stream.writeTo(servletStream);
@@ -45,24 +49,23 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
         servletStream.close();
     }
 
-    @Override
-    public void generatePersonCardReport(Student student, HttpServletResponse response) {
-        PersonCardReport report = new PersonCardReport(student);
+    protected void generateReport(AsposeReport report, HttpServletResponse response) {
         try {
-            exportReportInServlet(report.generate(), response);
+            exportDocumentInServlet(report.generate(), response);
         } catch (Exception e) {
             Logger.getLogger(AsposeReportGenerator.class.getName()).log(Level.SEVERE, null, e);
+            //TODO обработать ошибку построения отчета
         }
     }
 
     @Override
+    public void generatePersonCardReport(Student student, HttpServletResponse response) {
+        generateReport(new PersonCardReport(student), response);
+    }
+
+    @Override
     public void generateExamStatementReport(Group group, HttpServletResponse response) {
-        ExamStatementReport report = new ExamStatementReport(group);
-        try {
-            exportReportInServlet(report.generate(), response);
-        } catch (Exception e) {
-            Logger.getLogger(AsposeReportGenerator.class.getName()).log(Level.SEVERE, null, e);
-        }
+        generateReport(new ExamStatementReport(group), response);
     }
 
 }

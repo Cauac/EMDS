@@ -1,5 +1,6 @@
-package by.vsu.emdsproject.report.aspose;
+package by.vsu.emdsproject.report.aspose.docx;
 
+import by.vsu.emdsproject.report.aspose.AsposeReportGenerator;
 import com.aspose.words.SaveFormat;
 
 public class AsposeDocxReportGenerator extends AsposeReportGenerator {
@@ -19,7 +20,7 @@ public class AsposeDocxReportGenerator extends AsposeReportGenerator {
     }
 
     @Override
-    protected String getContentDiscription() {
+    protected String getContentDescription() {
         return CONTENT_DISCRIPTION;
     }
 
