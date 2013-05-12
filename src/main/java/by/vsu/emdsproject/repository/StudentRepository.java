@@ -10,4 +10,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findByType(String type);
 
     List<Student> findByGroup(Group group);
+
 }

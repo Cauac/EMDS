@@ -1,7 +1,10 @@
 package by.vsu.emdsproject.repository;
 
 import by.vsu.emdsproject.model.Group;
+import by.vsu.emdsproject.model.Specialty;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 /**
  * @author Max
@@ -9,4 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *         Time: 22:54
  */
 public interface GroupRepository extends JpaRepository<Group, Long> {
+
+    public List<Group> findBySpecialty(Specialty specialty);
 }

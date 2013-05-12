@@ -36,7 +36,7 @@ public class AuthorisationSuccess implements AuthenticationSuccessHandler {
         request.getSession().setAttribute("currentUser", currentUser);
         Teacher teacher = teacherService.read(currentUser.getPersonId());
         request.getSession().setAttribute("currentName", teacher);
-        request.getSession().setAttribute("list", 1);
+        //request.getSession().setAttribute("list", 1);
 
         // redirect (if need) to the request URL saved by Spring Security
         SavedRequest savedRequest =

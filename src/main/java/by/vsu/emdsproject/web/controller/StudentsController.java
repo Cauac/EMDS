@@ -7,18 +7,21 @@ import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
 // todo: students @ModelAttribute add
 @Controller
 @RequestMapping("/students")
+@SessionAttributes({"list"})
 public class StudentsController {
 
     @Autowired
@@ -26,9 +29,14 @@ public class StudentsController {
     @Autowired
     private GroupService groupService;
 
+    @ModelAttribute("list")
+    public Integer getList() {
+        return 1;
+    }
+
     @RequestMapping("")
-    public String students(HttpSession session) {
-        switch ((Integer) session.getAttribute("list")) {
+    public String students(@ModelAttribute("list") Integer list) {
+        switch (list) {
             case 1:
                 return "redirect:/students/junior";
             case 2:
@@ -43,24 +51,24 @@ public class StudentsController {
     }
 
     @RequestMapping("/junior")
-    public ModelAndView juniors(HttpSession session) {
-        session.setAttribute("list", 1);
+    public ModelAndView juniors(@ModelAttribute("list") Integer list, ModelMap modelMap) {
+        modelMap.addAttribute("list", 1);
         ModelAndView mav = new ModelAndView("/students/juniorList");
         mav.addObject("students", studentService.getJuniors());
         return mav;
     }
 
     @RequestMapping("/officer")
-    public ModelAndView officers(HttpSession session) {
-        session.setAttribute("list", 2);
+    public ModelAndView officers(@ModelAttribute("list") Integer list, ModelMap modelMap) {
+        modelMap.addAttribute("list", 2);
         ModelAndView mav = new ModelAndView("/students/officerList");
         mav.addObject("students", studentService.getOfficers());
         return mav;
     }
 
     @RequestMapping("/archive")
-    public ModelAndView archive(HttpSession session) {
-        session.setAttribute("list", 4);
+    public ModelAndView archive(@ModelAttribute("list") Integer list, ModelMap modelMap) {
+        modelMap.addAttribute("list", 4);
         ModelAndView mav = new ModelAndView("/students/archiveList");
         List<Student> students = new ArrayList<Student>();
         students.addAll(studentService.getFailed());
