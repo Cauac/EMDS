@@ -111,4 +111,9 @@ public abstract class JasperReportGenerator implements ReportGenerator {
     public void generateExamStatementReport(Group group, HttpServletResponse response) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
+    @Override
+    public void generateExamProtocolReport(Group group, String[] members, HttpServletResponse response) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

@@ -10,4 +10,6 @@ public interface ReportGenerator {
     public void generatePersonCardReport(Student student, HttpServletResponse response);
 
     public void generateExamStatementReport(Group group, HttpServletResponse response);
+
+    public void generateExamProtocolReport(Group group, String[] members, HttpServletResponse response);
 }

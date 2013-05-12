@@ -48,6 +48,8 @@ public class PersonCardReport extends AsposeReport {
         range.replace(FACULTY, student.getQuestionnaire().getFaculty());
         range.replace(PARENT_ADDRESS, student.getQuestionnaire().getParentAddress().toString());
         range.replace(ADDRESS, student.getQuestionnaire().getAddress().toString());
+        range.replace(EDUCATION, student.getQuestionnaire().getEducationBefore());
+        range.replace(DUTY,student.getQuestionnaire().getDuty());
 
         return document;
     }

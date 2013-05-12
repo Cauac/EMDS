@@ -7,7 +7,7 @@ public class AsposeDocxReportGenerator extends AsposeReportGenerator {
 
     public static final String CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
     public static final String CONTENT_HEADER = "inline; filename=\"file.docx\"";;
-    public static final String CONTENT_DISCRIPTION = "Content-Disposition";
+    public static final String CONTENT_DESCRIPTION = "Content-Disposition";
 
     @Override
     protected String getContentType() {
@@ -21,7 +21,7 @@ public class AsposeDocxReportGenerator extends AsposeReportGenerator {
 
     @Override
     protected String getContentDescription() {
-        return CONTENT_DISCRIPTION;
+        return CONTENT_DESCRIPTION;
     }
 
     @Override

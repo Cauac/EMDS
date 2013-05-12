@@ -25,7 +25,7 @@
         </li>
 
         <li>
-            <spring:url var="commissionProtocol" value="/reports/selectGroup"/>
+            <spring:url var="commissionProtocol" value="/reports/examProtocol"/>
             <a href="${commissionProtocol}">Протокол заседания выпускной экзаменационной комиссии</a>
         </li>
         <li>

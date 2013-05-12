@@ -2,12 +2,12 @@ package by.vsu.emdsproject.report.aspose.docx;
 
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
+import by.vsu.emdsproject.report.StudentComparator;
 import by.vsu.emdsproject.report.aspose.AsposeReport;
 import com.aspose.words.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.regex.Pattern;
 
 public class ExamStatementReport extends AsposeReport {
@@ -19,19 +19,6 @@ public class ExamStatementReport extends AsposeReport {
     public static Pattern GROUP_NAME = Pattern.compile("<groupName>");
     public static Pattern NUMBER = Pattern.compile("<n>");
     public static Pattern FIO = Pattern.compile("<fio>");
-
-    class StudentComparator implements Comparator<Student> {
-
-        StudentComparator() {
-        }
-
-        @Override
-        public int compare(Student o1, Student o2) {
-            String fio1 = o1.getLastName() + o1.getFirstName() + o1.getMiddleName();
-            String fio2 = o2.getLastName() + o2.getFirstName() + o2.getMiddleName();
-            return fio1.compareTo(fio2);
-        }
-    }
 
     public ExamStatementReport(Group group) {
         this.group = group;
