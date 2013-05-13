@@ -29,7 +29,7 @@
             <a href="${commissionProtocol}">Протокол заседания выпускной экзаменационной комиссии</a>
         </li>
         <li>
-            <spring:url var="allowedList" value="/reports/selectGroup"/>
+            <spring:url var="allowedList" value="/reports/allowedList"/>
             <a href="${allowedList}">Список допущенных</a>
         </li>
     </ul>

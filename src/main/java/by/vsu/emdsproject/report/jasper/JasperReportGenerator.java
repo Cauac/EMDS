@@ -21,7 +21,7 @@ import net.sf.jasperreports.engine.util.FileBufferedOutputStream;
 /**
  * Builder скрывающий механизм формирования отчетов технологии JasperReports
  */
-public abstract class JasperReportGenerator implements ReportGenerator {
+public abstract class JasperReportGenerator {
 
     /**
      * определяет в каком виде представить отчет
@@ -105,15 +105,5 @@ public abstract class JasperReportGenerator implements ReportGenerator {
         } catch (JRException ex) {
             Logger.getLogger(JasperReportGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    @Override
-    public void generateExamStatementReport(Group group, HttpServletResponse response) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void generateExamProtocolReport(Group group, String[] members, HttpServletResponse response) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }
