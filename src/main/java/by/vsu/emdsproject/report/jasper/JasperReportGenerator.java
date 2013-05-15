@@ -2,23 +2,26 @@ package by.vsu.emdsproject.report.jasper;
 
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
-import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.report.ReportGenerator;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.util.FileBufferedOutputStream;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRAbstractExporter;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.util.FileBufferedOutputStream;
 
 /**
  * Builder скрывающий механизм формирования отчетов технологии JasperReports
  */
-public abstract class JasperReportGenerator implements ReportGenerator {
+public abstract class JasperReportGenerator {
 
     /**
      * определяет в каком виде представить отчет
@@ -79,7 +82,7 @@ public abstract class JasperReportGenerator implements ReportGenerator {
      * формирование отчета и заполнение файла результатами
      *
      * @param dsWrapper данные для отчета
-     * @param file      файл в который необходимо сохранить отчет
+     * @param file файл в который необходимо сохранить отчет
      * @throws IOException
      * @throws JRException
      */
@@ -102,15 +105,5 @@ public abstract class JasperReportGenerator implements ReportGenerator {
         } catch (JRException ex) {
             Logger.getLogger(JasperReportGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    @Override
-    public void generateExamStatementReport(Group group, Teacher chief, HttpServletResponse response) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void generateExamProtocolReport(Group group, String[] members, HttpServletResponse response) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

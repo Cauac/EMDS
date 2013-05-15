@@ -4,7 +4,7 @@ import net.sf.jasperreports.engine.JRAbstractExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 
 /**
- * класс формирующий отчеты в формате docx
+ * класс формирующий отчеты в формате impl
  */
 public class JasperReportDocxGenerator extends JasperReportGenerator {
 

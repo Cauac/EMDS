@@ -1,4 +1,4 @@
-package by.vsu.emdsproject.report.aspose.docx;
+package by.vsu.emdsproject.report.aspose.impl;
 
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.report.aspose.AsposeReport;

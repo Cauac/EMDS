@@ -13,4 +13,6 @@ public interface ReportGenerator {
     public void generateExamStatementReport(Group group, Teacher chief, HttpServletResponse response);
 
     public void generateExamProtocolReport(Group group, String[] members, HttpServletResponse response);
+
+    public void generateAllowedListReport(Group group, HttpServletResponse response);
 }

@@ -3,28 +3,18 @@ package by.vsu.emdsproject.report.aspose;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.report.ReportGenerator;
-import by.vsu.emdsproject.report.aspose.docx.ExamProtocolReport;
-import by.vsu.emdsproject.report.aspose.docx.ExamStatementReport;
-import by.vsu.emdsproject.report.aspose.docx.PersonCardReport;
+import by.vsu.emdsproject.report.aspose.impl.AllowedListReport;
+import by.vsu.emdsproject.report.aspose.impl.ExamProtocolReport;
+import by.vsu.emdsproject.report.aspose.impl.ExamStatementReport;
+import by.vsu.emdsproject.report.aspose.impl.PersonCardReport;
 import com.aspose.words.Document;
 import org.springframework.core.io.ClassPathResource;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class AsposeReportGenerator implements ReportGenerator {
-
-    protected abstract String getContentType();
-
-    protected abstract String getContentHeader();
-
-    protected abstract String getContentDescription();
-
-    protected abstract int getSaveFormat();
-
 
     static {
         com.aspose.words.License wordsLicense = new com.aspose.words.License();
@@ -36,19 +26,7 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
         }
     }
 
-    public void exportDocumentInServlet(Document document, HttpServletResponse response) throws Exception {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        document.save(stream, getSaveFormat());
-
-        response.setContentLength(stream.size());
-        response.setContentType(getContentType());
-        response.setHeader(getContentDescription(), getContentHeader());
-
-        ServletOutputStream servletStream = response.getOutputStream();
-        stream.writeTo(servletStream);
-        servletStream.flush();
-        servletStream.close();
-    }
+    public abstract void exportDocumentInServlet(Document document, HttpServletResponse response) throws Exception;
 
     protected void generateReport(AsposeReport report, HttpServletResponse response) {
         try {
@@ -71,6 +49,11 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
 
     @Override
     public void generateExamProtocolReport(Group group, String[] members, HttpServletResponse response) {
-        generateReport(new ExamProtocolReport(group,members),response);
+        generateReport(new ExamProtocolReport(group, members), response);
+    }
+
+    @Override
+    public void generateAllowedListReport(Group group, HttpServletResponse response) {
+        generateReport(new AllowedListReport(group), response);
     }
 }
