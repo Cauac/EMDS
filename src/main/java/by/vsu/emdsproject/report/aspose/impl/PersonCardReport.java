@@ -39,7 +39,6 @@ public class PersonCardReport extends AsposeReport {
         Document document = new Document(getTemplateFilePath(TEMPLATE_NAME));
 
         Range range = document.getRange();
-        range.replace(CARD_NUMBER, student.getId().toString());
         range.replace(ADMISSION_YEAR, student.getQuestionnaire().getAdmissionYear());
         range.replace(FIO, student.getLastName() + " " + student.getFirstName() + " " + student.getMiddleName());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");

@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.report.aspose.impl;
 
+import by.vsu.emdsproject.common.ReportUtil;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.comparator.StudentComparator;
@@ -23,6 +24,8 @@ public class ExamProtocolReport extends AsposeReport {
     public static Pattern GROUP_NAME = Pattern.compile("<groupName>");
     public static Pattern NUMBER = Pattern.compile("<n>");
     public static Pattern FIO = Pattern.compile("<fio>");
+    public static Pattern VUS = Pattern.compile("<vus>");
+    public static Pattern PROFILE = Pattern.compile("<profile>");
     public static Pattern MEMBER1 = Pattern.compile("<member1>");
     public static Pattern MEMBER2 = Pattern.compile("<member2>");
     public static Pattern MEMBER3 = Pattern.compile("<member3>");
@@ -52,6 +55,8 @@ public class ExamProtocolReport extends AsposeReport {
         Document document = new Document(getTemplateFilePath(TEMPLATE_NAME));
 
         document.getRange().replace(GROUP_NAME, group.getTitle());
+        document.getRange().replace(VUS, group.getSpecialty().getNumber());
+        document.getRange().replace(PROFILE, group.getSpecialty().getDescription());
         document.getRange().replace(MEMBER1, members[0]);
         document.getRange().replace(MEMBER2, members[1]);
         document.getRange().replace(MEMBER3, members[2]);
@@ -69,11 +74,8 @@ public class ExamProtocolReport extends AsposeReport {
 
         for (Student student : students) {
             mainTable.appendChild(lastRow.deepClone(true));
-            String fio = student.getLastName() + " "
-                    + student.getFirstName().charAt(0) + "."
-                    + student.getMiddleName().charAt(0) + ".";
             lastRow.getRange().replace(NUMBER, number.toString());
-            lastRow.getRange().replace(FIO, fio);
+            lastRow.getRange().replace(FIO, ReportUtil.getShortFIO(student));
             number++;
             lastRow = mainTable.getLastRow();
         }
@@ -87,11 +89,8 @@ public class ExamProtocolReport extends AsposeReport {
         for (int i = 0; i < rowCount; i++) {
             table.appendChild(lastRow.deepClone(true));
             Student student = students.get(i);
-            String fio = student.getLastName() + " "
-                    + student.getFirstName() + " "
-                    + student.getMiddleName();
             lastRow.getCells().get(0).getRange().replace(NUMBER, number.toString());
-            lastRow.getCells().get(1).getRange().replace(FIO, fio);
+            lastRow.getCells().get(1).getRange().replace(FIO, ReportUtil.getFullFIO(student));
             number++;
             lastRow = table.getLastRow();
         }
@@ -101,11 +100,8 @@ public class ExamProtocolReport extends AsposeReport {
         for (int i = rowCount; i < students.size(); i++) {
             lastRow = table.getRows().get(1 + i - rowCount);
             Student student = students.get(i);
-            String fio = student.getLastName() + " "
-                    + student.getFirstName() + " "
-                    + student.getMiddleName();
             lastRow.getCells().get(2).getRange().replace(NUMBER, number.toString());
-            lastRow.getCells().get(3).getRange().replace(FIO, fio);
+            lastRow.getCells().get(3).getRange().replace(FIO, ReportUtil.getFullFIO(student));
             number++;
         }
         if (!isFullTable) {

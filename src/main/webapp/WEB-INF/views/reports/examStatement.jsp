@@ -34,6 +34,19 @@
             </div>
         </div>
 
+        <div id="teachersDiv" class="control-group">
+            <label class="control-label">Преподаватели:</label>
+
+            <div class="controls">
+                <select id="teacher" name="teacher" multiple="multiple">
+                    <c:forEach var="teacher" items="${teachers}">
+                        <option value="${teacher.id}">${teacher.rank} ${teacher.lastName}</option>
+                    </c:forEach>
+                </select>
+                <span class="help-inline"></span>
+            </div>
+        </div>
+
         <div class="center">
             <spring:url var="reports" value="/reports"/>
             <input class="btn btn-primary" type="submit" value="Создать отчет"/>

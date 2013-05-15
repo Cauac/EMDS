@@ -9,8 +9,10 @@ import by.vsu.emdsproject.report.aspose.impl.ExamProtocolReport;
 import by.vsu.emdsproject.report.aspose.impl.ExamStatementReport;
 import by.vsu.emdsproject.report.aspose.impl.PersonCardReport;
 import com.aspose.words.Document;
+import org.springframework.core.io.ClassPathResource;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,9 +21,8 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
     static {
         com.aspose.words.License wordsLicense = new com.aspose.words.License();
         try {
-//            ClassPathResource resource = new ClassPathResource("../lib/Aspose.Total.Java.lic");
-//            wordsLicense.setLicense(resource.getURL().getPath());
-            wordsLicense.setLicense("c:/templates/Aspose.Total.Java.lic");
+            ClassPathResource resource = new ClassPathResource("../lib/Aspose.Total.Java.lic");
+            wordsLicense.setLicense(resource.getURL().getPath());
         } catch (Exception e) {
             Logger.getLogger(AsposeReportGenerator.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -44,8 +45,8 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
     }
 
     @Override
-    public void generateExamStatementReport(Group group, Teacher chief, HttpServletResponse response) {
-        generateReport(new ExamStatementReport(group, chief), response);
+    public void generateExamStatementReport(Group group, Teacher chief,List<Teacher> teachers, HttpServletResponse response) {
+        generateReport(new ExamStatementReport(group, chief, teachers), response);
     }
 
     @Override
@@ -54,7 +55,7 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
     }
 
     @Override
-    public void generateAllowedListReport(Group group, HttpServletResponse response) {
-        generateReport(new AllowedListReport(group), response);
+    public void generateAllowedListReport(Group group, Teacher chief, HttpServletResponse response) {
+        generateReport(new AllowedListReport(group, chief), response);
     }
 }

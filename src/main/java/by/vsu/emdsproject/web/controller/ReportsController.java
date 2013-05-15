@@ -65,9 +65,13 @@ public class ReportsController {
     }
 
     @RequestMapping(value = "examStatement", method = RequestMethod.POST)
-    public ModelAndView reportExamStatementDo(HttpServletResponse response, @ModelAttribute("group") Group group) {
+    public ModelAndView reportExamStatementDo(HttpServletResponse response, @ModelAttribute("group") Group group, @RequestParam("teacher") Long[] param) {
         ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-        generator.generateExamStatementReport(group, teacherService.getChief(), response);
+        List<Teacher> teachers = new ArrayList<Teacher>();
+        for (Long id : param) {
+            teachers.add(teacherService.read(id));
+        }
+        generator.generateExamStatementReport(group, teacherService.getChief(),teachers, response);
         return null;
     }
 
@@ -81,7 +85,7 @@ public class ReportsController {
     @RequestMapping(value = "allowedList", method = RequestMethod.POST)
     public ModelAndView reportAllowedListDo(HttpServletResponse response, @ModelAttribute("group") Group group) {
         ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-        generator.generateAllowedListReport(group, response);
+        generator.generateAllowedListReport(group, teacherService.getChief(), response);
         return null;
     }
 
@@ -94,6 +98,7 @@ public class ReportsController {
     public ModelAndView examStatement() {
         ModelAndView mav = new ModelAndView("/reports/examStatement");
         mav.addObject("groups", groupService.list());
+        mav.addObject("teachers", teacherService.list());
         return mav;
     }
 
