@@ -2,7 +2,7 @@ package by.vsu.emdsproject.report.aspose.impl;
 
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
-import by.vsu.emdsproject.report.StudentComparator;
+import by.vsu.emdsproject.model.comparator.StudentComparator;
 import by.vsu.emdsproject.report.aspose.AsposeReport;
 import com.aspose.words.Document;
 import com.aspose.words.NodeType;
@@ -56,10 +56,10 @@ public class ExamProtocolReport extends AsposeReport {
         document.getRange().replace(MEMBER2, members[1]);
         document.getRange().replace(MEMBER3, members[2]);
         document.getRange().replace(MEMBER4, members[3]);
-        document.getRange().replace(REVERS_MEMBER1,rmembers[0]);
-        document.getRange().replace(REVERS_MEMBER2,rmembers[1]);
-        document.getRange().replace(REVERS_MEMBER3,rmembers[2]);
-        document.getRange().replace(REVERS_MEMBER4,rmembers[3]);
+        document.getRange().replace(REVERS_MEMBER1, rmembers[0]);
+        document.getRange().replace(REVERS_MEMBER2, rmembers[1]);
+        document.getRange().replace(REVERS_MEMBER3, rmembers[2]);
+        document.getRange().replace(REVERS_MEMBER4, rmembers[3]);
 
         Table mainTable = (Table) document.getChild(NodeType.TABLE, 0, true);
         Row lastRow = mainTable.getLastRow();

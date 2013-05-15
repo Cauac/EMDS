@@ -3,7 +3,7 @@ package by.vsu.emdsproject.report.aspose.impl;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.Teacher;
-import by.vsu.emdsproject.report.StudentComparator;
+import by.vsu.emdsproject.model.comparator.StudentComparator;
 import by.vsu.emdsproject.report.aspose.AsposeReport;
 import com.aspose.words.Document;
 import com.aspose.words.NodeType;

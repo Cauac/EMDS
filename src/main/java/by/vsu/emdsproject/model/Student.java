@@ -17,6 +17,7 @@ public class Student extends Person {
     public static final String OFFICER = "officer";
     public static final String RESERVE = "reserve";
     public static final String FAILED = "failed";
+    public static final String DISMISSED = "dismissed";
     private Date birthDate;
     private Group group;
     private Questionnaire questionnaire;

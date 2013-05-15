@@ -87,8 +87,9 @@ public class StudentsController {
         modelMap.addAttribute("list", 4);
         ModelAndView mav = new ModelAndView("/students/archiveList");
         List<Student> students = new ArrayList<Student>();
-        students.addAll(studentService.getFailed());
         students.addAll(studentService.getReserve());
+        students.addAll(studentService.getDismissed());
+        students.addAll(studentService.getFailed());
         mav.addObject("students", students);
         return mav;
     }
@@ -142,8 +143,32 @@ public class StudentsController {
     }
 
     @RequestMapping(value = "/remove/{id}")
-    public String removeStudent(@PathVariable Long id) {
-        studentService.toArchive(studentService.read(id));
+    public String removeStudent(@PathVariable Long id, @ModelAttribute("list") Integer list, ModelMap modelMap) {
+        studentService.dismiss(studentService.read(id));
+        modelMap.addAttribute("list", 4);
+        return "redirect:/students";
+    }
+
+    @RequestMapping(value = "/toOfficer")
+    public ModelAndView toOfficer() {
+        return new ModelAndView("students/toOfficer", "groups", groupService.list());
+    }
+
+    @RequestMapping(value = "/toOfficer", method = RequestMethod.POST)
+    public String doToOfficer(@ModelAttribute("student") Student student, Long groupId,
+                              @ModelAttribute("list") Integer list, ModelMap modelMap) {
+        student.setGroup(groupService.read(groupId));
+        studentService.toOfficer(student);
+        modelMap.addAttribute("list", 2);
+        return "redirect:/students";
+    }
+
+    @RequestMapping(value = "/toReserve", method = RequestMethod.GET)
+    public String toReserve(@ModelAttribute("student") Student student,
+                            @ModelAttribute("list") Integer list, ModelMap modelMap) {
+        student.setRank("Лейтенант запаса");
+        studentService.toReserve(student);
+        modelMap.addAttribute("list", 4);
         return "redirect:/students";
     }
 

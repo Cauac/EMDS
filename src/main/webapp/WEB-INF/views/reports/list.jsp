@@ -15,22 +15,21 @@
 <div class="well offset3 span6">
     <h3 class="center">Создать отчет</h3>
     <ul class="nav nav-tabs nav-stacked">
-        <li>
+        <li class="center">
             <spring:url var="personCard" value="/reports/personCard"/>
             <a href="${personCard}">Личная карточка</a>
         </li>
-        <li>
+        <li class="center">
             <spring:url var="examStatement" value="/reports/examStatement"/>
             <a href="${examStatement}">Зачетно-экаменационная ведомость</a>
         </li>
-
-        <li>
+        <li class="center">
             <spring:url var="commissionProtocol" value="/reports/examProtocol"/>
             <a href="${commissionProtocol}">Протокол заседания выпускной экзаменационной комиссии</a>
         </li>
-        <li>
+        <li class="center">
             <spring:url var="allowedList" value="/reports/allowedList"/>
-            <a href="${allowedList}">Список допущенных</a>
+            <a href="${allowedList}">Список допущенных к экзамену</a>
         </li>
     </ul>
 </div>

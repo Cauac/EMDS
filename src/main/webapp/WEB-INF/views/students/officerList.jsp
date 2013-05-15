@@ -25,6 +25,7 @@
                 <th>Группа</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             <c:forEach var="student" items="${students}">
                 <tr>
@@ -41,9 +42,18 @@
                     </td>
                     <td>
                         <spring:url var="removeStudent" value="/students/remove/${student.id}"/>
-                        <a onclick="return confirm('Вы действительно хотите переместить студента в архив?')"
+                        <a onclick="return confirm('Отчислить студента?')"
                            href="${removeStudent}">
-                            <i title="Удалить в архив" class="icon-remove"></i>
+                            <i title="Отчислить" class="icon-remove"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <spring:url var="toReserve" value="/students/toReserve">
+                            <spring:param name="id" value="${student.id}"/>
+                        </spring:url>
+                        <a onclick="return confirm('Перевести студента в запас?')"
+                           href="${toReserve}">
+                            <i title="Присвоить офицерское звание" class="icon-star"></i>
                         </a>
                     </td>
                 </tr>
@@ -56,11 +66,11 @@
         </div>
     </c:otherwise>
 </c:choose>
-<div class="offset1 span11">
-    <spring:url var="addStudent" value="/students/add"/>
-    <a class="offset4 btn btn-primary" title="Beta" href="${addStudent}">
-        <i class="icon-plus icon-white"></i> Добавить студента
-    </a>
-</div>
+<%--<div class="offset1 span11">--%>
+<%--<spring:url var="addStudent" value="/students/add"/>--%>
+<%--<a class="offset4 btn btn-primary" title="Beta" href="${addStudent}">--%>
+<%--<i class="icon-plus icon-white"></i> Добавить студента--%>
+<%--</a>--%>
+<%--</div>--%>
 </body>
 </html>

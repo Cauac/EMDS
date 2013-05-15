@@ -186,6 +186,14 @@
 
 <div class="span5">
 
+    <div id="facultyDiv" class="control-group">
+        <form:label path="questionnaire.faculty" cssClass="control-label">Факультет:</form:label>
+        <div class="controls">
+            <form:input path="questionnaire.faculty"/>
+            <span class="help-inline"><form:errors path="questionnaire.faculty"/></span>
+        </div>
+    </div>
+
     <div id="admissionYearDiv" class="control-group">
         <form:label path="questionnaire.admissionYear" cssClass="control-label">Год поступления:</form:label>
         <div class="controls">

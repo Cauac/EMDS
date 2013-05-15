@@ -1,4 +1,4 @@
-package by.vsu.emdsproject.report;
+package by.vsu.emdsproject.model.comparator;
 
 import by.vsu.emdsproject.model.Student;
 

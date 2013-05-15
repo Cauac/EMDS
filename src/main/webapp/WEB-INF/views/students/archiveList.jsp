@@ -21,7 +21,9 @@
         <table class="table table-condensed offset2 span9">
             <tr>
                 <th>Студент</th>
-                <th></th>
+                <th>Факультет</th>
+                <th>Год поступления</th>
+                <th>Результат обучения</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -30,9 +32,14 @@
                     <spring:url var="editStudent" value="/students/edit/${student.id}"/>
                     <td><a href="${editStudent}"> <c:out value="${student.lastName}"/>
                         <c:out value="${student.firstName}"/> <c:out value="${student.middleName}"/> </a></td>
+                    <td>${student.questionnaire.faculty}</td>
+                    <td>${student.questionnaire.admissionYear}</td>
                     <td><c:choose>
                         <c:when test="${student.type eq 'reserve'}">
-                            Закончил обучение ${student.questionnaire.educationEndDate}
+                            Лейтенант запаса
+                        </c:when>
+                        <c:when test="${student.type eq 'dismissed'}">
+                            Отчислен
                         </c:when>
                         <c:otherwise>
                             Не проходил обучение

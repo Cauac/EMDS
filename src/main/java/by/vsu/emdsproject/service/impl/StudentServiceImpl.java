@@ -89,6 +89,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<Student> getDismissed() {
+        return studentRepository.findByType(Student.DISMISSED);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<Student> getFailed() {
         return studentRepository.findByType(Student.FAILED);
     }
@@ -112,8 +118,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void toArchive(Student student) {
+    public void fail(Student student) {
         student.setType(Student.FAILED);
+        studentRepository.save(student);
+    }
+
+    @Override
+    public void dismiss(Student student) {
+        student.setType(Student.DISMISSED);
         studentRepository.save(student);
     }
 

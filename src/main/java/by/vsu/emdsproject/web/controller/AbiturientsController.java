@@ -95,7 +95,7 @@ public class AbiturientsController {
 
     @RequestMapping(value = "/remove")
     public String removeAbiturient(@ModelAttribute("abiturient") Student abiturient) {
-        studentService.toArchive(abiturient);
+        studentService.fail(abiturient);
         return "redirect:/abiturients";
     }
 

@@ -36,7 +36,7 @@
                         <c:out value="${user.login}"/>
                     </c:if>
                 </c:forEach></td>
-                <td><c:if test="${teacher.chief}"><i class="icon-flag"></i></c:if></td>
+                <td><c:if test="${teacher.chief}"><i title="Начальник кафедры" class="icon-flag"></i></c:if></td>
                 <td>
                     <spring:url var="editTeacher" value="/teachers/edit">
                         <spring:param name="id" value="${teacher.id}"/>

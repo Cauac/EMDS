@@ -19,7 +19,7 @@
 
     <h4 class="center"> ${abiturient.lastName} ${abiturient.firstName} :: Направление на ВВК</h4>
 
-    <form method="post" class="form-horizontal" action="${documentURL}">
+    <form method="post" action="${documentURL}">
 
         <input type="hidden" name="id" id="id" value="${abiturient.id}"/>
 
@@ -27,8 +27,8 @@
 
         <div id="officeDiv" class="control-group">
             <div class="controls">
-                <label class="control-label">Военкомат:</label>
-                <input type="text" name="office" id="office"/>
+                <textarea class="input span7" rows="1" maxlength="100" id="office"
+                          name="commentary" placeholder="Военкомат"></textarea>
                 <span class="help-inline"></span>
             </div>
         </div>

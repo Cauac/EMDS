@@ -17,6 +17,8 @@ public interface StudentService extends AbstractService<Student> {
 
     List<Student> getFailed();
 
+    List<Student> getDismissed();
+
     List<Student> findByGroup(Group group);
 
     boolean readyToTake(Student abiturient);
@@ -27,5 +29,7 @@ public interface StudentService extends AbstractService<Student> {
 
     void toReserve(Student student);
 
-    void toArchive(Student student);
+    void fail(Student student);
+
+    void dismiss(Student student);
 }

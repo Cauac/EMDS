@@ -10,7 +10,7 @@
 </head>
 <body>
 <mytags:header/>
-<mytags:teacherMenu number="2"/>
+<mytags:teacherMenu number="1"/>
 <div class="well offset4 span5">
 
     <h4 class="center">${abiturient.lastName} ${abiturient.firstName} :: Выбор группы</h4>
