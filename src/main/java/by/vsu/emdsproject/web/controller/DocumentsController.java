@@ -127,11 +127,12 @@ public class DocumentsController {
     }
 
     @RequestMapping(value = "/direction", method = RequestMethod.POST)
-    private String doAddDirection(@ModelAttribute("abiturient") Student abiturient, String commentary) {
+    private String doAddDirection(@ModelAttribute("abiturient") Student abiturient, String office, String commentary) {
         Document document = documentService.read(Document.COMMISSION_DIRECTION);
         DocumentInfo directionInfo = abiturient.getDocuments().get(document);
         directionInfo.setBrought(true);
         directionInfo.setCommentary(commentary);
+        abiturient.getQuestionnaire().setRecruitmentOffice(office);
         studentService.update(abiturient);
         return "redirect:/abiturients";
     }

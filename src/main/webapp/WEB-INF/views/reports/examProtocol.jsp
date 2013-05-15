@@ -76,18 +76,6 @@
             </div>
         </div>
 
-        <%--        <p>Председатель экзаменационной комиссии: </p>
-
-                <div class="select-and-input">
-                    <select class="btn btn-primary" name="selectName1" onclick="parentNode.getElementsByTagName('input')[0].value=value">
-                        <c:forEach var="teacher" items="${teachers}">
-                            <option value="${teacher}">${teacher}</option>
-                        </c:forEach>
-                    </select>
-                    <input class="large" type="text" name="member"/>
-                </div>--%>
-
-
         <div id="secCommanderDiv" class="control-group">
             <label class="control-label">Председатель подкомиссии:</label>
 
@@ -104,41 +92,36 @@
         </div>
 
 
-        <%--<p>Председатель подкомиссии: </p>--%>
-        <%--<div class="select-and-input">--%>
-        <%--<select class="btn btn-primary" name="selectName2" onclick="parentNode.getElementsByTagName('input')[0].value=value">--%>
-        <%--<c:forEach var="teacher" items="${teachers}">--%>
-        <%--<option value="${teacher}">${teacher}</option>--%>
-        <%--</c:forEach>--%>
-        <%--</select>--%>
-        <%--<input class="large" type="text" name="member"/>--%>
-        <%--</div>--%>
-        <%--<br>--%>
+        <div id="member1Div" class="control-group">
+            <label class="control-label">Члены экзаменационной комиссии:</label>
 
-        <p>Члены экзаменационной комиссии: </p>
+            <div class="controls select-and-input">
+                <select class="btn btn-primary" name="selectName3"
+                        onclick="parentNode.getElementsByTagName('input')[0].value=value">
+                    <c:forEach var="teacher" items="${teachers}">
+                        <option value="${teacher}">${teacher}</option>
+                    </c:forEach>
+                </select>
+                <input class="large" type="text" name="member"/>
+            </div>
 
-        <div class="select-and-input">
-            <select class="btn btn-primary" name="selectName3"
-                    onclick="parentNode.getElementsByTagName('input')[0].value=value">
-                <c:forEach var="teacher" items="${teachers}">
-                    <option value="${teacher}">${teacher}</option>
-                </c:forEach>
-            </select>
-            <input class="large" type="text" name="member"/>
+            <div class="controls select-and-input">
+                <select class="btn btn-primary" name="selectName4"
+                        onclick="parentNode.getElementsByTagName('input')[0].value=value">
+                    <c:forEach var="teacher" items="${teachers}">
+                        <option value="${teacher}">${teacher}</option>
+                    </c:forEach>
+                </select>
+                <input class="large" type="text" name="member"/>
+            </div>
         </div>
-        <br>
 
-        <div class="select-and-input">
-            <select class="btn btn-primary" name="selectName4"
-                    onclick="parentNode.getElementsByTagName('input')[0].value=value">
-                <c:forEach var="teacher" items="${teachers}">
-                    <option value="${teacher}">${teacher}</option>
-                </c:forEach>
-            </select>
-            <input class="large" type="text" name="member"/>
+
+        <div class="center">
+            <spring:url var="reports" value="/reports"/>
+            <input class="btn btn-primary" type="submit" value="Создать отчет"/>
+            <a class="btn" href="${reports}"> Отмена </a>
         </div>
-        <br>
 
-        <input class="btn btn-primary" type="submit" value="Создать отчёт"/>
     </form:form>
 </div>

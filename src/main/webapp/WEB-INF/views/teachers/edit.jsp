@@ -23,6 +23,33 @@
 
         <input type="hidden" name="id" value="<c:out value="${teacher.id}"/>">
 
+        <div id="lastNameDiv" class="control-group">
+            <label class="control-label" for="lastName">Фамилия:</label>
+
+            <div class="controls">
+                <input class="input" type="text" id="lastName" name="lastName" value="${teacher.lastName}">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+
+        <div id="firstNameDiv" class="control-group">
+            <label class="control-label" for="firstName">Имя:</label>
+
+            <div class="controls">
+                <input class="input" type="text" id="firstName" name="firstName" value="${teacher.firstName}">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+
+        <div id="middleNameDiv" class="control-group">
+            <label class="control-label" for="middleName">Отчество:</label>
+
+            <div class="controls">
+                <input class="input" type="text" id="middleName" name="middleName" value="${teacher.middleName}">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+
         <div id="specDiv" class="control-group">
             <label class="control-label" for="rank">Воинское звание:</label>
 

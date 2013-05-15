@@ -19,11 +19,19 @@
 
     <h4 class="center"> ${abiturient.lastName} ${abiturient.firstName} :: Направление на ВВК</h4>
 
-    <form method="post" action="${documentURL}">
+    <form method="post" class="form-horizontal" action="${documentURL}">
 
         <input type="hidden" name="id" id="id" value="${abiturient.id}"/>
 
         <br>
+
+        <div id="officeDiv" class="control-group">
+            <div class="controls">
+                <label class="control-label">Военкомат:</label>
+                <input type="text" name="office" id="office"/>
+                <span class="help-inline"></span>
+            </div>
+        </div>
 
         <div id="commentaryDiv" class="control-group">
             <div class="controls">

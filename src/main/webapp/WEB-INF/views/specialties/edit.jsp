@@ -14,7 +14,7 @@
 <body>
 <mytags:header/>
 <mytags:teacherMenu number="4"/>
-<div class="well offset4 span5">
+<div class="well offset3 span7">
     <h3 class="center">Специальность</h3>
     <spring:url var="saveSpecialty" value="/specialties/save"/>
     <form:form action="${saveSpecialty}" method="post" cssClass="form-horizontal" modelAttribute="specialty">
@@ -25,7 +25,7 @@
              class="control-group <spring:hasBindErrors name="specialty.number">error</spring:hasBindErrors>">
             <form:label path="number" cssClass="control-label">ВУС:</form:label>
             <div class="controls">
-                <form:input path="number"/>
+                <form:input path="number" cssClass="span4"/>
                 <span class="help-inline"><form:errors path="number"/></span>
             </div>
         </div>
@@ -34,7 +34,7 @@
              class="control-group <spring:hasBindErrors name="specialty.description">error</spring:hasBindErrors>">
             <form:label path="description" cssClass="control-label">Описание:</form:label>
             <div class="controls">
-                <form:input path="description"/>
+                <form:input path="description" cssClass="span4"/>
                 <span class="help-inline"><form:errors path="description"/></span>
             </div>
         </div>

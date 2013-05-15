@@ -15,7 +15,7 @@
 <mytags:header/>
 <mytags:teacherMenu number="6"/>
 
-<div class="well offset4 span5">
+<div class="well offset3 span7">
     <h3 class="center">Начальник кафедры</h3>
     <spring:url var="saveChief" value="/teachers/chief"/>
 
@@ -25,9 +25,11 @@
             <label class="control-label" for="id">Преподаватель:</label>
 
             <div class="controls">
-                <select name="id" id="id">
+                <select name="id" id="id" class="span4">
                     <c:forEach items="${teachers}" var="teacher">
-                        <option value="${teacher.id}"> ${teacher.lastName} ${teacher.firstName} ${teacher.middleName} </option>
+                        <option value="${teacher.id}"
+                                <c:if test="${teacher.chief}">selected</c:if> >
+                                ${teacher.lastName} ${teacher.firstName} ${teacher.middleName} </option>
                     </c:forEach>
                 </select>
                 <span class="help-inline"><form:errors path="number"/></span>

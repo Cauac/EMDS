@@ -8,11 +8,14 @@ import by.vsu.emdsproject.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -23,6 +26,15 @@ public class TeachersController {
     private UserService userService;
     @Autowired
     private TeacherService teacherService;
+
+    @ModelAttribute("teacher")
+    public Teacher getTeacher(Long id) {
+        if (id != null) {
+            return teacherService.read(id);
+        } else {
+            return new Teacher();
+        }
+    }
 
     @RequestMapping("")
     public ModelAndView teachers() {
@@ -53,9 +65,9 @@ public class TeachersController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editTeacher(String id, String rank) {
-        Teacher teacher = teacherService.read(Long.parseLong(id));
-        teacher.setRank(rank);
+    public String editTeacher(@ModelAttribute("teacher") @Valid Teacher teacher, BindingResult result) {
+//        Teacher teacher = teacherService.read(Long.parseLong(id));
+//        teacher.setRank(rank);
         teacherService.update(teacher);
         return "redirect:/teachers";
     }

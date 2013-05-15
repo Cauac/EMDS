@@ -9,7 +9,6 @@ import by.vsu.emdsproject.report.aspose.impl.ExamProtocolReport;
 import by.vsu.emdsproject.report.aspose.impl.ExamStatementReport;
 import by.vsu.emdsproject.report.aspose.impl.PersonCardReport;
 import com.aspose.words.Document;
-import org.springframework.core.io.ClassPathResource;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.logging.Level;
@@ -20,8 +19,9 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
     static {
         com.aspose.words.License wordsLicense = new com.aspose.words.License();
         try {
-            ClassPathResource resource = new ClassPathResource("../lib/Aspose.Total.Java.lic");
-            wordsLicense.setLicense(resource.getURL().getPath());
+//            ClassPathResource resource = new ClassPathResource("../lib/Aspose.Total.Java.lic");
+//            wordsLicense.setLicense(resource.getURL().getPath());
+            wordsLicense.setLicense("c:/templates/Aspose.Total.Java.lic");
         } catch (Exception e) {
             Logger.getLogger(AsposeReportGenerator.class.getName()).log(Level.SEVERE, null, e);
         }

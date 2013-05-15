@@ -1,9 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Max
-  Date: 18.04.13
-  Time: 21:05
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
