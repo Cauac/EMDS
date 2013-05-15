@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/teachers")
@@ -69,4 +70,24 @@ public class TeachersController {
         }
         return modelAndView;
     }
+
+    @RequestMapping("/chief")
+    public ModelAndView setChief() {
+        return new ModelAndView("/teachers/chief", "teachers", teacherService.list());
+    }
+
+    @RequestMapping(value = "/chief", method = RequestMethod.POST)
+    public String doSetChief(Long id) {
+        List<Teacher> teachers = teacherService.list();
+        for (Teacher teacher : teachers) {
+            if (teacher.getId() == id) {
+                teacher.setChief(true);
+            } else {
+                teacher.setChief(false);
+            }
+            teacherService.update(teacher);
+        }
+        return "redirect:/teachers";
+    }
+
 }

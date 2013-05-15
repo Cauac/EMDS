@@ -6,16 +6,18 @@ import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 // todo: students @ModelAttribute add
@@ -29,9 +31,23 @@ public class StudentsController {
     @Autowired
     private GroupService groupService;
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(EMDSGlobal.dateFormat, true));
+    }
+
     @ModelAttribute("list")
     public Integer getList() {
         return 1;
+    }
+
+    @ModelAttribute("student")
+    public Student getStudent(Long id) {
+        if (id != null) {
+            return studentService.read(id);
+        } else {
+            return new Student();
+        }
     }
 
     @RequestMapping("")
@@ -109,29 +125,26 @@ public class StudentsController {
         return modelAndView;
     }
 
-    @RequestMapping("/edit")
-    public ModelAndView editStudent(String id) {
+    @RequestMapping("/edit/{id}")
+    public ModelAndView editStudent(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("students/edit");
-        mav.addObject("student", studentService.read(Long.parseLong(id)));
+        mav.addObject("student", studentService.read(id));
         return mav;
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String doEditStudent(Student student) {
-        // todo
-        return "redirect:/students";
+    public ModelAndView doEditStudent(@ModelAttribute("student") @Valid Student student, BindingResult result) {
+        if (result.hasErrors()) {
+            return new ModelAndView("students/edit");
+        }
+        studentService.update(student);
+        return new ModelAndView("redirect:/students");
     }
 
-    @RequestMapping(value = "/remove")
-    public String removeStudent(Long id) {
+    @RequestMapping(value = "/remove/{id}")
+    public String removeStudent(@PathVariable Long id) {
         studentService.toArchive(studentService.read(id));
         return "redirect:/students";
     }
 
-    @RequestMapping(value = "/info")
-    public ModelAndView fullInfoView(String id) {
-        ModelAndView mav = new ModelAndView("/students/fullInfo");
-        mav.addObject("student", studentService.read(Long.parseLong(id)));
-        return mav;
-    }
 }

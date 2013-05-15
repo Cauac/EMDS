@@ -24,6 +24,7 @@
             <th>Логин</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         <c:forEach var="teacher" items="${teachers}">
             <tr class="tbody">
@@ -35,6 +36,7 @@
                         <c:out value="${user.login}"/>
                     </c:if>
                 </c:forEach></td>
+                <td><c:if test="${teacher.chief}"><i class="icon-flag"></i></c:if></td>
                 <td>
                     <spring:url var="editTeacher" value="/teachers/edit">
                         <spring:param name="id" value="${teacher.id}"/>
@@ -57,10 +59,14 @@
     </table>
 </c:if>
 
-<div class="offset1 span11">
+<div style="clear: both" class="center">
     <spring:url var="addTeacher" value="/teachers/add"/>
-    <a class="offset4 btn btn-primary" href="${addTeacher}">
+    <spring:url var="chief" value="/teachers/chief"/>
+    <a class="btn btn-primary" href="${addTeacher}">
         <i class="icon-plus icon-white"></i> Добавить преподавателя
+    </a>
+    <a class="btn btn-info" href="${chief}">
+        <i class="icon-flag"></i> Задать начальника кафедры
     </a>
 </div>
 

@@ -28,25 +28,19 @@
             </tr>
             <c:forEach var="student" items="${students}">
                 <tr>
-                    <spring:url var="studentInfo" value="/students/info">
-                        <spring:param name="id" value="${student.id}"/>
-                    </spring:url>
-                    <td><a href="${studentInfo}"> <c:out value="${student.lastName}"/>
+                    <spring:url var="editStudent" value="/students/edit/${student.id}"/>
+                    <td><a href="${editStudent}"> <c:out value="${student.lastName}"/>
                         <c:out value="${student.firstName}"/> <c:out value="${student.middleName}"/> </a></td>
-                    <td><c:out value="${student.group.specialty.title}"/></td>
+                    <td><c:out value="ВУС ${student.group.specialty.number}"/></td>
                     <td><c:out value="${student.group.title}"/></td>
                     <td>
-                        <spring:url var="editStudent" value="/students/edit">
-                            <spring:param name="id" value="${student.id}"/>
-                        </spring:url>
+                        <spring:url var="editStudent" value="/students/edit/${student.id}"/>
                         <a href="${editStudent}">
                             <i title="Редактировать" class="icon-edit"></i>
                         </a>
                     </td>
                     <td>
-                        <spring:url var="removeStudent" value="/students/remove">
-                            <spring:param name="id" value="${student.id}"/>
-                        </spring:url>
+                        <spring:url var="removeStudent" value="/students/remove/${student.id}"/>
                         <a onclick="return confirm('Вы действительно хотите переместить студента в архив?')"
                            href="${removeStudent}">
                             <i title="Удалить в архив" class="icon-remove"></i>

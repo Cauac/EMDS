@@ -27,7 +27,7 @@
             <div class="controls">
                 <select name="groupId" id="groupId">
                     <c:forEach var="group" items="${groups}">
-                        <option value="${group.id}">${group.title}(${group.specialty.title})</option>
+                        <option value="${group.id}">${group.title}(ВУС ${group.specialty.number})</option>
                     </c:forEach>
                 </select>
             </div>

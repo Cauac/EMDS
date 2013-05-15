@@ -14,21 +14,39 @@
 <body>
 <emds:header/>
 <emds:teacherMenu number="3"/>
-<spring:url value="/reports/personCard" var="act"/>
+<spring:url value="/reports/personCard" var="personCard"/>
 <div class="well offset3 span6">
-    <h3 class="center">"Личная карточка"</h3>
-    <h3 class="center">Параметры отчета</h3>
-    <form name="personCard" id="personCard" method="POST" action="${act}">
-        <p>Группа: </p>
-        <select id="group">
-        </select>
-        <br>
-        <p>Студент: </p>
-        <select id="student" name="student">
-        </select>
-        <br>
-        <input class="btn btn-primary" type="submit" value="Создать отчёт"/>
+
+    <h3 class="center">Личная карточка</h3>
+
+    <form name="personCard" class="form-horizontal" id="personCard" method="POST" action="${personCard}">
+
+        <div id="groupDiv" class="control-group">
+            <label class="control-label">Группа:</label>
+
+            <div class="controls">
+                <select id="group"></select>
+                <span class="help-inline"></span>
+            </div>
+        </div>
+
+        <div id="studentDiv" class="control-group">
+            <label class="control-label">Студент:</label>
+
+            <div class="controls">
+                <select id="student" name="student"></select>
+                <span class="help-inline"></span>
+            </div>
+        </div>
+
+        <div class="center">
+            <spring:url var="reports" value="/reports"/>
+            <input class="btn btn-primary" type="submit" value="Создать отчет"/>
+            <a class="btn" href="${reports}"> Отмена </a>
+        </div>
+
     </form>
+
 </div>
 
 <%-- ajax --%>

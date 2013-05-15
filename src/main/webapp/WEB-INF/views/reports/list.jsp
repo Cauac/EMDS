@@ -12,7 +12,7 @@
 <body>
 <mytags:header/>
 <mytags:teacherMenu number="3"/>
-<div class="well offset1 span10">
+<div class="well offset3 span6">
     <h3 class="center">Создать отчет</h3>
     <ul class="nav nav-tabs nav-stacked">
         <li>

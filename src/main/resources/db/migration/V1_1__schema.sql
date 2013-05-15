@@ -24,8 +24,9 @@ CREATE TABLE address (
 );
 
 CREATE TABLE specialty (
-  id    SERIAL,
-  title VARCHAR(300) NOT NULL,
+  id          SERIAL,
+  number      VARCHAR(10)  NOT NULL,
+  description VARCHAR(200) NOT NULL,
   CONSTRAINT PK_SPECIALTY PRIMARY KEY ("id")
 );
 
@@ -92,6 +93,7 @@ CREATE TABLE teacher (
   last_name   VARCHAR(50) NOT NULL,
   middle_name VARCHAR(50) NOT NULL,
   rank        VARCHAR(20),
+  ischief     BOOLEAN DEFAULT FALSE,
   CONSTRAINT PK_TEACHER PRIMARY KEY ("id")
 );
 

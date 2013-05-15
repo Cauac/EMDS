@@ -9,12 +9,22 @@ import javax.persistence.Table;
 public class Teacher extends Person {
 
     private String rank;
+    private Boolean isChief;
 
     public Teacher() {
     }
 
     public Teacher(String firstName, String lastName, String middleName) {
         super(firstName, lastName, middleName);
+    }
+
+    @Column(name = "ischief")
+    public Boolean getChief() {
+        return isChief;
+    }
+
+    public void setChief(Boolean chief) {
+        isChief = chief;
     }
 
     @Column(name = "rank", length = 20)

@@ -12,7 +12,10 @@ import by.vsu.emdsproject.service.UserService;
 import by.vsu.emdsproject.web.form.PersonCardForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -78,12 +81,12 @@ public class ReportsController {
     @RequestMapping(value = "examStatement", method = RequestMethod.POST)
     public ModelAndView reportExamStatementDo(HttpServletResponse response, @ModelAttribute("group") Group group) {
         ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-        generator.generateExamStatementReport(group, response);
+        generator.generateExamStatementReport(group, teacherService.getChief(), response);
         return null;
     }
 
     @RequestMapping(value = "examProtocol", method = RequestMethod.POST)
-    public ModelAndView reportExamProtocolDo(HttpServletResponse response, @ModelAttribute("group") Group group,  @RequestParam("member") String[] param) {
+    public ModelAndView reportExamProtocolDo(HttpServletResponse response, @ModelAttribute("group") Group group, @RequestParam("member") String[] param) {
         ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
         generator.generateExamProtocolReport(group, param, response);
         return null;

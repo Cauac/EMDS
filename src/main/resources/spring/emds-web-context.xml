@@ -26,6 +26,13 @@
             id="messageSource" p:basenames="messages"
             p:fallbackToSystemLocale="false"/>
 
+    <mvc:interceptors>
+        <bean
+                class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
+            <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        </bean>
+    </mvc:interceptors>
+
     <!--<mvc:view-controller path="/login" />-->
     <!--<mvc:view-controller path="/" view-name="" />-->
     <!--<mvc:view-controller path="/uncaughtException" />-->

@@ -38,7 +38,7 @@
             <form:label path="title" cssClass="control-label">Специальность:</form:label>
             <div class="controls">
                 <form:select path="specialty">
-                    <form:options items="${specialties}" itemValue="id" itemLabel="title"/>
+                    <form:options items="${specialties}" itemValue="id" itemLabel="number"/>
                 </form:select>
             </div>
         </div>

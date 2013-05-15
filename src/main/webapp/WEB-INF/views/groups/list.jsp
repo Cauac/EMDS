@@ -26,7 +26,7 @@
         <c:forEach var="group" items="${groups}">
             <tr class="tbody">
                 <td><c:out value="${group.title}"/></td>
-                <td><c:out value="${group.specialty.title}"/></td>
+                <td><c:out value="ВУС ${group.specialty.number}"/></td>
                 <td>
                     <spring:url var="editGroup" value="/groups/edit">
                         <spring:param name="id" value="${group.id}"/>

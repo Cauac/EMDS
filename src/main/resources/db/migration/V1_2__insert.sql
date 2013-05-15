@@ -5,10 +5,10 @@ DELETE FROM roles;
 DELETE FROM study_group;
 DELETE FROM specialty;
 
-INSERT INTO public.specialty (id, title) VALUES (0, 'Мотострелки');
-INSERT INTO public.specialty (id, title) VALUES (1, 'Саперы');
-INSERT INTO public.specialty (id, title) VALUES (2, 'Артиллеристы');
-INSERT INTO public.specialty (id, title) VALUES (3, 'Разведчики');
+INSERT INTO public.specialty (id, number, description) VALUES (0, '030404', 'Боевое применение подразделений, частей и соединений противотанковой артиллерии');
+INSERT INTO public.specialty (id, number, description) VALUES (1, '634377', 'Боевое применение подразделений, частей и соединений ствольной артиллерии');
+INSERT INTO public.specialty (id, number, description) VALUES (2, '946474', 'Командир расчета МТ12');
+INSERT INTO public.specialty (id, number, description) VALUES (3, '734654', 'Боевое применение буссоли');
 ALTER SEQUENCE public.specialty_id_seq RESTART WITH 4;
 
 INSERT INTO public.study_group (id, title, specialty_id) VALUES (0, 'М1', 0);

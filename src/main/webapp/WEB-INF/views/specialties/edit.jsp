@@ -9,7 +9,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <mytags:style/>
-    <title>ВК ВГУ :: ${specialty.title}</title>
+    <title>ВК ВГУ :: ${specialty.number}</title>
 </head>
 <body>
 <mytags:header/>
@@ -21,11 +21,21 @@
 
         <form:hidden path="id"/>
 
-        <div id="nameDiv" class="control-group <spring:hasBindErrors name="specialty">error</spring:hasBindErrors>">
-            <form:label path="title" cssClass="control-label">Название:</form:label>
+        <div id="nameDiv"
+             class="control-group <spring:hasBindErrors name="specialty.number">error</spring:hasBindErrors>">
+            <form:label path="number" cssClass="control-label">ВУС:</form:label>
             <div class="controls">
-                <form:input path="title"/>
-                <span class="help-inline"><form:errors path="title"/></span>
+                <form:input path="number"/>
+                <span class="help-inline"><form:errors path="number"/></span>
+            </div>
+        </div>
+
+        <div id="nameDiv"
+             class="control-group <spring:hasBindErrors name="specialty.description">error</spring:hasBindErrors>">
+            <form:label path="description" cssClass="control-label">Описание:</form:label>
+            <div class="controls">
+                <form:input path="description"/>
+                <span class="help-inline"><form:errors path="description"/></span>
             </div>
         </div>
 

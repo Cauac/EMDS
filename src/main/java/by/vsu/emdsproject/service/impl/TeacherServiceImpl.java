@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
     private TeacherRepository teacherRepository;
 
-    @Transactional
     public Teacher add(Teacher teacher) {
         return teacherRepository.save(teacher);
     }
@@ -30,18 +30,20 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherRepository.findOne(id);
     }
 
-    @Transactional
     public void remove(Long id) {
         teacherRepository.delete(id);
     }
 
-    @Transactional
     public void remove(Teacher teacher) {
         teacherRepository.delete(teacher);
     }
 
-    @Transactional
     public Teacher update(Teacher entity) {
         return teacherRepository.save(entity);
+    }
+
+    @Override
+    public Teacher getChief() {
+        return teacherRepository.findByChief(true).get(0);
     }
 }

@@ -17,6 +17,7 @@
 <spring:url value="/documents/questionnaire" var="documentURL"/>
 
 <form:form action="${documentURL}" method="post" cssClass="form-horizontal" modelAttribute="abiturient">
+
 <form:hidden path="id"/>
 <div class="well offset1 span11">
 
@@ -26,31 +27,35 @@
 
 <div class="span5">
 
-    <div id="dobDiv"
-         class="control-group ${requestScope['org.springframework.validation.BindingResult.student'].hasFieldErrors('birthDate') ? 'error' : ''}">
-        <form:label path="birthDate" cssClass="control-label">Дата рождения:</form:label>
-        <div class="controls">
-            <form:input placeholder="ДД.ММ.ГГГГ" path="birthDate" cssErrorClass="error"/>
-            <span class="help-inline"><form:errors path="birthDate"/></span>
+    <spring:bind path="abiturient.birthDate">
+        <div id="dobDiv" class="control-group${(not empty status.errorMessage) ? ' error':''}">
+            <form:label path="birthDate" cssClass="control-label">Дата рождения:</form:label>
+            <div class="controls">
+                <form:input placeholder="ДД.ММ.ГГГГ" path="birthDate" cssErrorClass="error"/>
+                <span class="help-inline"><form:errors path="birthDate"/></span>
+            </div>
         </div>
-    </div>
+    </spring:bind>
 
-    <div id="nationalityDiv" class="control-group">
-        <form:label path="questionnaire.nationality" cssClass="control-label">Национальность:</form:label>
-        <div class="controls">
-            <form:input path="questionnaire.nationality"/>
-            <span class="help-inline"><form:errors path="questionnaire.nationality"/></span>
+    <spring:bind path="abiturient.questionnaire.nationality">
+        <div id="nationalityDiv" class="control-group${(not empty status.errorMessage) ? ' error':''}">
+            <form:label path="questionnaire.nationality" cssClass="control-label">Национальность:</form:label>
+            <div class="controls">
+                <form:input path="questionnaire.nationality"/>
+                <span class="help-inline"><form:errors path="questionnaire.nationality"/></span>
+            </div>
         </div>
-    </div>
+    </spring:bind>
 
-    <div id="placeOBDiv"
-         class="control-group ${requestScope['org.springframework.validation.BindingResult.questionnaire'].hasFieldErrors('birthPlace') ? 'error' : ''}">
-        <form:label path="questionnaire.birthPlace" cssClass="control-label">Место рождения:</form:label>
-        <div class="controls">
-            <form:input path="questionnaire.birthPlace"/>
-            <span class="help-inline"><form:errors path="questionnaire.birthPlace"/></span>
+    <spring:bind path="abiturient.questionnaire.birthPlace">
+        <div id="placeOBDiv" class="control-group${(not empty status.errorMessage) ? ' error':''}">
+            <form:label path="questionnaire.birthPlace" cssClass="control-label">Место рождения:</form:label>
+            <div class="controls">
+                <form:input path="questionnaire.birthPlace"/>
+                <span class="help-inline"><form:errors path="questionnaire.birthPlace"/></span>
+            </div>
         </div>
-    </div>
+    </spring:bind>
 
     <div id="familyDiv" class="control-group">
         <form:label path="questionnaire.familyStatus" cssClass="control-label">Семейное положение:</form:label>

@@ -17,15 +17,17 @@
 <br>
 
 <c:if test="${fn:length(specialties) gt 0}">
-    <table class="table table-condensed offset3 span7">
+    <table class="table table-condensed offset2 span9">
         <tr class="thead">
-            <th>Специальность</th>
+            <th>ВУС</th>
+            <th>Описание</th>
             <th></th>
             <th></th>
         </tr>
         <c:forEach var="spec" items="${specialties}">
             <tr class="tbody">
-                <td><c:out value="${spec.title}"/></td>
+                <td><c:out value="${spec.number}"/></td>
+                <td><c:out value="${spec.description}"/></td>
                 <td>
                     <spring:url var="editSpeciality" value="/specialties/edit">
                         <spring:param name="id" value="${spec.id}"/>

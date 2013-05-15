@@ -14,18 +14,32 @@
 <body>
 <emds:header/>
 <emds:teacherMenu number="3"/>
-<spring:url value="/reports/examStatement" var="act"/>
+<spring:url value="/reports/examStatement" var="statement"/>
 <div class="well offset3 span6">
-    <h3 class="center">"Зачетно-экзаменационная ведомость"</h3>
-    <h3 class="center">Параметры отчета</h3>
-    <form name="examStatement" id="examStatement" method="POST" action="${act}">
-        <p>Группа: </p>
-        <select name="group" id="group">
-            <c:forEach var="gr" items="${groups}">
-                <option value="${gr.id}">${gr.title}</option>
-            </c:forEach>
-        </select>
-        <br>
-        <input class="btn btn-primary" type="submit" value="Создать отчёт"/>
+
+    <h3 class="center">Зачетно-экзаменационная ведомость</h3>
+
+    <form name="examStatement" class="form-horizontal" id="examStatement" method="POST" action="${statement}">
+
+        <div id="groupDiv" class="control-group">
+            <label class="control-label">Группа:</label>
+
+            <div class="controls">
+                <select id="group" name="group">
+                    <c:forEach var="group" items="${groups}">
+                        <option value="${group.id}">${group.title}</option>
+                    </c:forEach>
+                </select>
+                <span class="help-inline"></span>
+            </div>
+        </div>
+
+        <div class="center">
+            <spring:url var="reports" value="/reports"/>
+            <input class="btn btn-primary" type="submit" value="Создать отчет"/>
+            <a class="btn" href="${reports}"> Отмена </a>
+        </div>
+
     </form>
+
 </div>
