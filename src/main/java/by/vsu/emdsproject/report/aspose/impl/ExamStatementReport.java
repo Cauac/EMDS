@@ -27,6 +27,7 @@ public class ExamStatementReport extends AsposeReport {
     public static Pattern GROUP_NAME = Pattern.compile("<groupName>");
     public static Pattern NUMBER = Pattern.compile("<n>");
     public static Pattern FIO = Pattern.compile("<fio>");
+    public static Pattern TEACHER_FIO = Pattern.compile("<teacherFio>");
     public static Pattern CHIEF = Pattern.compile("<chief>");
 
     public ExamStatementReport(Group group, Teacher chief, List<Teacher> teacherList) {
@@ -48,7 +49,7 @@ public class ExamStatementReport extends AsposeReport {
             teachers += ReportUtil.getFullFIO(t) + ", ";
         }
         teachers.substring(0, teachers.length() - 2);
-        document.getRange().replace(FIO, teachers);
+        document.getRange().replace(TEACHER_FIO, teachers);
         Table table = (Table) document.getChild(NodeType.TABLE, 0, true);
         Row lastRow = table.getLastRow();
         Integer number = 1;
