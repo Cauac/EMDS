@@ -2,6 +2,7 @@ package by.vsu.emdsproject.report.aspose;
 
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
+import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.report.ReportGenerator;
 import by.vsu.emdsproject.report.aspose.impl.AllowedListReport;
 import by.vsu.emdsproject.report.aspose.impl.ExamProtocolReport;
@@ -43,8 +44,8 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
     }
 
     @Override
-    public void generateExamStatementReport(Group group, HttpServletResponse response) {
-        generateReport(new ExamStatementReport(group), response);
+    public void generateExamStatementReport(Group group, Teacher chief, HttpServletResponse response) {
+        generateReport(new ExamStatementReport(group, chief), response);
     }
 
     @Override
