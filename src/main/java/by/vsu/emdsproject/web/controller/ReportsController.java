@@ -58,9 +58,9 @@ public class ReportsController {
     }
 
     @RequestMapping(value = "personCard", method = RequestMethod.POST)
-    public ModelAndView reportPersonCardDo(HttpServletResponse response, @ModelAttribute("student") Student student) {
+    public ModelAndView reportPersonCardDo(HttpServletResponse response, PersonCardForm personCardForm) {
         ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-        generator.generatePersonCardReport(student, response);
+//        generator.generatePersonCardReport(student, response);
         return null;
     }
 
