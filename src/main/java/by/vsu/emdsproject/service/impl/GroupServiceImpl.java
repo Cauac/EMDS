@@ -10,18 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Service("groupService")
+@Transactional
 public class GroupServiceImpl implements GroupService {
 
     @Autowired
     private GroupRepository groupRepository;
 
-    @Transactional
     public Group add(Group group) {
         return groupRepository.save(group);
     }
 
-    @Transactional
     public Group update(Group group) {
         return groupRepository.save(group);
     }
@@ -36,17 +35,16 @@ public class GroupServiceImpl implements GroupService {
         return groupRepository.findOne(id);
     }
 
-    @Transactional
     public void remove(Long id) {
         groupRepository.delete(id);
     }
 
-    @Transactional
     public void remove(Group group) {
         groupRepository.delete(group);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Group> findBySpecialty(Specialty specialty) {
         return groupRepository.findBySpecialty(specialty);
     }

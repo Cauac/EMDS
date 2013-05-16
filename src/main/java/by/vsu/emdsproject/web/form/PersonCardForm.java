@@ -3,12 +3,14 @@ package by.vsu.emdsproject.web.form;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 
+import java.io.Serializable;
+
 /**
  * @author Max
  *         Date: 04.05.13
  *         Time: 22:27
  */
-public class PersonCardForm {
+public class PersonCardForm implements Serializable {
 
     private Group group;
     private Student student;
@@ -28,4 +30,5 @@ public class PersonCardForm {
     public void setStudent(Student student) {
         this.student = student;
     }
+
 }

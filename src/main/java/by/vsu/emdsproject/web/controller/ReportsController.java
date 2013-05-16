@@ -9,12 +9,12 @@ import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.TeacherService;
 import by.vsu.emdsproject.web.form.PersonCardForm;
+import by.vsu.emdsproject.web.propertyeditor.GroupEditor;
+import by.vsu.emdsproject.web.propertyeditor.StudentEditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +31,9 @@ public class ReportsController {
     private GroupService groupService;
     @Autowired
     private TeacherService teacherService;
+
+//    @Autowired
+//    private ConversionService conversionService;
 
     @ModelAttribute("student")
     public Student getStudent(Long student) {
@@ -52,13 +55,36 @@ public class ReportsController {
         }
     }
 
+    @InitBinder("personCardForm")
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Student.class, "student", new StudentEditor(studentService));
+        binder.registerCustomEditor(Group.class, "group", new GroupEditor(groupService));
+    }
+
+//    @InitBinder("personCardForm")
+//    public void initBinder(WebDataBinder binder) {
+//        binder.setConversionService(conversionService);
+//    }
+
+//    @ModelAttribute("personCardForm")
+//    public PersonCardForm getPersonCardForm(Long student, Long group) {
+//        PersonCardForm form = new PersonCardForm();
+//        if (student != null) {
+//            form.setStudent(studentService.read(student));
+//        }
+//        if (group != null) {
+//            form.setGroup(groupService.read(group));
+//        }
+//        return form;
+//    }
+
     @RequestMapping("")
     public ModelAndView reportsPage() {
         return new ModelAndView("/reports/list");
     }
 
     @RequestMapping(value = "personCard", method = RequestMethod.POST)
-    public ModelAndView reportPersonCardDo(HttpServletResponse response, PersonCardForm personCardForm) {
+    public ModelAndView reportPersonCardDo(PersonCardForm personCardForm, HttpServletResponse response) {
         ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
 //        generator.generatePersonCardReport(student, response);
         return null;
@@ -71,7 +97,7 @@ public class ReportsController {
         for (Long id : param) {
             teachers.add(teacherService.read(id));
         }
-        generator.generateExamStatementReport(group, teacherService.getChief(),teachers, response);
+        generator.generateExamStatementReport(group, teacherService.getChief(), teachers, response);
         return null;
     }
 

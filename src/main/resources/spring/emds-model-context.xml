@@ -53,4 +53,19 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
+    <bean id="conversionService"
+          class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean id="studentConverter" class="by.vsu.emdsproject.model.convertion.StudentConverter">
+                    <constructor-arg ref="studentService"/>
+                </bean>
+
+                <bean id="groupConverter" class="by.vsu.emdsproject.model.convertion.GroupConverter">
+                    <constructor-arg ref="groupService"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
 </beans>

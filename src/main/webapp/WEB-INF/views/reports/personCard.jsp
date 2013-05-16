@@ -19,13 +19,13 @@
 
     <h3 class="center">Личная карточка</h3>
 
-    <form:form class="form-horizontal" method="POST" action="${personCard}" modelAttribute="personCardForm">
+    <form:form class="form-horizontal" method="post" action="${personCard}" modelAttribute="personCardForm">
 
         <div id="groupDiv" class="control-group">
             <label class="control-label">Группа:</label>
 
             <div class="controls">
-                <form:select id="group" path="group"></form:select>
+                <form:select path="group"/>
                 <span class="help-inline"></span>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <label class="control-label">Студент:</label>
 
             <div class="controls">
-                <form:select id="student" path="student"></form:select>
+                <form:select path="student"/>
                 <span class="help-inline"></span>
             </div>
         </div>

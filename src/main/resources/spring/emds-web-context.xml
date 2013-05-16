@@ -11,7 +11,7 @@
     <import resource="classpath:spring/emds-security-context.xml"/>
     <import resource="classpath:spring/emds-reports-context.xml"/>
 
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="conversionService"/>
     <mvc:resources location="/resources/" mapping="/resources/**"/>
     <context:component-scan base-package="by.vsu.emdsproject.*"/>
 
