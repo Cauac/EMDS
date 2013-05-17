@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  *         Time: 21:24
  */
 @Component
-public class SpecialtyConverter implements Converter<Long, Specialty> {
+public class SpecialtyConverter implements Converter<String, Specialty> {
 
     @Autowired
     private SpecialtyService specialtyService;
@@ -25,7 +25,15 @@ public class SpecialtyConverter implements Converter<Long, Specialty> {
     }
 
     @Override
-    public Specialty convert(Long id) {
-        return specialtyService.read(id);
+    public Specialty convert(String id) {
+        if (id != null) {
+            try {
+                return specialtyService.read(Long.parseLong(id));
+            } catch (NumberFormatException e) {
+                return new Specialty();
+            }
+        } else {
+            return new Specialty();
+        }
     }
 }

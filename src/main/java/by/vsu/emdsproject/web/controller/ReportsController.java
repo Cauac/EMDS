@@ -9,6 +9,7 @@ import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.TeacherService;
+import by.vsu.emdsproject.web.form.AbstractReportForm;
 import by.vsu.emdsproject.web.form.PersonCardForm;
 import by.vsu.emdsproject.web.propertyeditor.GroupEditor;
 import by.vsu.emdsproject.web.propertyeditor.StudentEditor;
@@ -67,7 +68,7 @@ public class ReportsController {
     }
 
     @RequestMapping(value = "personCard", method = RequestMethod.POST)
-    public ModelAndView reportPersonCardDo(PersonCardForm personCardForm, HttpServletResponse response) {
+    public ModelAndView reportPersonCardDo(AbstractReportForm personCardForm, HttpServletResponse response) {
         ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
         AbstractReportDataSource dataSource = personCardForm.getReportDataSource();
         Map parameters = personCardForm.getReportDataMap();

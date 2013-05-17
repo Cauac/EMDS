@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  *         Time: 22:01
  */
 @Component
-public class GroupConverter implements Converter<Long, Group> {
+public class GroupConverter implements Converter<String, Group> {
 
     @Autowired
     private GroupService groupService;
@@ -25,7 +25,15 @@ public class GroupConverter implements Converter<Long, Group> {
     }
 
     @Override
-    public Group convert(Long aLong) {
-        return groupService.read(aLong);
+    public Group convert(String id) {
+        if (id != null) {
+            try {
+                return groupService.read(Long.parseLong(id));
+            } catch (NumberFormatException e) {
+                return new Group();
+            }
+        } else {
+            return new Group();
+        }
     }
 }
