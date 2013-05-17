@@ -26,6 +26,6 @@ public class GroupConverter implements Converter<Long, Group> {
 
     @Override
     public Group convert(Long aLong) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return groupService.read(aLong);
     }
 }

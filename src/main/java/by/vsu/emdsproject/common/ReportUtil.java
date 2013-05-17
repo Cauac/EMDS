@@ -2,6 +2,8 @@ package by.vsu.emdsproject.common;
 
 import by.vsu.emdsproject.model.Person;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +46,11 @@ public class ReportUtil {
                 + p.getMiddleName().charAt(0) + ". "
                 + p.getLastName();
         return result;
+    }
+
+    public static String getYearInString(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        return sdf.format(date);
     }
 
 }

@@ -1,13 +1,12 @@
 package by.vsu.emdsproject.report.aspose;
 
 import by.vsu.emdsproject.model.Group;
-import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.report.ReportGenerator;
 import by.vsu.emdsproject.report.aspose.impl.AllowedListReport;
 import by.vsu.emdsproject.report.aspose.impl.ExamProtocolReport;
 import by.vsu.emdsproject.report.aspose.impl.ExamStatementReport;
-import by.vsu.emdsproject.report.aspose.impl.PersonCardReport;
+import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import com.aspose.words.Document;
 import org.springframework.core.io.ClassPathResource;
 
@@ -40,12 +39,7 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
     }
 
     @Override
-    public void generatePersonCardReport(Student student, HttpServletResponse response) {
-        generateReport(new PersonCardReport(student), response);
-    }
-
-    @Override
-    public void generateExamStatementReport(Group group, Teacher chief,List<Teacher> teachers, HttpServletResponse response) {
+    public void generateExamStatementReport(Group group, Teacher chief, List<Teacher> teachers, HttpServletResponse response) {
         generateReport(new ExamStatementReport(group, chief, teachers), response);
     }
 
@@ -57,5 +51,10 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
     @Override
     public void generateAllowedListReport(Group group, Teacher chief, HttpServletResponse response) {
         generateReport(new AllowedListReport(group, chief), response);
+    }
+
+    @Override
+    public void generate(AbstractReportDataSource dataSource, HttpServletResponse response) {
+        generateReport(ReportFactory.getReport(dataSource), response);
     }
 }

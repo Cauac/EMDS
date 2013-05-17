@@ -8,5 +8,4 @@
           class="by.vsu.emdsproject.report.aspose.impl.AsposeDocxReportGenerator"/>
     <bean id="pdfReportGenerator"
           class="by.vsu.emdsproject.report.jasper.JasperReportPdfGenerator"/>
-
 </beans>

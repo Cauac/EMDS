@@ -5,6 +5,7 @@ import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.report.ReportGenerator;
 import by.vsu.emdsproject.report.ReportGeneratorFactory;
+import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.TeacherService;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/reports")
@@ -31,9 +34,6 @@ public class ReportsController {
     private GroupService groupService;
     @Autowired
     private TeacherService teacherService;
-
-//    @Autowired
-//    private ConversionService conversionService;
 
     @ModelAttribute("student")
     public Student getStudent(Long student) {
@@ -61,23 +61,6 @@ public class ReportsController {
         binder.registerCustomEditor(Group.class, "group", new GroupEditor(groupService));
     }
 
-//    @InitBinder("personCardForm")
-//    public void initBinder(WebDataBinder binder) {
-//        binder.setConversionService(conversionService);
-//    }
-
-//    @ModelAttribute("personCardForm")
-//    public PersonCardForm getPersonCardForm(Long student, Long group) {
-//        PersonCardForm form = new PersonCardForm();
-//        if (student != null) {
-//            form.setStudent(studentService.read(student));
-//        }
-//        if (group != null) {
-//            form.setGroup(groupService.read(group));
-//        }
-//        return form;
-//    }
-
     @RequestMapping("")
     public ModelAndView reportsPage() {
         return new ModelAndView("/reports/list");
@@ -86,12 +69,15 @@ public class ReportsController {
     @RequestMapping(value = "personCard", method = RequestMethod.POST)
     public ModelAndView reportPersonCardDo(PersonCardForm personCardForm, HttpServletResponse response) {
         ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-//        generator.generatePersonCardReport(student, response);
+        AbstractReportDataSource dataSource = personCardForm.getReportDataSource();
+        Map parameters = personCardForm.getReportDataMap();
+        dataSource.init(parameters);
+        generator.generate(dataSource, response);
         return null;
     }
 
     @RequestMapping(value = "examStatement", method = RequestMethod.POST)
-    public ModelAndView reportExamStatementDo(HttpServletResponse response, @ModelAttribute("group") Group group, @RequestParam("teacher") Long[] param) {
+    public ModelAndView reportExamStatementDo(HttpServletResponse response, HttpServletRequest request, @ModelAttribute("group") Group group, @RequestParam("teacher") Long[] param) {
         ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
         List<Teacher> teachers = new ArrayList<Teacher>();
         for (Long id : param) {

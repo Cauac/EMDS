@@ -10,6 +10,7 @@
     <import resource="classpath:spring/emds-model-context.xml"/>
     <import resource="classpath:spring/emds-security-context.xml"/>
     <import resource="classpath:spring/emds-reports-context.xml"/>
+    <import resource="classpath:spring/aspose-report-context.xml"/>
 
     <mvc:annotation-driven conversion-service="conversionService"/>
     <mvc:resources location="/resources/" mapping="/resources/**"/>
@@ -32,12 +33,5 @@
             <property name="entityManagerFactory" ref="entityManagerFactory"/>
         </bean>
     </mvc:interceptors>
-
-    <!--<mvc:view-controller path="/login" />-->
-    <!--<mvc:view-controller path="/" view-name="" />-->
-    <!--<mvc:view-controller path="/uncaughtException" />-->
-    <!--<mvc:view-controller path="/resourceNotFound" />-->
-    <!--<mvc:view-controller path="/dataAccessFailure" />-->
-    <!--<mvc:view-controller path="/accessDenied" />-->
 
 </beans>
