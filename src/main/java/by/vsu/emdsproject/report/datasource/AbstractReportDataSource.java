@@ -1,5 +1,7 @@
 package by.vsu.emdsproject.report.datasource;
 
+import by.vsu.emdsproject.exception.EMDSException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,7 +68,7 @@ public abstract class AbstractReportDataSource {
             initializeParameters(parameters);
             initializeReportData(parameters);
         } catch (Exception e) {
-            // TODO обработать ошибку инициализации данных отчета
+            throw new EMDSException("Ошибка инициализации данных отчета");
         }
     }
 

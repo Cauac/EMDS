@@ -1,10 +1,13 @@
 package by.vsu.emdsproject.report.aspose;
 
+import by.vsu.emdsproject.exception.EMDSException;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import com.aspose.words.Document;
+import com.aspose.words.Range;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public abstract class AsposeReport {
@@ -16,9 +19,17 @@ public abstract class AsposeReport {
             ClassPathResource resource = new ClassPathResource("../reports/" + filename);
             return resource.getURL().getPath();
         } catch (IOException e) {
-//           TODO выбросить ошибку не найден шаблон отчета и корректно её обработать
+            throw new EMDSException("Не найден шаблон отчета " + filename + ". Проверте папку с шаблонами отчетов.");
         }
-        return "";
+    }
+
+    protected void replaceParametersInDocument(Document document) throws Exception {
+        Range range = document.getRange();
+        HashMap<String, String> params = getDataSource().getParameters();
+        for (String paramName : params.keySet()) {
+            Pattern pattern = getPattern(paramName);
+            range.replace(pattern, params.get(paramName));
+        }
     }
 
     public Pattern getPattern(String parameterName) {

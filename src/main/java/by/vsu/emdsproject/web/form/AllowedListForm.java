@@ -2,14 +2,11 @@ package by.vsu.emdsproject.web.form;
 
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
+import by.vsu.emdsproject.report.datasource.AllowedListDS;
 
+import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Max
- *         Date: 18.05.13
- *         Time: 13:13
- */
 public class AllowedListForm extends AbstractReportForm {
 
     private Group group;
@@ -24,12 +21,14 @@ public class AllowedListForm extends AbstractReportForm {
 
     @Override
     public Map getReportDataMap() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        Map map = new HashMap();
+        map.put(AllowedListDS.DataSourceParameter.GROUP, group);
+        return map;
     }
 
     @Override
     public AbstractReportDataSource getReportDataSource() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        AbstractReportDataSource ds = new AllowedListDS();
+        return ds;
     }
-
 }

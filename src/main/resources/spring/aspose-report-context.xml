@@ -4,4 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="personCard"
           class="by.vsu.emdsproject.report.aspose.impl.PersonCardReport"/>
+    <bean id="allowedList"
+          class="by.vsu.emdsproject.report.aspose.impl.AllowedListReport"/>
+    <!--<bean id="examStatement"-->
+          <!--class="by.vsu.emdsproject.report.aspose.impl.ExamStatementReport"/>-->
+    <!--<bean id="examProtocol"-->
+          <!--class="by.vsu.emdsproject.report.aspose.impl.ExamProtocolReport"/>-->
 </beans>

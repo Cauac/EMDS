@@ -11,9 +11,9 @@ public interface ReportGenerator {
 
     public void generate(AbstractReportDataSource datasource, HttpServletResponse response);
 
-    public void generateExamStatementReport(Group group, Teacher chief, List<Teacher> teachers, HttpServletResponse response);
-
-    public void generateExamProtocolReport(Group group, String[] members, HttpServletResponse response);
-
-    public void generateAllowedListReport(Group group, Teacher chief, HttpServletResponse response);
+//    public void generateExamStatementReport(Group group, Teacher chief, List<Teacher> teachers, HttpServletResponse response);
+//
+//    public void generateExamProtocolReport(Group group, String[] members, HttpServletResponse response);
+//
+//    public void generateAllowedListReport(Group group, Teacher chief, HttpServletResponse response);
 }
