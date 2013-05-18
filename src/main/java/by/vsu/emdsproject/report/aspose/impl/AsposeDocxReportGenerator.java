@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream;
 public class AsposeDocxReportGenerator extends AsposeReportGenerator {
 
     public static final String CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-    public static final String CONTENT_HEADER = "inline; filename=\"file.docx\"";
+    public static final String CONTENT_HEADER = "inline; filename=\"отчет.docx\"";
     public static final String CONTENT_DESCRIPTION = "Content-Disposition";
 
 

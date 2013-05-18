@@ -1,7 +1,6 @@
 package by.vsu.emdsproject.web;
 
 import by.vsu.emdsproject.web.form.AbstractReportForm;
-import by.vsu.emdsproject.web.form.PersonCardForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.convert.ConversionService;
@@ -20,6 +19,7 @@ public class ReportFormArgumentResolver implements HandlerMethodArgumentResolver
 
     @Autowired
     private ConversionService conversionService;
+    private final static String FORM_TYPE = "formType";
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
@@ -28,11 +28,11 @@ public class ReportFormArgumentResolver implements HandlerMethodArgumentResolver
 
     @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
-        PersonCardForm personCardForm = new PersonCardForm();
-        WebRequestDataBinder binder = new WebRequestDataBinder(personCardForm);
+        AbstractReportForm form = conversionService.convert(nativeWebRequest.getParameter(FORM_TYPE), AbstractReportForm.class);
+        WebRequestDataBinder binder = new WebRequestDataBinder(form);
         binder.setConversionService(conversionService);
         binder.bind(nativeWebRequest);
-        return personCardForm;
+        return form;
     }
 
 }

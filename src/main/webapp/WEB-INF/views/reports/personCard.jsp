@@ -14,12 +14,13 @@
 <body>
 <emds:header/>
 <emds:teacherMenu number="3"/>
-<spring:url value="/reports/personCard" var="personCard"/>
+<spring:url value="/reports/generateReport" var="generate"/>
 <div class="well offset3 span6">
 
     <h3 class="center">Личная карточка</h3>
+    <form:form class="form-horizontal" method="post" action="${generate}" modelAttribute="form">
 
-    <form:form class="form-horizontal" method="post" action="${personCard}" modelAttribute="personCardForm">
+        <form:hidden path="formType"/>
 
         <div id="groupDiv" class="control-group">
             <label class="control-label">Группа:</label>

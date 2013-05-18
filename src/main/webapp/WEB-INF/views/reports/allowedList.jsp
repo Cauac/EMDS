@@ -14,21 +14,21 @@
 <body>
 <emds:header/>
 <emds:teacherMenu number="3"/>
-<spring:url value="/reports/allowedList" var="allowedList"/>
+<spring:url value="/reports/generateReport" var="generate"/>
 <div class="well offset3 span6">
     <h3 class="center">Список допущенных к экзамену</h3>       <br>
 
-    <form name="examStatement" id="examStatement" class="form-horizontal" method="POST" action="${allowedList}">
+    <form:form class="form-horizontal" method="POST" action="${generate}" modelAttribute="form">
+
+        <form:hidden path="formType"/>
 
         <div id="groupDiv" class="control-group">
             <label class="control-label">Группа:</label>
 
             <div class="controls">
-                <select id="group" name="group">
-                    <c:forEach var="group" items="${groups}">
-                        <option value="${group.id}">${group.title}</option>
-                    </c:forEach>
-                </select>
+                <form:select path="group">
+                    <form:options items="${groups}" itemValue="id" itemLabel="title"/>
+                </form:select>
                 <span class="help-inline"></span>
             </div>
         </div>
@@ -39,5 +39,5 @@
             <a class="btn" href="${reports}"> Отмена </a>
         </div>
 
-    </form>
+    </form:form>
 </div>

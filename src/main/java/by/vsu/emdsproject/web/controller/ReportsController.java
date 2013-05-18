@@ -10,16 +10,20 @@ import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.TeacherService;
 import by.vsu.emdsproject.web.form.AbstractReportForm;
+import by.vsu.emdsproject.web.form.AllowedListForm;
+import by.vsu.emdsproject.web.form.ExamProtocolForm;
 import by.vsu.emdsproject.web.form.PersonCardForm;
 import by.vsu.emdsproject.web.propertyeditor.GroupEditor;
 import by.vsu.emdsproject.web.propertyeditor.StudentEditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,44 +71,12 @@ public class ReportsController {
         return new ModelAndView("/reports/list");
     }
 
-    @RequestMapping(value = "personCard", method = RequestMethod.POST)
-    public ModelAndView reportPersonCardDo(AbstractReportForm personCardForm, HttpServletResponse response) {
-        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-        AbstractReportDataSource dataSource = personCardForm.getReportDataSource();
-        Map parameters = personCardForm.getReportDataMap();
-        dataSource.init(parameters);
-        generator.generate(dataSource, response);
-        return null;
-    }
-
-    @RequestMapping(value = "examStatement", method = RequestMethod.POST)
-    public ModelAndView reportExamStatementDo(HttpServletResponse response, HttpServletRequest request, @ModelAttribute("group") Group group, @RequestParam("teacher") Long[] param) {
-        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-        List<Teacher> teachers = new ArrayList<Teacher>();
-        for (Long id : param) {
-            teachers.add(teacherService.read(id));
-        }
-        generator.generateExamStatementReport(group, teacherService.getChief(), teachers, response);
-        return null;
-    }
-
-    @RequestMapping(value = "examProtocol", method = RequestMethod.POST)
-    public ModelAndView reportExamProtocolDo(HttpServletResponse response, @ModelAttribute("group") Group group, @RequestParam("member") String[] param) {
-        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-        generator.generateExamProtocolReport(group, param, response);
-        return null;
-    }
-
-    @RequestMapping(value = "allowedList", method = RequestMethod.POST)
-    public ModelAndView reportAllowedListDo(HttpServletResponse response, @ModelAttribute("group") Group group) {
-        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-        generator.generateAllowedListReport(group, teacherService.getChief(), response);
-        return null;
-    }
 
     @RequestMapping("personCard")
     public ModelAndView personCard() {
-        return new ModelAndView("/reports/personCard", "personCardForm", new PersonCardForm());
+        ModelAndView modelAndView = new ModelAndView("/reports/personCard");
+        modelAndView.addObject("form", new PersonCardForm());
+        return modelAndView;
     }
 
     @RequestMapping("examStatement")
@@ -112,6 +84,7 @@ public class ReportsController {
         ModelAndView mav = new ModelAndView("/reports/examStatement");
         mav.addObject("groups", groupService.list());
         mav.addObject("teachers", teacherService.list());
+//        mav.addObject("formType", ExamStatementForm.class);
         return mav;
     }
 
@@ -126,14 +99,52 @@ public class ReportsController {
             result.add(t.getRank() + " " + fio);
         }
         mav.addObject("teachers", result);
+        mav.addObject("formType", ExamProtocolForm.class);
         return mav;
     }
 
     @RequestMapping("allowedList")
     public ModelAndView allowedList() {
         ModelAndView mav = new ModelAndView("/reports/allowedList");
+        mav.addObject("form", new AllowedListForm());
         mav.addObject("groups", groupService.list());
         return mav;
     }
+
+
+    @RequestMapping(value = "generateReport", method = RequestMethod.POST)
+    public ModelAndView generateReportDo(AbstractReportForm form, HttpServletResponse response) {
+        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
+        AbstractReportDataSource dataSource = form.getReportDataSource();
+        Map parameters = form.getReportDataMap();
+        dataSource.init(parameters);
+        generator.generate(dataSource, response);
+        return null;
+    }
+//
+//    @RequestMapping(value = "examStatement", method = RequestMethod.POST)
+//    public ModelAndView reportExamStatementDo(HttpServletResponse response, HttpServletRequest request, @ModelAttribute("group") Group group, @RequestParam("teacher") Long[] param) {
+//        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
+//        List<Teacher> teachers = new ArrayList<Teacher>();
+//        for (Long id : param) {
+//            teachers.add(teacherService.read(id));
+//        }
+//        generator.generateExamStatementReport(group, teacherService.getChief(), teachers, response);
+//        return null;
+//    }
+//
+//    @RequestMapping(value = "examProtocol", method = RequestMethod.POST)
+//    public ModelAndView reportExamProtocolDo(HttpServletResponse response, @ModelAttribute("group") Group group, @RequestParam("member") String[] param) {
+//        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
+//        generator.generateExamProtocolReport(group, param, response);
+//        return null;
+//    }
+//
+//    @RequestMapping(value = "allowedList", method = RequestMethod.POST)
+//    public ModelAndView reportAllowedListDo(HttpServletResponse response, @ModelAttribute("group") Group group) {
+//        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
+//        generator.generateAllowedListReport(group, teacherService.getChief(), response);
+//        return null;
+//    }
 
 }

@@ -57,13 +57,16 @@
           class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <set>
-                <bean id="studentConverter" class="by.vsu.emdsproject.model.convertion.StudentConverter">
-                    <constructor-arg ref="studentService"/>
-                </bean>
+                <bean id="studentConverter" class="by.vsu.emdsproject.model.convertion.StudentConverter"/>
+                <bean id="groupConverter" class="by.vsu.emdsproject.model.convertion.GroupConverter"/>
+                <bean id="specialtyConverter" class="by.vsu.emdsproject.model.convertion.SpecialtyConverter"/>
+                <bean id="teacherConverter" class="by.vsu.emdsproject.model.convertion.TeacherConverter"/>
+                <bean id="addressConverter" class="by.vsu.emdsproject.model.convertion.AddressConverter"/>
+                <bean id="documentConverter" class="by.vsu.emdsproject.model.convertion.DocumentConverter"/>
+                <bean id="documentInfoConverter" class="by.vsu.emdsproject.model.convertion.DocumentInfoConverter"/>
+                <bean id="questionnaireConverter" class="by.vsu.emdsproject.model.convertion.QuestionnaireConverter"/>
 
-                <bean id="groupConverter" class="by.vsu.emdsproject.model.convertion.GroupConverter">
-                    <constructor-arg ref="groupService"/>
-                </bean>
+                <bean id="reportFormConverter" class="by.vsu.emdsproject.model.convertion.ReportFormConverter"/>
             </set>
         </property>
     </bean>

@@ -6,6 +6,10 @@ import java.util.Map;
 
 public abstract class AbstractReportForm {
 
+    public String getFormType() {
+        return this.getClass().getSimpleName();
+    }
+
     public abstract Map getReportDataMap();
 
     public abstract AbstractReportDataSource getReportDataSource();
