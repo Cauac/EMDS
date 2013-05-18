@@ -6,11 +6,13 @@ import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component("allowedListDataSource")
 public class AllowedListDS extends AbstractReportDataSource {
 
     @Autowired

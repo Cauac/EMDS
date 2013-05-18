@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.web.form;
 
+import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import by.vsu.emdsproject.report.datasource.AllowedListDS;
@@ -28,7 +29,6 @@ public class AllowedListForm extends AbstractReportForm {
 
     @Override
     public AbstractReportDataSource getReportDataSource() {
-        AbstractReportDataSource ds = new AllowedListDS();
-        return ds;
+        return (AbstractReportDataSource) EMDSContext.getInstance().getFactory().getBean("allowedListDataSource");
     }
 }
