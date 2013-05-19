@@ -146,5 +146,8 @@ public class StudentServiceImpl implements StudentService {
         return true;
     }
 
-
+    @Override
+    public List<Student> getAbiturientsByFaculty(String faculty) {
+        return studentRepository.findByQuestionnaireFacultyAndType(faculty, Student.ABITURIENT);
+    }
 }

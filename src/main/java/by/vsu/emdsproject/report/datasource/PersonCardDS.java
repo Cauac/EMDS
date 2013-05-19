@@ -25,9 +25,6 @@ public class PersonCardDS extends AbstractReportDataSource {
         public static final String FACULTY = "faculty";
         public static final String EDUCATION = "education";
         public static final String DUTY = "duty";
-        public static final String EDUCATION_START = "educationStart";
-        public static final String EDUCATION_END = "educationEnd";
-        public static final String RANK = "rank";
         public static final String PARENT_ADDRESS = "parentAddress";
         public static final String ADDRESS = "address";
     }

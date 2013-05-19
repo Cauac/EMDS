@@ -22,6 +22,7 @@ public class ReportFormConverter implements Converter<String, AbstractReportForm
         forms.put(ExamProtocolForm.class.getSimpleName(), ExamProtocolForm.class);
         forms.put(ExamStatementForm.class.getSimpleName(), ExamStatementForm.class);
         forms.put(AllowedListForm.class.getSimpleName(), AllowedListForm.class);
+        forms.put(ProgressRequestForm.class.getSimpleName(), ProgressRequestForm.class);
     }
 
     @Override

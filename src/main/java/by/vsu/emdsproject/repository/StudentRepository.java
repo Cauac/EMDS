@@ -11,4 +11,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     List<Student> findByGroup(Group group);
 
+    List<Student> findByQuestionnaireFacultyAndType(String faculty, String type);
+
 }

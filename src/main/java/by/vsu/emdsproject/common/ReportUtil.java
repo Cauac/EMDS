@@ -27,6 +27,24 @@ public class ReportUtil {
         return facultyCase.get(faculty);
     }
 
+    public static String getFullFacultyName(String faculty) {
+        Map<String, String> facultyCase = new HashMap<String, String>();
+
+        facultyCase.put("Математический", "Математический факультет");
+        facultyCase.put("Физический", "Физический факультет");
+        facultyCase.put("Биологический", "Биологический факультет");
+        facultyCase.put("Физической культуры и спорта", "Факультет физической культуры и спорта");
+        facultyCase.put("Исторический", "Исторический факультет");
+        facultyCase.put("Социальной педагогики и психологии", "Факультет социальной педагогики и психологии");
+        facultyCase.put("Филологический", "Филологический факультет");
+        facultyCase.put("Белорусской филологии и культры", "Факультет белорусской филологии и культры");
+        facultyCase.put("Юридический", "Юридический факультет");
+        facultyCase.put("Художественно-графический", "Художественно-графический факультет");
+        facultyCase.put("Педагогический", "Педагогический факультет");
+
+        return facultyCase.get(faculty);
+    }
+
     public static String getFullFIO(Person p) {
         String result = p.getLastName() + " "
                 + p.getFirstName() + " "

@@ -31,6 +31,10 @@
             <spring:url var="allowedList" value="/reports/allowedList"/>
             <a href="${allowedList}">Список допущенных к экзамену</a>
         </li>
+        <li class="center">
+            <spring:url var="progressRequest" value="/reports/progressRequest"/>
+            <a href="${progressRequest}">Сведения о успеваемости студентов</a>
+        </li>
     </ul>
 </div>
 </body>

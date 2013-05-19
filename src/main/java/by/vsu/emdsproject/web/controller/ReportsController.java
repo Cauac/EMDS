@@ -108,6 +108,26 @@ public class ReportsController {
         return mav;
     }
 
+    @RequestMapping("progressRequest")
+    public ModelAndView progressRequest() {
+        ModelAndView mav = new ModelAndView("/reports/progressRequest");
+        mav.addObject("form", new ProgressRequestForm());
+        List<String> faculties = new ArrayList<String>();
+        faculties.add("Математический");
+        faculties.add("Физический");
+        faculties.add("Биологический");
+        faculties.add("Физической культуры и спорта");
+        faculties.add("Исторический");
+        faculties.add("Социальной педагогики и психологии");
+        faculties.add("Филологический");
+        faculties.add("Белорусской филологии и культры");
+        faculties.add("Юридический");
+        faculties.add("Художественно-графический");
+        faculties.add("Педагогический");
+        mav.addObject("faculties", faculties);
+        return mav;
+    }
+
 
     @RequestMapping(value = "generateReport", method = RequestMethod.POST)
     public ModelAndView generateReportDo(AbstractReportForm form, HttpServletResponse response) {

@@ -10,4 +10,6 @@
           class="by.vsu.emdsproject.report.aspose.report.ExamStatementReport"/>
     <bean id="examProtocol"
           class="by.vsu.emdsproject.report.aspose.report.ExamProtocolReport"/>
+    <bean id="progressRequest"
+          class="by.vsu.emdsproject.report.aspose.report.ProgressRequestReport"/>
 </beans>

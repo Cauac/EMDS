@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface StudentService extends AbstractService<Student> {
 
+    List<Student> getAbiturientsByFaculty(String faculty);
+
     List<Student> getAbiturients();
 
     List<Student> getJuniors();
