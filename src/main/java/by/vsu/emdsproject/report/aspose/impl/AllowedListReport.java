@@ -37,7 +37,7 @@ public class AllowedListReport extends AsposeReport {
         builder.moveTo(startList);
         startList.getRange().replace(LIST_START, "");
 
-        while (getDataSource().next()) {
+        while (dataSource.next()) {
             builder.writeln(dataSource.getFieldValue(AllowedListDS.Field.FIO).toString());
         }
 

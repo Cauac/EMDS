@@ -9,10 +9,7 @@ import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
 import by.vsu.emdsproject.service.TeacherService;
-import by.vsu.emdsproject.web.form.AbstractReportForm;
-import by.vsu.emdsproject.web.form.AllowedListForm;
-import by.vsu.emdsproject.web.form.ExamProtocolForm;
-import by.vsu.emdsproject.web.form.PersonCardForm;
+import by.vsu.emdsproject.web.form.*;
 import by.vsu.emdsproject.web.propertyeditor.GroupEditor;
 import by.vsu.emdsproject.web.propertyeditor.StudentEditor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +81,7 @@ public class ReportsController {
         ModelAndView mav = new ModelAndView("/reports/examStatement");
         mav.addObject("groups", groupService.list());
         mav.addObject("teachers", teacherService.list());
-//        mav.addObject("formType", ExamStatementForm.class);
+        mav.addObject("form", new ExamStatementForm());
         return mav;
     }
 

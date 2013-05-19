@@ -17,8 +17,8 @@ public class PersonCardDS extends AbstractReportDataSource {
 
         public static final String ADMISSION_YEAR = "admissionYear";
         public static final String FIO = "fio";
-        public static final String BIRTH_YEAR = "bithYear";
-        public static final String BIRTH_PLACE = "bithPlace";
+        public static final String BIRTH_YEAR = "birthYear";
+        public static final String BIRTH_PLACE = "birthPlace";
         public static final String RECRUIT_OFFICE = "recruitOffice";
         public static final String FACULTY = "faculty";
         public static final String EDUCATION = "education";

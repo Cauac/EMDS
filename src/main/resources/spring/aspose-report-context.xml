@@ -6,8 +6,8 @@
           class="by.vsu.emdsproject.report.aspose.impl.PersonCardReport"/>
     <bean id="allowedList"
           class="by.vsu.emdsproject.report.aspose.impl.AllowedListReport"/>
-    <!--<bean id="examStatement"-->
-          <!--class="by.vsu.emdsproject.report.aspose.impl.ExamStatementReport"/>-->
+    <bean id="examStatement"
+          class="by.vsu.emdsproject.report.aspose.impl.ExamStatementReport"/>
     <!--<bean id="examProtocol"-->
           <!--class="by.vsu.emdsproject.report.aspose.impl.ExamProtocolReport"/>-->
 </beans>

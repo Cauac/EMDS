@@ -4,11 +4,13 @@ import by.vsu.emdsproject.common.ReportUtil;
 import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.Teacher;
+import by.vsu.emdsproject.model.comparator.StudentComparator;
 import by.vsu.emdsproject.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,7 +76,9 @@ public class AllowedListDS extends AbstractReportDataSource {
         Group group = (Group) parameters.get(DataSourceParameter.GROUP);
         reportData = new ArrayList<HashMap>();
 
-        for (Student student : group.getStudents()) {
+        ArrayList<Student> students = new ArrayList<Student>(group.getStudents());
+        Collections.sort(students, new StudentComparator());
+        for (Student student : students) {
             HashMap fields = new HashMap<String, String>();
             fields.put(Field.FIO, ReportUtil.getFullFIO(student));
             reportData.add(fields);

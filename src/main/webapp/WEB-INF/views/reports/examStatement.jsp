@@ -14,22 +14,22 @@
 <body>
 <emds:header/>
 <emds:teacherMenu number="3"/>
-<spring:url value="/reports/examStatement" var="statement"/>
+<spring:url value="/reports/generateReport" var="generate"/>
 <div class="well offset3 span6">
 
     <h3 class="center">Зачетно-экзаменационная ведомость</h3>
 
-    <form name="examStatement" class="form-horizontal" id="examStatement" method="POST" action="${statement}">
+    <form:form class="form-horizontal" method="POST" action="${generate}" modelAttribute="form">
+
+        <form:hidden path="formType"/>
 
         <div id="groupDiv" class="control-group">
             <label class="control-label">Группа:</label>
 
             <div class="controls">
-                <select id="group" name="group">
-                    <c:forEach var="group" items="${groups}">
-                        <option value="${group.id}">${group.title}</option>
-                    </c:forEach>
-                </select>
+                <form:select path="group">
+                    <form:options items="${groups}" itemValue="id" itemLabel="title"/>
+                </form:select>
                 <span class="help-inline"></span>
             </div>
         </div>
@@ -38,11 +38,9 @@
             <label class="control-label">Преподаватели:</label>
 
             <div class="controls">
-                <select id="teacher" name="teacher" multiple="multiple">
-                    <c:forEach var="teacher" items="${teachers}">
-                        <option value="${teacher.id}">${teacher.rank} ${teacher.lastName}</option>
-                    </c:forEach>
-                </select>
+                <form:select path="teachers" multiple="multiple">
+                    <form:options items="${teachers}" itemValue="id" itemLabel="lastName"/>
+                </form:select>
                 <span class="help-inline"></span>
             </div>
         </div>
@@ -53,6 +51,6 @@
             <a class="btn" href="${reports}"> Отмена </a>
         </div>
 
-    </form>
+    </form:form>
 
 </div>
