@@ -17,6 +17,8 @@ import java.util.Map;
 @Component("allowedListDataSource")
 public class AllowedListDS extends AbstractReportDataSource {
 
+    String title = "Список допущенных";
+
     @Autowired
     private TeacherService teacherService;
 
@@ -47,14 +49,14 @@ public class AllowedListDS extends AbstractReportDataSource {
 
     @Override
     public String getTitle() {
-        return "Список допущенных";
+        return title;
     }
 
     @Override
     protected void initializeParameters(Map parameters) throws Exception {
         Group group = (Group) parameters.get(DataSourceParameter.GROUP);
         Teacher chief = teacherService.getChief();
-
+        title += " " + group.getTitle();
         addParameter(ReportParameter.GROUP_NAME, group.getTitle());
         addParameter(ReportParameter.VUS, group.getSpecialty().getNumber());
         addParameter(ReportParameter.PROFILE, group.getSpecialty().getDescription());

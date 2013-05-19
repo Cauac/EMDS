@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class ExamProtocolDS extends AbstractReportDataSource {
 
+    String title = "Протокол экзаменационной комиссии";
+
     public static class DataSourceParameter extends AbstractReportDataSource.DataSourceParameter {
 
         public static final String GROUP = "group";
@@ -51,7 +53,7 @@ public class ExamProtocolDS extends AbstractReportDataSource {
 
     @Override
     public String getTitle() {
-        return "Протокол экзаменационной комиссии";
+        return title;
     }
 
     @Override
@@ -69,7 +71,7 @@ public class ExamProtocolDS extends AbstractReportDataSource {
             membersRank[i] = split[0];
 
         }
-
+        title += " " + group.getTitle();
         addParameter(ReportParameter.GROUP_NAME, group.getTitle());
         addParameter(ReportParameter.VUS, group.getSpecialty().getNumber());
         addParameter(ReportParameter.PROFILE, group.getSpecialty().getDescription());

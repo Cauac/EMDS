@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class PersonCardDS extends AbstractReportDataSource {
 
+    String title = "Личная карточка";
+
     public static class DataSourceParameter extends AbstractReportDataSource.DataSourceParameter {
 
         public static final String STUDENT = "student";
@@ -37,13 +39,13 @@ public class PersonCardDS extends AbstractReportDataSource {
 
     @Override
     public String getTitle() {
-        return "Личная карточка";
+        return title;
     }
 
     @Override
     protected void initializeParameters(Map parameters) throws Exception {
         Student student = (Student) parameters.get(DataSourceParameter.STUDENT);
-
+        title += " " + ReportUtil.getFullFIO(student);
         Questionnaire questionnaire = student.getQuestionnaire();
         addParameter(ReportParameter.FIO, ReportUtil.getFullFIO(student));
         addParameter(ReportParameter.ADMISSION_YEAR, questionnaire.getAdmissionYear());

@@ -17,6 +17,8 @@ import java.util.Map;
 @Component("examStatementDataSource")
 public class ExamStatementDS extends AbstractReportDataSource {
 
+    String title = "Зачетно-экзаменационная ведомость";
+
     @Autowired
     private TeacherService teacherService;
 
@@ -47,7 +49,7 @@ public class ExamStatementDS extends AbstractReportDataSource {
 
     @Override
     public String getTitle() {
-        return "Зачетно-экзаменационная ведомость";
+        return title;
     }
 
     @Override
@@ -56,6 +58,7 @@ public class ExamStatementDS extends AbstractReportDataSource {
         Teacher[] teachers = (Teacher[]) parameters.get(DataSourceParameter.TEACHERS);
         Teacher chief = teacherService.getChief();
 
+        title += " " + group.getTitle();
         addParameter(ReportParameter.GROUP_NAME, group.getTitle());
 
         String teachersFio = "";
