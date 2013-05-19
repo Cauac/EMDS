@@ -1,6 +1,5 @@
-package by.vsu.emdsproject.report.aspose.impl;
+package by.vsu.emdsproject.report.aspose.generator;
 
-import by.vsu.emdsproject.report.aspose.AsposeReportGenerator;
 import com.aspose.words.Document;
 import com.aspose.words.SaveFormat;
 

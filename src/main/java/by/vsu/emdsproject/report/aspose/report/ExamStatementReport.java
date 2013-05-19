@@ -1,6 +1,5 @@
-package by.vsu.emdsproject.report.aspose.impl;
+package by.vsu.emdsproject.report.aspose.report;
 
-import by.vsu.emdsproject.report.aspose.AsposeReport;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import by.vsu.emdsproject.report.datasource.ExamStatementDS;
 import com.aspose.words.Document;

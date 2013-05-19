@@ -3,11 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="personCard"
-          class="by.vsu.emdsproject.report.aspose.impl.PersonCardReport"/>
+          class="by.vsu.emdsproject.report.aspose.report.PersonCardReport"/>
     <bean id="allowedList"
-          class="by.vsu.emdsproject.report.aspose.impl.AllowedListReport"/>
+          class="by.vsu.emdsproject.report.aspose.report.AllowedListReport"/>
     <bean id="examStatement"
-          class="by.vsu.emdsproject.report.aspose.impl.ExamStatementReport"/>
-    <!--<bean id="examProtocol"-->
-          <!--class="by.vsu.emdsproject.report.aspose.impl.ExamProtocolReport"/>-->
+          class="by.vsu.emdsproject.report.aspose.report.ExamStatementReport"/>
+    <bean id="examProtocol"
+          class="by.vsu.emdsproject.report.aspose.report.ExamProtocolReport"/>
 </beans>

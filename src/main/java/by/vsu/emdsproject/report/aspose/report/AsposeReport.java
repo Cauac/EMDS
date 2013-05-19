@@ -1,4 +1,4 @@
-package by.vsu.emdsproject.report.aspose;
+package by.vsu.emdsproject.report.aspose.report;
 
 import by.vsu.emdsproject.exception.EMDSException;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;

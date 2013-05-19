@@ -1,5 +1,6 @@
-package by.vsu.emdsproject.report.aspose;
+package by.vsu.emdsproject.report.aspose.report;
 
+import by.vsu.emdsproject.report.aspose.report.AsposeReport;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

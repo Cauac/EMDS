@@ -92,6 +92,10 @@ public abstract class AbstractReportDataSource {
         return reportData == null || reportData.size() == 0;
     }
 
+    public int size() {
+        return reportData.size();
+    }
+
     public boolean next() {
         return reportData != null && ++currentRowIndex < reportData.size();
     }

@@ -8,11 +8,6 @@ import by.vsu.emdsproject.report.datasource.PersonCardDS;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Max
- *         Date: 04.05.13
- *         Time: 22:27
- */
 public class PersonCardForm extends AbstractReportForm {
 
     private Group group;
@@ -43,7 +38,6 @@ public class PersonCardForm extends AbstractReportForm {
 
     @Override
     public AbstractReportDataSource getReportDataSource() {
-        AbstractReportDataSource ds = new PersonCardDS();
-        return ds;
+        return new PersonCardDS();
     }
 }

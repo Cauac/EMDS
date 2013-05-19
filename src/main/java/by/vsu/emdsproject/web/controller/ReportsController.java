@@ -96,7 +96,7 @@ public class ReportsController {
             result.add(t.getRank() + " " + fio);
         }
         mav.addObject("teachers", result);
-        mav.addObject("formType", ExamProtocolForm.class);
+        mav.addObject("form", new ExamProtocolForm());
         return mav;
     }
 
@@ -118,30 +118,4 @@ public class ReportsController {
         generator.generate(dataSource, response);
         return null;
     }
-//
-//    @RequestMapping(value = "examStatement", method = RequestMethod.POST)
-//    public ModelAndView reportExamStatementDo(HttpServletResponse response, HttpServletRequest request, @ModelAttribute("group") Group group, @RequestParam("teacher") Long[] param) {
-//        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-//        List<Teacher> teachers = new ArrayList<Teacher>();
-//        for (Long id : param) {
-//            teachers.add(teacherService.read(id));
-//        }
-//        generator.generateExamStatementReport(group, teacherService.getChief(), teachers, response);
-//        return null;
-//    }
-//
-//    @RequestMapping(value = "examProtocol", method = RequestMethod.POST)
-//    public ModelAndView reportExamProtocolDo(HttpServletResponse response, @ModelAttribute("group") Group group, @RequestParam("member") String[] param) {
-//        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-//        generator.generateExamProtocolReport(group, param, response);
-//        return null;
-//    }
-//
-//    @RequestMapping(value = "allowedList", method = RequestMethod.POST)
-//    public ModelAndView reportAllowedListDo(HttpServletResponse response, @ModelAttribute("group") Group group) {
-//        ReportGenerator generator = ReportGeneratorFactory.getDocxReportGenerator();
-//        generator.generateAllowedListReport(group, teacherService.getChief(), response);
-//        return null;
-//    }
-
 }

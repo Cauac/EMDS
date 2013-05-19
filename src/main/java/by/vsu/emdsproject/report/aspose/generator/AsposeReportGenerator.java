@@ -1,18 +1,14 @@
-package by.vsu.emdsproject.report.aspose;
+package by.vsu.emdsproject.report.aspose.generator;
 
 import by.vsu.emdsproject.exception.EMDSException;
-import by.vsu.emdsproject.model.Group;
-import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.report.ReportGenerator;
-import by.vsu.emdsproject.report.aspose.impl.AllowedListReport;
-import by.vsu.emdsproject.report.aspose.impl.ExamProtocolReport;
-import by.vsu.emdsproject.report.aspose.impl.ExamStatementReport;
+import by.vsu.emdsproject.report.aspose.report.ReportFactory;
+import by.vsu.emdsproject.report.aspose.report.AsposeReport;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import com.aspose.words.Document;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,21 +34,6 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
             throw new EMDSException("Ошибка при построении очтета");
         }
     }
-
-//    @Override
-//    public void generateExamStatementReport(Group group, Teacher chief, List<Teacher> teachers, HttpServletResponse response) {
-//        generateReport(new ExamStatementReport(group, chief, teachers), response);
-//    }
-//
-//    @Override
-//    public void generateExamProtocolReport(Group group, String[] members, HttpServletResponse response) {
-//        generateReport(new ExamProtocolReport(group, members), response);
-//    }
-
-//    @Override
-//    public void generateAllowedListReport(Group group, Teacher chief, HttpServletResponse response) {
-//        generateReport(new AllowedListReport(group, chief), response);
-//    }
 
     @Override
     public void generate(AbstractReportDataSource dataSource, HttpServletResponse response) {

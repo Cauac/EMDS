@@ -41,21 +41,21 @@
 <body>
 <emds:header/>
 <emds:teacherMenu number="3"/>
-<spring:url value="/reports/examProtocol" var="act"/>
+<spring:url value="/reports/generateReport" var="generate"/>
 <div class="well offset3 span6">
     <h3 class="center">Протокол экзаменационной комиссии</h3>     <br>
 
-    <form:form name="examStatement" cssClass="form-horizontal" id="examProtocol" method="POST" action="${act}">
+    <form:form class="form-horizontal" method="POST" action="${generate}" modelAttribute="form">
+
+        <form:hidden path="formType"/>
 
         <div id="groupDiv" class="control-group">
             <label class="control-label">Группа:</label>
 
             <div class="controls">
-                <select id="group" name="group">
-                    <c:forEach var="group" items="${groups}">
-                        <option value="${group.id}">${group.title}</option>
-                    </c:forEach>
-                </select>
+                <form:select path="group">
+                    <form:options items="${groups}" itemValue="id" itemLabel="title"/>
+                </form:select>
                 <span class="help-inline"></span>
             </div>
         </div>
@@ -71,7 +71,7 @@
                         <option value="${teacher}">${teacher}</option>
                     </c:forEach>
                 </select>
-                <input class="large" type="text" name="member"/>
+                <form:input path="members" class="large" type="text" name="member"/>
                 <span class="help-inline"></span>
             </div>
         </div>
@@ -86,7 +86,7 @@
                         <option value="${teacher}">${teacher}</option>
                     </c:forEach>
                 </select>
-                <input class="large" type="text" name="member"/>
+                <form:input path="members" class="large" type="text" name="member"/>
                 <span class="help-inline"></span>
             </div>
         </div>
@@ -102,7 +102,7 @@
                         <option value="${teacher}">${teacher}</option>
                     </c:forEach>
                 </select>
-                <input class="large" type="text" name="member"/>
+                <form:input path="members"  class="large" type="text" name="member"/>
             </div>
 
             <div class="controls select-and-input">
@@ -112,7 +112,7 @@
                         <option value="${teacher}">${teacher}</option>
                     </c:forEach>
                 </select>
-                <input class="large" type="text" name="member"/>
+                <form:input path="members" class="large" type="text" name="member"/>
             </div>
         </div>
 

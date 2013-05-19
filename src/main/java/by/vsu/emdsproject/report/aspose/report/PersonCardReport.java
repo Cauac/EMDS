@@ -1,6 +1,5 @@
-package by.vsu.emdsproject.report.aspose.impl;
+package by.vsu.emdsproject.report.aspose.report;
 
-import by.vsu.emdsproject.report.aspose.AsposeReport;
 import com.aspose.words.*;
 
 public class PersonCardReport extends AsposeReport {
