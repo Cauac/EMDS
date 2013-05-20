@@ -14,13 +14,13 @@
 <body>
 <emds:header/>
 <emds:teacherMenu number="1"/>
-<emds:studentsTabs number="2"/>
+<emds:studentsTabs number="3"/>
 
 <c:choose>
     <c:when test="${fn:length(students) gt 0}">
         <table class="table table-condensed offset2 span9">
             <tr>
-                <th>ФИО</th>
+                <th>Студент</th>
                 <th>Специальность</th>
                 <th>Группа</th>
                 <th></th>

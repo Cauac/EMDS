@@ -19,7 +19,7 @@
 <c:if test="${fn:length(teachers) gt 0}">
     <table class="table table-condensed offset1 span11">
         <tr class="thead">
-            <th>ФИО</th>
+            <th>Преподаватель</th>
             <th>Воинское звание</th>
             <th>Логин</th>
             <th></th>

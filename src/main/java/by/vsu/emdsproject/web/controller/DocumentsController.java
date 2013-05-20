@@ -177,4 +177,26 @@ public class DocumentsController {
         return "redirect:/abiturients";
     }
 
+    /*
+    *  Средний Балл
+    */
+    @RequestMapping(value = "/score")
+    private ModelAndView addScore() {
+        return new ModelAndView("documents/score");
+    }
+
+    @RequestMapping(value = "/score", method = RequestMethod.POST)
+    private String doAddScore(@Valid @ModelAttribute("abiturient") Student abiturient,
+                              BindingResult result, String commentary) {
+        if (result.hasErrors()) {
+            return "/documents/score";
+        }
+        Document document = documentService.read(Document.AVERAGE_SCORE);
+        DocumentInfo scoreInfo = abiturient.getDocuments().get(document);
+        scoreInfo.setBrought(true);
+        scoreInfo.setCommentary(commentary);
+        studentService.update(abiturient);
+        return "redirect:/abiturients";
+    }
+
 }

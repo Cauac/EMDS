@@ -52,13 +52,16 @@ public class StudentsController {
 
     @RequestMapping("")
     public String students(@ModelAttribute("list") Integer list) {
+        if (list == null) {
+            list = 1;
+        }
         switch (list) {
             case 1:
-                return "redirect:/students/junior";
-            case 2:
-                return "redirect:/students/officer";
-            case 3:
                 return "redirect:/abiturients";
+            case 2:
+                return "redirect:/students/junior";
+            case 3:
+                return "redirect:/students/officer";
             case 4:
                 return "redirect:/students/archive";
             default:
@@ -68,7 +71,7 @@ public class StudentsController {
 
     @RequestMapping("/junior")
     public ModelAndView juniors(@ModelAttribute("list") Integer list, ModelMap modelMap) {
-        modelMap.addAttribute("list", 1);
+        modelMap.addAttribute("list", 2);
         ModelAndView mav = new ModelAndView("/students/juniorList");
         mav.addObject("students", studentService.getJuniors());
         return mav;
@@ -76,7 +79,7 @@ public class StudentsController {
 
     @RequestMapping("/officer")
     public ModelAndView officers(@ModelAttribute("list") Integer list, ModelMap modelMap) {
-        modelMap.addAttribute("list", 2);
+        modelMap.addAttribute("list", 3);
         ModelAndView mav = new ModelAndView("/students/officerList");
         mav.addObject("students", studentService.getOfficers());
         return mav;
@@ -159,7 +162,7 @@ public class StudentsController {
                               @ModelAttribute("list") Integer list, ModelMap modelMap) {
         student.setGroup(groupService.read(groupId));
         studentService.toOfficer(student);
-        modelMap.addAttribute("list", 2);
+        modelMap.addAttribute("list", 3);
         return "redirect:/students";
     }
 
@@ -167,6 +170,7 @@ public class StudentsController {
     public String toReserve(@ModelAttribute("student") Student student,
                             @ModelAttribute("list") Integer list, ModelMap modelMap) {
         student.setRank("Лейтенант запаса");
+        student.getQuestionnaire().setEducationEndDate(new Date());
         studentService.toReserve(student);
         modelMap.addAttribute("list", 4);
         return "redirect:/students";

@@ -49,4 +49,5 @@ INSERT INTO public.document (id, title, system_title) VALUES (3, 'Копия п�
 INSERT INTO public.document (id, title, system_title) VALUES (4, 'Характеристика', 'characteristic');
 INSERT INTO public.document (id, title, system_title) VALUES (5, 'Направление на ВВК', 'direction');
 INSERT INTO public.document (id, title, system_title) VALUES (6, 'Справка ВВК', 'certificate');
-ALTER SEQUENCE public.document_id_seq RESTART WITH 7;
+INSERT INTO public.document (id, title, system_title) VALUES (7, 'Средний балл', 'score');
+ALTER SEQUENCE public.document_id_seq RESTART WITH 8;

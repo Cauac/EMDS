@@ -22,6 +22,7 @@ public class Document extends AbstractEntity {
     public static final Long CHARACTERISTIC = 4L;
     public static final Long COMMISSION_DIRECTION = 5L;
     public static final Long COMMISSION_CERTIFICATE = 6L;
+    public static final Long AVERAGE_SCORE = 7L;
 
     private String title;
     private String systemTitle;

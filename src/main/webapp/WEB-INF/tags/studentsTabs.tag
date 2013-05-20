@@ -12,15 +12,15 @@
         <spring:url value="/students/archive" var="archive"/>
 
         <li class="<c:if test="${number==1}"><c:out value="active"/></c:if>">
-            <a href="${junior}">1 уровень подготовки</a>
+            <a href="${abiturients}">Поступающие</a>
         </li>
 
         <li class="<c:if test="${number==2}"><c:out value="active"/></c:if>">
-            <a href="${officer}">2 уровень подготовки</a>
+            <a href="${junior}">1 уровень подготовки</a>
         </li>
 
         <li class="<c:if test="${number==3}"><c:out value="active"/></c:if>">
-            <a href="${abiturients}">Поступающие</a>
+            <a href="${officer}">2 уровень подготовки</a>
         </li>
 
         <li class="<c:if test="${number==4}"><c:out value="active"/></c:if>">
