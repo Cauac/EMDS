@@ -13,7 +13,7 @@
 <body>
 <emds:header/>
 <emds:teacherMenu number="1"/>
-<emds:studentsTabs number="3"/>
+<emds:studentsTabs number="1"/>
 <br>
 <c:if test="${fn:length(abiturients) eq 0}">
     <br>
@@ -39,8 +39,15 @@
                 <c:forEach var="document" items="${documents}">
                     <c:choose>
                         <c:when test="${abiturient.documents.get(document).brought eq true}">
-                            <td style="text-align: center; color: green">
-                                <p title="${abiturient.documents.get(document).commentary}">✓</p></td>
+                            <c:choose>
+                                <c:when test="${document.systemTitle ne 'score'}">
+                                    <td style="text-align: center; color: green">
+                                        <p title="${abiturient.documents.get(document).commentary}">✓</p></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td style="text-align: center;"> ${abiturient.documents.get(document).commentary} </td>
+                                </c:otherwise>
+                            </c:choose>
                         </c:when>
                         <c:otherwise>
                             <spring:url var="addDocument" value="/documents/{document}">

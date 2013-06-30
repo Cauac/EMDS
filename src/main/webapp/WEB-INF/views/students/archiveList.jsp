@@ -52,7 +52,9 @@
                         </a>
                     </td>
                     <td>
-                        <spring:url var="removeStudent" value="/students/purge/${student.id}"/>
+                        <spring:url var="removeStudent" value="/students/purge">
+                            <spring:param name="id" value="${student.id}"/>
+                        </spring:url>
                         <a onclick="return confirm('Вы действительно хотите удалить студента из системы?')"
                            href="${removeStudent}">
                             <i title="Удалить" class="icon-remove"></i>

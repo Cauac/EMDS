@@ -41,7 +41,7 @@ public class AbiturientsController {
 
     @RequestMapping("")
     public ModelAndView abiturients(@ModelAttribute("list") Integer list, ModelMap modelMap) {
-        modelMap.addAttribute("list", 3);
+        modelMap.addAttribute("list", 1);
         ModelAndView mav = new ModelAndView("/abiturients/list");
         List<Student> abiturients = studentService.getAbiturients();
         Collections.sort(abiturients, new Comparator<Student>() {
@@ -110,6 +110,7 @@ public class AbiturientsController {
         Group group = groupService.read(groupId);
         group.getStudents().add(abiturient);
         abiturient.setGroup(group);
+        abiturient.getQuestionnaire().setEducationStartDate(new Date());
         studentService.update(abiturient);
         groupService.update(group);
         return "redirect:/students/junior";
