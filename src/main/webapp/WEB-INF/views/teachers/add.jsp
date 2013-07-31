@@ -52,8 +52,9 @@
 
             <div class="controls">
                 <select name="rank" id="rank">
+                    <option value="Младший лейтенант">Младший лейтенант</option>
                     <option value="Лейтенант">Лейтенант</option>
-                    <option value="Ст. лейтенант">Ст. лейтенант</option>
+                    <option value="Старший лейтенант">Старший лейтенант</option>
                     <option value="Капитан">Капитан</option>
                     <option value="Майор">Майор</option>
                     <option value="Подполковник">Подполковник</option>

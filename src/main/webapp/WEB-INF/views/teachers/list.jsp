@@ -17,26 +17,60 @@
 <mytags:newAccount/>
 
 <c:if test="${fn:length(teachers) gt 0}">
-    <table class="table table-condensed offset1 span11">
+    <table class="table table-condensed offset2 span9">
         <tr class="thead">
-            <th>Преподаватель</th>
-            <th>Воинское звание</th>
-            <th>Логин</th>
+
             <th></th>
+            <th>Преподаватель</th>
+            <th></th>
+                <%--<th>Воинское звание</th>--%>
+            <th style="text-align: center">Логин</th>
             <th></th>
             <th></th>
         </tr>
         <c:forEach var="teacher" items="${teachers}">
             <tr class="tbody">
-                <td><c:out value="${teacher.lastName}"/> <c:out value="${teacher.firstName}"/> <c:out
+                <td style="text-align: center; vertical-align: middle"><c:if test="${teacher.chief}"><i
+                        title="Начальник кафедры" class="icon-flag"></i></c:if></td>
+
+                <td class="span4" style="vertical-align: middle"><c:out value="${teacher.lastName}"/> <c:out
+                        value="${teacher.firstName}"/> <c:out
                         value="${teacher.middleName}"/></td>
-                <td><c:out value="${teacher.rank}"/></td>
-                <td><c:forEach items="${users}" var="user">
+
+                <td class="span2">
+                    <c:choose>
+                        <c:when test="${teacher.rank eq 'Младший лейтенант'}">
+                            <spring:url value="/resources/images/pog/ml.png" var="pogimg"/>
+                        </c:when>
+                        <c:when test="${teacher.rank eq 'Лейтенант'}">
+                            <spring:url value="/resources/images/pog/lt.png" var="pogimg"/>
+                        </c:when>
+                        <c:when test="${teacher.rank eq 'Старший лейтенант'}">
+                            <spring:url value="/resources/images/pog/sl.png" var="pogimg"/>
+                        </c:when>
+                        <c:when test="${teacher.rank eq 'Капитан'}">
+                            <spring:url value="/resources/images/pog/kp.png" var="pogimg"/>
+                        </c:when>
+                        <c:when test="${teacher.rank eq 'Майор'}">
+                            <spring:url value="/resources/images/pog/mj.png" var="pogimg"/>
+                        </c:when>
+                        <c:when test="${teacher.rank eq 'Подполковник'}">
+                            <spring:url value="/resources/images/pog/pp.png" var="pogimg"/>
+                        </c:when>
+                        <c:when test="${teacher.rank eq 'Полковник'}">
+                            <spring:url value="/resources/images/pog/pl.png" var="pogimg"/>
+                        </c:when>
+                    </c:choose>
+                    <img src="${pogimg}" width="124px" height="43px" alt="${teacher.rank}">
+                </td>
+
+
+                <td style="text-align: center"><c:forEach items="${users}" var="user">
                     <c:if test="${user.personId eq teacher.id}">
                         <c:out value="${user.login}"/>
                     </c:if>
                 </c:forEach></td>
-                <td><c:if test="${teacher.chief}"><i title="Начальник кафедры" class="icon-flag"></i></c:if></td>
+
                 <td>
                     <spring:url var="editTeacher" value="/teachers/edit">
                         <spring:param name="id" value="${teacher.id}"/>
