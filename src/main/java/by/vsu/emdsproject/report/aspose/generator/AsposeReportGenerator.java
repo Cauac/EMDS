@@ -1,12 +1,12 @@
 package by.vsu.emdsproject.report.aspose.generator;
 
+import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.exception.EMDSException;
 import by.vsu.emdsproject.report.ReportGenerator;
 import by.vsu.emdsproject.report.aspose.report.ReportFactory;
 import by.vsu.emdsproject.report.aspose.report.AsposeReport;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
 import com.aspose.words.Document;
-import org.springframework.core.io.ClassPathResource;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
@@ -18,12 +18,12 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
 
     public static final String CONTENT_HEADER = "attachment; filename*=UTF-8''";
     public static final String CONTENT_DESCRIPTION = "Content-Disposition";
+    public static final String LICENSE_PROPERTY_NAME = "reports.license";
 
     static {
         com.aspose.words.License wordsLicense = new com.aspose.words.License();
         try {
-            ClassPathResource resource = new ClassPathResource("../lib/Aspose.Total.Java.lic");
-            wordsLicense.setLicense(resource.getURL().getPath());
+            wordsLicense.setLicense(EMDSContext.getInstance().getEnvironment().getProperty(LICENSE_PROPERTY_NAME));
         } catch (Exception e) {
             Logger.getLogger(AsposeReportGenerator.class.getName()).log(Level.SEVERE, null, e);
         }

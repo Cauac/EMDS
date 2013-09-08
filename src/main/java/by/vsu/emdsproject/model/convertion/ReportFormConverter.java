@@ -7,11 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Max
- *         Date: 18.05.13
- *         Time: 2:37
- */
 public class ReportFormConverter implements Converter<String, AbstractReportForm> {
 
     private static Map<String, Class<? extends AbstractReportForm>> forms =

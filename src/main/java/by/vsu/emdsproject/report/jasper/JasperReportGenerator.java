@@ -21,6 +21,7 @@ import net.sf.jasperreports.engine.util.FileBufferedOutputStream;
 /**
  * Builder скрывающий механизм формирования отчетов технологии JasperReports
  */
+@Deprecated
 public abstract class JasperReportGenerator {
 
     /**

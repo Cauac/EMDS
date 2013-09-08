@@ -10,7 +10,7 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <jpa:repositories base-package="by.vsu.emdsproject.repository"/>
     <context:component-scan base-package="by.vsu.emdsproject"/>
-    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <context:property-placeholder location="classpath:application.properties"/>
 
     <bean id="validator"
           class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
@@ -40,7 +40,7 @@
     <bean id="entityManagerFactory" depends-on="flyway"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <property name="packagesToScan" value="by.vsu.emdsproject.model" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="showSql" value="true"/>

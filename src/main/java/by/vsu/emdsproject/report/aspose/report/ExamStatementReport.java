@@ -9,15 +9,13 @@ import com.aspose.words.Table;
 
 public class ExamStatementReport extends AsposeReport {
 
-    public static final String TEMPLATE_NAME = "ExamStatement.docx";
-
     public ExamStatementReport() {
     }
 
     @Override
     public Document generate() throws Exception {
 
-        Document document = new Document(getTemplateFilePath(TEMPLATE_NAME));
+        Document document = new Document(getTemplateFilePath(templateName));
         AbstractReportDataSource dataSource = getDataSource();
 
         replaceParametersInDocument(document);

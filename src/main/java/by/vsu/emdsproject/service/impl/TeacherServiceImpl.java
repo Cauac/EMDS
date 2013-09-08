@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.service.impl;
 
+import by.vsu.emdsproject.exception.EMDSException;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.repository.TeacherRepository;
 import by.vsu.emdsproject.service.TeacherService;
@@ -44,6 +45,8 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public Teacher getChief() {
-        return teacherRepository.findByChief(true).get(0);
+        List<Teacher> chiefs = teacherRepository.findByChief(true);
+        if(chiefs.isEmpty()) throw new EMDSException("Нужно назначить начальника кафедры");
+        return chiefs.get(0);
     }
 }

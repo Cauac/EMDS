@@ -6,11 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-/**
- * @author Max
- *         Date: 27.03.13
- *         Time: 22:54
- */
 public interface GroupRepository extends JpaRepository<Group, Long> {
 
     public List<Group> findBySpecialty(Specialty specialty);

@@ -5,11 +5,6 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * @author Max
- *         Date: 28.03.13
- *         Time: 22:35
- */
 @MappedSuperclass
 public abstract class Person extends AbstractEntity {
 

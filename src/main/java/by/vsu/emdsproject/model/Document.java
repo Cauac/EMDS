@@ -6,11 +6,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * @author Max
- *         Date: 30.03.13
- *         Time: 20:24
- */
 @Entity
 @Table(name = "document")
 public class Document extends AbstractEntity {

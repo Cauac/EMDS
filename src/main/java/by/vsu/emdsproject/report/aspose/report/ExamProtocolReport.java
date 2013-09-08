@@ -9,14 +9,12 @@ import com.aspose.words.Table;
 
 public class ExamProtocolReport extends AsposeReport {
 
-    public static final String TEMPLATE_NAME = "ExamProtocol.docx";
-
     public ExamProtocolReport() {
     }
 
     @Override
     public Document generate() throws Exception {
-        Document document = new Document(getTemplateFilePath(TEMPLATE_NAME));
+        Document document = new Document(getTemplateFilePath(templateName));
         AbstractReportDataSource dataSource = getDataSource();
 
         replaceParametersInDocument(document);

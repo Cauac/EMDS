@@ -6,6 +6,7 @@ import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 /**
  * класс формирующий отчеты в формате impl
  */
+@Deprecated
 public class JasperReportDocxGenerator extends JasperReportGenerator {
 
     public static final String CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";

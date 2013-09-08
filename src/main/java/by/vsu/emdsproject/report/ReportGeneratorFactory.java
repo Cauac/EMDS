@@ -1,7 +1,7 @@
 package by.vsu.emdsproject.report;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import by.vsu.emdsproject.common.EMDSContext;
+import org.springframework.beans.factory.BeanFactory;
 
 public class ReportGeneratorFactory {
 
@@ -10,17 +10,13 @@ public class ReportGeneratorFactory {
     /*
      * контекст построения отчетов
      */
-    protected static ApplicationContext reportContext;
-
-    static{
-        reportContext = new ClassPathXmlApplicationContext("spring/emds-reports-context.xml");
-    }
+    protected static BeanFactory factory= EMDSContext.getInstance().getFactory();
 
     public static ReportGenerator getDocxReportGenerator() {
-        return (ReportGenerator) reportContext.getBean(DOCX_REPORT_GENERATOR);
+        return (ReportGenerator) factory.getBean(DOCX_REPORT_GENERATOR);
     }
 
     public static ReportGenerator getPdfReportGenerator() {
-        return (ReportGenerator) reportContext.getBean(PDF_REPORT_GENERATOR);
+        return (ReportGenerator) factory.getBean(PDF_REPORT_GENERATOR);
     }
 }

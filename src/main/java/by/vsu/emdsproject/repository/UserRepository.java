@@ -5,11 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-/**
- * @author Max
- *         Date: 23.03.13
- *         Time: 23:21
- */
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByPersonType(String personType);
 

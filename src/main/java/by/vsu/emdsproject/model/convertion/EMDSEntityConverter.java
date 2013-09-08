@@ -6,11 +6,6 @@ import org.springframework.core.convert.converter.Converter;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- * @author Max
- *         Date: 18.05.13
- *         Time: 2:39
- */
 public abstract class EMDSEntityConverter<T extends AbstractEntity> implements Converter<String, T> {
 
     // todo  scan by ClassPathScanningCandidateComponentProvider for converters?

@@ -9,6 +9,7 @@ import java.util.HashMap;
 /**
  * вытягивает все необходимые данные для отчета персональной карточки студента
  */
+@Deprecated
 public class PersonCardReportDSWrapper implements ReportDataSourceWrapper {
 
     private Student student;

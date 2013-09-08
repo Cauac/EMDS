@@ -8,8 +8,6 @@ import java.util.regex.Pattern;
 
 public class AllowedListReport extends AsposeReport {
 
-    public static final String TEMPLATE_NAME = "AllowedList.docx";
-
     public static final Pattern LIST_START = Pattern.compile("<startList>");
 
     public AllowedListReport() {
@@ -17,7 +15,7 @@ public class AllowedListReport extends AsposeReport {
 
     @Override
     public Document generate() throws Exception {
-        Document document = new Document(getTemplateFilePath(TEMPLATE_NAME));
+        Document document = new Document(getTemplateFilePath(templateName));
         AbstractReportDataSource dataSource = getDataSource();
 
         replaceParametersInDocument(document);

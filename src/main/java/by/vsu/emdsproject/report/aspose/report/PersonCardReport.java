@@ -4,15 +4,13 @@ import com.aspose.words.*;
 
 public class PersonCardReport extends AsposeReport {
 
-    public static final String TEMPLATE_NAME = "PersonCard.docx";
-
     public PersonCardReport() {
     }
 
     @Override
     public Document generate() throws Exception {
 
-        Document document = new Document(getTemplateFilePath(TEMPLATE_NAME));
+        Document document = new Document(getTemplateFilePath(templateName));
 
         replaceParametersInDocument(document);
 

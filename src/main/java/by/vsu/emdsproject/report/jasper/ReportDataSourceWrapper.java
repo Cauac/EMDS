@@ -6,6 +6,7 @@ import java.util.HashMap;
  * класс формирующий и инкопсулирующий все данные необходимые для шаблона
  *
  */
+@Deprecated
 public interface ReportDataSourceWrapper {
 
     /**

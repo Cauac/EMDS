@@ -2,7 +2,7 @@ package by.vsu.emdsproject.report.jasper;
 
 import net.sf.jasperreports.engine.JRAbstractExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
-
+@Deprecated
 public class JasperReportPdfGenerator extends JasperReportGenerator {
 
     @Override
