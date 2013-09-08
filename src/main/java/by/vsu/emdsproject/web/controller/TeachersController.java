@@ -3,6 +3,7 @@ package by.vsu.emdsproject.web.controller;
 import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.model.User;
+import by.vsu.emdsproject.model.comparator.TeacherComporator;
 import by.vsu.emdsproject.service.TeacherService;
 import by.vsu.emdsproject.service.UserService;
 import org.apache.commons.lang.StringUtils;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -39,7 +41,9 @@ public class TeachersController {
     @RequestMapping("")
     public ModelAndView teachers() {
         ModelAndView mav = new ModelAndView("/teachers/list");
-        mav.addObject("teachers", teacherService.list());
+        List<Teacher> teachers = teacherService.list();
+        Collections.sort(teachers, new TeacherComporator());
+        mav.addObject("teachers", teachers);
         mav.addObject("users", userService.getTeachers());
         return mav;
     }
