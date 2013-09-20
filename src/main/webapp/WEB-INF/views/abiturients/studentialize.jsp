@@ -1,17 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: Перевод в студенты</title>
+    <emds:style/>
+    <title><emds:title title="Перевод в студенты"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="1"/>
-<div class="well offset4 span5">
+<emds:header/>
+<emds:teacherMenu number="1"/>
+<div class="well center-div span5">
 
     <h4 class="center">${abiturient.lastName} ${abiturient.firstName} :: Выбор группы</h4>
 

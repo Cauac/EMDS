@@ -1,20 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: ${specialty.number}</title>
+    <emds:style/>
+    <title><emds:title title="${specialty.number}"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="4"/>
-<div class="well offset3 span7">
+<emds:header/>
+<emds:teacherMenu number="4"/>
+<div class="well center-div span7">
     <h3 class="center">Специальность</h3>
     <spring:url var="saveSpecialty" value="/specialties/save"/>
     <form:form action="${saveSpecialty}" method="post" cssClass="form-horizontal" modelAttribute="specialty">

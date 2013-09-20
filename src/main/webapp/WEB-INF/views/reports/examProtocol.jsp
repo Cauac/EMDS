@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ВК ВГУ :: Протокол экзаменационной комиссии</title>
+    <title><emds:title title="Протокол экзаменационной комиссии"/></title>
     <emds:style/>
     <emds:jquery/>
     <style type="text/css">
@@ -42,7 +42,7 @@
 <emds:header/>
 <emds:teacherMenu number="3"/>
 <spring:url value="/reports/generateReport" var="generate"/>
-<div class="well offset3 span6">
+<div class="well center-div span6">
     <h3 class="center">Протокол экзаменационной комиссии</h3>     <br>
 
     <form:form class="form-horizontal" method="POST" action="${generate}" modelAttribute="form">

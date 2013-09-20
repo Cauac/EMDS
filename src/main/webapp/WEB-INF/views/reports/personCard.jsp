@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ВК ВГУ :: Личная карточка</title>
+    <title><emds:title title="Личная карточк"/>а</title>
     <emds:style/>
     <emds:jquery/>
 </head>
@@ -15,7 +15,7 @@
 <emds:header/>
 <emds:teacherMenu number="3"/>
 <spring:url value="/reports/generateReport" var="generate"/>
-<div class="well offset3 span6">
+<div class="well center-div span6">
 
     <h3 class="center">Личная карточка</h3>
     <form:form class="form-horizontal" method="post" action="${generate}" modelAttribute="form">

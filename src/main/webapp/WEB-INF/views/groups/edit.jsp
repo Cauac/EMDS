@@ -1,20 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: ${group.title}</title>
+    <emds:style/>
+    <title><emds:title title="${group.title}"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="5"/>
-<div class="well offset4 span5">
+<emds:header/>
+<emds:teacherMenu number="5"/>
+<div class="well center-div span5">
 
     <h3 class="center">Учебная группа</h3>
     <spring:url var="saveGroup" value="/groups/save"/>
@@ -25,7 +25,7 @@
         <%--<div id="nameDiv" class="control-group <spring:hasBindErrors name="group">error</spring:hasBindErrors>">--%>
         <%--<div id="nameDiv" class="control-group <c:if test="${errors.hasFieldErrors('title')}">error</c:if>">--%>
         <div id="nameDiv"
-             class="control-group ${requestScope['org.springframework.validation.BindingResult.group'].hasFieldErrors('title') ? 'error' : ''}">
+             class="control-group ${requestScope['org.springframework.validation.BindingResult.teacher'].hasFieldErrors('title') ? 'error' : ''}">
 
             <form:label path="title" cssClass="control-label">Название:</form:label>
             <div class="controls">

@@ -9,7 +9,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <emds:style/>
-    <title>ВК ВГУ :: Студенты</title>
+    <title><emds:title title="Студенты"/></title>
 </head>
 <body>
 <emds:header/>
@@ -18,7 +18,7 @@
 
 <c:choose>
     <c:when test="${fn:length(students) gt 0}">
-        <table class="table table-condensed offset2 span9">
+        <table class="table table-condensed center-div span9">
             <tr>
                 <th>Студент</th>
                 <th>Факультет</th>
@@ -65,8 +65,8 @@
         </table>
     </c:when>
     <c:otherwise>
-        <div class="offset1 span11" style="text-align: center">
-            <h4>Архив пуст</h4>
+        <div class="center">
+            <h5>Архив пуст</h5>
         </div>
     </c:otherwise>
 </c:choose>

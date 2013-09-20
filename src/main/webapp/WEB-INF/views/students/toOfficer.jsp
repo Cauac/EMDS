@@ -9,13 +9,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <emds:style/>
-    <title>ВК ВГУ :: Студенты</title>
+    <title><emds:title title="Студенты"/></title>
 </head>
 <body>
 <emds:header/>
 <emds:teacherMenu number="1"/>
 
-<div class="well offset4 span5">
+<div class="well center-div span5">
 
     <h4 class="center">${student.lastName} ${student.firstName} :: Выбор группы</h4>
 

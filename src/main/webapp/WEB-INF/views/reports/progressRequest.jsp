@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ВК ВГУ :: Сведения о успеваемости студентов</title>
+    <title><emds:title title="Сведения о успеваемости студентов"/></title>
     <emds:style/>
     <emds:jquery/>
 </head>
@@ -15,7 +15,7 @@
 <emds:header/>
 <emds:teacherMenu number="3"/>
 <spring:url value="/reports/generateReport" var="generate"/>
-<div class="well offset3 span6">
+<div class="well center-div span6">
     <h3 class="center">Сведения о успеваемости студентов</h3>       <br>
 
     <form:form class="form-horizontal" method="POST" action="${generate}" modelAttribute="form">

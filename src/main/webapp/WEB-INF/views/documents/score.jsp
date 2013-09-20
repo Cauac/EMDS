@@ -2,24 +2,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: Средний балл</title>
+    <emds:style/>
+    <title><emds:title title="Средний балл"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="2"/>
+<emds:header/>
+<emds:teacherMenu number="2"/>
 
 <div style="clear:both;"></div>
 
 <spring:url value="/documents/score" var="documentURL"/>
 
-<div class="well offset4 span5">
+<div class="well center-div span5">
 
     <h4 class="center"> ${abiturient.lastName} ${abiturient.firstName}</h4> <br>
 

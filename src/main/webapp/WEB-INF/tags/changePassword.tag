@@ -4,7 +4,7 @@
 <c:url value="/personal" var="url"/>
 <c:if test="${defPass ne null}">
     <spring:url value="/personal" var="personal"/>
-    <div class="alert alert-warning center offset2 span9">
+    <div class="alert alert-warning center center-div span9">
         После первого входа в систему рекомендуется <a href="${personal}"
                                                        style="color: white; text-decoration: underline"> сменить пароль
         учетной записи </a>.

@@ -5,14 +5,14 @@
 <%@attribute name="width"%>
 
 <c:if test="${win ne null}">
-    <div class="alert alert-success center offset2 span9">  
+    <div class="alert alert-success center center-div span9">
         <c:out value="${win}" />
         <c:remove var="win"/>
     </div>
 </c:if>
 
 <c:if test="${fail ne null}">
-    <div class="alert alert-error center offset2 span9">  
+    <div class="alert alert-error center center-div span9">
         <c:out value="${fail}" />
         <c:remove var="fail"/>
     </div>

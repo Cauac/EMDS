@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ВК ВГУ :: Зачетно-экзаменационная ведомость</title>
+    <title><emds:title title="Зачетно-экзаменационная ведомость"/></title>
     <emds:style/>
     <emds:jquery/>
 </head>
@@ -15,7 +15,7 @@
 <emds:header/>
 <emds:teacherMenu number="3"/>
 <spring:url value="/reports/generateReport" var="generate"/>
-<div class="well offset3 span6">
+<div class="well center-div span6">
 
     <h3 class="center">Зачетно-экзаменационная ведомость</h3>
 

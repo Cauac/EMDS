@@ -1,18 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>ВК ВГУ :: Настройки</title>
-    <mytags:style/>
+    <title><emds:title title="Настройки"/></title>
+    <emds:style/>
 </head>
 <body>
-<mytags:header/>
-<mytags:win-fail/>
+<emds:header/>
+<emds:win-fail/>
 
-<div class="well offset4 span5">
+<div class="well center-div span5">
     <h3 class="center">Изменить пароль</h3>
 
     <form class="center" method="post" action="./personal">

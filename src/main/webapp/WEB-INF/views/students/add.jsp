@@ -1,26 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <%@page contentType="text/html" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <%-- todo:complete student addition ? --%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: Добавить студента</title>
+    <emds:style/>
+    <title><emds:title title="Добавить студента"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="1"/>
+<emds:header/>
+<emds:teacherMenu number="1"/>
 
 <div style="clear:both;"></div>
 
 <spring:url var="addStudent" value="/students/add"/>
 <form class="form-horizontal" method="post" action="${addStudent}">
 
-    <div class="well offset1 span11">
+    <div class="well center-div span11">
 
         <div class="span5">
 
@@ -161,7 +161,7 @@
 
     </div>
 
-    <div style="clear: both" class="center">
+    <div class="center">
         <input class="btn btn-primary btn-large" type="submit" value="Добавить студента"/>
     </div>
 

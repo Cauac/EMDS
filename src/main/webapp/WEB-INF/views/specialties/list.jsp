@@ -2,22 +2,21 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: Специальности</title>
+    <emds:style/>
+    <title><emds:title title="Специальности"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="4"/>
+<emds:header/>
+<emds:teacherMenu number="4"/>
 <br>
-
 <c:if test="${fn:length(specialties) gt 0}">
-    <table class="table table-condensed offset2 span9">
+    <table class="table table-condensed center-div span9">
         <tr class="thead">
             <th>ВУС</th>
             <th>Описание</th>
@@ -50,9 +49,10 @@
     </table>
 </c:if>
 
-<div class="offset1 span11">
+<br>
+<div class="center">
     <spring:url var="addSpeciality" value="/specialties/edit"/>
-    <a class="offset4 btn btn-primary" href="${addSpeciality}">
+    <a class="btn btn-primary" href="${addSpeciality}">
         <i class="icon-plus icon-white"></i> Добавить специальность
     </a>
 </div>

@@ -1,20 +1,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: Новый поступающий</title>
+    <emds:style/>
+    <title><emds:title title="Новый поступающий"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="2"/>
+<emds:header/>
+<emds:teacherMenu number="2"/>
 <spring:url value="/abiturients/add" var="addAbiturient"/>
 <spring:url value="/abiturients" var="abiturients"/>
-<div class="well offset4 span5">
+<div class="well span5 center-div">
 
     <h3 class="center">Новый поступающий</h3>
 

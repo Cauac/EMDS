@@ -1,21 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: Справка ВВК</title>
+    <emds:style/>
+    <title><emds:title title="Справка ВВК"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="2"/>
+<emds:header/>
+<emds:teacherMenu number="2"/>
 
 <div style="clear:both;"></div>
 
 <spring:url value="/documents/certificate" var="documentURL"/>
 
-<div class="well offset3 span7">
+<div class="well center-div span7">
 
     <h4 class="center"> ${abiturient.lastName} ${abiturient.firstName} :: Справка ВВК</h4>
 
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div style="clear: both" class="center">
+        <div class="center">
             <input class="btn btn-primary" type="submit" value="Сохранить"/>
             <spring:url var="abiturients" value="/abiturients"/>
             <a class="btn" href="${abiturients}"> Отмена </a>

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="utf-8" %>
 <%--todo: complete student edition--%>
@@ -9,12 +9,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: Редактировать студента</title>
+    <emds:style/>
+    <title><emds:title title="Редактировать студента"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="1"/>
+<emds:header/>
+<emds:teacherMenu number="1"/>
 <%--<div class="well offset4 span5">
 
 <h3 class="center"><c:out value="${student.lastName}"/> <c:out value="${student.firstName}"/> <c:out
@@ -24,7 +24,7 @@
 <form:form cssClass="form-horizontal" method="post" action="${editStudent}" modelAttribute="student">
 
 <form:hidden path="id"/>
-<div class="well offset1 span11">
+<div class="well center-div span11">
 
 <div style="clear:both;"></div>
 <h3 class="center"><c:out value="${student.lastName}"/> <c:out value="${student.firstName}"/></h3>

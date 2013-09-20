@@ -2,22 +2,22 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: Преподаватели</title>
+    <emds:style/>
+    <title><emds:title title="Преподаватели"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="6"/>
-<mytags:newAccount/>
+<emds:header/>
+<emds:teacherMenu number="6"/>
+<emds:newAccount/>
 
 <c:if test="${fn:length(teachers) gt 0}">
-    <table class="table table-condensed offset2 span9">
+    <table class="table table-condensed center-div span9">
         <tr class="thead">
 
             <th></th>
@@ -93,7 +93,8 @@
     </table>
 </c:if>
 
-<div style="clear: both" class="center">
+<br>
+<div class="center">
     <spring:url var="addTeacher" value="/teachers/add"/>
     <spring:url var="chief" value="/teachers/chief"/>
     <a class="btn btn-primary" href="${addTeacher}">

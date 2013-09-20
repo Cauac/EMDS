@@ -7,6 +7,11 @@ body {
     text-align: center;
 }
 
+.center-div {
+    margin: 0 auto !important;
+    float:none !important;
+}
+
 .loginInput {
     height: 32px !important;
 }

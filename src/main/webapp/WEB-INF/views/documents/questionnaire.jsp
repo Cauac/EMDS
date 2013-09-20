@@ -1,25 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytags" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <mytags:style/>
-    <title>ВК ВГУ :: Анкета</title>
+    <emds:style/>
+    <title><emds:title title="Анкета"/></title>
 </head>
 <body>
-<mytags:header/>
-<mytags:teacherMenu number="2"/>
+<emds:header/>
+<emds:teacherMenu number="2"/>
 
 <spring:url value="/documents/questionnaire" var="documentURL"/>
 
 <form:form action="${documentURL}" method="post" cssClass="form-horizontal" modelAttribute="abiturient">
 
 <form:hidden path="id"/>
-<div class="well offset1 span11">
+<div class="well center-div span11">
 
 <div style="clear:both;"></div>
 <h3 class="center"><c:out value="${abiturient.lastName}"/> <c:out value="${abiturient.firstName}"/></h3>

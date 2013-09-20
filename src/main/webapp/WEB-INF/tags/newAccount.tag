@@ -3,7 +3,7 @@
 <c:url value="/personal" var="url"/>
 
 <c:if test="${password ne null}">
-    <div class="alert alert-info center offset2 span9">  
+    <div class="alert alert-info center center-div span9">
         <c:out value="Учетная запись добавлена. Текущий пароль: ${password}. Рекомендуется сменить после входа." />
         <c:remove var="password"/>
     </div>
