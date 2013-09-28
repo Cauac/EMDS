@@ -75,4 +75,14 @@ public class CommonController {
     public String exit() {
         return "redirect:/j_spring_security_logout";
     }
+
+    @RequestMapping(value = "/config")
+    public String config() {
+        return "/support/config";
+    }
+
+    @RequestMapping(value = "/developers")
+    public String developers() {
+        return "/support/developers";
+    }
 }

@@ -67,6 +67,8 @@ public abstract class AbstractReportDataSource {
             currentRowIndex = ROW_INDEX_BEGINNING;
             initializeParameters(parameters);
             initializeReportData(parameters);
+        }catch (EMDSException e){
+            throw e;
         } catch (Exception e) {
             throw new EMDSException("Ошибка инициализации данных отчета");
         }

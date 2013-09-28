@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.exception;
 
+@SuppressWarnings("serial")
 public class EMDSException extends RuntimeException{
 
     public EMDSException() {

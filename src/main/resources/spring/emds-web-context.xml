@@ -38,4 +38,11 @@
         </bean>
     </mvc:interceptors>
 
+    <bean id="exceptionResolver" class="by.vsu.emdsproject.exception.ExceptionResolver">
+        <property name="exceptionMappings">
+            <map>
+                <entry key="by.vsu.emdsproject.exception.EMDSException" value="/exception" />
+            </map>
+        </property>
+    </bean>
 </beans>

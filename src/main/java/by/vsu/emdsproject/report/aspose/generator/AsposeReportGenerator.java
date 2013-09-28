@@ -33,9 +33,12 @@ public abstract class AsposeReportGenerator implements ReportGenerator {
 
     protected void generateReport(AsposeReport report, HttpServletResponse response) {
         try {
+            Document document=report.generate();
             String header = CONTENT_HEADER + urlEncode(report.getDataSource().getTitle()) + getFileType();
             response.setHeader(CONTENT_DESCRIPTION, header);
-            exportDocumentInServlet(report.generate(), response);
+            exportDocumentInServlet(document, response);
+        }catch (EMDSException e){
+            throw e;
         } catch (Exception e) {
             Logger.getLogger(AsposeReportGenerator.class.getName()).log(Level.SEVERE, null, e);
             throw new EMDSException("Ошибка при построении очтета");
