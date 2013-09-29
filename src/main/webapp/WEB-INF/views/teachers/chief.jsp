@@ -16,7 +16,7 @@
 <emds:teacherMenu number="6"/>
 
 <div class="well center-div span7">
-    <h3 class="center">Начальник кафедры</h3>
+    <h3 class="center"><emds:icon icon="33"/>Начальник кафедры</h3>
     <spring:url var="saveChief" value="/teachers/chief"/>
 
     <form action="${saveChief}" method="post" class="form-horizontal">
@@ -38,8 +38,8 @@
 
         <div class="center">
             <spring:url var="teachers" value="/teachers"/>
-            <input class="btn btn-primary" type="submit" value="Сохранить"/>
-            <a class="btn" href="${teachers}"> Назад </a>
+            <button class="btn" type="submit"> <emds:icon icon="7"/> Сохранить </button>
+            <a class="btn btn-info" href="${teachers}"> Назад </a>
         </div>
 
     </form>

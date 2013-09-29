@@ -42,13 +42,16 @@
                             Отчислен
                         </c:when>
                         <c:otherwise>
-                            Не проходил обучение
+                            <c:forEach var="document" items="student.documents">
+                                ${document}
+                            </c:forEach>
+                            Не проходил обучение (${whyPoslan}) // TODO
                         </c:otherwise>
                     </c:choose>
                     </td>
                     <td>
                         <a href="${editStudent}">
-                            <i title="Редактировать" class="icon-edit"></i>
+                            <emds:icon icon="13" text="Редактировать" />
                         </a>
                     </td>
                     <td>
@@ -57,7 +60,7 @@
                         </spring:url>
                         <a onclick="return confirm('Вы действительно хотите удалить студента из системы?')"
                            href="${removeStudent}">
-                            <i title="Удалить" class="icon-remove"></i>
+                            <emds:icon icon="118" text="Удалить из системы" />
                         </a>
                     </td>
                 </tr>

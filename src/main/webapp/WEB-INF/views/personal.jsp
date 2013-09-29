@@ -13,7 +13,7 @@
 <emds:win-fail/>
 
 <div class="well center-div span5">
-    <h3 class="center">Изменить пароль</h3>
+    <h3 class="center"><emds:icon icon="49" />Изменить пароль</h3>
 
     <form class="center" method="post" action="./personal">
 
@@ -41,8 +41,8 @@
         </div>
 
         <div class="center">
-            <input class="btn btn-primary" type="submit" value="Сохранить"/>
-            <a class="btn" href="./index"> На главную </a>
+            <button class="btn" type="submit"><emds:icon icon="7" />Сохранить </button>
+            <a class="btn btn-info" href="./index"> Отмена </a>
         </div>
     </form>
 </div>

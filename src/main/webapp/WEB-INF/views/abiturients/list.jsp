@@ -62,18 +62,19 @@
                         <spring:url var="studentialize" value="/abiturients/studentialize">
                             <spring:param name="id" value="${abiturient.id}"/>
                         </spring:url>
-                        <td><a href="${studentialize}">
-                                <i title="Перевести в студенты" class="icon-forward"></i> </a>
+                        <td style="width:30px"><a href="${studentialize}">
+                                <emds:icon icon="104" text="Перевести в студенты" />
+                            </a>
                         </td>
                     </c:when>
                     <c:otherwise>
                         <spring:url value="/abiturients/remove" var="remove">
                             <spring:param name="id" value="${abiturient.id}"/>
                         </spring:url>
-                        <td>
+                        <td style="width:30px">
                             <a onclick="return confirm('Вы действительно хотите перенести информацию о студенте в архив?')"
                                href="${remove}">
-                                <i title="Отказать в приеме" class="icon-remove"></i>
+                                <emds:icon icon="115" text="Отказать в приеме" />
                             </a>
                         </td>
                     </c:otherwise>
@@ -92,8 +93,8 @@
 <br>
 <div class="center">
     <spring:url value="/abiturients/add" var="addAbiturient"/>
-    <a style="width: 180px" class="btn btn-primary" href="${addAbiturient}">
-        <i class="icon-plus icon-white"></i> Добавить абитуриента
+    <a style="width: 180px" class="btn" href="${addAbiturient}">
+        <emds:icon icon="112" text="Добавить абитуриента"/>Добавить абитуриента
     </a>
 </div>
 

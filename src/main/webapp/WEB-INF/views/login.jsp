@@ -3,11 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 
-<%--todo: spring form validation--%>
-<%--todo: hide j_spring_security_check--%>
-<%--todo: exception catch--%>
-<%--todo: repair win/fail tags--%>
-
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,11 +12,11 @@
 <body>
 <emds:header/>
 <div class="well center-div span5">
-    <h3 class="center">Вход в систему</h3>
+    <h3 class="center"><emds:icon icon="22"/>Вход в систему</h3>
     <c:if test="${not empty error}">
         <div class="alert alert-error center-div span2">
             Неверный логин/пароль
-        </div>
+        </div> <br>
         <c:remove var="error"/>
     </c:if>
     <div>
@@ -30,7 +25,7 @@
             <p><input class="loginInput" type="text" name="j_username" value="" placeholder="Логин"></p>
 
             <p><input class="loginInput" type="password" name="j_password" value="" placeholder="Пароль"></p>
-            <input class="btn loginButton" type="submit" name="commit" value="Войти">
+            <button class="btn loginButton" type="submit" name="commit"><emds:icon icon="39" text="Вход"/> Войти</button>
         </form>
     </div>
 </div>

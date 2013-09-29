@@ -9,7 +9,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <emds:style/>
+        <emds:js/>
         <title><emds:title title="Преподаватели"/></title>
+        
     </head>
     <body>
         <emds:header/>
@@ -29,12 +31,12 @@
                 </tr>
                 <c:forEach var="teacher" items="${teachers}">
                     <tr class="tbody">
-                        <td style="text-align: center; vertical-align: middle"><c:if test="${teacher.chief}"><i
-                                    title="Начальник кафедры" class="icon-flag"></i></c:if></td>
+                        <td style="text-align: center; vertical-align: middle">
+                            <c:if test="${teacher.chief}">
+                                <emds:icon icon="33" text="Начальник кафедры" />
+                            </c:if></td>
 
-                            <td class="span4" style="vertical-align: middle"><c:out value="${teacher.lastName}"/> <c:out
-                                value="${teacher.firstName}"/> <c:out
-                                value="${teacher.middleName}"/></td>
+                            <td class="span4" style="vertical-align: middle">${teacher.lastName} ${teacher.firstName} ${teacher.middleName}</td>
 
                         <td class="span2">
                             <c:choose>
@@ -75,7 +77,7 @@
                                 <spring:param name="id" value="${teacher.id}"/>
                             </spring:url>
                             <a href="${editTeacher}">
-                                <i title="Редактировать" class="icon-edit"></i>
+                                <emds:icon icon="13" text="Редактировать" />
                             </a>
                         </td>
                         <td style="vertical-align: middle">
@@ -84,7 +86,7 @@
                             </spring:url>
                             <a onclick="return confirm('Вы действительно хотите удалить преподавателя?')"
                                href="${removeTeacher}">
-                                <i title="Удалить преподавателя" class="icon-remove"></i>
+                                <emds:icon icon="118" text="Удалить преподавателя" />
                             </a>
                         </td>
                     </tr>
@@ -96,11 +98,13 @@
         <div class="center">
             <spring:url var="addTeacher" value="/teachers/add"/>
             <spring:url var="chief" value="/teachers/chief"/>
-            <a class="btn btn-primary" href="${addTeacher}">
-                <i class="icon-plus icon-white"></i> Добавить преподавателя
+            <a class="btn" href="${addTeacher}">
+                <emds:icon icon="112" text="Добавить преподавателя" /> Добавить преподавателя
+                <!--<i class="icon-plus icon-white"></i>-->
             </a>
-            <a class="btn btn-info" href="${chief}">
-                <i class="icon-flag"></i> Задать начальника кафедры
+            <a class="btn" href="${chief}">
+                <!--<i class="icon-flag"></i>--> 
+                <emds:icon icon="33" text="Задать начальника кафедры" /> Задать начальника кафедры
             </a>
         </div>
 

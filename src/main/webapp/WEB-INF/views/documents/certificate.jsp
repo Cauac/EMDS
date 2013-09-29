@@ -33,9 +33,9 @@
                 </div>
 
                 <div class="center">
-                    <input class="btn btn-primary" type="submit" value="Сохранить"/>
                     <spring:url var="abiturients" value="/abiturients"/>
-                    <a class="btn" href="${abiturients}"> Отмена </a>
+                    <button class="btn" type="submit"> <emds:icon icon="7" text="Сохранить"/> Сохранить </button>
+                    <a class="btn btn-info" href="${abiturients}"> Отмена </a>
                 </div>
 
             </form>

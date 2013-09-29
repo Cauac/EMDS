@@ -1,2 +1,1 @@
-<script src="/resources/scripts/jquery-1.9.1.js"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/scripts/jquery-1.9.1.js"></script>

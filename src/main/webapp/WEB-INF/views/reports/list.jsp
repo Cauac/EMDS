@@ -13,27 +13,27 @@
 <emds:header/>
 <emds:teacherMenu number="3"/>
 <div class="well center-div span6">
-    <h3 class="center">Создать отчет</h3>
+    <h3 class="center"><emds:icon icon="1"/>Создать отчет</h3>
     <ul class="nav nav-tabs nav-stacked">
         <li class="center">
             <spring:url var="personCard" value="/reports/personCard"/>
-            <a href="${personCard}">Личная карточка</a>
+            <a href="${personCard}"><emds:icon icon="1"/>Личная карточка</a>
         </li>
         <li class="center">
             <spring:url var="examStatement" value="/reports/examStatement"/>
-            <a href="${examStatement}">Зачетно-экаменационная ведомость</a>
+            <a href="${examStatement}"><emds:icon icon="44"/>Зачетно-экаменационная ведомость</a>
         </li>
         <li class="center">
             <spring:url var="commissionProtocol" value="/reports/examProtocol"/>
-            <a href="${commissionProtocol}">Протокол заседания выпускной экзаменационной комиссии</a>
+            <a href="${commissionProtocol}"><emds:icon icon="44"/>Протокол заседания выпускной экзаменационной комиссии</a>
         </li>
         <li class="center">
             <spring:url var="allowedList" value="/reports/allowedList"/>
-            <a href="${allowedList}">Список допущенных к экзамену</a>
+            <a href="${allowedList}"><emds:icon icon="34"/>Список допущенных к экзамену</a>
         </li>
         <li class="center">
             <spring:url var="progressRequest" value="/reports/progressRequest"/>
-            <a href="${progressRequest}">Сведения о успеваемости студентов</a>
+            <a href="${progressRequest}"><emds:icon icon="31"/>Сведения о успеваемости студентов</a>
         </li>
     </ul>
 </div>

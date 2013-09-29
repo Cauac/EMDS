@@ -21,7 +21,7 @@
 
         <div class="well span5 center-div">
 
-            <h3 class="center">Новый поступающий</h3>
+            <h3 class="center"><emds:icon icon="47"/> Новый поступающий</h3>
 
             <form:form cssClass="form-horizontal" method="post" action="${addAbiturient}" modelAttribute="student">
 
@@ -67,8 +67,8 @@
                 </spring:bind>
 
                 <div class="center">
-                    <input class="btn btn-primary" type="submit" value="Добавить"/>
-                    <a class="btn" href="${abiturients}"> Назад </a>
+                    <button class="btn" type="submit"> <emds:icon icon="7" text="Сохранить"/> Сохранить </button>
+                    <a class="btn btn-info" href="${abiturients}"> Назад </a>
                 </div>
 
             </form:form>

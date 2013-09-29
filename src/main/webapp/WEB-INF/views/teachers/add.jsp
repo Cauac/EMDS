@@ -15,7 +15,7 @@
         <emds:teacherMenu number="6"/>
         <div class="well center-div span5">
 
-            <h3 class="center">Добавить преподавателя</h3>
+            <h3 class="center"><emds:icon icon="111"/>Добавить преподавателя</h3>
 
             <spring:url var="addTeacher" value="/teachers/add"/>
             <form class="form-horizontal" method="post" action="${addTeacher}">

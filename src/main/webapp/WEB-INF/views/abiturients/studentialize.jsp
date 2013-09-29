@@ -35,8 +35,8 @@
 
                 <div class="center">
                     <spring:url var="abiturients" value="/abiturients"/>
-                    <input class="btn btn-primary" type="submit" value="Перевести в студенты"/>
-                    <a class="btn" href="${abiturients}"> Назад </a>
+                    <button class="btn" type="submit"> <emds:icon icon="104" text="Перевести в студенты"/> Перевести в студенты </button>
+                    <a class="btn btn-info" href="${abiturients}"> Отмена </a>
                 </div>
             </form>
 

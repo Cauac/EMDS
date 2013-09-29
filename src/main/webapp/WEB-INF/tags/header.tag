@@ -2,6 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="emds" %>
 
 <spring:url value="/exit" var="logout"/>
 <spring:url value="/index" var="index"/>
@@ -19,7 +20,7 @@
                         <a href="${personal}"><c:out value="${currentName.lastName}"/> <c:out
                                 value="${currentName.firstName}"/> <c:out value="${currentName.middleName}"/></a></p>
                     </li>
-                    <li class="pull-right"><a href="${logout}">Выйти</a></li>
+                    <li class="pull-right"><a href="${logout}"><emds:icon icon="37" text="Выход"/> Выход</a></li>
                 </ul>
             </sec:authorize>
         </div>

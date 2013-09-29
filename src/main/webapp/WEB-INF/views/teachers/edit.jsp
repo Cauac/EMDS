@@ -19,7 +19,7 @@
         </spring:hasBindErrors>
         <div class="well center-div span5">
 
-            <h3 class="center">${teacher.lastName ? teacher.lastName + '' + teacher.firstName + '' + teacher.middleName  : 'Новый преподаватель'}</h3>
+            <h3 class="center"><emds:icon icon="111"/> ${teacher.lastName ? teacher.lastName + '' + teacher.firstName + '' + teacher.middleName  : 'Новый преподаватель'}</h3>
 
             <spring:url var="editTeacher" value="/teachers/edit"/>
 

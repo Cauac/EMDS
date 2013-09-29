@@ -33,7 +33,7 @@
                                 <spring:param name="id" value="${spec.id}"/>
                             </spring:url>
                             <a href="${editSpeciality}">
-                                <i title="Редактировать" class="icon-edit"></i>
+                                <emds:icon icon="13" text="Редактировать" />
                             </a>
                         </td>
                         <td>
@@ -42,7 +42,7 @@
                             </spring:url>
                             <a onclick="return confirm('Вы действительно хотите удалить специальность?')"
                                href="${removeSpeciality}">
-                                <i title="Удалить" class="icon-remove"></i>
+                                <emds:icon icon="118" text="Удалить" />
                             </a>
                         </td>
                     </tr>
@@ -53,8 +53,8 @@
         <br>
         <div class="center">
             <spring:url var="addSpeciality" value="/specialties/edit"/>
-            <a class="btn btn-primary" href="${addSpeciality}">
-                <i class="icon-plus icon-white"></i> Добавить специальность
+            <a class="btn" href="${addSpeciality}">
+                <emds:icon icon="112" text="Добавить специальность" /> Добавить специальность
             </a>
         </div>
 

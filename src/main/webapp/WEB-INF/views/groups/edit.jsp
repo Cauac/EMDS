@@ -20,7 +20,7 @@
 
         <div class="well center-div span5">
 
-            <h3 class="center">Учебная группа</h3>
+            <h3 class="center"><emds:icon icon="54"/>Учебная группа</h3>
             <spring:url var="saveGroup" value="/groups/save"/>
             <form:form action="${saveGroup}" method="post" cssClass="form-horizontal" modelAttribute="group">
 
@@ -48,8 +48,9 @@
 
                 <div class="center">
                     <spring:url var="groups" value="/groups"/>
-                    <input class="btn btn-primary" type="submit" value="Сохранить"/>
-                    <a class="btn" href="${groups}"> Отмена </a>
+
+                    <button class="btn" type="submit"> <emds:icon icon="7" text="Сохранить"/> Сохранить </button>
+                    <a class="btn btn-info" href="${groups}"> Отмена </a>
                 </div>
             </form:form>
 

@@ -403,10 +403,10 @@
 
                 <input type="hidden" id="commentary" name="commentary" value="${currentDate}"/>
 
-                <div style="clear: both" class="center">
-                    <input class="btn btn-primary" type="submit" value="Сохранить информацию"/>
+                <div class="center">
                     <spring:url var="abiturients" value="/abiturients"/>
-                    <a class="btn" href="${abiturients}"> Отмена </a>
+                    <button class="btn" type="submit"> <emds:icon icon="7" text="Сохранить"/> Сохранить информацию </button>
+                    <a class="btn btn-info" href="${abiturients}"> Отмена </a>
                 </div>
 
                 <div style="clear:both;"></div>

@@ -19,7 +19,7 @@
         </spring:hasBindErrors>
 
         <div class="well center-div span7">
-            <h3 class="center">Специальность</h3>
+            <h3 class="center"><emds:icon icon="32"/>Специальность</h3>
             <spring:url var="saveSpecialty" value="/specialties/save"/>
             <form:form action="${saveSpecialty}" method="post" cssClass="form-horizontal" modelAttribute="specialty">
 
@@ -47,8 +47,8 @@
 
                 <div class="center">
                     <spring:url var="specialties" value="/specialties"/>
-                    <input class="btn btn-primary" type="submit" value="Сохранить"/>
-                    <a class="btn" href="${specialties}"> Назад </a>
+                    <button class="btn" type="submit"> <emds:icon icon="7" text="Сохранить"/> Сохранить </button>
+                    <a class="btn btn-info" href="${specialties}"> Назад </a>
                 </div>
 
             </form:form>

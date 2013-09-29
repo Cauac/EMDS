@@ -37,14 +37,14 @@
                     <td>
                         <spring:url var="editStudent" value="/students/edit/${student.id}"/>
                         <a href="${editStudent}">
-                            <i title="Редактировать" class="icon-edit"></i>
+                            <emds:icon icon="13" text="Редактировать" />
                         </a>
                     </td>
                     <td>
                         <spring:url var="removeStudent" value="/students/remove/${student.id}"/>
                         <a onclick="return confirm('Отчислить студента?')"
                            href="${removeStudent}">
-                            <i title="Отчислить" class="icon-remove"></i>
+                            <emds:icon icon="118" text="Отчислить" />
                         </a>
                     </td>
                     <td>
@@ -53,7 +53,7 @@
                         </spring:url>
                         <a onclick="return confirm('Перевести студента в запас?')"
                            href="${toReserve}">
-                            <i title="Присвоить офицерское звание" class="icon-star"></i>
+                            <emds:icon icon="111" text="Присвоить офицерское звание" />
                         </a>
                     </td>
                 </tr>

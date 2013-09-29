@@ -31,7 +31,7 @@
                             <spring:url var="editGroup" value="/groups/edit">
                                 <spring:param name="id" value="${group.id}"/>
                             </spring:url>
-                            <a href="${editGroup}"> <i title="Редактировать группу" class="icon-edit"></i> </a>
+                            <a href="${editGroup}"> <emds:icon icon="13" text="Редактировать" /> </a>
                         </td>
                         <td>
                             <spring:url var="removeGroup" value="/groups/remove">
@@ -39,7 +39,7 @@
                             </spring:url>
                             <a onclick="return confirm('Вы действительно хотите удалить группу?')"
                                href="${removeGroup}">
-                                <i title="Удалить группу" class="icon-remove"></i> </a>
+                                <emds:icon icon="118" text="Удалить" /> </a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -49,8 +49,8 @@
         <br>
         <div class="center">
             <spring:url var="addGroup" value="/groups/edit"/>
-            <a style="width: 180px" class="btn btn-primary" href="${addGroup}">
-                <i class="icon-plus icon-white"></i> Добавить группу
+            <a style="width: 180px" class="btn" href="${addGroup}">
+                <emds:icon icon="112" text="Добавить группу" /> Добавить группу
             </a>
         </div>
 
