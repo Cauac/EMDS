@@ -1,10 +1,10 @@
 package by.vsu.emdsproject.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "roles")
@@ -14,13 +14,13 @@ public class Role extends AbstractEntity {
     public static final String TEACHER = "ROLE_TEACHER";
 
     private String authority;
-    private Set<User> users = new HashSet<User>();
+    private Set<User> users = new HashSet<>();
 
     public Role() {
     }
 
-    @NotNull
-    @Size(max = 45)
+    @NotEmpty(message = "Обязательное поле")
+    @Size(max = 45, message = "Не более 45 символов")
     @Column(name = "authority", length = 45)
     public String getAuthority() {
         return authority;

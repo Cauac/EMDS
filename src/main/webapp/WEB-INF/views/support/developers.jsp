@@ -13,7 +13,7 @@
 <emds:header/>
 <div class="well center-div span8">
     <address>
-        <strong>Василевский Максим  Генадьевич</strong><br>
+        <strong>%developername%</strong><br>
         <abbr title="Phone">Телефон:</abbr> +375 (29) 456-7890
         <a href="mailto:#">first.last@gmail.com
         </a>

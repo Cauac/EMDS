@@ -37,7 +37,7 @@ public class StudentTest {
         student.setFirstName("123");
         student.setLastName("123");
         student.setMiddleName("123");
-        studentService.add(student);
+        studentService.save(student);
 
         Student student2 = studentService.read(student.getId());
         assertEquals(student.getFirstName(), student2.getFirstName());
@@ -48,7 +48,7 @@ public class StudentTest {
         }
 
         Student student3 = studentService.read(student.getId());
-        assertFalse(student3.getDocuments().size() == 0);
+        assertFalse(student3.getDocuments().isEmpty());
 
         studentService.remove(student2);
     }

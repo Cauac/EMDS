@@ -17,30 +17,31 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
 
-    public Teacher add(Teacher teacher) {
+    @Override
+    public Teacher save(Teacher teacher) {
         return teacherRepository.save(teacher);
     }
 
     @Transactional(readOnly = true)
+    @Override
     public List<Teacher> list() {
         return teacherRepository.findAll();
     }
 
     @Transactional(readOnly = true)
+    @Override
     public Teacher read(Long id) {
         return teacherRepository.findOne(id);
     }
 
+    @Override
     public void remove(Long id) {
         teacherRepository.delete(id);
     }
 
+    @Override
     public void remove(Teacher teacher) {
         teacherRepository.delete(teacher);
-    }
-
-    public Teacher update(Teacher entity) {
-        return teacherRepository.save(entity);
     }
 
     @Override

@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Override
     @Transactional
     public User addUserToPerson(String personType, Person person) {
         Role role;
@@ -40,51 +42,54 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    @Transactional
-    public User add(User entity) {
+    @Override
+    public User save(User entity) {
         return userRepository.save(entity);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<User> list() {
         return userRepository.findAll();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public User read(Long id) {
         return userRepository.findOne(id);
     }
 
+    @Override
     @Transactional
     public void remove(Long id) {
         userRepository.delete(id);
     }
 
+    @Override
     @Transactional
     public void remove(User entity) {
         userRepository.delete(entity);
     }
 
-    @Transactional
-    public User update(User entity) {
-        return userRepository.save(entity);
-    }
-
+    @Override
     @Transactional(readOnly = true)
     public User getByLogin(String login) {
         return userRepository.findByLogin(login);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<User> getStudents() {
         return userRepository.findByPersonType("student");
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<User> getTeachers() {
         return userRepository.findByPersonType("teacher");
     }
 
+    @Override
     public boolean changePassword(String oldPassword, String newPassword, String confirm) {
         User currentUser = userRepository.findByLogin(EMDSContext.getInstance().getCurrentUser().getUsername());
         if (currentUser.getPassword().equals(PasswordUtils.encode(oldPassword)) && newPassword.equals(confirm)) {
@@ -96,11 +101,13 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
     @Transactional(readOnly = true)
     public User getUserByStudentId(Long personId) {
         return userRepository.findByPersonTypeAndPersonId("student", personId);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public User getUserByTeacherId(Long personId) {
         return userRepository.findByPersonTypeAndPersonId("teacher", personId);

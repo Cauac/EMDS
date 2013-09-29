@@ -20,12 +20,7 @@ public class DocumentInfoServiceImpl implements DocumentInfoService {
     DocumentInfoRepository documentInfoRepository;
 
     @Override
-    public DocumentInfo add(DocumentInfo entity) {
-        return documentInfoRepository.save(entity);
-    }
-
-    @Override
-    public DocumentInfo update(DocumentInfo entity) {
+    public DocumentInfo save(DocumentInfo entity) {
         return documentInfoRepository.save(entity);
     }
 

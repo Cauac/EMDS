@@ -1,7 +1,6 @@
 package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.model.Group;
-import by.vsu.emdsproject.model.Questionnaire;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.service.DocumentService;
 import by.vsu.emdsproject.service.GroupService;
@@ -16,6 +15,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 // todo: @ControllerAdvice for all controllers?
 @Controller
@@ -30,7 +32,7 @@ public class AbiturientsController {
     @Autowired
     private DocumentService documentService;
 
-    @ModelAttribute("abiturient")
+    @ModelAttribute("student")
     public Student setAbiturient(Long id) {
         if (id != null) {
             return studentService.read(id);
@@ -50,7 +52,7 @@ public class AbiturientsController {
                 return o1.getQuestionnaire().getFaculty().compareTo(o2.getQuestionnaire().getFaculty());
             }
         });
-        Map<Student, Boolean> readiness = new HashMap<Student, Boolean>();
+        Map<Student, Boolean> readiness = new HashMap<>();
         for (Student abiturient : abiturients) {
             readiness.put(abiturient, studentService.readyToTake(abiturient));
         }
@@ -63,39 +65,27 @@ public class AbiturientsController {
     @RequestMapping("/add")
     public ModelAndView addAbiturients() {
         ModelAndView mav = new ModelAndView("/abiturients/add");
-        List<String> faculties = new ArrayList<String>();
-        faculties.add("Математический");
-        faculties.add("Физический");
-        faculties.add("Биологический");
-        faculties.add("Физической культуры и спорта");
-        faculties.add("Исторический");
-        faculties.add("Социальной педагогики и психологии");
-        faculties.add("Филологический");
-        faculties.add("Белорусской филологии и культры");
-        faculties.add("Юридический");
-        faculties.add("Художественно-графический");
-        faculties.add("Педагогический");
-        mav.addObject("faculties", faculties);
+        mav.addObject("faculties", Arrays.asList(Student.FACULTIES));
         return mav;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addAbiturient(String fname, String lname, String mname, String faculty) {
-        Student student = new Student();
-        student.setFirstName(fname);
-        student.setLastName(lname);
-        student.setMiddleName(mname);
+    @RequestMapping(value = "/doAdd", method = RequestMethod.POST)
+    public ModelAndView addAbiturient(@Valid Student student, BindingResult result, HttpServletRequest request) {
+        if (result.hasErrors()) {
+            return new ModelAndView("/abiturients/add", "faculties", Arrays.asList(Student.FACULTIES));
+        }
         student.setType(Student.ABITURIENT);
-        Questionnaire questionnaire = new Questionnaire();
-        questionnaire.setFaculty(faculty);
-        student.setQuestionnaire(questionnaire);
-        studentService.add(student);
-        return "redirect:/abiturients";
-    }
+        studentService.save(student);
+        request.getSession().setAttribute("win", student.getLastName() + " "
+                + student.getFirstName() + " добавлен в список поступающих");
 
+        return new ModelAndView("redirect:/abiturients");
+    }
+    
     @RequestMapping(value = "/remove")
-    public String removeAbiturient(@ModelAttribute("abiturient") Student abiturient) {
-        studentService.fail(abiturient);
+    public String removeAbiturient(@ModelAttribute("student") Student student, HttpServletRequest request) {
+        studentService.fail(student);
+        request.getSession().setAttribute("win", "Информация о студенте перенесена в архив");
         return "redirect:/abiturients";
     }
 
@@ -105,14 +95,16 @@ public class AbiturientsController {
     }
 
     @RequestMapping(value = "/studentialize", method = RequestMethod.POST)
-    public String doToStudent(@ModelAttribute("abiturient") Student abiturient, Long groupId) {
-        studentService.toJunior(abiturient);
+    public String doToStudent(@ModelAttribute("student") Student student, Long groupId, HttpServletRequest request) {
+        studentService.toJunior(student);
         Group group = groupService.read(groupId);
-        group.getStudents().add(abiturient);
-        abiturient.setGroup(group);
-        abiturient.getQuestionnaire().setEducationStartDate(new Date());
-        studentService.update(abiturient);
-        groupService.update(group);
+        group.getStudents().add(student);
+        student.setGroup(group);
+        student.getQuestionnaire().setEducationStartDate(new Date());
+        studentService.save(student);
+        groupService.save(group);
+        request.getSession().setAttribute("win", student.getLastName() + " "
+                + student.getFirstName() + " переведен в студенты");
         return "redirect:/students/junior";
     }
 

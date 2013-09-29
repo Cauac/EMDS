@@ -2,6 +2,7 @@ package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.model.Specialty;
 import by.vsu.emdsproject.service.SpecialtyService;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -39,17 +40,19 @@ public class SpecialtiesController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView saveSpecialty(@Valid Specialty specialty, BindingResult result) {
+    public ModelAndView saveSpecialty(@Valid Specialty specialty, BindingResult result, HttpServletRequest request) {
         if (result.hasErrors()) {
             return new ModelAndView("/specialties/edit");
         }
-        specialtyService.update(specialty);
+        specialtyService.save(specialty);
+        request.getSession().setAttribute("win", "Специальность сохранена.");
         return new ModelAndView("redirect:/specialties");
     }
 
     @RequestMapping(value = "/remove")
-    public String removeSpecialty(Long id) {
+    public String removeSpecialty(Long id, HttpServletRequest request) {
         specialtyService.remove(id);
+        request.getSession().setAttribute("win", "Специальность удалена.");
         return "redirect:/specialties";
     }
 }

@@ -17,28 +17,29 @@ public class GroupServiceImpl implements GroupService {
     @Autowired
     private GroupRepository groupRepository;
 
-    public Group add(Group group) {
+    @Override
+    public Group save(Group group) {
         return groupRepository.save(group);
     }
 
-    public Group update(Group group) {
-        return groupRepository.save(group);
-    }
-
+    @Override
     @Transactional(readOnly = true)
     public List<Group> list() {
         return groupRepository.findAll();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Group read(Long id) {
         return groupRepository.findOne(id);
     }
 
+    @Override
     public void remove(Long id) {
         groupRepository.delete(id);
     }
 
+    @Override
     public void remove(Group group) {
         groupRepository.delete(group);
     }

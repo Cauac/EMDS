@@ -3,8 +3,8 @@ package by.vsu.emdsproject.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "document")
@@ -25,8 +25,8 @@ public class Document extends AbstractEntity {
     public Document() {
     }
 
-    @NotNull
-    @Size(max = 50)
+    @NotEmpty(message = "Обязательное поле")
+    @Size(max = 50, message = "Не более 50 символов")
     @Column(name = "title", length = 50)
     public String getTitle() {
         return title;
@@ -36,8 +36,8 @@ public class Document extends AbstractEntity {
         this.title = title;
     }
 
-    @NotNull
-    @Size(max = 50)
+    @NotEmpty(message = "Обязательное поле")
+    @Size(max = 50, message = "Не более 50 символов")
     @Column(name = "system_title", length = 50)
     public String getSystemTitle() {
         return systemTitle;

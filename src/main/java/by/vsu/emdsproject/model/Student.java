@@ -6,12 +6,26 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "student")
 @JsonIgnoreProperties({"group", "questionnaire", "documents"})
 public class Student extends Person {
 
+    public static final String[] FACULTIES = new String[]{
+        "Математический",
+        "Физический",
+        "Биологический",
+        "Физической культуры и спорта",
+        "Исторический",
+        "Социальной педагогики и психологии",
+        "Филологический",
+        "Белорусской филологии и культры",
+        "Юридический",
+        "Художественно-графический",
+        "Педагогический"};
     public static final String ABITURIENT = "abiturient";
     public static final String JUNIOR = "junior";
     public static final String OFFICER = "officer";
@@ -24,7 +38,7 @@ public class Student extends Person {
     private String characteristic;
     private String rank;
     private String type;
-    private Map<Document, DocumentInfo> documents = new HashMap<Document, DocumentInfo>();
+    private Map<Document, DocumentInfo> documents = new HashMap<>();
 
     public Student() {
     }
@@ -53,7 +67,8 @@ public class Student extends Person {
         this.group = group;
     }
 
-    @Column(name = "characteristic")
+    @Size(max = 10000, message = "Не более 10 тысяч символов")
+    @Column(name = "characteristic", length = 10000)
     public String getCharacteristic() {
         return characteristic;
     }
@@ -80,6 +95,7 @@ public class Student extends Person {
         this.type = type;
     }
 
+    @Valid
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "questionnaire_id")
     public Questionnaire getQuestionnaire() {
@@ -92,8 +108,10 @@ public class Student extends Person {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "student_documents",
-            joinColumns = @JoinColumn(name = "student"),
-            inverseJoinColumns = @JoinColumn(name = "document_info"))
+            joinColumns =
+            @JoinColumn(name = "student"),
+            inverseJoinColumns =
+            @JoinColumn(name = "document_info"))
     @MapKeyJoinColumn(name = "document")
     public Map<Document, DocumentInfo> getDocuments() {
         return documents;

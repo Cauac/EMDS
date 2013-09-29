@@ -3,6 +3,7 @@ package by.vsu.emdsproject.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "users")
@@ -44,8 +45,8 @@ public class User extends AbstractEntity {
         this.login = login;
     }
 
-    @NotNull
-    @Size(max = 64)
+    @NotEmpty(message = "Пустой пароль")
+    @Size(min = 5, max = 64, message = "От 5 до 64 символов")
     @Column(name = "password", length = 64)
     public String getPassword() {
         return password;

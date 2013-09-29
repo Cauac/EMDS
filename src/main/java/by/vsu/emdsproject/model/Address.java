@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "address")
@@ -18,8 +19,8 @@ public class Address extends AbstractEntity {
     public Address() {
     }
 
-    @NotNull
-    @Size(max = 30)
+    @NotEmpty(message = "Обязательное поле")
+    @Size(max = 30, message = "Не более 30 символов")
     @Column(name = "city", length = 30)
     public String getCity() {
         return city;
@@ -29,8 +30,8 @@ public class Address extends AbstractEntity {
         this.city = city;
     }
 
-    @NotNull
-    @Size(max = 30)
+    @NotEmpty(message = "Обязательное поле")
+    @Size(max = 30, message = "Не более 30 символов")
     @Column(name = "street", length = 30)
     public String getStreet() {
         return street;
@@ -40,9 +41,9 @@ public class Address extends AbstractEntity {
         this.street = street;
     }
 
-    @NotNull
-    @Size(max = 3)
-    @Column(name = "house", length = 3)
+    @NotEmpty(message = "Обязательное поле")
+    @Size(max = 10, message = "Не более 10 символов")
+    @Column(name = "house", length = 10)
     public String getHouse() {
         return house;
     }
@@ -51,7 +52,7 @@ public class Address extends AbstractEntity {
         this.house = house;
     }
 
-    @Size(max = 4)
+    @Size(max = 4, message = "Не более 4 символов")
     @Column(name = "apartment", length = 4)
     public String getApartment() {
         return apartment;
@@ -65,5 +66,4 @@ public class Address extends AbstractEntity {
     public String toString() {
         return city + " ул." + street + " д." + house + " кв." + apartment;
     }
-
 }

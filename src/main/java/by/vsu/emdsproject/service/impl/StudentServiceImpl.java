@@ -26,24 +26,25 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private DocumentInfoRepository documentInfoRepository;
 
-    public Student add(Student student) {
-        for (Document document : documentRepository.findAll()) {
-            DocumentInfo documentInfo = new DocumentInfo(false, "");
-            documentInfoRepository.save(documentInfo);
-            student.getDocuments().put(document, documentInfo);
+    @Override
+    public Student save(Student student) {
+        if (student.getDocuments().isEmpty()) {
+            for (Document document : documentRepository.findAll()) {
+                DocumentInfo documentInfo = new DocumentInfo(false, "");
+                documentInfoRepository.save(documentInfo);
+                student.getDocuments().put(document, documentInfo);
+            }
         }
         return studentRepository.save(student);
     }
 
-    public Student update(Student student) {
-        return studentRepository.save(student);
-    }
-
+    @Override
     @Transactional(readOnly = true)
     public List<Student> list() {
         return studentRepository.findAll();
     }
 
+    @Override
     @Transactional(readOnly = true)
     @Cacheable(value = "students", key = "#id")
     public Student read(Long id) {

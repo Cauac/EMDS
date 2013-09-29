@@ -1,12 +1,12 @@
 package by.vsu.emdsproject.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Study_group")
@@ -15,7 +15,7 @@ public class Group extends AbstractEntity {
 
     private String title;
     private Specialty specialty;
-    private Set<Student> students = new HashSet<Student>();
+    private Set<Student> students = new HashSet<>();
 
     public Group() {
     }
@@ -29,7 +29,7 @@ public class Group extends AbstractEntity {
         this.specialty = specialty;
     }
 
-    @NotEmpty(message = "Введите название")
+    @NotEmpty(message = "Обязательное поле")
     @Size(max = 10, message = "Не более 10 символов")
     @Column(name = "title", nullable = false, length = 10)
     public String getTitle() {

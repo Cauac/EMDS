@@ -10,37 +10,35 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class QuestionnaireServiceImpl implements QuestionnaireService {
 
     @Autowired
     private QuestionnaireRepository questionnaireRepository;
 
-    @Transactional
-    public Questionnaire add(Questionnaire entity) {
+    @Override
+    public Questionnaire save(Questionnaire entity) {
         return questionnaireRepository.save(entity);
     }
 
-    @Transactional
-    public Questionnaire update(Questionnaire entity) {
-        return questionnaireRepository.save(entity);
-    }
-
+    @Override
     @Transactional(readOnly = true)
     public List<Questionnaire> list() {
         return questionnaireRepository.findAll();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Questionnaire read(Long id) {
         return questionnaireRepository.findOne(id);
     }
 
-    @Transactional
+    @Override
     public void remove(Long id) {
         questionnaireRepository.delete(id);
     }
 
-    @Transactional
+    @Override
     public void remove(Questionnaire entity) {
         questionnaireRepository.delete(entity);
     }

@@ -10,37 +10,35 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class SpecialtyServiceImpl implements SpecialtyService {
 
     @Autowired
     private SpecialtyRepository specialtyRepository;
 
-    @Transactional
-    public Specialty add(Specialty specialty) {
+    @Override
+    public Specialty save(Specialty specialty) {
         return specialtyRepository.save(specialty);
     }
 
-    @Transactional
-    public Specialty update(Specialty specialty) {
-        return specialtyRepository.save(specialty);
-    }
-
+    @Override
     @Transactional(readOnly = true)
     public List<Specialty> list() {
         return specialtyRepository.findAll();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Specialty read(Long id) {
         return specialtyRepository.findOne(id);
     }
 
-    @Transactional
+    @Override
     public void remove(Long id) {
         specialtyRepository.delete(id);
     }
 
-    @Transactional
+    @Override
     public void remove(Specialty specialty) {
         specialtyRepository.delete(specialty);
     }

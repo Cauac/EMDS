@@ -50,15 +50,7 @@ public class TeachersController {
 
     @RequestMapping("/add")
     public String addTeacher() {
-        return "/teachers/add";
-    }
-
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addTeacher(Teacher teacher, HttpServletRequest request) {
-        teacherService.add(teacher);
-        userService.addUserToPerson(User.TEACHER, teacher);
-        request.getSession().setAttribute("password", "12345");
-        return "redirect:/teachers";
+        return "/teachers/edit";
     }
 
     @RequestMapping("/edit")
@@ -69,10 +61,20 @@ public class TeachersController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editTeacher(@ModelAttribute("teacher") @Valid Teacher teacher, BindingResult result) {
-//        Teacher teacher = teacherService.read(Long.parseLong(id));
-//        teacher.setRank(rank);
-        teacherService.update(teacher);
+    public String editTeacher(@ModelAttribute("teacher") @Valid Teacher teacher,
+            BindingResult result, HttpServletRequest request) {
+        if (result.hasErrors()) {
+            return "/teachers/edit";
+        }
+        boolean newTeacher = false;
+        if (teacher.getId() == null) {
+            newTeacher = true;
+        }
+        teacherService.save(teacher);
+        if (newTeacher) {
+            userService.addUserToPerson(User.TEACHER, teacher);
+            request.getSession().setAttribute("password", "12345");
+        }
         return "redirect:/teachers";
     }
 
@@ -80,7 +82,8 @@ public class TeachersController {
     public ModelAndView removeTeacher(String id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/teachers");
         User user = userService.getUserByTeacherId(Long.parseLong(id));
-        if (!StringUtils.equals(EMDSContext.getInstance().getCurrentUser().getUsername(), user.getLogin())) {
+        if (!StringUtils.equals(EMDSContext.getInstance().getCurrentUser().getUsername(),
+                user.getLogin())) {
             userService.remove(user.getId());
             teacherService.remove(Long.parseLong(id));
         }
@@ -96,14 +99,14 @@ public class TeachersController {
     public String doSetChief(Long id) {
         List<Teacher> teachers = teacherService.list();
         for (Teacher teacher : teachers) {
-            if (teacher.getId() == id) {
+            if ((teacher.getId() == id) && !teacher.getChief()) {
                 teacher.setChief(true);
-            } else {
+                teacherService.save(teacher);
+            } else if ((teacher.getId() != id) && teacher.getChief()) {
                 teacher.setChief(false);
+                teacherService.save(teacher);
             }
-            teacherService.update(teacher);
         }
         return "redirect:/teachers";
     }
-
 }

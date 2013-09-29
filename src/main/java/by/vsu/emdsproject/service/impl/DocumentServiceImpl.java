@@ -20,12 +20,7 @@ public class DocumentServiceImpl implements DocumentService {
     private DocumentRepository documentRepository;
 
     @Override
-    public Document add(Document entity) {
-        return documentRepository.save(entity);
-    }
-
-    @Override
-    public Document update(Document entity) {
+    public Document save(Document entity) {
         return documentRepository.save(entity);
     }
 

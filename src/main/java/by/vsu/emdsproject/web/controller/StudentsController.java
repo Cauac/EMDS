@@ -5,6 +5,7 @@ import by.vsu.emdsproject.model.Questionnaire;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
+import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -89,7 +90,7 @@ public class StudentsController {
     public ModelAndView archive(@ModelAttribute("list") Integer list, ModelMap modelMap) {
         modelMap.addAttribute("list", 4);
         ModelAndView mav = new ModelAndView("/students/archiveList");
-        List<Student> students = new ArrayList<Student>();
+        List<Student> students = new ArrayList<>();
         students.addAll(studentService.getReserve());
         students.addAll(studentService.getDismissed());
         students.addAll(studentService.getFailed());
@@ -119,10 +120,10 @@ public class StudentsController {
             student.setGroup(groupService.read(Long.parseLong(group)));
             student.setQuestionnaire(questionnaire);
             student.setType(Student.JUNIOR);
-            studentService.add(student);
+            studentService.save(student);
             modelAndView = new ModelAndView("redirect:/students");
             request.getSession().setAttribute("win", "Студент добавлен");
-        } catch (Exception ex) {
+        } catch (ParseException | NumberFormatException ex) {
             modelAndView = new ModelAndView("redirect:/students/add");
             request.getSession().setAttribute("fail", "Ошибка при добавлении студента");
         }
@@ -141,7 +142,7 @@ public class StudentsController {
         if (result.hasErrors()) {
             return new ModelAndView("students/edit");
         }
-        studentService.update(student);
+        studentService.save(student);
         return new ModelAndView("redirect:/students");
     }
 

@@ -21,7 +21,7 @@ public class DocumentInfo extends AbstractEntity {
         this.commentary = commentary;
     }
 
-    @NotNull
+    @NotNull(message = "Обязательное поле")
     @Column(name = "brought")
     public Boolean getBrought() {
         return isBrought;
@@ -31,7 +31,7 @@ public class DocumentInfo extends AbstractEntity {
         isBrought = brought;
     }
 
-    @Size(max = 500)
+    @Size(max = 500, message = "Не более 500 символов")
     @Column(name = "commentary", length = 500)
     public String getCommentary() {
         return commentary;

@@ -1,10 +1,10 @@
 package by.vsu.emdsproject.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "specialty")
@@ -12,7 +12,7 @@ public class Specialty extends AbstractEntity {
 
     private String number;
     private String description;
-    private Set<Group> groups = new HashSet<Group>();
+    private Set<Group> groups = new HashSet<>();
 
     public Specialty() {
     }
@@ -21,8 +21,8 @@ public class Specialty extends AbstractEntity {
         this.id = id;
     }
 
-    @NotNull
-    @Size(min = 1, max = 10, message = "От 1 до 10 цифр")
+    @NotEmpty(message = "Обязательное поле")
+    @Size(max = 10, message = "Не более 10 цифр")
     @Column(name = "number", nullable = false, length = 10)
     public String getNumber() {
         return number;
@@ -32,8 +32,8 @@ public class Specialty extends AbstractEntity {
         this.number = number;
     }
 
-    @NotNull
-    @Size(min = 5, max = 200, message = "От 5 до 200 символов")
+    @NotEmpty(message = "Обязательное поле")
+    @Size(max = 200, message = "Не более 200 символов")
     @Column(name = "description", nullable = false, length = 200)
     public String getDescription() {
         return description;

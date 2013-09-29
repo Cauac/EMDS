@@ -6,9 +6,7 @@ import java.util.List;
 
 public interface AbstractService<T extends AbstractEntity> {
 
-    public T add(T entity);
-
-    public T update(T entity);
+    public T save(T entity);
 
     public List<T> list();
 

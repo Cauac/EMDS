@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -90,7 +91,7 @@ public class ReportsController {
         ModelAndView mav = new ModelAndView("/reports/examProtocol");
         mav.addObject("groups", groupService.list());
         List<Teacher> teachers = teacherService.list();
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         for (Teacher t : teachers) {
             String fio = t.getLastName() + " " + t.getFirstName().charAt(0) + "." + t.getMiddleName().charAt(0) + ".";
             result.add(t.getRank() + " " + fio);
@@ -112,19 +113,7 @@ public class ReportsController {
     public ModelAndView progressRequest() {
         ModelAndView mav = new ModelAndView("/reports/progressRequest");
         mav.addObject("form", new ProgressRequestForm());
-        List<String> faculties = new ArrayList<String>();
-        faculties.add("Математический");
-        faculties.add("Физический");
-        faculties.add("Биологический");
-        faculties.add("Физической культуры и спорта");
-        faculties.add("Исторический");
-        faculties.add("Социальной педагогики и психологии");
-        faculties.add("Филологический");
-        faculties.add("Белорусской филологии и культры");
-        faculties.add("Юридический");
-        faculties.add("Художественно-графический");
-        faculties.add("Педагогический");
-        mav.addObject("faculties", faculties);
+        mav.addObject("faculties", Arrays.asList(Student.FACULTIES));
         return mav;
     }
 
