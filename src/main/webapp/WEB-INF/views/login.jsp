@@ -12,7 +12,7 @@
 <body>
 <emds:header/>
 <div class="well center-div span5">
-    <h3 class="center"><emds:icon icon="22"/>Вход в систему</h3>
+    <h3 class="center">Вход в систему</h3>
     <c:if test="${not empty error}">
         <div class="alert alert-error center-div span2">
             Неверный логин/пароль

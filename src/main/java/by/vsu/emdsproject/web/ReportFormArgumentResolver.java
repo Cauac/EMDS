@@ -11,9 +11,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * @author Max
- *         Date: 17.05.13
- *         Time: 23:59
+ * @author Max Date: 17.05.13 Time: 23:59
  */
 public class ReportFormArgumentResolver implements HandlerMethodArgumentResolver {
 
@@ -23,7 +21,7 @@ public class ReportFormArgumentResolver implements HandlerMethodArgumentResolver
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
-        return methodParameter.getParameterType().equals(AbstractReportForm.class) ? true : false;
+        return methodParameter.getParameterType().equals(AbstractReportForm.class);
     }
 
     @Override

@@ -55,10 +55,14 @@ public class AbiturientsController {
         Map<Student, Boolean> readiness = new HashMap<>();
         for (Student abiturient : abiturients) {
             readiness.put(abiturient, studentService.readyToTake(abiturient));
-        }
+        }        
+        List<String> faculties = new ArrayList<>();
+        faculties.add("Все факультеты");
+        faculties.addAll(Arrays.asList(Student.FACULTIES));
         mav.addObject("abiturients", abiturients);
         mav.addObject("documents", documentService.list());
         mav.addObject("readiness", readiness);
+        mav.addObject("faculties", faculties);
         return mav;
     }
 
@@ -81,7 +85,7 @@ public class AbiturientsController {
 
         return new ModelAndView("redirect:/abiturients");
     }
-    
+
     @RequestMapping(value = "/remove")
     public String removeAbiturient(@ModelAttribute("student") Student student, HttpServletRequest request) {
         studentService.fail(student);
