@@ -3,7 +3,7 @@ package by.vsu.emdsproject.web.controller;
 import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.model.User;
-import by.vsu.emdsproject.model.comparator.TeacherComporator;
+import by.vsu.emdsproject.model.comparator.TeacherComparator;
 import by.vsu.emdsproject.service.TeacherService;
 import by.vsu.emdsproject.service.UserService;
 import org.apache.commons.lang.StringUtils;
@@ -42,7 +42,7 @@ public class TeachersController {
     public ModelAndView teachers() {
         ModelAndView mav = new ModelAndView("/teachers/list");
         List<Teacher> teachers = teacherService.list();
-        Collections.sort(teachers, new TeacherComporator());
+        Collections.sort(teachers, new TeacherComparator());
         mav.addObject("teachers", teachers);
         mav.addObject("users", userService.getTeachers());
         return mav;

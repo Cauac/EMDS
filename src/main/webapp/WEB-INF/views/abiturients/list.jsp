@@ -122,6 +122,7 @@
                     type: 'GET',
                     url: url,
                     cache: false,
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function(html) {
                         $("#table").html(html);
                     }

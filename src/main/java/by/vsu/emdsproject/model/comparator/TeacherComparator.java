@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Сортирует преподавателей по званию
  */
-public class TeacherComporator implements Comparator<Teacher> {
+public class TeacherComparator implements Comparator<Teacher> {
 
     private final static Map<String, Integer> priorityMap = new HashMap<String, Integer>();
 
