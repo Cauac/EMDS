@@ -17,18 +17,29 @@
         <emds:teacherMenu number="1"/>
         <emds:studentsTabs number="4"/>
 
-        <div class="center">
+        <div class="center-div span10">
 
-            <label class="checkbox inline">
-                <input id="reserveCheck" type="checkbox" checked="true" onchange="showNewList();"> Завершившие обучение
-            </label>
-            <label class="checkbox inline">
-                <input id="dismissedCheck" type="checkbox" checked="true" onchange="showNewList();"> Отчисленные
-            </label>
-            <label class="checkbox inline">
-                <input id="cancelledCheck" type="checkbox" checked="true" onchange="showNewList();"> Не принятые
-            </label>
+            <div class="pull-right">
+                <select id="faculties" style="margin-left: 20px" onchange="showNewList();">
+                    <c:forEach var="faculty" items="${faculties}">
+                        <option value="${faculty}">${faculty}</option>
+                    </c:forEach>
+                </select>
+            </div>
+
+            <div class="pull-left">
+                <label class="checkbox inline">
+                    <input id="reserveCheck" type="checkbox" checked="true" onchange="showNewList();"> Завершившие обучение
+                </label>
+                <label class="checkbox inline">
+                    <input id="dismissedCheck" type="checkbox" checked="true" onchange="showNewList();"> Отчисленные
+                </label>
+                <label class="checkbox inline">
+                    <input id="cancelledCheck" type="checkbox" checked="true" onchange="showNewList();"> Не принятые
+                </label>
+            </div>
         </div> <br>
+        <div style="clear: both"></div>
         <div id="table">
             <c:choose>
                 <c:when test="${fn:length(students) gt 0}">
@@ -38,7 +49,7 @@
                             <th>Студент</th>
                             <th>Факультет</th>
                             <th>Год поступления</th>
-                            <th>Результат обучения</th>
+                            <th>Статус</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -96,10 +107,12 @@
 
         <script type="text/javascript">
             function showNewList() {
+                var faculty = $("#faculties").val();
                 var reserve = $("#reserveCheck").is(':checked') ? 1 : 0;
                 var dismissed = $("#dismissedCheck").is(':checked') ? 1 : 0;
                 var cancelled = $("#cancelledCheck").is(':checked') ? 1 : 0;
-                var url = '${url}' + '?reserve=' + reserve + '&dismissed=' + dismissed + '&cancelled=' + cancelled;
+                var url = '${url}' + '?faculty=' + faculty + '&reserve=' + reserve +
+                        '&dismissed=' + dismissed + '&cancelled=' + cancelled;
                 $.ajax({
                     type: 'GET',
                     url: url,

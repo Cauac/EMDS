@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import org.springframework.cache.annotation.CacheEvict;
 
 @Service("studentService")
 @Transactional
@@ -40,6 +41,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional(readOnly = true)
+    @CacheEvict(value = "students", allEntries=true)
     public List<Student> list() {
         return studentRepository.findAll();
     }
@@ -148,6 +150,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Cacheable("studentsByFaculty")
     public List<Student> getAbiturientsByFaculty(String faculty) {
         return studentRepository.findByQuestionnaireFacultyAndType(faculty, Student.ABITURIENT);
     }

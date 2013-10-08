@@ -11,7 +11,7 @@
                 <th>Студент</th>
                 <th>Факультет</th>
                 <th>Год поступления</th>
-                <th>Результат обучения</th>
+                <th>Статус</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -57,8 +57,8 @@
 
     </c:when>
     <c:otherwise>
-        <div class="center">
-            <h5>Нет студентов выбранных категорий</h5>
-        </div>
+        <!--<div class="span10 center-div center">-->
+            <h5 class="center">Нет студентов выбранных категорий</h5>
+        <!--</div>-->
     </c:otherwise>
 </c:choose>

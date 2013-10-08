@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -74,6 +75,7 @@ public class StudentsController {
     public ModelAndView juniors(@ModelAttribute("list") Integer list, ModelMap modelMap) {
         modelMap.addAttribute("list", 2);
         ModelAndView mav = new ModelAndView("/students/juniorList");
+        mav.addObject("faculties", Arrays.asList(Student.FACULTIES));
         mav.addObject("students", studentService.getJuniors());
         return mav;
     }
@@ -82,6 +84,7 @@ public class StudentsController {
     public ModelAndView officers(@ModelAttribute("list") Integer list, ModelMap modelMap) {
         modelMap.addAttribute("list", 3);
         ModelAndView mav = new ModelAndView("/students/officerList");
+        mav.addObject("faculties", Arrays.asList(Student.FACULTIES));
         mav.addObject("students", studentService.getOfficers());
         return mav;
     }
@@ -94,6 +97,10 @@ public class StudentsController {
         students.addAll(studentService.getReserve());
         students.addAll(studentService.getDismissed());
         students.addAll(studentService.getFailed());
+        List<String> faculties = new ArrayList<>();
+        faculties.add("Все факультеты");
+        faculties.addAll(Arrays.asList(Student.FACULTIES));
+        mav.addObject("faculties", faculties);
         mav.addObject("students", students);
         return mav;
     }
@@ -113,7 +120,7 @@ public class StudentsController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView addStudent(Student student, String group, Questionnaire questionnaire,
-                                   String dateOfBirth, HttpServletRequest request) {
+            String dateOfBirth, HttpServletRequest request) {
         ModelAndView modelAndView;
         try {
             student.setBirthDate(EMDSGlobal.dateFormat.parse(dateOfBirth));
@@ -160,7 +167,7 @@ public class StudentsController {
 
     @RequestMapping(value = "/toOfficer", method = RequestMethod.POST)
     public String doToOfficer(@ModelAttribute("student") Student student, Long groupId,
-                              @ModelAttribute("list") Integer list, ModelMap modelMap) {
+            @ModelAttribute("list") Integer list, ModelMap modelMap) {
         student.setGroup(groupService.read(groupId));
         studentService.toOfficer(student);
         modelMap.addAttribute("list", 3);
@@ -169,7 +176,7 @@ public class StudentsController {
 
     @RequestMapping(value = "/toReserve", method = RequestMethod.GET)
     public String toReserve(@ModelAttribute("student") Student student,
-                            @ModelAttribute("list") Integer list, ModelMap modelMap) {
+            @ModelAttribute("list") Integer list, ModelMap modelMap) {
         student.setRank("Лейтенант запаса");
         student.getQuestionnaire().setEducationEndDate(new Date());
         studentService.toReserve(student);
