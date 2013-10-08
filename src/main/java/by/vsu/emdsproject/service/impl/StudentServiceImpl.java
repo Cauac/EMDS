@@ -41,14 +41,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional(readOnly = true)
-    @CacheEvict(value = "students", allEntries=true)
     public List<Student> list() {
         return studentRepository.findAll();
     }
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable(value = "students", key = "#id")
     public Student read(Long id) {
         return studentRepository.findOne(id);
     }
@@ -150,7 +148,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Cacheable("studentsByFaculty")
     public List<Student> getAbiturientsByFaculty(String faculty) {
         return studentRepository.findByQuestionnaireFacultyAndType(faculty, Student.ABITURIENT);
     }
