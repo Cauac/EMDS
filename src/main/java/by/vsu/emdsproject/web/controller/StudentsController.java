@@ -1,11 +1,15 @@
 package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.common.EMDSGlobal;
+import by.vsu.emdsproject.exception.EMDSException;
 import by.vsu.emdsproject.model.Questionnaire;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.service.GroupService;
 import by.vsu.emdsproject.service.StudentService;
+
 import java.text.ParseException;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
@@ -113,11 +118,22 @@ public class StudentsController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView addStudent(Student student, String group, Questionnaire questionnaire,
-                                   String dateOfBirth, HttpServletRequest request) {
+                                   String dateOfBirth, HttpServletRequest request,
+                                   @RequestParam(value = "file", required = false) Part file) {
         ModelAndView modelAndView;
         try {
             student.setBirthDate(EMDSGlobal.dateFormat.parse(dateOfBirth));
             student.setGroup(groupService.read(Long.parseLong(group)));
+            if (file != null) {
+                byte[] fileContent = null;
+                try {
+                    fileContent = IOUtils.toByteArray(file.getInputStream());
+                    questionnaire.setPhoto(fileContent);
+                } catch (Exception ex) {
+                    throw new EMDSException("ошибка при загруке фото");
+                }
+                questionnaire.setPhoto(fileContent);
+            }
             student.setQuestionnaire(questionnaire);
             student.setType(Student.JUNIOR);
             studentService.save(student);
@@ -138,9 +154,19 @@ public class StudentsController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView doEditStudent(@ModelAttribute("student") @Valid Student student, BindingResult result) {
+    public ModelAndView doEditStudent(@ModelAttribute("student") @Valid Student student, BindingResult result, @RequestParam(value = "file", required = false) Part file) {
         if (result.hasErrors()) {
             return new ModelAndView("students/edit");
+        }
+        if (file != null) {
+            byte[] fileContent = null;
+            try {
+                fileContent = IOUtils.toByteArray(file.getInputStream());
+                student.getQuestionnaire().setPhoto(fileContent);
+            } catch (Exception ex) {
+                throw new EMDSException("ошибка при загруке фото");
+            }
+            student.getQuestionnaire().setPhoto(fileContent);
         }
         studentService.save(student);
         return new ModelAndView("redirect:/students");

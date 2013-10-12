@@ -20,7 +20,7 @@
 
         <div class="span11 center-div">
             <label class="select-and-input inline">
-                Фильтр по факультетам: 
+                Фильтр по факультетам:
                 <select id="faculties" style="margin-left: 20px" onchange="showNewList();">
                     <c:forEach var="faculty" items="${faculties}">
                         <option value="${faculty}">${faculty}</option>
@@ -109,6 +109,11 @@
             <spring:url value="/abiturients/add" var="addAbiturient"/>
             <a style="width: 180px" class="btn" href="${addAbiturient}">
                 <emds:icon icon="112" text="Добавить абитуриента"/>Добавить абитуриента
+            </a>
+            <spring:url var="uploadProgress" value="/file/uploadProgressFile"/>
+            <a style="width: 180px" class="btn" href="${uploadProgress}">
+                <emds:icon icon="8" text="Загрузить файл с успеваемостью студентов"/>
+                Загрузить файл с успеваемостью студентов
             </a>
         </div>
 

@@ -50,6 +50,8 @@ public class Questionnaire extends AbstractEntity {
     private String thinkAboutStudy;
     private String thinkAboutDuty;
     private String duty;
+    private byte[] photo;
+
     @JsonBackReference
     private Student student;
 
@@ -455,5 +457,15 @@ public class Questionnaire extends AbstractEntity {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "photo")
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }

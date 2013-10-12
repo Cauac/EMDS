@@ -9,6 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <emds:style/>
         <title><emds:title title="Анкета"/></title>
+        <emds:jquery/>
     </head>
     <body>
         <emds:header/>
@@ -19,7 +20,7 @@
 
         <spring:url value="/students/edit" var="documentURL"/>
 
-        <form:form action="${documentURL}" method="post" cssClass="form-horizontal" modelAttribute="student">
+        <form:form action="${documentURL}" method="post" cssClass="form-horizontal" modelAttribute="student" enctype="multipart/form-data">
 
             <form:hidden path="id"/>
             <div class="well center-div span11">
@@ -142,6 +143,22 @@
                 </div>
 
                 <div class="span5">
+
+
+                    <div id="addPhoto" class="control-group">
+                        <div>
+                            <label for="file" class="control-label">${labelPhoto}</label>
+                            <c:choose>
+                               <c:when test="${student.questionnaire.photo ne null}">
+                                <spring:url value="/file/photo/${student.questionnaire.id}" var="fotoURL"/>
+                                <img id="photo" src="${fotoURL}" alt="Фото"/>
+                               </c:when>
+                                <c:otherwise><img id="photo" src="/resources/images/no-photo.png" alt="Фото"/></c:otherwise>
+                            </c:choose>
+                            <br>
+                            <input type="file" id="file" name="file" onchange="readURL(this);"/>
+                        </div>
+                    </div>
 
                     <h5>Адрес</h5>
 
@@ -445,5 +462,21 @@
 
         </form:form>
 
+        <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#photo')
+                                .attr('src', e.target.result)
+                                .width(150)
+                                .height(200);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
     </body>
 </html>

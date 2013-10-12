@@ -20,11 +20,13 @@
         <postgre.version>9.1-901-1.jdbc4</postgre.version>
         <jstl.version>1.2</jstl.version>
         <servlet-api.version>2.4</servlet-api.version>
+        <javaee-web-api.version>6.0</javaee-web-api.version>
         <jsp-api.version>2.1</jsp-api.version>
         <junit.version>4.10</junit.version>
         <commons-logging.version>1.1.1</commons-logging.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <commons-lang.version>2.6</commons-lang.version>
+        <commons-io.version>2.1</commons-io.version>
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.2</slf4j.version>
         <cglib.version>2.2</cglib.version>
@@ -54,6 +56,11 @@
                 <groupId>commons-logging</groupId>
                 <artifactId>commons-logging</artifactId>
                 <version>${commons-logging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -247,8 +254,9 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>${javaee-web-api.version}</version>
             <scope>provided</scope>
         </dependency>
         
@@ -370,6 +378,11 @@
         </dependency>
 
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
         </dependency>
@@ -384,10 +397,10 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.aspose</groupId>
-            <artifactId>aspose.words</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.aspose</groupId>-->
+            <!--<artifactId>aspose.words</artifactId>-->
+        <!--</dependency>-->
 
     </dependencies>
 
