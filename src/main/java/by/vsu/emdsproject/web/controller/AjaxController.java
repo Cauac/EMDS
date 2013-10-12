@@ -44,8 +44,10 @@ public class AjaxController {
 
     @RequestMapping("archiveList")
     public @ResponseBody
-    ModelAndView archiveList(Integer reserve, Integer dismissed, Integer cancelled) {
+    ModelAndView archiveList(Integer reserve, Integer dismissed, Integer cancelled, String faculty) {
         List<Student> students = new ArrayList<>();
+        
+        // by status
         if (dismissed != 0) {
             students.addAll(studentService.getDismissed());
         }
@@ -55,6 +57,18 @@ public class AjaxController {
         if (cancelled != 0) {
             students.addAll(studentService.getFailed());
         }
+        
+        // by faculty TODO: criteria
+        if (!faculty.equals("Все факультеты")) {
+            List<Student> students2 = new ArrayList<>();
+            for (Student student : students) {
+                if (student.getQuestionnaire().getFaculty().equals(faculty)) {
+                    students2.add(student);
+                }
+            }
+            students = students2;
+        }
+        
         return new ModelAndView("students/archiveListAjax", "students", students);
     }
 

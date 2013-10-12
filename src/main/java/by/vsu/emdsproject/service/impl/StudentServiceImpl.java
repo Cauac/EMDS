@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import org.springframework.cache.annotation.CacheEvict;
 
 @Service("studentService")
 @Transactional
@@ -46,7 +47,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable(value = "students", key = "#id")
     public Student read(Long id) {
         return studentRepository.findOne(id);
     }

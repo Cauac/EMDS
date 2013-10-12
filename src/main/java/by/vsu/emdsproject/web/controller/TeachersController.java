@@ -49,14 +49,15 @@ public class TeachersController {
     }
 
     @RequestMapping("/add")
-    public String addTeacher() {
-        return "/teachers/edit";
+    public ModelAndView addTeacher() {
+        return new ModelAndView("/teachers/edit", "add", true);
     }
 
     @RequestMapping("/edit")
     public ModelAndView editTeacher(String id) {
         ModelAndView mav = new ModelAndView("/teachers/edit");
         mav.addObject("teacher", teacherService.read(Long.parseLong(id)));
+        mav.addObject("add", false);
         return mav;
     }
 

@@ -99,7 +99,7 @@
                     </table>
                 </c:when>
                 <c:otherwise>
-                    <h5 class="center">Нет абитуриентов</h5>
+                    <h5 class="center">Список пуст</h5>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -107,8 +107,8 @@
         <br>
         <div class="center">
             <spring:url value="/abiturients/add" var="addAbiturient"/>
-            <a style="width: 180px" class="btn" href="${addAbiturient}">
-                <emds:icon icon="112" text="Добавить абитуриента"/>Добавить абитуриента
+            <a class="btn" style="margin-bottom: 25px" href="${addAbiturient}">
+                <emds:icon icon="112" text="Добавить абитуриента"/>Добавить поступающего
             </a>
             <spring:url var="uploadProgress" value="/file/uploadProgressFile"/>
             <a style="width: 180px" class="btn" href="${uploadProgress}">

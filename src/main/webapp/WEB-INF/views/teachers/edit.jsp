@@ -9,7 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <emds:style/>
-        <title><emds:title title="${teacher.lastName ? teacher.lastName + '' + teacher.firstName + '' + teacher.middleName  : 'Новый преподаватель'}"/></title>
+        <title><emds:title title="Преподаватель"/></title>
     </head>
     <body>
         <emds:header/>
@@ -19,7 +19,14 @@
         </spring:hasBindErrors>
         <div class="well center-div span5">
 
-            <h3 class="center"><emds:icon icon="111"/> ${teacher.lastName ? teacher.lastName + '' + teacher.firstName + '' + teacher.middleName  : 'Новый преподаватель'}</h3>
+            <h3 class="center"><emds:icon icon="111"/>
+                <c:if test="${add}">
+                    'Новый преподаватель'
+                </c:if>
+                <c:if test="${not add}">
+                    ${teacher.lastName} ${teacher.firstName } ${teacher.middleName}
+                </c:if>
+            </h3>
 
             <spring:url var="editTeacher" value="/teachers/edit"/>
 
@@ -78,9 +85,9 @@
                     </div>
 
                     <div class="center">
-                        <input class="btn btn-primary" type="submit" value="Сохранить"/>
+                        <input class="btn" type="submit" value="Сохранить"/>
                     <spring:url var="teachers" value="/teachers"/>
-                    <a class="btn" href="${teachers}"> Назад </a>
+                    <a class="btn btn-info" href="${teachers}"> Назад </a>
                 </div>
             </form:form>
 
