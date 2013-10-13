@@ -39,6 +39,14 @@
                         <span class="help-inline"></span>
                     </div>
                 </div>
+                <div id="photoDiv" class="control-group">
+                    <label class="control-label">Фото</label>
+
+                    <div class="controls">
+                        <form:checkbox path="printPhoto"/>
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
 
                 <div class="center">
                     <spring:url var="reports" value="/reports"/>

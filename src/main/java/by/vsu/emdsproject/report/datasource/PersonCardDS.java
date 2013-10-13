@@ -4,6 +4,8 @@ import by.vsu.emdsproject.common.ReportUtil;
 import by.vsu.emdsproject.model.Questionnaire;
 import by.vsu.emdsproject.model.Student;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class PersonCardDS extends AbstractReportDataSource {
@@ -13,6 +15,7 @@ public class PersonCardDS extends AbstractReportDataSource {
     public static class DataSourceParameter extends AbstractReportDataSource.DataSourceParameter {
 
         public static final String STUDENT = "student";
+        public static final String PHOTO_DATA = "photoData";
     }
 
     public static class ReportParameter extends AbstractReportDataSource.ReportParameter {
@@ -27,6 +30,7 @@ public class PersonCardDS extends AbstractReportDataSource {
         public static final String DUTY = "duty";
         public static final String PARENT_ADDRESS = "parentAddress";
         public static final String ADDRESS = "address";
+        public static final String WITH_PHOTO = "withPhoto";
     }
 
     @Override
@@ -58,6 +62,14 @@ public class PersonCardDS extends AbstractReportDataSource {
 
     @Override
     protected void initializeReportData(Map parameters) throws Exception {
-        return;
+        if (!Boolean.parseBoolean(parameters.get(ReportParameter.WITH_PHOTO).toString())) {
+            return;
+        }
+        Student student = (Student) parameters.get(DataSourceParameter.STUDENT);
+        Questionnaire questionnaire = student.getQuestionnaire();
+        HashMap fields = new HashMap<String, Object>();
+        fields.put(DataSourceParameter.PHOTO_DATA, questionnaire.getPhoto());
+        reportData = new ArrayList<HashMap>();
+        reportData.add(fields);
     }
 }

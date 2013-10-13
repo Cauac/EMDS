@@ -17,6 +17,7 @@
     <bean id="personCard"
           class="by.vsu.emdsproject.report.aspose.report.PersonCardReport" lazy-init="true">
         <property name="templateName" value="${reports.templates.personCard}"/>
+        <property name="templateNameWithPhoto" value="${reports.templates.personCardWithPhoto}"/>
     </bean>
     <bean id="allowedList"
           class="by.vsu.emdsproject.report.aspose.report.AllowedListReport" lazy-init="true">

@@ -12,6 +12,7 @@ public class PersonCardForm extends AbstractReportForm {
 
     private Group group;
     private Student student;
+    private boolean printPhoto;
 
     public Group getGroup() {
         return group;
@@ -29,10 +30,19 @@ public class PersonCardForm extends AbstractReportForm {
         this.student = student;
     }
 
+    public boolean isPrintPhoto() {
+        return printPhoto;
+    }
+
+    public void setPrintPhoto(boolean printPhoto) {
+        this.printPhoto = printPhoto;
+    }
+
     @Override
     public Map getReportDataMap() {
         Map map = new HashMap();
         map.put(PersonCardDS.DataSourceParameter.STUDENT, student);
+        map.put(PersonCardDS.ReportParameter.WITH_PHOTO, printPhoto);
         return map;
     }
 
