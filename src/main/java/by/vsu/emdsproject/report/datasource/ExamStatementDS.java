@@ -5,7 +5,6 @@ import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.model.comparator.StudentComparator;
-import by.vsu.emdsproject.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +17,6 @@ import java.util.Map;
 public class ExamStatementDS extends AbstractReportDataSource {
 
     String title = "Зачетно-экзаменационная ведомость";
-
-    @Autowired
-    private TeacherService teacherService;
 
     public static class DataSourceParameter extends AbstractReportDataSource.DataSourceParameter {
 
@@ -56,7 +52,7 @@ public class ExamStatementDS extends AbstractReportDataSource {
     protected void initializeParameters(Map parameters) throws Exception {
         Group group = (Group) parameters.get(DataSourceParameter.GROUP);
         Teacher[] teachers = (Teacher[]) parameters.get(DataSourceParameter.TEACHERS);
-        Teacher chief = teacherService.getChief();
+//        Teacher chief = teacherService.getChief();
 
         title += " " + group.getTitle();
         addParameter(ReportParameter.GROUP_NAME, group.getTitle());
@@ -68,10 +64,10 @@ public class ExamStatementDS extends AbstractReportDataSource {
         teachersFio = teachersFio.substring(0, teachersFio.length() - 2);
         addParameter(ReportParameter.TEACHERS_FIO, teachersFio);
 
-        if (chief != null) {
-            addParameter(ReportParameter.CHIEF_FIO, ReportUtil.getReversShortFIO(chief));
-            addParameter(ReportParameter.CHIEF_RANK, chief.getRank());
-        }
+//        if (chief != null) {
+//            addParameter(ReportParameter.CHIEF_FIO, ReportUtil.getReversShortFIO(chief));
+//            addParameter(ReportParameter.CHIEF_RANK, chief.getRank());
+//        }
     }
 
     @Override

@@ -1,6 +1,5 @@
 package by.vsu.emdsproject.test;
 
-import by.vsu.emdsproject.service.SpecialtyService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"classpath:/spring/emds-web-context.xml"})
 public class SpecialtyTest {
 
-    @Autowired
-    SpecialtyService specialtyService;
 
     @Test
     public void writeReadTest() {

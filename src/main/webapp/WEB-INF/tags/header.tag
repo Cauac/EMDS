@@ -8,10 +8,10 @@
 <spring:url value="/index" var="index"/>
 <spring:url value="/personal" var="personal"/>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
         <div class="container">
-            <a class="brand" href="${index}">
+            <a class="navbar-brand" href="${index}">
                 Военная кафедра ВГУ
             </a>
             <sec:authorize ifAnyGranted="ROLE_TEACHER,ROLE_STUDENT">
@@ -25,4 +25,4 @@
             </sec:authorize>
         </div>
     </div>
-</div>
+</nav>

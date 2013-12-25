@@ -3,75 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context" 
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
-           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-           http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-    <jpa:repositories base-package="by.vsu.emdsproject.repository"/>
+    <tx:annotation-driven/>
     <context:component-scan base-package="by.vsu.emdsproject"/>
     <context:property-placeholder location="classpath:application.properties"/>
 
-    <bean id="validator"
-          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
-
-    <bean id="flyway" class="com.googlecode.flyway.core.Flyway"
-          init-method="migrate">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="initOnMigrate" value="true"/>
-        <property name="locations">
-            <list>
-                <value>classpath:db/migration/</value>
-            </list>
-        </property>
-        <property name="initVersion" value="0"/>
-        <property name="initDescription" value="Base migration"/>
-    </bean>
-
-    <bean id="dataSource"
-          class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-        <property name="driverClassName" value="${database.driver}"/>
-        <property name="url" value="${database.url}"/>
-        <property name="username" value="${database.username}"/>
-        <property name="password" value="${database.password}"/>
-    </bean>
-
-    <bean id="entityManagerFactory" depends-on="flyway"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="by.vsu.emdsproject.model" />
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="showSql" value="true"/>
-                <property name="generateDdl" value="true"/>
-            </bean>
-        </property>
-    </bean>
-
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
-    </bean>
-
-    <bean id="conversionService"
-          class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters">
-            <set>
-                <bean id="studentConverter" class="by.vsu.emdsproject.model.convertion.StudentConverter"/>
-                <bean id="groupConverter" class="by.vsu.emdsproject.model.convertion.GroupConverter"/>
-                <bean id="specialtyConverter" class="by.vsu.emdsproject.model.convertion.SpecialtyConverter"/>
-                <bean id="teacherConverter" class="by.vsu.emdsproject.model.convertion.TeacherConverter"/>
-                <bean id="addressConverter" class="by.vsu.emdsproject.model.convertion.AddressConverter"/>
-                <bean id="documentConverter" class="by.vsu.emdsproject.model.convertion.DocumentConverter"/>
-                <bean id="documentInfoConverter" class="by.vsu.emdsproject.model.convertion.DocumentInfoConverter"/>
-                <bean id="questionnaireConverter" class="by.vsu.emdsproject.model.convertion.QuestionnaireConverter"/>
-
-                <bean id="reportFormConverter" class="by.vsu.emdsproject.model.convertion.ReportFormConverter"/>
-            </set>
-        </property>
-    </bean>
-    
 </beans>

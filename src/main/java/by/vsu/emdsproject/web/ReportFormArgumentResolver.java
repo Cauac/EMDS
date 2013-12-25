@@ -10,9 +10,6 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-/**
- * @author Max Date: 17.05.13 Time: 23:59
- */
 public class ReportFormArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Autowired

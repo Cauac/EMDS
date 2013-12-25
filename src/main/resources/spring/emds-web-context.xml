@@ -12,11 +12,7 @@
     <import resource="classpath:spring/emds-security-context.xml"/>
     <import resource="classpath:spring/emds-reports-context.xml"/>
 
-    <mvc:annotation-driven conversion-service="conversionService">
-        <mvc:argument-resolvers>
-            <bean class="by.vsu.emdsproject.web.ReportFormArgumentResolver"/>
-        </mvc:argument-resolvers>
-    </mvc:annotation-driven>
+    <mvc:annotation-driven/>
 
     <mvc:resources location="/resources/" mapping="/resources/**"/>
     <context:component-scan base-package="by.vsu.emdsproject.*"/>
@@ -32,12 +28,6 @@
             id="messageSource" p:basenames="messages"
             p:fallbackToSystemLocale="false"/>
 
-    <mvc:interceptors>
-        <bean
-                class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
-            <property name="entityManagerFactory" ref="entityManagerFactory"/>
-        </bean>
-    </mvc:interceptors>
 
     <bean id="exceptionResolver" class="by.vsu.emdsproject.exception.ExceptionResolver">
         <property name="exceptionMappings">

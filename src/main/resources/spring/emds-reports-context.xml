@@ -10,8 +10,6 @@
     <!--generators-->
     <bean id="docxReportGenerator"
           class="by.vsu.emdsproject.report.aspose.generator.AsposeDocxReportGenerator" lazy-init="true"/>
-    <bean id="pdfReportGenerator"
-          class="by.vsu.emdsproject.report.jasper.JasperReportPdfGenerator" lazy-init="true"/>
 
     <!--aspose-reports-->
     <bean id="personCard"
