@@ -96,7 +96,7 @@ public class Student extends Person {
     }
 
     @Valid
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "questionnaire_id")
     public Questionnaire getQuestionnaire() {
         return questionnaire;
@@ -106,7 +106,7 @@ public class Student extends Person {
         this.questionnaire = questionnaire;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "student_documents",
             joinColumns =
             @JoinColumn(name = "student"),
