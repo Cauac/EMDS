@@ -9,6 +9,7 @@
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <beans:bean id="authSuccessHandler" class="by.vsu.emdsproject.web.filter.AuthorisationSuccess"/>
+    <beans:bean id="customUserDetailService" class="by.vsu.emdsproject.authentication.DBUserDetailsService"/>
 
     <security:global-method-security secured-annotations="enabled"/>
 
@@ -51,11 +52,7 @@
     </security:http>
 
     <!-- Users -->
-    <security:authentication-manager >
-        <security:authentication-provider>
-            <user-service>
-                <user name="user" password="123456" authorities="ROLE_USER" />
-            </user-service>
-        </security:authentication-provider>
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="customUserDetailService"/>
     </security:authentication-manager>
 </beans:beans>

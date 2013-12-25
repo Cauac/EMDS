@@ -3,7 +3,10 @@ package by.vsu.emdsproject.model;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
+
+import java.util.Map;
 
 @MappedSuperclass
 public abstract class Person extends AbstractEntity {
@@ -52,5 +55,11 @@ public abstract class Person extends AbstractEntity {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    public void setMapData(Map data) {
+        firstName = data.get("first_name").toString();
+        middleName = data.get("middle_name").toString();
+        lastName = data.get("last_name").toString();
     }
 }
