@@ -9,7 +9,7 @@ body {
 
 .center-div {
     margin: 0 auto !important;
-    float:none !important;
+    float: none !important;
 }
 
 .loginInput {
@@ -34,4 +34,14 @@ body {
 .commentaryTextarea {
     width: 300px;
     height: 500px;
+}
+
+.ico {
+    width: 24px;
+    height: 24px;
+}
+
+.pog {
+    width: 124px;
+    height: 43px;
 }

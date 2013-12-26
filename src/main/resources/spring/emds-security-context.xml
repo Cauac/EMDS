@@ -8,8 +8,8 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <beans:bean id="authSuccessHandler" class="by.vsu.emdsproject.web.filter.AuthorisationSuccess"/>
-    <beans:bean id="customUserDetailService" class="by.vsu.emdsproject.authentication.DBUserDetailsService"/>
+    <beans:bean id="authSuccessHandler" class="by.vsu.emdsproject.web.authentication.AuthorisationSuccess"/>
+    <beans:bean id="customUserDetailService" class="by.vsu.emdsproject.web.authentication.DBUserDetailsService"/>
 
     <security:global-method-security secured-annotations="enabled"/>
 

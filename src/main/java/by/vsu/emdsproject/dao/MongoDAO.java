@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Required;
 
 public abstract class MongoDAO implements InitializingBean {
 
+    public static final String IDENTITY = "_id";
     private MongoClient mongoClient;
     private String dbName;
     protected DB database;

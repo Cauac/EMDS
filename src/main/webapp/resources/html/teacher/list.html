@@ -1,0 +1,36 @@
+<table class="table table-condensed">
+    <thead>
+    <tr class="row">
+
+        <th class="col-sm-1"></th>
+        <th class="col-sm-4">Преподаватель</th>
+        <th class="col-sm-3"></th>
+        <th class="col-sm-2">Логин</th>
+        <th class="col-sm-1"></th>
+        <th class="col-sm-1"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="teacher in teachers" class="row">
+        <td class="col-sm-1" ng-really-message="Сделать преподавателя начальником кафедры?" ng-really-click="setChief(teacher)"><img ng-show="teacher.is_chief" src="/resources/images/icons/33.png"/></td>
+        <td class="col-sm-4">{{teacher.last_name}} {{teacher.first_name}} {{teacher.middle_name}}</td>
+        <td class="col-sm-3">
+            <img class="pog" alt="teacher.rank" src="/resources/images/pog/ml.png" ng-show="teacher.rank=='Младший лейтенант'"/>
+            <img class="pog" alt="teacher.rank" src="/resources/images/pog/lt.png" ng-show="teacher.rank=='Лейтенант'"/>
+            <img class="pog" alt="teacher.rank" src="/resources/images/pog/sl.png" ng-show="teacher.rank=='Старший лейтенант'"/>
+            <img class="pog" alt="teacher.rank" src="/resources/images/pog/kp.png" ng-show="teacher.rank=='Капитан'"/>
+            <img class="pog" alt="teacher.rank" src="/resources/images/pog/mj.png" ng-show="teacher.rank=='Майор'"/>
+            <img class="pog" alt="teacher.rank" src="/resources/images/pog/pp.png" ng-show="teacher.rank=='Подполковник'"/>
+            <img class="pog" alt="teacher.rank" src="/resources/images/pog/pl.png" ng-show="teacher.rank=='Полковник'"/>
+        </td>
+        <td class="col-sm-2">{{teacher._id}}</td>
+        <td class="col-sm-1"><a ng-click="editTeacher(teacher)"><img class="ico" src="/resources/images/icons/13.png"/></a></td>
+        <td class="col-sm-1"><a ng-really-message="Удалить преподавателя?" ng-really-click="removeTeacher(teacher)"><img class="ico" src="/resources/images/icons/118.png"/></a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="center">
+    <a class="btn" ng-click="addTeacher()">
+        <img class="ico" src="/resources/images/icons/112.png"/> Добавить преподавателя
+    </a>
+</div>

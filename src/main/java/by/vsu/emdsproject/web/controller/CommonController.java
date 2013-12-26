@@ -13,11 +13,7 @@ public class CommonController {
 
     @RequestMapping(value = "/index")
     public String welcome() {
-        return "redirect:/students";
-//        if (userService.getByLogin(EMDSContext.getInstance().getCurrentUser().getUsername()).getRole().getAuthority().equals(Role.TEACHER)) {
-//            return "redirect:/";
-//        }
-//        return "fff";// "forward:start.jsp";
+        return "/resources/html/index/index.html";
     }
 
     @RequestMapping(value = "/403")
@@ -33,7 +29,7 @@ public class CommonController {
                 return "redirect:/";
             }
         }
-        return "login";
+        return "/resources/html/login.html";
     }
 
     @RequestMapping(value = "/loginfailed")

@@ -1,4 +1,4 @@
-package by.vsu.emdsproject.authentication;
+package by.vsu.emdsproject.web.authentication;
 
 import by.vsu.emdsproject.dao.TeacherDAO;
 import com.mongodb.DBObject;

@@ -17,12 +17,6 @@
     <mvc:resources location="/resources/" mapping="/resources/**"/>
     <context:component-scan base-package="by.vsu.emdsproject.*"/>
 
-    <bean name="mainResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/views/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
-
     <bean
             class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
             id="messageSource" p:basenames="messages"
@@ -32,7 +26,7 @@
     <bean id="exceptionResolver" class="by.vsu.emdsproject.exception.ExceptionResolver">
         <property name="exceptionMappings">
             <map>
-                <entry key="by.vsu.emdsproject.exception.EMDSException" value="/exception" />
+                <entry key="by.vsu.emdsproject.exception.EMDSException" value="/exception"/>
             </map>
         </property>
     </bean>

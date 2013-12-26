@@ -1,4 +1,4 @@
-package by.vsu.emdsproject.web.filter;
+package by.vsu.emdsproject.web.authentication;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
