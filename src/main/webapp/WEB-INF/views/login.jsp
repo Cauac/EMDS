@@ -7,7 +7,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Вход - Военная кафедра ВГУ</title>
-    <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/index.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
     <link rel="icon" type="image/gif" href="${pageContext.request.contextPath}/resources/images/icon.png">
 </head>

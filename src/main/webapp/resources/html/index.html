@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="EMDS" ng-controller="CommonController">
+<head>
+    <title>{{ CommonService.title() }} - Военная кафедра ВГУ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/resources/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/unicorn.main.css" />
+    <link rel="stylesheet" href="/resources/css/unicorn.grey.css" class="skin-color" />
+    <link rel="icon" type="image/gif" href="${pageContext.request.contextPath}/resources/images/icon.png">
+</head>
+<body>
+<div id="header">
+    <h1><a href="/index">EMDS</a></h1>
+</div>
+<div id="user-nav">
+    <ul class="btn-group">
+        <li class="btn"><a><span class="text">Профиль</span></a></li>
+        <li class="btn"><a href="/exit"><span class="text">Выход</span></a></li>
+    </ul>
+</div>
+<div id="sidebar">
+    <ul>
+        <li>
+            <a><img class="ico" src="/resources/images/icons/111.png"/><span>Преподаватели</span></a>
+        </li>
+
+        <li class="submenu">
+            <a><img class="ico" src="/resources/images/icons/47.png"/>Студенты</a>
+            <ul>
+                <li><a href="invoice.html">Поступающие</a></li>
+                <li><a href="chat.html">1 уровень подготовки</a></li>
+                <li><a href="calendar.html">2 уровень подготовки</a></li>
+                <li><a href="gallery.html">Архив</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a><img class="ico" src="/resources/images/icons/54.png"/>Группы</a>
+        </li>
+
+        <li>
+            <a><img class="ico" src="/resources/images/icons/32.png"/>Специальности</a>
+        </li>
+
+        <li>
+            <a><img class="ico" src="/resources/images/icons/34.png"/>Отчеты</a>
+        </li>
+    </ul>
+</div>
+<div id="content" ng-view>
+</div>
+<script src="/resources/scripts/lib/angular.min.js"></script>
+<script src="/resources/scripts/lib/modal.js"></script>
+<script src="/resources/scripts/app.js"></script>
+<script src="/resources/scripts/services.js"></script>
+<script src="/resources/scripts/filters.js"></script>
+<script src="/resources/scripts/directives.js"></script>
+<script src="/resources/scripts/controllers/TeacherController.js"></script>
+<script src="/resources/scripts/js/jquery.min.js"></script>
+<script src="/resources/scripts/js/jquery.jpanelmenu.min.js"></script>
+<script src="/resources/scripts/js/unicorn.js"></script>
+</body>
+</html>

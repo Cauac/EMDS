@@ -13,7 +13,7 @@ public class CommonController {
 
     @RequestMapping(value = "/index")
     public String welcome() {
-        return "/resources/html/index/index.html";
+        return "/resources/html/index.html";
     }
 
     @RequestMapping(value = "/403")
