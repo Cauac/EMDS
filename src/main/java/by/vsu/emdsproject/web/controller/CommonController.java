@@ -16,6 +16,11 @@ public class CommonController {
         return "/resources/html/index.html";
     }
 
+    @RequestMapping(value = "/")
+    public String index() {
+        return "/resources/html/index.html";
+    }
+
     @RequestMapping(value = "/403")
     public String accessDenied() {
         return "error403";
