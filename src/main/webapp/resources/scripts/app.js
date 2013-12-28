@@ -11,6 +11,11 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: TeacherController
     });
 
+    $routeProvider.when('/specialties', {
+        templateUrl: 'resources/html/specialty/list.html',
+        controller: SpecialtyController
+    });
+
     $routeProvider.otherwise({redirectTo: '/teachers'});
 
 }]);

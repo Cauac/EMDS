@@ -7,34 +7,33 @@
 var TeacherController = function ($scope, $http, $modal, CommonService) {
 
     $scope.readTeacherList = function () {
-        $http.get('teacher/getTeachers').success(function (list) {
+        $http.get('teacher/getAll').success(function (list) {
             $scope.teachers = list;
         })
-    }
+    };
 
     $scope.readTeacherList();
-    CommonService.setTitle('Преподаватели')
+    CommonService.setTitle('Преподаватели');
 
     $scope.removeTeacher = function (teacher) {
-        var index = $scope.teachers.indexOf(teacher);
         $http.delete('teacher/delete?id=' + teacher._id);
+        var index = $scope.teachers.indexOf(teacher);
         $scope.teachers.splice(index, 1);
-    }
+    };
 
     $scope.addTeacher = function () {
-        var teacher;
         var modalInstance = $modal.open({
             templateUrl: 'resources/html/teacher/edit.html',
             controller: AddTeacherDialog
         });
 
         modalInstance.result.then(function (result) {
-            $http.post('teacher/saveTeacher', result)
+            $http.post('teacher/save', result)
                 .success(function (response) {
                     $scope.teachers.push(response);
                 })
         });
-    }
+    };
 
     $scope.editTeacher = function (teacher) {
         var modalInstance = $modal.open({
@@ -48,9 +47,9 @@ var TeacherController = function ($scope, $http, $modal, CommonService) {
         });
 
         modalInstance.result.then(function (result) {
-            $http.post('teacher/saveTeacher', result);
+            $http.post('teacher/save', result);
         });
-    }
+    };
 
     $scope.setChief = function (teacher) {
         for (var i = 0; i < $scope.teachers.length; i++) {
@@ -58,8 +57,8 @@ var TeacherController = function ($scope, $http, $modal, CommonService) {
         }
         teacher.is_chief = true;
         $http.post('teacher/chooseChief?id='+teacher._id);
-    }
-}
+    };
+};
 
 
 var EditTeacherDialog = function ($scope, $modalInstance, CommonService, teacher) {

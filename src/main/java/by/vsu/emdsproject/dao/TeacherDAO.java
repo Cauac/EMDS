@@ -8,8 +8,9 @@ public class TeacherDAO extends MongoDAO {
     public static final String TEACHER_COLLECTION_NAME = "teacher";
     public static final String IS_CHIEF = "is_chief";
 
-    public DBObject read(String username) {
-        return database.getCollection(TEACHER_COLLECTION_NAME).findOne(new BasicDBObject(IDENTITY, username));
+    @Override
+    public String getCollectionName() {
+        return TEACHER_COLLECTION_NAME;
     }
 
     public void save(DBObject teacher) {
@@ -19,12 +20,7 @@ public class TeacherDAO extends MongoDAO {
             teacher.put(IS_CHIEF, false);
             teacher.put("default_password", true);
         }
-
         database.getCollection(TEACHER_COLLECTION_NAME).save(teacher);
-    }
-
-    public void delete(String id) {
-        database.getCollection(TEACHER_COLLECTION_NAME).remove(new BasicDBObject(IDENTITY, id));
     }
 
     public void chooseChief(String id) {
@@ -37,19 +33,9 @@ public class TeacherDAO extends MongoDAO {
             currentChief.put(IS_CHIEF, false);
             collection.save(currentChief);
         }
-
         DBObject newChief = collection.findOne(new BasicDBObject(IDENTITY, id));
         newChief.put(IS_CHIEF, true);
         collection.save(newChief);
-    }
-
-    public BasicDBList readAll() {
-        DBCursor cursor = database.getCollection(TEACHER_COLLECTION_NAME).find();
-        BasicDBList result = new BasicDBList();
-        while (cursor.hasNext()) {
-            result.add(cursor.next());
-        }
-        return result;
     }
 
     private String generateLogin(DBObject teacher) {

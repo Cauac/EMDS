@@ -21,14 +21,14 @@ public class TeacherController {
     @Autowired
     TeacherDAO teacherDAO;
 
-    @RequestMapping(value = "getTeachers", method = RequestMethod.GET)
+    @RequestMapping(value = "getAll", method = RequestMethod.GET)
     public
     @ResponseBody
     BasicDBList getTeacherList() {
         return teacherDAO.readAll();
     }
 
-    @RequestMapping(value = "saveTeacher", method = RequestMethod.POST)
+    @RequestMapping(value = "save", method = RequestMethod.POST)
     public
     @ResponseBody
     DBObject saveTeacher(@RequestBody String teacherJSON, HttpServletResponse res) {
