@@ -20,7 +20,13 @@ App.config(['$routeProvider', function ($routeProvider) {
 
 }]);
 
-App.factory("CommonService", function () {
+App.run(function ($rootScope, $location) {
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        $location.path();
+    });
+});
+
+App.factory("CommonService", function ($location) {
     var title = '';
     return {
         copyAttr: function (from, to) {
@@ -53,6 +59,24 @@ App.directive('ngReallyClick', [function () {
             });
         }
     }
+}]);
+
+App.directive('activeLink', ['$location', function(location) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var path = attrs.activeLink;
+            scope.location = location;
+            scope.$watch('location.path()', function(newPath) {
+                if (path === newPath.substring(1)) {
+                    element.addClass('active');
+                } else {
+                    element.removeClass('active');
+                }
+            });
+        }
+
+    };
 }]);
 
 

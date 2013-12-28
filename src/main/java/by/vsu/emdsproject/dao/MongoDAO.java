@@ -30,11 +30,6 @@ public abstract class MongoDAO implements InitializingBean {
         database.getCollection(getCollectionName()).save(object);
     }
 
-    public void update(DBObject object){
-//        DBObject query=new BasicDBObject("_id")
-//        database.getCollection(getCollectionName()).update();
-    }
-
     public void delete(String id) {
         database.getCollection(getCollectionName()).remove(new BasicDBObject(IDENTITY, id));
     }

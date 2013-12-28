@@ -30,7 +30,7 @@ var SpecialtyController = function ($scope, $http, $modal, CommonService) {
         });
 
         modalInstance.result.then(function (result) {
-            $http.post('specialty/save', result);
+            $http.post('specialty/update', result);
         });
     };
 
@@ -70,6 +70,7 @@ var EditSpecialtyDialog = function ($scope, $modalInstance, specialty, CommonSer
     CommonService.copyAttr(specialty, $scope.specialty);
 
     $scope.ok = function () {
+        var identity = specialty._id;
         CommonService.copyAttr($scope.specialty, specialty);
         $modalInstance.close($scope.specialty);
     };

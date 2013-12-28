@@ -34,6 +34,14 @@ public class SpecialtyController {
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public void deleteSpecialty(String id) {
         specialtyDAO.delete(id);
+        //TODO пройтись по всем группам, удалить связь
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public void updateSpeciality(@RequestBody String specialtyJSON) {
+        DBObject specialty = (DBObject) JSON.parse(specialtyJSON);
+        specialtyDAO.save(specialty);
+        //TODO пройтись по всем группам, обновить связь
     }
 
 }
