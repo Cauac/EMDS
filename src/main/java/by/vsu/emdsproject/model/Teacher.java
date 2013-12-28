@@ -1,11 +1,6 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "teacher")
 public class Teacher extends Person {
 
     private String rank;
@@ -18,7 +13,6 @@ public class Teacher extends Person {
         super(firstName, lastName, middleName);
     }
 
-    @Column(name = "ischief", nullable = false)
     public Boolean getChief() {
         return isChief;
     }
@@ -27,7 +21,6 @@ public class Teacher extends Person {
         isChief = chief;
     }
 
-    @Column(name = "rank", length = 20, nullable = false)
     public String getRank() {
         return rank;
     }

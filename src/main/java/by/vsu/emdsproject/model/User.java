@@ -1,12 +1,5 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotEmpty;
-
-@Entity
-@Table(name = "users")
 public class User extends AbstractEntity {
 
     public static final String STUDENT = "student";
@@ -34,38 +27,6 @@ public class User extends AbstractEntity {
         this.role = role;
     }
 
-    @NotNull
-    @Size(max = 52)
-    @Column(name = "login", length = 52)
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    @NotEmpty(message = "Пустой пароль")
-    @Size(min = 5, max = 64, message = "От 5 до 64 символов")
-    @Column(name = "password", length = 64)
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Column(name = "enabled")
-    public int getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(int enabled) {
-        this.enabled = enabled;
-    }
-
-    @Column(name = "person_id")
     public Long getPersonId() {
         return personId;
     }
@@ -74,7 +35,6 @@ public class User extends AbstractEntity {
         this.personId = personId;
     }
 
-    @Column(name = "person_type")
     public String getPersonType() {
         return personType;
     }
@@ -83,8 +43,30 @@ public class User extends AbstractEntity {
         this.personType = personType;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
+
     public Role getRole() {
         return role;
     }
@@ -93,7 +75,6 @@ public class User extends AbstractEntity {
         this.role = role;
     }
 
-    @Column(name = "default_password")
     public boolean isDefaultPassword() {
         return defaultPassword;
     }
@@ -101,5 +82,4 @@ public class User extends AbstractEntity {
     public void setDefaultPassword(boolean defaultPassword) {
         this.defaultPassword = defaultPassword;
     }
-
 }

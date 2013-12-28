@@ -1,14 +1,8 @@
 package by.vsu.emdsproject.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.Date;
-import javax.validation.Valid;
 
-@Entity
-@Table(name = "questionnaire")
 public class Questionnaire extends AbstractEntity {
 
     private String birthPlace;
@@ -52,14 +46,11 @@ public class Questionnaire extends AbstractEntity {
     private String duty;
     private byte[] photo;
 
-    @JsonBackReference
     private Student student;
 
     public Questionnaire() {
     }
 
-    @Size(max = 50, message = "Не более 50 символов")
-    @Column(name = "birth_place", length = 50)
     public String getBirthPlace() {
         return birthPlace;
     }
@@ -68,8 +59,6 @@ public class Questionnaire extends AbstractEntity {
         this.birthPlace = birthPlace;
     }
 
-    @Size(max = 20, message = "Не более 20 символов")
-    @Column(name = "nationality", length = 20)
     public String getNationality() {
         return nationality;
     }
@@ -78,8 +67,6 @@ public class Questionnaire extends AbstractEntity {
         this.nationality = nationality;
     }
 
-    @Size(max = 10, message = "Не более 10 символов")
-    @Column(name = "passport_number", length = 10)
     public String getPassportNumber() {
         return passportNumber;
     }
@@ -88,8 +75,6 @@ public class Questionnaire extends AbstractEntity {
         this.passportNumber = passportNumber;
     }
 
-    @Size(max = 20, message = "Не более 20 символов")
-    @Column(name = "personal_number", length = 20)
     public String getPersonalNumber() {
         return personalNumber;
     }
@@ -98,9 +83,6 @@ public class Questionnaire extends AbstractEntity {
         this.personalNumber = personalNumber;
     }
 
-    @Valid
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
     public Address getAddress() {
         return address;
     }
@@ -109,8 +91,6 @@ public class Questionnaire extends AbstractEntity {
         this.address = address;
     }
 
-    @Size(max = 10, message = "Не более 10 символов")
-    @Column(name = "mobile_tel", length = 10)
     public String getMobileTel() {
         return mobileTel;
     }
@@ -119,8 +99,6 @@ public class Questionnaire extends AbstractEntity {
         this.mobileTel = mobileTel;
     }
 
-    @Size(max = 10, message = "Не более 10 символов")
-    @Column(name = "home_tel", length = 10)
     public String getHomeTel() {
         return homeTel;
     }
@@ -129,8 +107,6 @@ public class Questionnaire extends AbstractEntity {
         this.homeTel = homeTel;
     }
 
-    @Size(max = 4, message = "Не более 4 символов")
-    @Column(name = "admission_year", length = 4)
     public String getAdmissionYear() {
         return admissionYear;
     }
@@ -139,8 +115,6 @@ public class Questionnaire extends AbstractEntity {
         this.admissionYear = admissionYear;
     }
 
-    @Size(max = 30, message = "Не более 30 символов")
-    @Column(name = "faculty", length = 30)
     public String getFaculty() {
         return faculty;
     }
@@ -149,18 +123,14 @@ public class Questionnaire extends AbstractEntity {
         this.faculty = faculty;
     }
 
-    @Size(max = 30, message = "Не более 30 символов")
-    @Column(name = "specialty", length = 30)
     public String getStudySpecialty() {
         return studySpecialty;
     }
 
-    public void setStudySpecialty(String specialty) {
-        this.studySpecialty = specialty;
+    public void setStudySpecialty(String studySpecialty) {
+        this.studySpecialty = studySpecialty;
     }
 
-    @Size(max = 10, message = "Не более 10 символов")
-    @Column(name = "course", length = 10)
     public String getCourse() {
         return course;
     }
@@ -169,48 +139,38 @@ public class Questionnaire extends AbstractEntity {
         this.course = course;
     }
 
-    @Size(max = 10, message = "Не более 10 символов")
-    @Column(name = "study_group_2", length = 10)
     public String getStudyGroup2() {
         return studyGroup2;
     }
 
-    public void setStudyGroup2(String studyGroup) {
-        this.studyGroup2 = studyGroup;
+    public void setStudyGroup2(String studyGroup2) {
+        this.studyGroup2 = studyGroup2;
     }
 
-    @Size(max = 10, message = "Не более 10 символов")
-    @Column(name = "study_group_3", length = 10)
     public String getStudyGroup3() {
         return studyGroup3;
     }
 
-    public void setStudyGroup3(String studyGroup) {
-        this.studyGroup3 = studyGroup;
+    public void setStudyGroup3(String studyGroup3) {
+        this.studyGroup3 = studyGroup3;
     }
 
-    @Size(max = 10, message = "Не более 10 символов")
-    @Column(name = "study_group_4", length = 10)
     public String getStudyGroup4() {
         return studyGroup4;
     }
 
-    public void setStudyGroup4(String studyGroup) {
-        this.studyGroup4 = studyGroup;
+    public void setStudyGroup4(String studyGroup4) {
+        this.studyGroup4 = studyGroup4;
     }
 
-    @Size(max = 10, message = "Не более 10 символов")
-    @Column(name = "study_group_5", length = 10)
     public String getStudyGroup5() {
         return studyGroup5;
     }
 
-    public void setStudyGroup5(String studyGroup) {
-        this.studyGroup5 = studyGroup;
+    public void setStudyGroup5(String studyGroup5) {
+        this.studyGroup5 = studyGroup5;
     }
 
-    @Size(max = 20, message = "Не более 20 символов")
-    @Column(name = "study_progress", length = 20)
     public String getStudyProgress() {
         return studyProgress;
     }
@@ -219,8 +179,6 @@ public class Questionnaire extends AbstractEntity {
         this.studyProgress = studyProgress;
     }
 
-    @Size(max = 30, message = "Не более 30 символов")
-    @Column(name = "curator", length = 30)
     public String getCurator() {
         return curator;
     }
@@ -229,8 +187,6 @@ public class Questionnaire extends AbstractEntity {
         this.curator = curator;
     }
 
-    @Size(max = 10, message = "Не более 10 символов")
-    @Column(name = "curator_tel", length = 10)
     public String getCuratorTel() {
         return curatorTel;
     }
@@ -239,8 +195,6 @@ public class Questionnaire extends AbstractEntity {
         this.curatorTel = curatorTel;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "education", length = 100)
     public String getEducation() {
         return education;
     }
@@ -249,8 +203,6 @@ public class Questionnaire extends AbstractEntity {
         this.education = education;
     }
 
-    @Column(name = "education_start")
-    @Temporal(TemporalType.DATE)
     public Date getEducationStartDate() {
         return educationStartDate;
     }
@@ -259,8 +211,6 @@ public class Questionnaire extends AbstractEntity {
         this.educationStartDate = educationStartDate;
     }
 
-    @Column(name = "education_end")
-    @Temporal(TemporalType.DATE)
     public Date getEducationEndDate() {
         return educationEndDate;
     }
@@ -269,8 +219,6 @@ public class Questionnaire extends AbstractEntity {
         this.educationEndDate = educationEndDate;
     }
 
-    @Size(max = 20, message = "Не более 20 символов")
-    @Column(name = "education_type", length = 20)
     public String getEducationType() {
         return educationType;
     }
@@ -279,8 +227,6 @@ public class Questionnaire extends AbstractEntity {
         this.educationType = educationType;
     }
 
-    @Size(max = 20, message = "Не более 20 символов")
-    @Column(name = "family_status", length = 20)
     public String getFamilyStatus() {
         return familyStatus;
     }
@@ -289,8 +235,6 @@ public class Questionnaire extends AbstractEntity {
         this.familyStatus = familyStatus;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "mother", length = 100)
     public String getMother() {
         return mother;
     }
@@ -299,8 +243,6 @@ public class Questionnaire extends AbstractEntity {
         this.mother = mother;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "father", length = 100)
     public String getFather() {
         return father;
     }
@@ -309,9 +251,6 @@ public class Questionnaire extends AbstractEntity {
         this.father = father;
     }
 
-    @Valid
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parents_address_id")
     public Address getParentAddress() {
         return parentAddress;
     }
@@ -320,8 +259,6 @@ public class Questionnaire extends AbstractEntity {
         this.parentAddress = parentAddress;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "passport_office", length = 100)
     public String getPassportOffice() {
         return passportOffice;
     }
@@ -330,8 +267,6 @@ public class Questionnaire extends AbstractEntity {
         this.passportOffice = passportOffice;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "recruitment_office", length = 100)
     public String getRecruitmentOffice() {
         return recruitmentOffice;
     }
@@ -340,8 +275,6 @@ public class Questionnaire extends AbstractEntity {
         this.recruitmentOffice = recruitmentOffice;
     }
 
-    @Size(max = 50, message = "Не более 50 символов")
-    @Column(name = "parent_tel", length = 50)
     public String getParentTel() {
         return parentTel;
     }
@@ -350,8 +283,6 @@ public class Questionnaire extends AbstractEntity {
         this.parentTel = parentTel;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "education_before", length = 100)
     public String getEducationBefore() {
         return educationBefore;
     }
@@ -360,8 +291,6 @@ public class Questionnaire extends AbstractEntity {
         this.educationBefore = educationBefore;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "faculty_public_life", length = 100)
     public String getFacultyPublicLife() {
         return facultyPublicLife;
     }
@@ -370,8 +299,6 @@ public class Questionnaire extends AbstractEntity {
         this.facultyPublicLife = facultyPublicLife;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "hobby", length = 100)
     public String getHobby() {
         return hobby;
     }
@@ -380,8 +307,6 @@ public class Questionnaire extends AbstractEntity {
         this.hobby = hobby;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "public_organization", length = 100)
     public String getPublicOrganization() {
         return publicOrganization;
     }
@@ -390,8 +315,6 @@ public class Questionnaire extends AbstractEntity {
         this.publicOrganization = publicOrganization;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "employment", length = 100)
     public String getEmployment() {
         return employment;
     }
@@ -400,8 +323,6 @@ public class Questionnaire extends AbstractEntity {
         this.employment = employment;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "how_did_you_hear_about", length = 100)
     public String getHowDidYouHearAbout() {
         return howDidYouHearAbout;
     }
@@ -410,8 +331,6 @@ public class Questionnaire extends AbstractEntity {
         this.howDidYouHearAbout = howDidYouHearAbout;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "desire_to_continue", length = 100)
     public String getDesireToContinue() {
         return desireToContinue;
     }
@@ -420,8 +339,6 @@ public class Questionnaire extends AbstractEntity {
         this.desireToContinue = desireToContinue;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "think_about_study", length = 100)
     public String getThinkAboutStudy() {
         return thinkAboutStudy;
     }
@@ -430,8 +347,6 @@ public class Questionnaire extends AbstractEntity {
         this.thinkAboutStudy = thinkAboutStudy;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "think_about_duty", length = 100)
     public String getThinkAboutDuty() {
         return thinkAboutDuty;
     }
@@ -440,8 +355,6 @@ public class Questionnaire extends AbstractEntity {
         this.thinkAboutDuty = thinkAboutDuty;
     }
 
-    @Size(max = 100, message = "Не более 100 символов")
-    @Column(name = "duty", length = 100)
     public String getDuty() {
         return duty;
     }
@@ -450,22 +363,19 @@ public class Questionnaire extends AbstractEntity {
         this.duty = duty;
     }
 
-    @OneToOne(mappedBy = "questionnaire", fetch = FetchType.LAZY)
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "photo")
     public byte[] getPhoto() {
         return photo;
     }
 
     public void setPhoto(byte[] photo) {
         this.photo = photo;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

@@ -4,7 +4,7 @@
  * SpecialtyController
  * @constructor
  */
-var SpecialtyController = function ($scope, $http, $modal, CommonService) {
+var SpecialtyController = function ($scope, $http, $modal) {
 
     $scope.readSpecialties = function () {
         $http.get('specialty/getAll').success(function (response) {
@@ -47,7 +47,6 @@ var SpecialtyController = function ($scope, $http, $modal, CommonService) {
     };
 
     $scope.readSpecialties();
-    CommonService.setTitle('Специальности')
 };
 
 var AddSpecialtyDialog = function ($scope, $modalInstance) {

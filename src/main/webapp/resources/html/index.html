@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="EMDS" ng-controller="CommonController">
 <head>
-    <title>{{ CommonService.title() }} - Военная кафедра ВГУ</title>
+    <title>Военная кафедра ВГУ</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="/resources/css/index.css" type="text/css">
@@ -23,28 +23,28 @@
 <div id="sidebar">
     <ul>
         <li active-link="teachers">
-            <a href="/#/teachers"><img class="ico" src="/resources/images/icons/111.png"/><span>Преподаватели</span></a>
+            <a href="#/teachers"><img class="ico" src="/resources/images/icons/111.png"/><span>Преподаватели</span></a>
         </li>
-        <li class="submenu">
+        <li class="submenu" sub-menu>
             <a><img class="ico" src="/resources/images/icons/47.png"/>Студенты</a>
             <ul>
-                <li class="active"><a href="invoice.html">Поступающие</a></li>
-                <li><a href="chat.html">1 уровень подготовки</a></li>
-                <li><a href="calendar.html">2 уровень подготовки</a></li>
-                <li><a href="gallery.html">Архив</a></li>
+                <li active-link="abiturients"><a href="#/abiturients">Поступающие</a></li>
+                <li active-link="student1"><a href="#/student1">1 уровень подготовки</a></li>
+                <li active-link="student2"><a href="#/student2">2 уровень подготовки</a></li>
+                <li active-link="archive"><a href="#/archive">Архив</a></li>
             </ul>
         </li>
 
-        <li>
-            <a><img class="ico" src="/resources/images/icons/54.png"/>Группы</a>
+        <li active-link="groups">
+            <a href="#/groups"><img class="ico" src="/resources/images/icons/54.png"/>Группы</a>
         </li>
 
         <li active-link="specialties">
-            <a href="/#/specialties"><img class="ico" src="/resources/images/icons/32.png"/>Специальности</a>
+            <a href="#/specialties"><img class="ico" src="/resources/images/icons/32.png"/>Специальности</a>
         </li>
 
-        <li>
-            <a><img class="ico" src="/resources/images/icons/34.png"/>Отчеты</a>
+        <li active-link="reports">
+            <a href="#/reports"><img class="ico" src="/resources/images/icons/34.png"/>Отчеты</a>
         </li>
     </ul>
 </div>
@@ -58,8 +58,5 @@
 <script src="/resources/scripts/directives.js"></script>
 <script src="/resources/scripts/controllers/TeacherController.js"></script>
 <script src="/resources/scripts/controllers/SpecialtyController.js"></script>
-<!--<script src="/resources/scripts/js/jquery.min.js"></script>-->
-<!--<script src="/resources/scripts/js/jquery.jpanelmenu.min.js"></script>-->
-<!--<script src="/resources/scripts/js/unicorn.js"></script>-->
 </body>
 </html>

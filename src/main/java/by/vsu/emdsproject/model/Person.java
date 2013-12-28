@@ -1,14 +1,7 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 import java.util.Map;
 
-@MappedSuperclass
 public abstract class Person extends AbstractEntity {
 
     protected String firstName;
@@ -23,10 +16,6 @@ public abstract class Person extends AbstractEntity {
         this.lastName = lastName;
         this.middleName = middleName;
     }
-
-    @NotEmpty(message = "Обязательное поле")
-    @Size(max = 50, message = "Не более 50 символов")
-    @Column(name = "first_name", nullable = false, length = 50)
     public String getFirstName() {
         return firstName;
     }
@@ -35,9 +24,6 @@ public abstract class Person extends AbstractEntity {
         this.firstName = firstName;
     }
 
-    @NotEmpty(message = "Обязательное поле")
-    @Size(max = 50, message = "Не более 50 символов")
-    @Column(name = "last_name", nullable = false, length = 50)
     public String getLastName() {
         return lastName;
     }
@@ -46,9 +32,6 @@ public abstract class Person extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    @NotEmpty(message = "Обязательное поле")
-    @Size(max = 50, message = "Не более 50 символов")
-    @Column(name = "middle_name", nullable = false, length = 50)
     public String getMiddleName() {
         return middleName;
     }

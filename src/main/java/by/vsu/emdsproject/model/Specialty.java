@@ -1,13 +1,8 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
-import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
-@Table(name = "specialty")
 public class Specialty extends AbstractEntity {
 
     private String number;
@@ -21,9 +16,6 @@ public class Specialty extends AbstractEntity {
         this.id = id;
     }
 
-    @NotEmpty(message = "Обязательное поле")
-    @Size(max = 10, message = "Не более 10 цифр")
-    @Column(name = "number", nullable = false, length = 10)
     public String getNumber() {
         return number;
     }
@@ -32,9 +24,6 @@ public class Specialty extends AbstractEntity {
         this.number = number;
     }
 
-    @NotEmpty(message = "Обязательное поле")
-    @Size(max = 200, message = "Не более 200 символов")
-    @Column(name = "description", nullable = false, length = 200)
     public String getDescription() {
         return description;
     }
@@ -43,7 +32,6 @@ public class Specialty extends AbstractEntity {
         this.description = description;
     }
 
-    @OneToMany(mappedBy = "specialty", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<Group> getGroups() {
         return groups;
     }

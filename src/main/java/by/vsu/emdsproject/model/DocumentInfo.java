@@ -1,13 +1,5 @@
 package by.vsu.emdsproject.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-@Entity
-@Table(name = "document_info")
 public class DocumentInfo extends AbstractEntity {
 
     private Boolean isBrought;
@@ -21,8 +13,6 @@ public class DocumentInfo extends AbstractEntity {
         this.commentary = commentary;
     }
 
-    @NotNull(message = "Обязательное поле")
-    @Column(name = "brought")
     public Boolean getBrought() {
         return isBrought;
     }
@@ -31,8 +21,6 @@ public class DocumentInfo extends AbstractEntity {
         isBrought = brought;
     }
 
-    @Size(max = 500, message = "Не более 500 символов")
-    @Column(name = "commentary", length = 500)
     public String getCommentary() {
         return commentary;
     }

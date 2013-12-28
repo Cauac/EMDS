@@ -26,19 +26,12 @@ App.run(function ($rootScope, $location) {
     });
 });
 
-App.factory("CommonService", function ($location) {
-    var title = '';
+App.factory("CommonService", function () {
     return {
         copyAttr: function (from, to) {
             for (var attr in from) {
                 to[attr] = from[attr];
             }
-        },
-        title: function () {
-            return title;
-        },
-        setTitle: function (newTitle) {
-            title = newTitle
         }
     }
 });
@@ -72,6 +65,22 @@ App.directive('activeLink', ['$location', function(location) {
                     element.addClass('active');
                 } else {
                     element.removeClass('active');
+                }
+            });
+        }
+
+    };
+}]);
+
+App.directive('subMenu', [ function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element) {
+            element.bind('click', function () {
+                if(element.hasClass('open')){
+                    element.removeClass('open');
+                }else{
+                    element.addClass('open');
                 }
             });
         }

@@ -4,7 +4,7 @@
  * TeacherController
  * @constructor
  */
-var TeacherController = function ($scope, $http, $modal, CommonService) {
+var TeacherController = function ($scope, $http, $modal) {
 
     $scope.readTeacherList = function () {
         $http.get('teacher/getAll').success(function (list) {
@@ -13,7 +13,6 @@ var TeacherController = function ($scope, $http, $modal, CommonService) {
     };
 
     $scope.readTeacherList();
-    CommonService.setTitle('Преподаватели');
 
     $scope.removeTeacher = function (teacher) {
         $http.delete('teacher/delete?id=' + teacher._id);
