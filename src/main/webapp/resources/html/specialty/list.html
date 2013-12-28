@@ -14,13 +14,13 @@
     <tr ng-repeat="specialty in specialties" class="row">
         <td class="col-sm-2">{{specialty._id}}</td>
         <td class="col-sm-8">{{specialty.description}}</td>
-        <td class="col-sm-1"><a ng-click="editSpecialty(specialty)"><img class="ico" src="/resources/images/icons/13.png"/></a></td>
-        <td class="col-sm-1"><a ng-really-message="Удалить специальность?" ng-really-click="removeSpecialty(specialty)"><img class="ico" src="/resources/images/icons/118.png"/></a></td>
+        <td class="col-sm-1"><a ng-click="editSpecialty(specialty)"><img class="ico" src="resources/images/icons/13.png"/></a></td>
+        <td class="col-sm-1"><a ng-really-message="Удалить специальность?" ng-really-click="removeSpecialty(specialty)"><img class="ico" src="resources/images/icons/118.png"/></a></td>
     </tr>
     </tbody>
 </table>
 <div>
     <a class="btn" ng-click="addSpecialty()">
-        <img class="ico" src="/resources/images/icons/112.png"/> Добавить специальность
+        <img class="ico" src="resources/images/icons/112.png"/> Добавить специальность
     </a>
 </div>

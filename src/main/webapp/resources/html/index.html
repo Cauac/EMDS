@@ -2,31 +2,32 @@
 <html ng-app="EMDS" ng-controller="CommonController">
 <head>
     <title>Военная кафедра ВГУ</title>
+    <base href="http://localhost:8080/EMDS/">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="/resources/css/index.css" type="text/css">
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/resources/css/unicorn.main.css"/>
-    <link rel="stylesheet" href="/resources/css/unicorn.grey.css" class="skin-color"/>
-    <link rel="icon" type="image/gif" href="${pageContext.request.contextPath}/resources/images/icon.png">
+    <link rel="stylesheet" href="resources/css/index.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/unicorn.main.css"/>
+    <link rel="stylesheet" href="resources/css/unicorn.grey.css" class="skin-color"/>
+    <link rel="icon" type="image/gif" href="${pageContext.request.contextPath}resources/images/icon.png">
 </head>
 <body>
 <div id="header">
-    <h1><a href="/index">EMDS</a></h1>
+    <h1><a href="index">EMDS</a></h1>
 </div>
 <div id="user-nav">
     <ul class="btn-group">
         <li class="btn"><a><span class="text">Профиль</span></a></li>
-        <li class="btn"><a href="/exit"><span class="text">Выход</span></a></li>
+        <li class="btn"><a href="exit"><span class="text">Выход</span></a></li>
     </ul>
 </div>
 <div id="sidebar">
     <ul>
         <li active-link="teachers">
-            <a href="#/teachers"><img class="ico" src="/resources/images/icons/111.png"/><span>Преподаватели</span></a>
+            <a href="#/teachers"><img class="ico" src="resources/images/icons/111.png"/><span>Преподаватели</span></a>
         </li>
         <li class="submenu" sub-menu>
-            <a><img class="ico" src="/resources/images/icons/47.png"/>Студенты</a>
+            <a><img class="ico" src="resources/images/icons/47.png"/>Студенты</a>
             <ul>
                 <li active-link="abiturients"><a href="#/abiturients">Поступающие</a></li>
                 <li active-link="student1"><a href="#/student1">1 уровень подготовки</a></li>
@@ -36,27 +37,27 @@
         </li>
 
         <li active-link="groups">
-            <a href="#/groups"><img class="ico" src="/resources/images/icons/54.png"/>Группы</a>
+            <a href="#/groups"><img class="ico" src="resources/images/icons/54.png"/>Группы</a>
         </li>
 
         <li active-link="specialties">
-            <a href="#/specialties"><img class="ico" src="/resources/images/icons/32.png"/>Специальности</a>
+            <a href="#/specialties"><img class="ico" src="resources/images/icons/32.png"/>Специальности</a>
         </li>
 
         <li active-link="reports">
-            <a href="#/reports"><img class="ico" src="/resources/images/icons/34.png"/>Отчеты</a>
+            <a href="#/reports"><img class="ico" src="resources/images/icons/34.png"/>Отчеты</a>
         </li>
     </ul>
 </div>
 <div id="content" ng-view>
 </div>
-<script src="/resources/scripts/lib/angular.min.js"></script>
-<script src="/resources/scripts/lib/modal.js"></script>
-<script src="/resources/scripts/app.js"></script>
-<script src="/resources/scripts/services.js"></script>
-<script src="/resources/scripts/filters.js"></script>
-<script src="/resources/scripts/directives.js"></script>
-<script src="/resources/scripts/controllers/TeacherController.js"></script>
-<script src="/resources/scripts/controllers/SpecialtyController.js"></script>
+<script src="resources/scripts/lib/angular.min.js"></script>
+<script src="resources/scripts/lib/modal.js"></script>
+<script src="resources/scripts/app.js"></script>
+<script src="resources/scripts/services.js"></script>
+<script src="resources/scripts/filters.js"></script>
+<script src="resources/scripts/directives.js"></script>
+<script src="resources/scripts/controllers/TeacherController.js"></script>
+<script src="resources/scripts/controllers/SpecialtyController.js"></script>
 </body>
 </html>
