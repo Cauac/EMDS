@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h3 class="text-center">Группа</h3>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="_id">Название:</label>
+            <input type="text" class="form-control" id="_id" placeholder="Название" ng-model="group._id">
+        </div>
+        <div class="form-group">
+            <label for="specialty">Специальность:</label>
+            <select class="form-control" id="specialty" ng-model="group.specialty" ng-options="s._id as s._id for s in specialties">
+            </select>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Сохранить</button>
+    <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+</div>

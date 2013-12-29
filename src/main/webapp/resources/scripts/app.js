@@ -16,15 +16,14 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: SpecialtyController
     });
 
+    $routeProvider.when('/groups', {
+        templateUrl: 'resources/html/group/list.html',
+        controller: GroupController
+    });
+
     $routeProvider.otherwise({redirectTo: '/teachers'});
 
 }]);
-
-App.run(function ($rootScope, $location) {
-    $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        $location.path();
-    });
-});
 
 App.factory("CommonService", function () {
     return {
@@ -34,10 +33,6 @@ App.factory("CommonService", function () {
             }
         }
     }
-});
-
-App.controller('CommonController', function ($scope, CommonService) {
-    $scope.CommonService = CommonService;
 });
 
 App.directive('ngReallyClick', [function () {

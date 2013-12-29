@@ -1,0 +1,26 @@
+<div id="content-header">
+    <h1>Группы</h1>
+</div>
+<table class="table table-condensed">
+    <thead>
+    <tr class="row">
+        <th class="col-sm-2">Группа</th>
+        <th class="col-sm-8">Специальность</th>
+        <th class="col-sm-1"></th>
+        <th class="col-sm-1"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="group in groups" class="row">
+        <td class="col-sm-5">{{group._id}}</td>
+        <td class="col-sm-5">{{group.specialty}}</td>
+        <td class="col-sm-1"><a ng-click="editGroup(group)"><img class="ico" src="resources/images/icons/13.png"/></a></td>
+        <td class="col-sm-1"><a ng-really-message="Удалить группу?" ng-really-click="removeGroup(group)"><img class="ico" src="resources/images/icons/118.png"/></a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a class="btn" ng-click="addGroup()">
+        <img class="ico" src="resources/images/icons/112.png"/> Добавить группу
+    </a>
+</div>

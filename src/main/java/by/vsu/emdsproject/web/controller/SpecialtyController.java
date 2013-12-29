@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
-@RequestMapping(value = "/specialty")
+@RequestMapping(value = "specialty")
 public class SpecialtyController {
 
     @Autowired
@@ -26,21 +28,25 @@ public class SpecialtyController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public void saveSpecialty(@RequestBody String specialtyJSON) {
+    public void saveSpecialty(@RequestBody String specialtyJSON, HttpServletResponse response) {
         DBObject specialty = (DBObject) JSON.parse(specialtyJSON);
         specialtyDAO.save(specialty);
+        response.setStatus(HttpServletResponse.SC_OK);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public void deleteSpecialty(String id) {
+    public void deleteSpecialty(@RequestBody String id, HttpServletResponse response) {
         specialtyDAO.delete(id);
+        response.setStatus(HttpServletResponse.SC_OK);
         //TODO пройтись по всем группам, удалить связь
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public void updateSpeciality(@RequestBody String specialtyJSON) {
+    public void updateSpeciality(@RequestBody String specialtyJSON, HttpServletResponse response) {
         DBObject specialty = (DBObject) JSON.parse(specialtyJSON);
-        specialtyDAO.save(specialty);
+        specialtyDAO.delete(specialty.get("id").toString());
+        specialtyDAO.save((DBObject) specialty.get("data"));
+        response.setStatus(HttpServletResponse.SC_OK);
         //TODO пройтись по всем группам, обновить связь
     }
 

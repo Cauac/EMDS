@@ -13,7 +13,7 @@ var SpecialtyController = function ($scope, $http, $modal) {
     };
 
     $scope.removeSpecialty = function (specialty) {
-        $http.delete('specialty/delete?id=' + specialty._id);
+        $http.delete('specialty/delete', {data: specialty._id});
         var index = $scope.specialties.indexOf(specialty);
         $scope.specialties.splice(index, 1);
     };
@@ -71,7 +71,7 @@ var EditSpecialtyDialog = function ($scope, $modalInstance, specialty, CommonSer
     $scope.ok = function () {
         var identity = specialty._id;
         CommonService.copyAttr($scope.specialty, specialty);
-        $modalInstance.close($scope.specialty);
+        $modalInstance.close({id: identity, data: $scope.specialty});
     };
 
     $scope.cancel = function () {
