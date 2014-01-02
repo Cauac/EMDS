@@ -1,3 +1,8 @@
 /target/
 .idea
 .settings
+application.log
+schema.log
+sql.log
+EMDSproject.iml
+EMDS.iml
