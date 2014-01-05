@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3 class="text-center">{{student.last_name}} {{student.first_name}} :: Направление на ВВК</h3>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="commentary">Комментарий:</label>
+            <textarea class="form-control" rows="5" maxlength="10000" id="commentary" ng-model="document.commentary"></textarea>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Сохранить</button>
+    <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+</div>

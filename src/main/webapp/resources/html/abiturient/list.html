@@ -1,0 +1,67 @@
+<div id="content-header">
+    <h1>Поступающие</h1>
+</div>
+<table class="table table-condensed">
+    <thead>
+    <tr class="row">
+        <th class="col-sm-3"></th>
+        <th class="col-sm-1">Факультет</th>
+        <th class="col-sm-1">Заявление</th>
+        <th class="col-sm-1">Анкета</th>
+        <th class="col-sm-1">Ксерокопия паспорта</th>
+        <th class="col-sm-1">Копия приписного свидетельства</th>
+        <th class="col-sm-1">Характеристика</th>
+        <th class="col-sm-1">Направление на ВВК</th>
+        <th class="col-sm-1">Справка ВВК</th>
+        <th class="col-sm-1">Средний балл</th>
+        <th class="col-sm-1"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="student in students" class="row">
+        <td class="col-sm-2">{{student.last_name}} {{student.first_name}} {{student.middle_name}}</td>
+        <td class="col-sm-2">{{student.faculty}}</td>
+
+        <td class="col-sm-1">
+            <img class="ico" ng-click="document(student,'statement')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'statement')"/>
+            <img class="ico" ng-click="document(student,'statement')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'statement')"/>
+        </td>
+        <td class="col-sm-1">
+            <img class="ico" ng-click="document(student,'questionnaire')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'questionnaire')"/>
+            <img class="ico" ng-click="document(student,'questionnaire')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'questionnaire')"/>
+        </td>
+        <td class="col-sm-1">
+            <img class="ico" ng-click="document(student,'passport')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'passport')"/>
+            <img class="ico" ng-click="document(student,'passport')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'passport')"/>
+        </td>
+        <td class="col-sm-1">
+            <img class="ico" ng-click="document(student,'registration')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'registration')"/>
+            <img class="ico" ng-click="document(student,'registration')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'registration')"/>
+        </td>
+        <td class="col-sm-1">
+            <img class="ico" ng-click="document(student,'characteristic')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'characteristic')"/>
+            <img class="ico" ng-click="document(student,'characteristic')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'characteristic')"/>
+        </td>
+        <td class="col-sm-1">
+            <img class="ico" ng-click="document(student,'direction')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'direction')"/>
+            <img class="ico" ng-click="document(student,'direction')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'direction')"/>
+        </td>
+        <td class="col-sm-1">
+            <img class="ico" ng-click="document(student,'certificate')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'certificate')"/>
+            <img class="ico" ng-click="document(student,'certificate')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'certificate')"/>
+        </td>
+        <td class="col-sm-1">
+            <img class="ico" ng-click="document(student,'scope')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'scope')"/>
+            <img class="ico" ng-click="document(student,'scope')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'scope')"/>
+        </td>
+        <td class="col-sm-1">
+            <img ng-show="readyStudentialize(student)" ng-click="studentialize(student)" class="ico" src="resources/images/icons/104.png"/>
+            <img ng-click="editStudent(student)" class="ico" src="resources/images/icons/13.png"/>
+            <img ng-really-message="Удалить студента?" ng-really-click="removeStudent(student)" class="ico" src="resources/images/icons/118.png"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a class="btn" ng-click="addStudent()"><img class="ico" src="resources/images/icons/112.png"/> Добавить студента</a>
+</div>

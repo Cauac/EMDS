@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h3 class="text-center">Студент</h3>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="lastName">Фамилия:</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Фамилия" ng-model="student.last_name">
+        </div>
+        <div class="form-group">
+            <label for="firstName">Имя:</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Имя" ng-model="student.first_name">
+        </div>
+        <div class="form-group">
+            <label for="middleName">Отчество:</label>
+            <input type="text" class="form-control" id="middleName" placeholder="Отчество" ng-model="student.middle_name">
+        </div>
+        <div class="form-group">
+            <label for="rank">Факультет:</label>
+            <select id="rank" class="form-control input-lg" ng-model="student.faculty">
+                <option value="Математический">Математический</option>
+                <option value="Физический">Физический</option>
+                <option value="Биологический">Физической культуры и спорта</option>
+                <option value="Исторический">Исторический</option>
+                <option value="Социальной педагогики и психологии">Социальной педагогики и психологии</option>
+                <option value="Филологический">Филологический</option>
+                <option value="Белорусской филологии и культры">Белорусской филологии и культры</option>
+                <option value="Юридический">Юридический</option>
+                <option value="Художественно-графический">Художественно-графический</option>
+                <option value="Педагогический">Педагогический</option>
+            </select>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Сохранить</button>
+    <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+</div>

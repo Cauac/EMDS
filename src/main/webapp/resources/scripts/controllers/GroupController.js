@@ -6,8 +6,6 @@
  */
 var GroupController = function ($scope, $http, $modal) {
 
-//    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-
     $scope.readGroups = function () {
         $http.get('group/getAll').success(function (response) {
             $scope.groups = response;

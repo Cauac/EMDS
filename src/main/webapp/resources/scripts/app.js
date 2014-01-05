@@ -21,16 +21,24 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: GroupController
     });
 
+    $routeProvider.when('/abiturient', {
+        templateUrl: 'resources/html/abiturient/list.html',
+        controller: AbiturientController
+    });
+
     $routeProvider.otherwise({redirectTo: '/teachers'});
 
 }]);
 
-App.factory("CommonService", function () {
+App.factory("CommonService", function ($filter) {
     return {
         copyAttr: function (from, to) {
             for (var attr in from) {
                 to[attr] = from[attr];
             }
+        },
+        currentDate:function(){
+            return $filter('date')(Date.now(),'dd.MM.yyyy');
         }
     }
 });
@@ -49,13 +57,13 @@ App.directive('ngReallyClick', [function () {
     }
 }]);
 
-App.directive('activeLink', ['$location', function(location) {
+App.directive('activeLink', ['$location', function (location) {
     return {
         restrict: 'A',
-        link: function(scope, element, attrs) {
+        link: function (scope, element, attrs) {
             var path = attrs.activeLink;
             scope.location = location;
-            scope.$watch('location.path()', function(newPath) {
+            scope.$watch('location.path()', function (newPath) {
                 if (path === newPath.substring(1)) {
                     element.addClass('active');
                 } else {
@@ -67,14 +75,14 @@ App.directive('activeLink', ['$location', function(location) {
     };
 }]);
 
-App.directive('subMenu', [ function() {
+App.directive('subMenu', [ function () {
     return {
         restrict: 'A',
-        link: function(scope, element) {
+        link: function (scope, element) {
             element.bind('click', function () {
-                if(element.hasClass('open')){
+                if (element.hasClass('open')) {
                     element.removeClass('open');
-                }else{
+                } else {
                     element.addClass('open');
                 }
             });
