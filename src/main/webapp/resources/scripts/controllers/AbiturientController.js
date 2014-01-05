@@ -12,8 +12,8 @@ var AbiturientController = function ($scope, $http, $modal) {
         })
     };
 
-    $scope.removeStudent = function (student) {
-        $http.delete('abiturient/delete', {data: student._id});
+    $scope.archiveStudent = function (student) {
+        $http.delete('abiturient/archive', {data: student._id});
         var index = $scope.students.indexOf(student);
         $scope.students.splice(index, 1);
     };

@@ -1,6 +1,7 @@
 package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.dao.AbiturientDAO;
+import by.vsu.emdsproject.dao.ArchiveDAO;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -21,6 +22,9 @@ public class AbiturientController {
     @Autowired
     AbiturientDAO abiturientDAO;
 
+    @Autowired
+    ArchiveDAO archiveDAO;
+
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -40,6 +44,7 @@ public class AbiturientController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public void delete(@RequestBody String id, HttpServletResponse response) {
+        archiveDAO.save(abiturientDAO.read(id));
         abiturientDAO.delete(id);
         response.setStatus(HttpServletResponse.SC_OK);
     }
