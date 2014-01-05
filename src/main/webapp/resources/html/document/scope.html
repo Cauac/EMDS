@@ -2,14 +2,14 @@
     <h3 class="text-center">{{student.last_name}} {{student.first_name}} :: Средний балл</h3>
 </div>
 <div class="modal-body">
-    <form>
+    <form name="form">
         <div class="form-group">
-            <label for="commentary">Комментарий:</label>
-            <textarea class="form-control" rows="5" maxlength="10000" id="commentary" ng-model="document.commentary"></textarea>
+            <label for="scope">Средний балл:</label>
+            <input class="form-control" type="number" min="0" max="10" id="scope" ng-model="document.scope" required/>
         </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Сохранить</button>
+    <button  ng-disabled="form.$invalid" class="btn btn-primary" ng-click="ok()">Сохранить</button>
     <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
 </div>

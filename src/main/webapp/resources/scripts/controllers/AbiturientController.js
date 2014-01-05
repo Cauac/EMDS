@@ -54,7 +54,7 @@ var AbiturientController = function ($scope, $http, $modal) {
     };
 
     $scope.readyStudentialize = function (student) {
-        return student.document&&Object.keys(student.document).length == 8;
+        return student.document && Object.keys(student.document).length == 8;
     }
 
     $scope.document = function (student, documentType) {
@@ -108,8 +108,9 @@ var EditStudentDialog = function ($scope, $modalInstance, $http, student, Common
 var DocumentDialog = function ($scope, $modalInstance, student, documentType, CommonService) {
 
     $scope.student = student;
+    $scope.document = {};
     if (student.document && student.document[documentType]) {
-        $scope.document = {commentary: student.document[documentType].commentary};
+        CommonService.copyAttr(student.document[documentType], $scope.document);
     } else {
         $scope.document = {commentary: 'Дата подачи : ' + CommonService.currentDate()};
     }

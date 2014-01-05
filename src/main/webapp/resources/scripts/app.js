@@ -26,6 +26,11 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: AbiturientController
     });
 
+    $routeProvider.when('/archive', {
+        templateUrl: 'resources/html/archive/list.html',
+        controller: ArchiveController
+    });
+
     $routeProvider.otherwise({redirectTo: '/teachers'});
 
 }]);

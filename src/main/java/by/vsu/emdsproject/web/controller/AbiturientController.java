@@ -42,7 +42,7 @@ public class AbiturientController {
         return student;
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/archive", method = RequestMethod.DELETE)
     public void delete(@RequestBody String id, HttpServletResponse response) {
         archiveDAO.save(abiturientDAO.read(id));
         abiturientDAO.delete(id);

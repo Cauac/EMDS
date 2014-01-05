@@ -1,0 +1,29 @@
+<div id="content-header">
+    <h1>Поступающие</h1>
+</div>
+<table class="table table-condensed">
+    <thead>
+    <tr class="row">
+        <th class="col-sm-5">Студент</th>
+        <th class="col-sm-2">Факультет</th>
+        <th class="col-sm-2">Год поступления</th>
+        <th class="col-sm-1">Статус</th>
+        <th class="col-sm-1"></th>
+        <th class="col-sm-1"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="student in students" class="row">
+        <td class="col-sm-5">{{student.last_name}} {{student.first_name}} {{student.middle_name}}</td>
+        <td class="col-sm-2">{{student.faculty}}</td>
+        <td class="col-sm-2">{{student.questionnaire.admissionYear}}</td>
+        <td class="col-sm-1">{{student.type}}</td>
+        <td class="col-sm-1">
+            <img ng-click="editStudent(student)" class="ico" src="resources/images/icons/13.png"/>
+        </td>
+        <td class="col-sm-1">
+            <img ng-really-message="Вы действительно хотите удалить студента из системы?" ng-really-click="removeStudent(student)" class="ico" src="resources/images/icons/118.png"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
