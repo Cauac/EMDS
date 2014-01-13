@@ -1,0 +1,36 @@
+<style>
+    .modal-dialog {
+        width: 90%;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="text-center">{{student.last_name}} {{student.first_name}} :: Анкета</h3>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="birthDate">Дата рождения:</label>
+            <input class="form-control" id="birthDate" ng-model="questionnaire.birthDate" placeholder="ДД.ММ.ГГГГ"/>
+        </div>
+        <div class="form-group">
+            <label for="birthPlace">Место рождения:</label>
+            <input class="form-control" id="birthPlace" ng-model="questionnaire.birthPlace"/>
+        </div>
+        <div class="form-group">
+            <label for="nationality">Национальность:</label>
+            <input class="form-control" id="nationality" ng-model="questionnaire.nationality"/>
+        </div>
+        <div class="form-group">
+            <label for="familyStatus">Семейное положение:</label>
+            <input class="form-control" id="familyStatus" ng-model="questionnaire.familyStatus"/>
+        </div>
+        <div class="form-group">
+            <label for="passportNumber">Номер паспорта:</label>
+            <input class="form-control" id="passportNumber" ng-model="questionnaire.passportNumber"/>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Сохранить</button>
+    <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+</div>

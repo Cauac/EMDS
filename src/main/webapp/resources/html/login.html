@@ -3,33 +3,33 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Вход - Военная кафедра ВГУ</title>
     <base href="http://localhost:8080/EMDS/">
-    <link rel="stylesheet" href="resources/css/login.css" type="text/css">
     <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="resources/css/login.css" type="text/css">
     <link rel="icon" type="image/gif" href="resources/images/icon.png">
 </head>
 <body>
-<header class="navbar navbar-inverse navbar-fixed-top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/index">
-                Военная кафедра ВГУ
-            </a>
-        </div>
+<div id="container">
+    <div id="logo">
+        <img src="resources/images/vk-logo.png" alt=""/>
     </div>
-</header>
-<div class="row">
-    <div class="well .col-md-3 .col-md-offset-3">
-        <h3 class="center">Вход в систему</h3>
-        <div>
-            <form class="center" method="post" action="j_spring_security_check">
-                <p><input class="loginInput" type="text" name="j_username" value="" placeholder="Логин"></p>
+    <div id="loginbox">
+        <form id="loginform" method="post" action="j_spring_security_check">
+            <h3>Вход в систему</h3>
 
-                <p><input class="loginInput" type="password" name="j_password" value="" placeholder="Пароль"></p>
-                <button class="btn loginButton" type="submit" name="commit">
-                    <img width="24px" height="24px" src="resources/images/icons/39.png"/> Войти
-                </button>
-            </form>
-        </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input class="form-control" type="text" name="j_username" value="" placeholder="Логин"/>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input class="form-control" type="password" name="j_password" value="" placeholder="Пароль"/>
+            </div>
+            <hr/>
+            <div class="form-actions">
+                <div class="pull-right"><input type="submit" class="btn btn-default" value="Войти"/></div>
+            </div>
+        </form>
     </div>
 </div>
 </body>

@@ -27,8 +27,8 @@
             <img class="ico" ng-click="document(student,'statement')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'statement')"/>
         </td>
         <td class="col-sm-1">
-            <img class="ico" ng-click="document(student,'questionnaire')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'questionnaire')"/>
-            <img class="ico" ng-click="document(student,'questionnaire')" src="resources/images/icons/i2.png" ng-show="documentExist(student,'questionnaire')"/>
+            <img class="ico" ng-click="questionnaire(student)" src="resources/images/icons/i1.png" ng-show="!student.questionnaire"/>
+            <img class="ico" ng-click="questionnaire(student)" src="resources/images/icons/i2.png" ng-show="student.questionnaire"/>
         </td>
         <td class="col-sm-1">
             <img class="ico" ng-click="document(student,'passport')" src="resources/images/icons/i1.png" ng-show="!documentExist(student,'passport')"/>

@@ -55,7 +55,7 @@ var AbiturientController = function ($scope, $http, $modal) {
 
     $scope.readyStudentialize = function (student) {
         return student.document && Object.keys(student.document).length == 8;
-    }
+    };
 
     $scope.document = function (student, documentType) {
         var modalInstance = $modal.open({
@@ -73,6 +73,22 @@ var AbiturientController = function ($scope, $http, $modal) {
 
         modalInstance.result.then(function (result) {
             $http.post('abiturient/saveDocument', result);
+        });
+    };
+
+    $scope.questionnaire = function (student) {
+        var modalInstance = $modal.open({
+            templateUrl: 'resources/html/document/questionnaire.html',
+            controller: QuestionnaireDialog,
+            resolve: {
+                student: function () {
+                    return student;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (result) {
+            $http.post('abiturient/saveQuestionnaire', result);
         });
     };
 };
@@ -121,6 +137,24 @@ var DocumentDialog = function ($scope, $modalInstance, student, documentType, Co
         }
         $scope.student.document[documentType] = $scope.document;
         $modalInstance.close({id: $scope.student._id, documentType: documentType, data: $scope.document});
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+};
+
+var QuestionnaireDialog = function ($scope, $modalInstance, student, CommonService) {
+
+    $scope.student = student;
+    $scope.questionnaire = {};
+    if (student.questionnaire) {
+        CommonService.copyAttr(student.questionnaire, $scope.questionnaire);
+    }
+
+    $scope.ok = function () {
+        $scope.student['questionnaire'] = $scope.questionnaire;
+        $modalInstance.close({id: $scope.student._id, data: $scope.questionnaire});
     };
 
     $scope.cancel = function () {
