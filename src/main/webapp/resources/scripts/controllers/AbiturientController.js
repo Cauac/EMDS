@@ -148,6 +148,7 @@ var QuestionnaireDialog = function ($scope, $modalInstance, student, CommonServi
 
     $scope.student = student;
     $scope.questionnaire = {};
+    $scope.pageNumber = 1;
     if (student.questionnaire) {
         CommonService.copyAttr(student.questionnaire, $scope.questionnaire);
     }
