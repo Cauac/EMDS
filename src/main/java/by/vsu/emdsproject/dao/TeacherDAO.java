@@ -45,4 +45,7 @@ public class TeacherDAO extends MongoDAO {
         return Transliterator.transliterate(last_name + first_name.charAt(0) + middle_name.charAt(0));
     }
 
+    public long getCount() {
+        return database.getCollection(TEACHER_COLLECTION_NAME).getCount();
+    }
 }

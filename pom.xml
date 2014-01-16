@@ -16,15 +16,12 @@
         <spring.version>3.2.6.RELEASE</spring.version>
         <spring.security.version>3.2.0.RELEASE</spring.security.version>
         <servlet-api.version>2.4</servlet-api.version>
-        <javaee-web-api.version>6.0</javaee-web-api.version>
         <junit.version>4.10</junit.version>
         <commons-logging.version>1.1.1</commons-logging.version>
-        <commons-dbcp.version>1.4</commons-dbcp.version>
         <commons-lang.version>2.6</commons-lang.version>
         <commons-io.version>2.1</commons-io.version>
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.2</slf4j.version>
-        <validation.version>1.0.0.GA</validation.version>
         <jackson.version>1.9.12</jackson.version>
         <aspose.version>10.0.0</aspose.version>
         <mongodb.version>2.11.3</mongodb.version>
@@ -32,11 +29,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>${commons-dbcp.version}</version>
-        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>

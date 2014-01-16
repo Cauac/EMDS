@@ -8,16 +8,15 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <beans:bean id="authSuccessHandler" class="by.vsu.emdsproject.web.authentication.AuthorisationSuccess"/>
     <beans:bean id="customUserDetailService" class="by.vsu.emdsproject.web.authentication.DBUserDetailsService"/>
+    <beans:bean id="emptyBaseUserDetailService" class="by.vsu.emdsproject.web.authentication.EmptyBaseUserDetailsService"/>
 
     <security:global-method-security secured-annotations="enabled"/>
 
     <security:http auto-config="true">
 
         <security:form-login login-page="/login" default-target-url="/index"
-                             authentication-failure-url="/loginfailed"
-                             authentication-success-handler-ref="authSuccessHandler"/>
+                             authentication-failure-url="/loginfailed"/>
 
         <security:logout logout-success-url="/logout"/>
         <security:access-denied-handler error-page="/403"/>
@@ -34,23 +33,17 @@
 
         <security:intercept-url pattern="/*"
                                 access="IS_AUTHENTICATED_FULLY"/>
-
-
-        <!--<security:intercept-url pattern="/student/**" access="ROLE_STUDENT"/>-->
-        <!--<security:intercept-url pattern="/teacher/**" access="ROLE_TEACHER"/>-->
-        <!--<security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />-->
-
         <!--Resourses -->
         <security:intercept-url pattern="/external/**"
                                 access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <security:intercept-url pattern="/resources/**"
                                 access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 
-        <security:remember-me/>
+        <security:remember-me user-service-ref="customUserDetailService"/>
     </security:http>
 
-    <!-- Users -->
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="customUserDetailService"/>
+        <security:authentication-provider user-service-ref="emptyBaseUserDetailService"/>
     </security:authentication-manager>
 </beans:beans>
