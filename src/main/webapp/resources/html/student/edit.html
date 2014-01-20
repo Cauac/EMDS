@@ -15,6 +15,13 @@
 <fieldset class="border" ng-show="pageNumber==1">
     <div class="row">
         <div class="col-sm-6">
+            <div id="addPhoto" class="control-group">
+                <div>
+                    <img id="photo" src="{{student.photo}}" alt="Фото"/>
+                    <br>
+                    <input id="file" type="file" fileread="student.photo"/>
+                </div>
+            </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
