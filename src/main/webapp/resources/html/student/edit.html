@@ -1,0 +1,232 @@
+<style>
+    .modal-dialog {
+        width: 90%;
+    }
+
+    label {
+        margin-bottom: 0px;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="text-center">{{student.last_name}} {{student.first_name}} :: Информация</h3>
+</div>
+<div class="modal-body">
+<form>
+<fieldset class="border" ng-show="pageNumber==1">
+    <div class="row">
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="lastName">Фамилия:</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Фамилия" ng-model="student.last_name">
+            </div>
+            <div class="form-group">
+                <label for="firstName">Имя:</label>
+                <input type="text" class="form-control" id="firstName" placeholder="Имя" ng-model="student.first_name">
+            </div>
+            <div class="form-group">
+                <label for="middleName">Отчество:</label>
+                <input type="text" class="form-control" id="middleName" placeholder="Отчество" ng-model="student.middle_name">
+            </div>
+            <div class="form-group">
+                <label for="rank">Факультет:</label>
+                <select id="rank" class="form-control input-lg" ng-model="student.faculty">
+                    <option value="Математический">Математический</option>
+                    <option value="Физический">Физический</option>
+                    <option value="Биологический">Физической культуры и спорта</option>
+                    <option value="Исторический">Исторический</option>
+                    <option value="Социальной педагогики и психологии">Социальной педагогики и психологии</option>
+                    <option value="Филологический">Филологический</option>
+                    <option value="Белорусской филологии и культры">Белорусской филологии и культры</option>
+                    <option value="Юридический">Юридический</option>
+                    <option value="Художественно-графический">Художественно-графический</option>
+                    <option value="Педагогический">Педагогический</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="border" ng-show="pageNumber==2">
+    <legend class="border">Паспортные данные</legend>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="birthDate">Дата рождения:</label>
+                <input class="form-control" id="birthDate" ng-model="student.questionnaire.birthDate" placeholder="ДД.ММ.ГГГГ"/>
+            </div>
+            <div class="form-group">
+                <label for="birthPlace">Место рождения:</label>
+                <input class="form-control" id="birthPlace" ng-model="student.questionnaire.birthPlace"/>
+            </div>
+            <div class="form-group">
+                <label for="nationality">Национальность:</label>
+                <input class="form-control" id="nationality" ng-model="student.questionnaire.nationality"/>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="familyStatus">Семейное положение:</label>
+                <input class="form-control" id="familyStatus" ng-model="student.questionnaire.familyStatus"/>
+            </div>
+            <div class="form-group">
+                <label for="passportNumber">Номер паспорта:</label>
+                <input class="form-control" id="passportNumber" ng-model="student.questionnaire.passportNumber"/>
+            </div>
+            <div class="form-group">
+                <label for="personalNumber">Личный номер:</label>
+                <input class="form-control" id="personalNumber" ng-model="student.questionnaire.personalNumber"/>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="border" ng-show="pageNumber==3">
+    <legend class="border">Контактная информация</legend>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="mobileTel">Мобильный телефон:</label>
+                <input class="form-control" id="mobileTel" ng-model="student.questionnaire.mobileTel"/>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="homeTel">Домашний телефон:</label>
+                <input class="form-control" id="homeTel" ng-model="student.questionnaire.homeTel"/>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="parentTel">Телефоны близких родственников:</label>
+                <input class="form-control" id="parentTel" ng-model="student.questionnaire.parentTel"/>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Адрес:</label>
+
+        <div class="row">
+            <div class="col-sm-4">г.<input class="form-control" ng-model="student.questionnaire.address.city" placeholder="Город"/></div>
+            <div class="col-sm-4">ул.<input class="form-control" ng-model="student.questionnaire.address.street" placeholder="Улица"/></div>
+            <div class="col-sm-2">д.<input class="form-control" ng-model="student.questionnaire.address.house"/></div>
+            <div class="col-sm-2">кв.<input class="form-control" ng-model="student.questionnaire.address.apartment"/></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Адрес родителей:</label>
+
+        <div class="row">
+            <div class="col-sm-4">г.<input class="form-control" ng-model="student.questionnaire.parentAddress.city" placeholder="Город"/></div>
+            <div class="col-sm-4">ул.<input class="form-control" ng-model="student.questionnaire.parentAddress.street" placeholder="Улица"/></div>
+            <div class="col-sm-2">д.<input class="form-control" ng-model="student.questionnaire.parentAddress.house"/></div>
+            <div class="col-sm-2">кв.<input class="form-control" ng-model="student.questionnaire.parentAddress.apartment"/></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="mother">Мать (ФИО, место работы, должность):</label>
+        <input class="form-control" id="mother" ng-model="student.questionnaire.mother"/>
+    </div>
+    <div class="form-group">
+        <label for="father">Отец (ФИО, место работы, должность):</label>
+        <input class="form-control" id="father" ng-model="student.questionnaire.father"/>
+    </div>
+</fieldset>
+<fieldset class="border" ng-show="pageNumber==4">
+    <legend class="border">Обучение в университете</legend>
+
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="admissionYear">Год поступления:</label>
+            <input class="form-control" id="admissionYear" ng-model="student.questionnaire.admissionYear"/>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="educationType">Форма обучения:</label>
+            <select id="educationType" class="form-control" ng-model="student.questionnaire.educationType">
+                <option value="Бюджетное">Бюджетное</option>
+                <option value="Платное">Платное</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="studySpecialty">Специальность:</label>
+            <input class="form-control" id="studySpecialty" ng-model="student.questionnaire.studySpecialty"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-3">
+            <label for="course">Курс:</label>
+            <input class="form-control" id="course" ng-model="student.questionnaire.course"/>
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="studyGroup2">Учебная группа:</label>
+            <input class="form-control" id="studyGroup2" ng-model="student.questionnaire.studyGroup2"/>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="studyProgress">Успеваемость:</label>
+            <input class="form-control" id="studyProgress" ng-model="student.questionnaire.studyProgress"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label for="curator">Куратор:</label>
+            <input class="form-control" id="curator" ng-model="student.questionnaire.curator"/>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="curatorTel">Телефон куратора:</label>
+            <input class="form-control" id="curatorTel" ng-model="student.questionnaire.curatorTel"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="educationBefore">Образование до университета:</label>
+        <input class="form-control" id="educationBefore" ng-model="student.questionnaire.educationBefore"/>
+    </div>
+    <div class="form-group">
+        <label for="facultyPublicLife">Участие в общественной жизни университета:</label>
+        <input class="form-control" id="facultyPublicLife" ng-model="student.questionnaire.facultyPublicLife"/>
+    </div>
+</fieldset>
+<fieldset class="border" ng-show="pageNumber==5">
+    <legend class="border">Общая информация</legend>
+    <div class="form-group">
+        <label for="hobby">Увлечения:</label>
+        <input class="form-control" id="hobby" ng-model="student.questionnaire.hobby"/>
+    </div>
+    <div class="form-group">
+        <label for="publicOrganization">Общественные организации:</label>
+        <input class="form-control" id="publicOrganization" ng-model="student.questionnaire.publicOrganization"/>
+    </div>
+    <div class="form-group">
+        <label for="employment">Работа:</label>
+        <input class="form-control" id="employment" ng-model="student.questionnaire.employment"/>
+    </div>
+    <div class="form-group">
+        <label for="howDidYouHearAbout">Источники информации о военной кафедре:</label>
+        <input class="form-control" id="howDidYouHearAbout" ng-model="student.questionnaire.howDidYouHearAbout"/>
+    </div>
+</fieldset>
+<fieldset class="border" ng-show="pageNumber==6">
+    <div class="form-group">
+        <label for="desireToContinue">Планирует ли продолжить обучение по программе офицеров запаса:</label>
+        <input class="form-control" id="desireToContinue" ng-model="student.questionnaire.desireToContinue"/>
+    </div>
+    <div class="form-group">
+        <label for="thinkAboutStudy">Отношение к приобретаемой военной специльности:</label>
+        <input class="form-control" id="thinkAboutStudy" ng-model="student.questionnaire.thinkAboutStudy"/>
+    </div>
+    <div class="form-group">
+        <label for="thinkAboutDuty">Отношение к службе в армии:</label>
+        <input class="form-control" id="thinkAboutDuty" ng-model="student.questionnaire.thinkAboutDuty"/>
+    </div>
+    <div class="form-group">
+        <label for="duty">Источники информации о военной кафедре:</label>
+        <input class="form-control" id="duty" ng-model="student.questionnaire.duty"/>
+    </div>
+</fieldset>
+</form>
+</div>
+<div class="modal-footer">
+    <label class="pull-left">{{pageNumber}}/6</label>
+    <button class="btn btn-default" ng-show='pageNumber>1' ng-click='pageNumber=pageNumber-1'>Назад</button>
+    <button class="btn btn-default" ng-show='pageNumber<6' ng-click='pageNumber=pageNumber+1'>Далее</button>
+    <button class="btn btn-primary" ng-click="ok()">Сохранить</button>
+    <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+</div>

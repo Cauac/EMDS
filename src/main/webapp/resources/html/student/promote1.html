@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h3 class="text-center">Перевести на 2 курс</h3>
+</div>
+<div class="modal-body">
+    <form>
+        <h4>{{student.last_name}} {{student.first_name}} :: Выбор группы</h4>
+
+        <div class="alert alert-danger" ng-show="groups.length==0">Необходимо создать хотя бы одну группу</div>
+        <div class="form-group" ng-show="groups.length>0">
+            <label for="group">Группа:</label>
+            <select id="group" class="form-control" ng-model="selected" ng-options="g._id as g._id for g in groups">
+            </select>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok(selected)" ng-show="selected.length>0">Перевести</button>
+    <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+</div>

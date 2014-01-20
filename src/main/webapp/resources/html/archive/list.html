@@ -1,5 +1,5 @@
 <div id="content-header">
-    <h1>Поступающие</h1>
+    <h1>Студенты</h1>
 </div>
 <table class="table table-condensed">
     <thead>
@@ -19,10 +19,10 @@
         <td class="col-sm-2">{{student.questionnaire.admissionYear}}</td>
         <td class="col-sm-1">{{student.type}}</td>
         <td class="col-sm-1">
-            <img ng-click="editStudent(student)" class="ico" src="resources/images/icons/13.png"/>
+            <img ng-click="edit(student)" class="ico" src="resources/images/icons/13.png"/>
         </td>
         <td class="col-sm-1">
-            <img ng-really-message="Вы действительно хотите удалить студента из системы?" ng-really-click="removeStudent(student)" class="ico" src="resources/images/icons/118.png"/>
+            <img ng-really-message="Вы действительно хотите удалить студента из системы?" ng-really-click="delete(student)" class="ico" src="resources/images/icons/118.png"/>
         </td>
     </tr>
     </tbody>

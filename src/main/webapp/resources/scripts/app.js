@@ -26,6 +26,16 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: AbiturientController
     });
 
+    $routeProvider.when('/student1', {
+        templateUrl: 'resources/html/student/list.html',
+        controller: Student1Controller
+    });
+
+    $routeProvider.when('/student2', {
+        templateUrl: 'resources/html/student/list.html',
+        controller: Student2Controller
+    });
+
     $routeProvider.when('/archive', {
         templateUrl: 'resources/html/archive/list.html',
         controller: ArchiveController

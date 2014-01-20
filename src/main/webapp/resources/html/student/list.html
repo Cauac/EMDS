@@ -1,0 +1,29 @@
+<div id="content-header">
+    <h1>{{label}}</h1>
+</div>
+<table class="table table-condensed">
+    <thead>
+    <tr class="row">
+        <th class="col-sm-7">Студент</th>
+        <th class="col-sm-2">Группа</th>
+        <th class="col-sm-1"></th>
+        <th class="col-sm-1"></th>
+        <th class="col-sm-1"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="student in students" class="row">
+        <td class="col-sm-7">{{student.last_name}} {{student.first_name}} {{student.middle_name}}</td>
+        <td class="col-sm-2">{{student.group}}</td>
+        <td class="col-sm-1">
+            <img ng-click="edit(student)" class="ico" src="resources/images/icons/13.png"/>
+        </td>
+        <td class="col-sm-1">
+            <img ng-really-message="Вы действительно хотите отчислить студента ?" ng-really-click="archive(student)" class="ico" src="resources/images/icons/118.png"/>
+        </td>
+        <td class="col-sm-1">
+            <img ng-click="promote(student)" class="ico" src="resources/images/icons/104.png"/>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,6 +1,7 @@
 package by.vsu.emdsproject.web.controller;
 
-import by.vsu.emdsproject.dao.Student1DAO;
+import by.vsu.emdsproject.dao.ArchiveDAO;
+import by.vsu.emdsproject.dao.Student2DAO;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -14,38 +15,38 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping(value = "student")
-public class StudentController {
+@RequestMapping(value = "student2")
+public class Student2Controller {
 
     @Autowired
-    Student1DAO student1DAO;
+    Student2DAO student2DAO;
+
+    @Autowired
+    ArchiveDAO archiveDAO;
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public
     @ResponseBody
     BasicDBList getAll() {
-        return student1DAO.readAll();
+        return student2DAO.readAll();
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public void save(@RequestBody String studentJSON, HttpServletResponse response) {
         DBObject student = (DBObject) JSON.parse(studentJSON);
-        student1DAO.save(student);
+        student2DAO.save(student);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/archive", method = RequestMethod.DELETE)
     public void delete(@RequestBody String id, HttpServletResponse response) {
-        student1DAO.delete(id);
+        archiveDAO.save(student2DAO.read(id));
+        student2DAO.delete(id);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public void update(@RequestBody String studentJSON, HttpServletResponse response) {
-        DBObject student = (DBObject) JSON.parse(studentJSON);
-        student1DAO.delete(student.get("id").toString());
-        student1DAO.save((DBObject) student.get("data"));
+    @RequestMapping(value = "/promote", method = RequestMethod.POST)
+    public void promote(@RequestBody String stringData, HttpServletResponse response) {
         response.setStatus(HttpServletResponse.SC_OK);
     }
-
 }
