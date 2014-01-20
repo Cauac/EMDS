@@ -2,7 +2,7 @@ package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.dao.AbiturientDAO;
 import by.vsu.emdsproject.dao.ArchiveDAO;
-import by.vsu.emdsproject.dao.JuniorDAO;
+import by.vsu.emdsproject.dao.Student1DAO;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -27,7 +27,7 @@ public class AbiturientController {
     ArchiveDAO archiveDAO;
 
     @Autowired
-    JuniorDAO juniorDAO;
+    Student1DAO student1DAO;
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public
@@ -53,10 +53,13 @@ public class AbiturientController {
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = "/studentialize", method = RequestMethod.DELETE)
-    public void studentialize(@RequestBody String id, @RequestBody String groupId, HttpServletResponse response) {
-        juniorDAO.addNewStudent(abiturientDAO.read(id), groupId);
-        abiturientDAO.delete(id);
+    @RequestMapping(value = "/studentialize", method = RequestMethod.POST)
+    public void studentialize(@RequestBody String stringData, HttpServletResponse response) {
+        DBObject data = (DBObject) JSON.parse(stringData);
+        String studentId = data.get("id").toString();
+        String groupId = data.get("group_id").toString();
+        student1DAO.addNewStudent(abiturientDAO.read(studentId), groupId);
+        abiturientDAO.delete(studentId);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

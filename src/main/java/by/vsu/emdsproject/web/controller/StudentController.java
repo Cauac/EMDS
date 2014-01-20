@@ -1,6 +1,6 @@
 package by.vsu.emdsproject.web.controller;
 
-import by.vsu.emdsproject.dao.JuniorDAO;
+import by.vsu.emdsproject.dao.Student1DAO;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -18,33 +18,33 @@ import javax.servlet.http.HttpServletResponse;
 public class StudentController {
 
     @Autowired
-    JuniorDAO juniorDAO;
+    Student1DAO student1DAO;
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public
     @ResponseBody
     BasicDBList getAll() {
-        return juniorDAO.readAll();
+        return student1DAO.readAll();
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public void save(@RequestBody String studentJSON, HttpServletResponse response) {
         DBObject student = (DBObject) JSON.parse(studentJSON);
-        juniorDAO.save(student);
+        student1DAO.save(student);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public void delete(@RequestBody String id, HttpServletResponse response) {
-        juniorDAO.delete(id);
+        student1DAO.delete(id);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public void update(@RequestBody String studentJSON, HttpServletResponse response) {
         DBObject student = (DBObject) JSON.parse(studentJSON);
-        juniorDAO.delete(student.get("id").toString());
-        juniorDAO.save((DBObject) student.get("data"));
+        student1DAO.delete(student.get("id").toString());
+        student1DAO.save((DBObject) student.get("data"));
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

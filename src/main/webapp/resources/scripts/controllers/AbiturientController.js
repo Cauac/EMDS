@@ -72,7 +72,7 @@ var AbiturientController = function ($scope, $http, $modal) {
                 }
             });
             modalInstance.result.then(function (result) {
-                $http.post("abiturient/studentialize", {id: student._id, groupId: result}).success(function () {
+                $http.post("abiturient/studentialize", {id: student._id, group_id: result}).success(function () {
                     var index = $scope.students.indexOf(student);
                     $scope.students.splice(index, 1);
                 });
@@ -189,9 +189,9 @@ var QuestionnaireDialog = function ($scope, $modalInstance, student, CommonServi
 var StudentializeDialog = function ($scope, $modalInstance, student, groups) {
     $scope.groups = groups;
     $scope.student = student;
-    $scope.selected = $scope.groups[0];
-    $scope.ok = function () {
-        $modalInstance.close($scope.selected);
+    $scope.selected = {};
+    $scope.ok = function (group) {
+        $modalInstance.close(group);
     };
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');

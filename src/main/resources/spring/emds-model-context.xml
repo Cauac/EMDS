@@ -39,7 +39,7 @@
         <property name="mongoClient" ref="MongoClient"/>
         <property name="dbName" value="local"/>
     </bean>
-    <bean class="by.vsu.emdsproject.dao.JuniorDAO">
+    <bean class="by.vsu.emdsproject.dao.Student1DAO">
         <property name="mongoClient" ref="MongoClient"/>
         <property name="dbName" value="local"/>
     </bean>
