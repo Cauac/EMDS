@@ -17,7 +17,9 @@
         <div class="col-sm-6">
             <div id="addPhoto" class="control-group">
                 <div>
-                    <img id="photo" src="{{student.photo}}" alt="Фото"/>
+                    <label for="file">Фото:</label><br>
+                    <img src="resources/images/no-photo.png" ng-show="!student.photo"/>
+                    <img src="{{student.photo}}" ng-show="student.photo"/>
                     <br>
                     <input id="file" type="file" fileread="student.photo"/>
                 </div>

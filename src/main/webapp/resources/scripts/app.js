@@ -2,7 +2,7 @@
 
 var EMDS = {};
 
-var App = angular.module('EMDS', ['EMDS.filters', 'EMDS.services', 'EMDS.directives', 'ui.bootstrap.modal']);
+var App = angular.module('EMDS', ['EMDS.filters', 'EMDS.services', 'EMDS.directives', 'ui.bootstrap.modal','ngRoute','ngAnimate']);
 
 App.config(['$routeProvider', function ($routeProvider) {
 
@@ -39,6 +39,11 @@ App.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/archive', {
         templateUrl: 'resources/html/archive/list.html',
         controller: ArchiveController
+    });
+
+    $routeProvider.when('/reports', {
+        templateUrl: 'resources/html/report/list.html',
+        controller: ReportController
     });
 
     $routeProvider.otherwise({redirectTo: '/teachers'});

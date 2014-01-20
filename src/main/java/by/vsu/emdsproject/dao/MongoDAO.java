@@ -4,6 +4,8 @@ import com.mongodb.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Required;
 
+import java.util.Collection;
+
 public abstract class MongoDAO implements InitializingBean {
 
     public static final String IDENTITY = "_id";
@@ -15,6 +17,19 @@ public abstract class MongoDAO implements InitializingBean {
 
     public DBObject read(String identity) {
         return database.getCollection(getCollectionName()).findOne(new BasicDBObject(IDENTITY, identity));
+    }
+
+    private BasicDBList readObjectsByIds(String collectionName, Collection ids) {
+        BasicDBList result = new BasicDBList();
+        DBCursor cursor = database.getCollection(collectionName).find(new BasicDBObject("_id", new BasicDBObject("$in", ids)));
+        try {
+            while (cursor.hasNext()) {
+                result.add(cursor.next());
+            }
+        } finally {
+            cursor.close();
+        }
+        return result;
     }
 
     public BasicDBList readAll() {

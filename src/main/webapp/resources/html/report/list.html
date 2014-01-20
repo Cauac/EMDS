@@ -1,0 +1,16 @@
+<div id="content-header">
+    <h1>Отчеты</h1>
+</div>
+<div>
+    <button class="btn btn-sm btn-primary" ng-click="url=undefined" ng-show="url">Назад</button>
+    <ul class="slide-animate nav nav-pills nav-stacked" ng-show="!url">
+        <li><a ng-click="url='resources/html/report/personCard.html'">Личная карточка</a></li>
+        <li><a ng-click="url='resources/html/report/examStatement.html'">Зачетно-экаменационная ведомость</a></li>
+        <li><a ng-click="url='resources/html/report/examProtocol.html'">Протокол заседания выпускной экзаменационной комиссии</a></li>
+        <li><a ng-click="url='resources/html/report/allowedList.html'">Список допущенных к экзамену</a></li>
+        <li><a ng-click="url='resources/html/report/progressRequest.html'">Сведения о успеваемости студентов</a></li>
+    </ul>
+    <div class="slide-animate-container">
+        <div class="slide-animate" ng-include="url"></div>
+    </div>
+</div>
