@@ -30,6 +30,13 @@ public class AbiturientDAO extends MongoDAO {
         collection.update(query, new BasicDBObject("$set", field), true, true);
     }
 
+    public void saveQuestionnaire(String abiturientId, DBObject questionnaire) {
+        DBCollection collection = database.getCollection(getCollectionName());
+        DBObject query = new BasicDBObject("_id", abiturientId);
+        DBObject field = new BasicDBObject("questionnaire", questionnaire);
+        collection.update(query, new BasicDBObject("$set", field), true, true);
+    }
+
     private String generateIdentity(DBObject abiturient) {
         String first_name = (String) abiturient.get("first_name");
         String last_name = (String) abiturient.get("last_name");

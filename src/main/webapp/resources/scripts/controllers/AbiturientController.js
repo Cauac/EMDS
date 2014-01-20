@@ -54,12 +54,35 @@ var AbiturientController = function ($scope, $http, $modal) {
     };
 
     $scope.readyStudentialize = function (student) {
-        return student.document && Object.keys(student.document).length == 8;
+        return student.document && Object.keys(student.document).length == 7 && student.questionnaire;
+    };
+
+    $scope.studentialize = function (student) {
+        $http.get('group/getAll').success(function (groups) {
+            var modalInstance = $modal.open({
+                templateUrl: 'resources/html/abiturient/studentialize.html',
+                controller: StudentializeDialog,
+                resolve: {
+                    student: function () {
+                        return student;
+                    },
+                    groups: function () {
+                        return groups;
+                    }
+                }
+            });
+            modalInstance.result.then(function (result) {
+                $http.post("abiturient/studentialize", {id: student._id, groupId: result}).success(function () {
+                    var index = $scope.students.indexOf(student);
+                    $scope.students.splice(index, 1);
+                });
+            });
+        });
     };
 
     $scope.document = function (student, documentType) {
         var modalInstance = $modal.open({
-            templateUrl: 'resources/html/document/' + documentType + '.html',
+            templateUrl: 'resources/html/abiturient/document/' + documentType + '.html',
             controller: DocumentDialog,
             resolve: {
                 student: function () {
@@ -78,7 +101,7 @@ var AbiturientController = function ($scope, $http, $modal) {
 
     $scope.questionnaire = function (student) {
         var modalInstance = $modal.open({
-            templateUrl: 'resources/html/document/questionnaire.html',
+            templateUrl: 'resources/html/abiturient/document/questionnaire.html',
             controller: QuestionnaireDialog,
             resolve: {
                 student: function () {
@@ -158,6 +181,18 @@ var QuestionnaireDialog = function ($scope, $modalInstance, student, CommonServi
         $modalInstance.close({id: $scope.student._id, data: $scope.questionnaire});
     };
 
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+};
+
+var StudentializeDialog = function ($scope, $modalInstance, student, groups) {
+    $scope.groups = groups;
+    $scope.student = student;
+    $scope.selected = $scope.groups[0];
+    $scope.ok = function () {
+        $modalInstance.close($scope.selected);
+    };
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };

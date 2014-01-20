@@ -2,6 +2,7 @@ package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.dao.AbiturientDAO;
 import by.vsu.emdsproject.dao.ArchiveDAO;
+import by.vsu.emdsproject.dao.JuniorDAO;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -24,6 +25,9 @@ public class AbiturientController {
 
     @Autowired
     ArchiveDAO archiveDAO;
+
+    @Autowired
+    JuniorDAO juniorDAO;
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public
@@ -49,12 +53,27 @@ public class AbiturientController {
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
+    @RequestMapping(value = "/studentialize", method = RequestMethod.DELETE)
+    public void studentialize(@RequestBody String id, @RequestBody String groupId, HttpServletResponse response) {
+        juniorDAO.addNewStudent(abiturientDAO.read(id), groupId);
+        abiturientDAO.delete(id);
+        response.setStatus(HttpServletResponse.SC_OK);
+    }
+
     @RequestMapping(value = "/saveDocument", method = RequestMethod.POST)
     public void saveDocument(@RequestBody String stringData, HttpServletResponse response) {
         DBObject data = (DBObject) JSON.parse(stringData);
         String studentId = data.get("id").toString();
         String documentType = data.get("documentType").toString();
         abiturientDAO.saveDocument(studentId, documentType, (DBObject) data.get("data"));
+        response.setStatus(HttpServletResponse.SC_OK);
+    }
+
+    @RequestMapping(value = "/saveQuestionnaire", method = RequestMethod.POST)
+    public void saveQuestionnaire(@RequestBody String stringData, HttpServletResponse response) {
+        DBObject data = (DBObject) JSON.parse(stringData);
+        String studentId = data.get("id").toString();
+        abiturientDAO.saveQuestionnaire(studentId, (DBObject) data.get("data"));
         response.setStatus(HttpServletResponse.SC_OK);
     }
 }
