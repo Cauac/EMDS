@@ -85,10 +85,11 @@ App.directive('subMenu', [ function () {
         restrict: 'A',
         link: function (scope, element) {
             element.bind('click', function () {
-                if (element.hasClass('open')) {
-                    element.removeClass('open');
+                var parent=element.parent();
+                if (parent.hasClass('open')) {
+                    parent.removeClass('open');
                 } else {
-                    element.addClass('open');
+                    parent.addClass('open');
                 }
             });
         }
