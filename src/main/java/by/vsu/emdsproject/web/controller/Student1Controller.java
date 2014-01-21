@@ -54,8 +54,7 @@ public class Student1Controller {
         DBObject data = (DBObject) JSON.parse(stringData);
         String studentId = data.get("id").toString();
         String groupId = data.get("group_id").toString();
-        student2DAO.addNewStudent(student1DAO.read(studentId), groupId);
-        student1DAO.delete(studentId);
+        student1DAO.promote(studentId, groupId);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 }
