@@ -1,7 +1,7 @@
 package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.dao.ArchiveDAO;
-import by.vsu.emdsproject.dao.Student2DAO;
+import by.vsu.emdsproject.dao.StudentDAO;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Student2Controller {
 
     @Autowired
-    Student2DAO student2DAO;
+    StudentDAO studentDAO;
 
     @Autowired
     ArchiveDAO archiveDAO;
@@ -28,20 +28,20 @@ public class Student2Controller {
     public
     @ResponseBody
     BasicDBList getAll() {
-        return student2DAO.readAll();
+        return studentDAO.readAll(StudentDAO.STUDENT2);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public void save(@RequestBody String studentJSON, HttpServletResponse response) {
         DBObject student = (DBObject) JSON.parse(studentJSON);
-        student2DAO.save(student);
+        studentDAO.save(student);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
     @RequestMapping(value = "/archive", method = RequestMethod.DELETE)
     public void delete(@RequestBody String id, HttpServletResponse response) {
-        archiveDAO.save(student2DAO.read(id));
-        student2DAO.delete(id);
+        archiveDAO.save(studentDAO.read(id));
+        studentDAO.delete(id, StudentDAO.STUDENT2);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

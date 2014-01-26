@@ -15,7 +15,10 @@
     </thead>
     <tbody>
     <tr ng-repeat="teacher in teachers" class="row">
-        <td class="col-sm-1" ng-really-message="Сделать преподавателя начальником кафедры?" ng-really-click="setChief(teacher)"><img ng-show="teacher.is_chief" src="resources/images/icons/33.png"/></td>
+        <td class="col-sm-1">
+            <img ng-show="teacher.is_chief" src="resources/images/icons/33.png"/>
+            <img ng-show="!teacher.is_chief" src="resources/images/icons/101.png" width="20px" height="20px"  ng-really-message="Сделать преподавателя начальником кафедры?" ng-really-click="setChief(teacher)"/>
+        </td>
         <td class="col-sm-4">{{teacher.last_name}} {{teacher.first_name}} {{teacher.middle_name}}</td>
         <td class="col-sm-3">
             <img class="pog" alt="teacher.rank" src="resources/images/pog/ml.png" ng-show="teacher.rank=='Младший лейтенант'"/>

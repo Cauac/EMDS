@@ -3,6 +3,7 @@ package by.vsu.emdsproject.report.datasource;
 import by.vsu.emdsproject.common.ReportUtil;
 import by.vsu.emdsproject.model.Questionnaire;
 import by.vsu.emdsproject.model.Student;
+import com.mongodb.DBObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,19 +46,19 @@ public class PersonCardDS extends AbstractReportDataSource {
 
     @Override
     protected void initializeParameters(Map parameters) throws Exception {
-        Student student = (Student) parameters.get(DataSourceParameter.STUDENT);
+        DBObject student = (DBObject) parameters.get(DataSourceParameter.STUDENT);
         title += " " + ReportUtil.getFullFIO(student);
-        Questionnaire questionnaire = student.getQuestionnaire();
+//        Questionnaire questionnaire = student.getQuestionnaire();
         addParameter(ReportParameter.FIO, ReportUtil.getFullFIO(student));
-        addParameter(ReportParameter.ADMISSION_YEAR, questionnaire.getAdmissionYear());
-        addParameter(ReportParameter.BIRTH_YEAR, ReportUtil.getYearInString(student.getBirthDate()));
-        addParameter(ReportParameter.BIRTH_PLACE, questionnaire.getBirthPlace());
-        addParameter(ReportParameter.RECRUIT_OFFICE, questionnaire.getRecruitmentOffice());
-        addParameter(ReportParameter.FACULTY, questionnaire.getFaculty());
-        addParameter(ReportParameter.EDUCATION, questionnaire.getEducationBefore());
-        addParameter(ReportParameter.DUTY, questionnaire.getDuty());
-        addParameter(ReportParameter.PARENT_ADDRESS, questionnaire.getParentAddress().toString());
-        addParameter(ReportParameter.ADDRESS, questionnaire.getAddress().toString());
+//        addParameter(ReportParameter.ADMISSION_YEAR, questionnaire.getAdmissionYear());
+//        addParameter(ReportParameter.BIRTH_YEAR, ReportUtil.getYearInString(student.getBirthDate()));
+//        addParameter(ReportParameter.BIRTH_PLACE, questionnaire.getBirthPlace());
+//        addParameter(ReportParameter.RECRUIT_OFFICE, questionnaire.getRecruitmentOffice());
+//        addParameter(ReportParameter.FACULTY, questionnaire.getFaculty());
+//        addParameter(ReportParameter.EDUCATION, questionnaire.getEducationBefore());
+//        addParameter(ReportParameter.DUTY, questionnaire.getDuty());
+//        addParameter(ReportParameter.PARENT_ADDRESS, questionnaire.getParentAddress().toString());
+//        addParameter(ReportParameter.ADDRESS, questionnaire.getAddress().toString());
     }
 
     @Override

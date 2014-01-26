@@ -37,6 +37,13 @@ public abstract class MongoDAO implements InitializingBean {
         database.getCollection(getCollectionName()).remove(new BasicDBObject(IDENTITY, id));
     }
 
+    public void updateField(String id, String fieldName, Object value){
+        DBCollection collection = database.getCollection(getCollectionName());
+        DBObject query = new BasicDBObject("_id", id);
+        DBObject field = new BasicDBObject(fieldName, value);
+        collection.update(query, new BasicDBObject("$set", field), true, false);
+    }
+
     protected BasicDBList readObjectsByIds(String collectionName, Collection ids) {
         BasicDBList result = new BasicDBList();
         DBCursor cursor = database.getCollection(collectionName).find(new BasicDBObject("_id", new BasicDBObject("$in", ids)));
@@ -52,7 +59,22 @@ public abstract class MongoDAO implements InitializingBean {
 
     protected void addFilterValue(String filterName, String listName, String id) {
         database.getCollection(FILTER_COLLECTION_NAME)
-                .update(new BasicDBObject("_id", filterName), new BasicDBObject("$addToSet", new BasicDBObject(listName, id)), true, false);
+                .update(new BasicDBObject("_id", filterName), new BasicDBObject("$push", new BasicDBObject(listName, id)), true, false);
+    }
+
+    protected void removeFilterValue(String filterName, String listName, String id) {
+        database.getCollection(FILTER_COLLECTION_NAME)
+                .update(new BasicDBObject("_id", filterName), new BasicDBObject("$pull", new BasicDBObject(listName, id)), true, false);
+    }
+
+    protected BasicDBList getFilterIds(String filterName, String listName) {
+        BasicDBList result = new BasicDBList();
+        DBObject filter = database.getCollection(FILTER_COLLECTION_NAME)
+                .findOne(new BasicDBObject("_id", filterName), new BasicDBObject(listName, 1));
+        if (filter != null && filter.containsField(listName)) {
+            result = (BasicDBList) filter.get(listName);
+        }
+        return result;
     }
 
     @Required

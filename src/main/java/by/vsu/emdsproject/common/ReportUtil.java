@@ -1,6 +1,7 @@
 package by.vsu.emdsproject.common;
 
 import by.vsu.emdsproject.model.Person;
+import com.mongodb.DBObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,6 +50,13 @@ public class ReportUtil {
         String result = p.getLastName() + " "
                 + p.getFirstName() + " "
                 + p.getMiddleName();
+        return result;
+    }
+
+    public static String getFullFIO(DBObject o) {
+        String result = o.get("last_name") + " "
+                + o.get("first_name") + " "
+                + o.get("middle_name");
         return result;
     }
 

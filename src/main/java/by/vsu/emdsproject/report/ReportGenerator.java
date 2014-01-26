@@ -6,5 +6,5 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface ReportGenerator {
 
-    public void generate(AbstractReportDataSource datasource, HttpServletResponse response);
+    public String generate(AbstractReportDataSource datasource, HttpServletResponse response);
 }

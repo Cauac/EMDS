@@ -1,6 +1,7 @@
 package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.dao.GroupDAO;
+import by.vsu.emdsproject.dao.StudentDAO;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
@@ -17,6 +17,9 @@ public class GroupController {
 
     @Autowired
     GroupDAO groupDAO;
+
+    @Autowired
+    StudentDAO studentDAO;
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public
@@ -48,4 +51,10 @@ public class GroupController {
         //TODO пройтись по всем студентам, обновить связь
     }
 
+    @RequestMapping(value = "/getStudents", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    BasicDBList getStudents(@RequestBody String groupId) {
+        return studentDAO.readByGroup(groupId);
+    }
 }

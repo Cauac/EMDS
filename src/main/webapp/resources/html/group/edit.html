@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             <label for="specialty">Специальность:</label>
-            <select class="form-control" id="specialty" ng-model="group.specialty" ng-options="s._id as s._id for s in specialties">
+            <select class="form-control" id="specialty" ng-model="group.specialty" ng-options="s._id as s._id+' '+s.description for s in specialties">
             </select>
         </div>
     </form>

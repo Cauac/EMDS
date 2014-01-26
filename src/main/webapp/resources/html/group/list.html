@@ -13,7 +13,7 @@
     <tbody>
     <tr ng-repeat="group in groups" class="row">
         <td class="col-sm-5">{{group._id}}</td>
-        <td class="col-sm-5">{{group.specialty}}</td>
+        <td class="col-sm-5">ВУС-{{group.specialty}}</td>
         <td class="col-sm-1"><a ng-click="editGroup(group)"><img class="ico" src="resources/images/icons/13.png"/></a></td>
         <td class="col-sm-1"><a ng-really-message="Удалить группу?" ng-really-click="removeGroup(group)"><img class="ico" src="resources/images/icons/118.png"/></a></td>
     </tr>

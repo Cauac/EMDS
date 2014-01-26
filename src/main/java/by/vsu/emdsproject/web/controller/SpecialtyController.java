@@ -1,5 +1,6 @@
 package by.vsu.emdsproject.web.controller;
 
+import by.vsu.emdsproject.dao.GroupDAO;
 import by.vsu.emdsproject.dao.SpecialtyDAO;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
@@ -20,6 +21,9 @@ public class SpecialtyController {
     @Autowired
     SpecialtyDAO specialtyDAO;
 
+    @Autowired
+    GroupDAO groupDAO;
+
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public
     @ResponseBody
@@ -38,16 +42,18 @@ public class SpecialtyController {
     public void deleteSpecialty(@RequestBody String id, HttpServletResponse response) {
         specialtyDAO.delete(id);
         response.setStatus(HttpServletResponse.SC_OK);
-        //TODO пройтись по всем группам, удалить связь
+        groupDAO.updateSpecialtyRelation(id, "");
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public void updateSpeciality(@RequestBody String specialtyJSON, HttpServletResponse response) {
-        DBObject specialty = (DBObject) JSON.parse(specialtyJSON);
-        specialtyDAO.delete(specialty.get("id").toString());
-        specialtyDAO.save((DBObject) specialty.get("data"));
+        DBObject object = (DBObject) JSON.parse(specialtyJSON);
+        String oldId = object.get("id").toString();
+        DBObject speciality = (DBObject) object.get("data");
+        specialtyDAO.delete(oldId);
+        specialtyDAO.save(speciality);
         response.setStatus(HttpServletResponse.SC_OK);
-        //TODO пройтись по всем группам, обновить связь
+        groupDAO.updateSpecialtyRelation(oldId, speciality.get("_id").toString());
     }
 
 }
