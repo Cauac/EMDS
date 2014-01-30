@@ -3,6 +3,8 @@ package by.vsu.emdsproject.dao;
 import by.vsu.emdsproject.common.Transliterator;
 import com.mongodb.*;
 
+import java.util.Collection;
+
 public class TeacherDAO extends MongoDAO {
 
     public static final String TEACHER_COLLECTION_NAME = "teacher";
@@ -36,6 +38,10 @@ public class TeacherDAO extends MongoDAO {
         DBObject newChief = collection.findOne(new BasicDBObject(IDENTITY, id));
         newChief.put(IS_CHIEF, true);
         collection.save(newChief);
+    }
+
+    public BasicDBList read(Collection ids) {
+        return readObjectsByIds(TEACHER_COLLECTION_NAME, ids);
     }
 
     private String generateLogin(DBObject teacher) {

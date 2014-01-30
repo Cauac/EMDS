@@ -9,7 +9,8 @@ import com.aspose.words.Table;
 
 public class ExamProtocolReport extends AsposeReport {
 
-    public ExamProtocolReport() {
+    public ExamProtocolReport(AbstractReportDataSource dataSource) {
+        templateName="ExamProtocol.docx";
     }
 
     @Override

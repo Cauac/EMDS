@@ -10,7 +10,6 @@
 
     <import resource="classpath:spring/emds-model-context.xml"/>
     <import resource="classpath:spring/emds-security-context.xml"/>
-    <import resource="classpath:spring/emds-reports-context.xml"/>
 
     <mvc:annotation-driven/>
 

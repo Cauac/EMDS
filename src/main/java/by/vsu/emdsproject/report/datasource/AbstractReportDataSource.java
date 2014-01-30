@@ -67,18 +67,18 @@ public abstract class AbstractReportDataSource {
             currentRowIndex = ROW_INDEX_BEGINNING;
             initializeParameters(parameters);
             initializeReportData(parameters);
-        }catch (EMDSException e){
+        } catch (EMDSException e) {
             throw e;
         } catch (Exception e) {
             throw new EMDSException("Ошибка инициализации данных отчета");
         }
     }
 
-    public void addParameter(String name, String value) {
+    public void addParameter(String name, Object value) {
         if (value == null) {
             value = "";
         }
-        parameters.put(name, value);
+        parameters.put(name, value.toString());
     }
 
     public String getParameter(String name) {

@@ -2,11 +2,13 @@ package by.vsu.emdsproject.report.aspose.generator;
 
 import com.aspose.words.Document;
 import com.aspose.words.SaveFormat;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 
+@Component
 public class AsposeDocxReportGenerator extends AsposeReportGenerator {
 
     public static final String CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
@@ -22,10 +24,5 @@ public class AsposeDocxReportGenerator extends AsposeReportGenerator {
         stream.writeTo(servletStream);
         servletStream.flush();
         servletStream.close();
-    }
-
-    @Override
-    protected String getFileType() {
-        return ".docx";
     }
 }

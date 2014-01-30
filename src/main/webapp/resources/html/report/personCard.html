@@ -24,11 +24,9 @@
         </div>
     </div>
     <div class="form-group">
-        <div class="col-sm-2">
+        <div class="col-sm-2 col-sm-offset-2">
             <input type="button" class="btn btn-primary" value="Сформировать отчет" ng-click="generateReport()"/>
         </div>
-        <div class="col-sm-2">
-            <a type="button" class="btn btn-primary" href="report/get{{reportNum}}" ng-show="reportNum">Загрузить отчет</a>
-        </div>
+        <a type="button" href="" id="download" hidden="true">Загрузить отчет</a>
     </div>
 </form>

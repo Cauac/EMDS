@@ -9,7 +9,8 @@ import com.aspose.words.Table;
 
 public class ExamStatementReport extends AsposeReport {
 
-    public ExamStatementReport() {
+    public ExamStatementReport(AbstractReportDataSource dataSource) {
+        templateName="ExamStatement.docx";
     }
 
     @Override

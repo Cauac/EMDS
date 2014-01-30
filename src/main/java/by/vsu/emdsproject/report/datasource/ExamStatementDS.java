@@ -5,7 +5,6 @@ import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.model.comparator.StudentComparator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

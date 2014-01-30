@@ -54,10 +54,26 @@ public class ReportUtil {
     }
 
     public static String getFullFIO(DBObject o) {
-        String result = o.get("last_name") + " "
-                + o.get("first_name") + " "
-                + o.get("middle_name");
-        return result;
+        return o.get("last_name") + " " + o.get("first_name") + " " + o.get("middle_name");
+    }
+
+    public static String printAddress(Object o) {
+        if (o == null) return "";
+        DBObject adr = (DBObject) o;
+        return getString(adr, "city") + " ул." + getString(adr, "street") + " д." + getString(adr, "house") + " кв." + getString(adr, "apartment");
+    }
+
+    public static String getString(DBObject o, String field) {
+        Object value = o.get(field);
+        return value != null ? value.toString() : "";
+    }
+
+    public static String getYearFromDate(DBObject o, String field) {
+        Object value = o.get(field);
+        if (value != null && value.toString().length() > 6) {
+            return value.toString().substring(6);
+        }
+        return "";
     }
 
     public static String getShortFIO(Person p) {

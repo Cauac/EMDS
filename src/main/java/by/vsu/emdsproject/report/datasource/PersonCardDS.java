@@ -1,8 +1,6 @@
 package by.vsu.emdsproject.report.datasource;
 
 import by.vsu.emdsproject.common.ReportUtil;
-import by.vsu.emdsproject.model.Questionnaire;
-import by.vsu.emdsproject.model.Student;
 import com.mongodb.DBObject;
 
 import java.util.ArrayList;
@@ -48,17 +46,17 @@ public class PersonCardDS extends AbstractReportDataSource {
     protected void initializeParameters(Map parameters) throws Exception {
         DBObject student = (DBObject) parameters.get(DataSourceParameter.STUDENT);
         title += " " + ReportUtil.getFullFIO(student);
-//        Questionnaire questionnaire = student.getQuestionnaire();
+        DBObject q = (DBObject) student.get("questionnaire");
         addParameter(ReportParameter.FIO, ReportUtil.getFullFIO(student));
-//        addParameter(ReportParameter.ADMISSION_YEAR, questionnaire.getAdmissionYear());
-//        addParameter(ReportParameter.BIRTH_YEAR, ReportUtil.getYearInString(student.getBirthDate()));
-//        addParameter(ReportParameter.BIRTH_PLACE, questionnaire.getBirthPlace());
-//        addParameter(ReportParameter.RECRUIT_OFFICE, questionnaire.getRecruitmentOffice());
-//        addParameter(ReportParameter.FACULTY, questionnaire.getFaculty());
-//        addParameter(ReportParameter.EDUCATION, questionnaire.getEducationBefore());
-//        addParameter(ReportParameter.DUTY, questionnaire.getDuty());
-//        addParameter(ReportParameter.PARENT_ADDRESS, questionnaire.getParentAddress().toString());
-//        addParameter(ReportParameter.ADDRESS, questionnaire.getAddress().toString());
+        addParameter(ReportParameter.ADMISSION_YEAR, q.get("admissionYear"));
+        addParameter(ReportParameter.BIRTH_YEAR, ReportUtil.getYearFromDate(q, "birthDate"));
+        addParameter(ReportParameter.BIRTH_PLACE, q.get("birthPlace"));
+        addParameter(ReportParameter.RECRUIT_OFFICE, q.get("recruitmentOffice"));
+        addParameter(ReportParameter.FACULTY, q.get("faculty"));
+        addParameter(ReportParameter.EDUCATION, q.get("educationBefore"));
+        addParameter(ReportParameter.DUTY, q.get("duty"));
+        addParameter(ReportParameter.PARENT_ADDRESS, ReportUtil.printAddress(q.get("parentAddress")));
+        addParameter(ReportParameter.ADDRESS, ReportUtil.printAddress(q.get("address")));
     }
 
     @Override
@@ -66,11 +64,10 @@ public class PersonCardDS extends AbstractReportDataSource {
         if (!Boolean.parseBoolean(parameters.get(ReportParameter.WITH_PHOTO).toString())) {
             return;
         }
-        Student student = (Student) parameters.get(DataSourceParameter.STUDENT);
-        Questionnaire questionnaire = student.getQuestionnaire();
-        HashMap fields = new HashMap<String, Object>();
-        fields.put(DataSourceParameter.PHOTO_DATA, questionnaire.getPhoto());
-        reportData = new ArrayList<HashMap>();
+        DBObject student = (DBObject) parameters.get(DataSourceParameter.STUDENT);
+        HashMap fields = new HashMap();
+        fields.put(DataSourceParameter.PHOTO_DATA, student.get("photo"));
+        reportData = new ArrayList();
         reportData.add(fields);
     }
 }

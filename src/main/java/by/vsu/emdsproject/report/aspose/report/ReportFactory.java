@@ -1,20 +1,22 @@
 package by.vsu.emdsproject.report.aspose.report;
 
-import by.vsu.emdsproject.common.EMDSContext;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
-import org.springframework.beans.factory.BeanFactory;
 
 public class ReportFactory {
 
-    /**
-     * контекст построения отчетов aspose
-     */
-    protected static BeanFactory factory= EMDSContext.getInstance().getFactory();
-
     public static AsposeReport getReport(AbstractReportDataSource dataSource) {
-        AsposeReport report = (AsposeReport) factory.getBean(dataSource.getName());
-        report.setDataSource(dataSource);
-        return report;
+        switch (dataSource.getName()) {
+            case "personCard":
+                return new PersonCardReport(dataSource);
+            case "allowedList":
+                return new AllowedListReport(dataSource);
+            case "examProtocol":
+                return new ExamProtocolReport(dataSource);
+            case "examStatement":
+                return new ExamStatementReport(dataSource);
+            case "progressRequest":
+                return new ProgressRequestReport(dataSource);
+        }
+        return null;
     }
-
 }

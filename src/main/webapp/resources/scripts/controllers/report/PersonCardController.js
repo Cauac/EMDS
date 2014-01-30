@@ -2,11 +2,10 @@
  * PersonCardController
  * @constructor
  */
-var PersonCardController = function ($scope, $http, $window) {
+var PersonCardController = function ($scope, $http) {
 
     $scope.printPhoto = true;
 
-    $scope.p=10;
     $scope.readGroups = function () {
         $http.get('group/getAll').success(function (response) {
             $scope.groups = response;
@@ -21,8 +20,12 @@ var PersonCardController = function ($scope, $http, $window) {
 
     $scope.generateReport = function () {
         if ($scope.student) {
-            return $http.post('report/personCard',$scope.student).success(function (number) {
-                $scope.reportNum=number;
+            $http.post('report/personCard?studentId=' + $scope.student + '&printPhoto=' + $scope.printPhoto).success(function (fileCode) {
+                var evt = document.createEvent('MouseEvents');
+                evt.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+                var element = document.getElementById('download');
+                element.href = 'report/get?fileCode=' + fileCode;
+                element.dispatchEvent(evt);
             });
         }
     };

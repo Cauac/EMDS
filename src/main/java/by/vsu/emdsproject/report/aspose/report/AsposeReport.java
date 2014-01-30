@@ -16,6 +16,13 @@ public abstract class AsposeReport {
     protected String templateName;
     public final static String REPORT_FOLDER_PROPERTY_NAME = "reports.templates.path";
 
+    protected AsposeReport() {
+    }
+
+    protected AsposeReport(AbstractReportDataSource ds) {
+        this.ds = ds;
+    }
+
     public String getTemplateFilePath(String filename) {
         String reportFolder = EMDSContext.getInstance().getEnvironment().getProperty(REPORT_FOLDER_PROPERTY_NAME);
         File file = new File(reportFolder + filename);
