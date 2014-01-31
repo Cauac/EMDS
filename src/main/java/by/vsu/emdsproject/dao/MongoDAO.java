@@ -29,6 +29,15 @@ public abstract class MongoDAO implements InitializingBean {
         return result;
     }
 
+    public BasicDBList readAll(DBObject field) {
+        DBCursor cursor = database.getCollection(getCollectionName()).find(null, field);
+        BasicDBList result = new BasicDBList();
+        while (cursor.hasNext()) {
+            result.add(cursor.next());
+        }
+        return result;
+    }
+
     public void save(DBObject object) {
         database.getCollection(getCollectionName()).save(object);
     }
@@ -37,7 +46,7 @@ public abstract class MongoDAO implements InitializingBean {
         database.getCollection(getCollectionName()).remove(new BasicDBObject(IDENTITY, id));
     }
 
-    public void updateField(String id, String fieldName, Object value){
+    public void updateField(String id, String fieldName, Object value) {
         DBCollection collection = database.getCollection(getCollectionName());
         DBObject query = new BasicDBObject("_id", id);
         DBObject field = new BasicDBObject(fieldName, value);
@@ -47,6 +56,19 @@ public abstract class MongoDAO implements InitializingBean {
     protected BasicDBList readObjectsByIds(String collectionName, Collection ids) {
         BasicDBList result = new BasicDBList();
         DBCursor cursor = database.getCollection(collectionName).find(new BasicDBObject("_id", new BasicDBObject("$in", ids)));
+        try {
+            while (cursor.hasNext()) {
+                result.add(cursor.next());
+            }
+        } finally {
+            cursor.close();
+        }
+        return result;
+    }
+
+    protected BasicDBList readObjectsByIds(String collectionName, Collection ids, DBObject fields) {
+        BasicDBList result = new BasicDBList();
+        DBCursor cursor = database.getCollection(collectionName).find(new BasicDBObject("_id", new BasicDBObject("$in", ids)), fields);
         try {
             while (cursor.hasNext()) {
                 result.add(cursor.next());

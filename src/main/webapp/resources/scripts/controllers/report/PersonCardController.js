@@ -7,13 +7,13 @@ var PersonCardController = function ($scope, $http) {
     $scope.printPhoto = true;
 
     $scope.readGroups = function () {
-        $http.get('group/getAll').success(function (response) {
+        $http.get('group/getAll?select=true').success(function (response) {
             $scope.groups = response;
         });
     };
 
     $scope.readStudents = function (group) {
-        $http.post('group/getStudents', group).success(function (response) {
+        $http.post('group/getStudents?select=true', group).success(function (response) {
             $scope.students = response;
         });
     };

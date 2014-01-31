@@ -5,14 +5,14 @@ import by.vsu.emdsproject.model.Group;
 import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.Teacher;
 import by.vsu.emdsproject.model.comparator.StudentComparator;
-import org.springframework.stereotype.Component;
+import com.mongodb.BasicDBList;
+import com.mongodb.DBObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component("examStatementDataSource")
 public class ExamStatementDS extends AbstractReportDataSource {
 
     String title = "Зачетно-экзаменационная ведомость";
@@ -49,16 +49,15 @@ public class ExamStatementDS extends AbstractReportDataSource {
 
     @Override
     protected void initializeParameters(Map parameters) throws Exception {
-        Group group = (Group) parameters.get(DataSourceParameter.GROUP);
-        Teacher[] teachers = (Teacher[]) parameters.get(DataSourceParameter.TEACHERS);
+        DBObject group = (DBObject) parameters.get(DataSourceParameter.GROUP);
+        BasicDBList teachers = (BasicDBList) parameters.get(DataSourceParameter.TEACHERS);
 //        Teacher chief = teacherService.getChief();
-
-        title += " " + group.getTitle();
-        addParameter(ReportParameter.GROUP_NAME, group.getTitle());
+        title += " " + group.get("_id");
+        addParameter(ReportParameter.GROUP_NAME, group.get("_id"));
 
         String teachersFio = "";
-        for (Teacher t : teachers) {
-            teachersFio += ReportUtil.getFullFIO(t) + ", ";
+        for (Object teacherObject : teachers) {
+            teachersFio += ReportUtil.getFullFIO((DBObject) teacherObject) + ", ";
         }
         teachersFio = teachersFio.substring(0, teachersFio.length() - 2);
         addParameter(ReportParameter.TEACHERS_FIO, teachersFio);

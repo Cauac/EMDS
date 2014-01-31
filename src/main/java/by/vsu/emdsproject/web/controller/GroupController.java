@@ -24,8 +24,8 @@ public class GroupController {
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public
     @ResponseBody
-    BasicDBList getAll() {
-        return groupDAO.readAll();
+    BasicDBList getAll(boolean select) {
+        return select ? groupDAO.getAllForSelect() : groupDAO.readAll();
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -54,7 +54,7 @@ public class GroupController {
     @RequestMapping(value = "/getStudents", method = RequestMethod.POST)
     public
     @ResponseBody
-    BasicDBList getStudents(@RequestBody String groupId) {
-        return studentDAO.readByGroup(groupId);
+    BasicDBList getStudents(@RequestBody String groupId, boolean select) {
+        return select ? studentDAO.readByGroupForSelect(groupId) : studentDAO.readByGroup(groupId);
     }
 }

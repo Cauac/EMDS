@@ -5,7 +5,7 @@
 var ExamStatementController = function ($scope, $http) {
 
     $scope.readGroups = function () {
-        $http.get('group/getAll').success(function (response) {
+        $http.get('group/getAll?select=true').success(function (response) {
             $scope.groups = response;
         });
     };

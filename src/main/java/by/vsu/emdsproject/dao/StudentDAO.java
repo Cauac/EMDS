@@ -30,6 +30,14 @@ public class StudentDAO extends MongoDAO {
         return readObjectsByIds(STUDENT_COLLECTION_NAME, studentIds);
     }
 
+    public BasicDBList readByGroupForSelect(String groupId) {
+        DBObject field = new BasicDBObject();
+        field.put("last_name", 1);
+        field.put("first_name", 1);
+        BasicDBList studentIds = getFilterIds("group", groupId);
+        return readObjectsByIds(STUDENT_COLLECTION_NAME, studentIds, field);
+    }
+
     public void delete(String id, String type) {
         DBObject student = read(id);
         String groupId = student.get("group").toString();
