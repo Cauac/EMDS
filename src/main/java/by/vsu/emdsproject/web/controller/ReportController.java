@@ -62,7 +62,9 @@ public class ReportController {
         BasicDBList teachers = (BasicDBList) data.get("teachers");
         Map params = new HashMap();
         params.put(ExamStatementDS.DataSourceParameter.GROUP, groupDAO.read(groupId));
-        params.put(ExamStatementDS.ReportParameter.TEACHERS_FIO, teachers);
+        params.put(ExamStatementDS.DataSourceParameter.TEACHERS, teachers);
+        params.put(ExamStatementDS.DataSourceParameter.STUDENTS, studentDAO.readByGroup(groupId));
+        params.put(ExamStatementDS.DataSourceParameter.CHIEF, teacherDAO.readChief());
         response.setStatus(HttpServletResponse.SC_OK);
         return generateDocx(new ExamStatementDS(), params);
     }

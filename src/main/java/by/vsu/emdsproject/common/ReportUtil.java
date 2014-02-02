@@ -54,7 +54,7 @@ public class ReportUtil {
     }
 
     public static String getFullFIO(DBObject o) {
-        return o.get("last_name") + " " + o.get("first_name") + " " + o.get("middle_name");
+        return String.format("%s %s %s", o.get("last_name"), o.get("first_name"), o.get("middle_name"));
     }
 
     public static String printAddress(Object o) {
@@ -76,6 +76,10 @@ public class ReportUtil {
         return "";
     }
 
+    public static String getShortFIO(DBObject o) {
+        return String.format("%s %s.%s.", o.get("last_name"), o.get("first_name"), o.get("middle_name"));
+    }
+
     public static String getShortFIO(Person p) {
         String result = p.getLastName() + " "
                 + p.getFirstName().charAt(0) + "."
@@ -83,11 +87,8 @@ public class ReportUtil {
         return result;
     }
 
-    public static String getReversShortFIO(Person p) {
-        String result = p.getFirstName().charAt(0) + "."
-                + p.getMiddleName().charAt(0) + ". "
-                + p.getLastName();
-        return result;
+    public static String getReversShortFIO(DBObject o) {
+        return String.format("%s.%s. %s", o.get("first_name").toString().charAt(0), o.get("middle_name").toString().charAt(0), o.get("last_name"));
     }
 
     public static String getYearInString(Date date) {

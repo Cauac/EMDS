@@ -9,11 +9,11 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="student">Преподаватели:</label>
+        <label class="col-sm-2 control-label" for="teacher">Преподаватели:</label>
 
         <div class="col-sm-3">
-            <select id="student" class="form-control" multiple="multiple" ng-multiple="true" ng-model="selectedTeachers"
-                    ng-options="t._id as t.last_name+' '+t.first_name for t in teachers"></select>
+            <select id="teacher" class="form-control" multiple="multiple" ng-multiple="true" ng-model="selectedTeachers"
+                    ng-options="t as t.last_name+' '+t.first_name for t in teachers"></select>
         </div>
     </div>
     <div class="form-group">

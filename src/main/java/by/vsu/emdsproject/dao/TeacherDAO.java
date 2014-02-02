@@ -40,8 +40,8 @@ public class TeacherDAO extends MongoDAO {
         collection.save(newChief);
     }
 
-    public BasicDBList read(Collection ids) {
-        return readObjectsByIds(TEACHER_COLLECTION_NAME, ids);
+    public DBObject readChief() {
+        return database.getCollection(getCollectionName()).findOne(new BasicDBObject(IS_CHIEF, true));
     }
 
     private String generateLogin(DBObject teacher) {
