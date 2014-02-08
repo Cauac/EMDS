@@ -1,4 +1,4 @@
-package by.vsu.emdsproject.model.comparator;
+package by.vsu.emdsproject.common;
 
 import com.mongodb.DBObject;
 

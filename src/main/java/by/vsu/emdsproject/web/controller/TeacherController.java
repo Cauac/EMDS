@@ -1,6 +1,7 @@
 package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.dao.TeacherDAO;
+import by.vsu.emdsproject.common.TeacherComparator;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collections;
 
 @Controller
 @RequestMapping("teacher")
@@ -23,8 +25,10 @@ public class TeacherController {
     @RequestMapping(value = "getAll", method = RequestMethod.GET)
     public
     @ResponseBody
-    BasicDBList getTeacherList(boolean select) {
-        return select ? teacherDAO.readAllForSelect() : teacherDAO.readAll();
+    BasicDBList getTeacherList(boolean select, boolean sort) {
+        BasicDBList result = select ? teacherDAO.readAllForSelect() : teacherDAO.readAll();
+        if (sort) Collections.sort(result, new TeacherComparator());
+        return result;
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)

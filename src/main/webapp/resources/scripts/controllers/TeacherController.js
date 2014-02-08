@@ -7,7 +7,7 @@
 var TeacherController = function ($scope, $http, $modal) {
 
     $scope.readTeacherList = function () {
-        $http.get('teacher/getAll').success(function (list) {
+        $http.get('teacher/getAll?sort=true').success(function (list) {
             $scope.teachers = list;
         })
     };
@@ -55,7 +55,7 @@ var TeacherController = function ($scope, $http, $modal) {
             $scope.teachers[i].is_chief = false;
         }
         teacher.is_chief = true;
-        $http.post('teacher/chooseChief?id='+teacher._id);
+        $http.post('teacher/chooseChief?id=' + teacher._id);
     };
 };
 

@@ -1,6 +1,6 @@
-package by.vsu.emdsproject.model.comparator;
+package by.vsu.emdsproject.common;
 
-import by.vsu.emdsproject.model.Teacher;
+import com.mongodb.DBObject;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Сортирует преподавателей по званию
  */
-public class TeacherComparator implements Comparator<Teacher> {
+public class TeacherComparator implements Comparator<Object> {
 
     private final static Map<String, Integer> priorityMap = new HashMap<String, Integer>();
 
@@ -24,15 +24,17 @@ public class TeacherComparator implements Comparator<Teacher> {
     }
 
     @Override
-    public int compare(Teacher o1, Teacher o2) {
-        if (o1.getChief()) {
+    public int compare(Object o1, Object o2) {
+        DBObject t1 = (DBObject) o1;
+        DBObject t2 = (DBObject) o2;
+        if ((Boolean) t1.get("is_chief")) {
             return -1;
         }
-        if (o2.getChief()) {
+        if ((Boolean) t2.get("is_chief")) {
             return 1;
         }
-        Integer r1 = priorityMap.get(o1.getRank());
-        Integer r2 = priorityMap.get(o2.getRank());
+        Integer r1 = priorityMap.get(t1.get("rank"));
+        Integer r2 = priorityMap.get(t2.get("rank"));
         return r2.compareTo(r1);
     }
 }

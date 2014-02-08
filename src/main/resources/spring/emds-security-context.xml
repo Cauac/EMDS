@@ -15,10 +15,10 @@
 
     <security:http auto-config="true">
 
-        <security:form-login login-page="/login" default-target-url="/index"
+        <security:form-login login-page="/login" default-target-url="/"
                              authentication-failure-url="/loginfailed"/>
 
-        <security:logout logout-success-url="/logout"/>
+        <security:logout logout-success-url="/login"/>
         <security:access-denied-handler error-page="/403"/>
 
         <security:intercept-url pattern="/login"
@@ -27,15 +27,9 @@
         <security:intercept-url pattern="/loginfailed"
                                 access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 
-        <security:intercept-url pattern="/logout"
-                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-
-
         <security:intercept-url pattern="/*"
                                 access="IS_AUTHENTICATED_FULLY"/>
         <!--Resourses -->
-        <security:intercept-url pattern="/external/**"
-                                access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <security:intercept-url pattern="/resources/**"
                                 access="IS_AUTHENTICATED_ANONYMOUSLY"/>
 

@@ -1,7 +1,7 @@
 package by.vsu.emdsproject.report.datasource;
 
 import by.vsu.emdsproject.common.ReportUtil;
-import by.vsu.emdsproject.model.comparator.StudentComparator;
+import by.vsu.emdsproject.common.StudentComparator;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 

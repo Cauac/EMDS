@@ -1,10 +1,7 @@
 package by.vsu.emdsproject.common;
 
-import by.vsu.emdsproject.model.Person;
 import com.mongodb.DBObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,13 +41,6 @@ public class ReportUtil {
         facultyCase.put("Педагогический", "Педагогический факультет");
 
         return facultyCase.get(faculty);
-    }
-
-    public static String getFullFIO(Person p) {
-        String result = p.getLastName() + " "
-                + p.getFirstName() + " "
-                + p.getMiddleName();
-        return result;
     }
 
     public static String getFullFIO(DBObject o) {
