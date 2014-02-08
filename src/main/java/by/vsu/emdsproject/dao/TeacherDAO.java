@@ -3,8 +3,6 @@ package by.vsu.emdsproject.dao;
 import by.vsu.emdsproject.common.Transliterator;
 import com.mongodb.*;
 
-import java.util.Collection;
-
 public class TeacherDAO extends MongoDAO {
 
     public static final String TEACHER_COLLECTION_NAME = "teacher";
@@ -21,8 +19,6 @@ public class TeacherDAO extends MongoDAO {
             teacher.put("password", "12345");
             teacher.put(IS_CHIEF, false);
             teacher.put("default_password", true);
-        } else {
-            //TODO : merge with current version
         }
         database.getCollection(TEACHER_COLLECTION_NAME).save(teacher);
     }
@@ -57,8 +53,7 @@ public class TeacherDAO extends MongoDAO {
         return database.getCollection(TEACHER_COLLECTION_NAME).getCount();
     }
 
-    @Override
-    public BasicDBList readAll() {
+    public BasicDBList readAllForSelect() {
         DBObject field = new BasicDBObject();
         field.put("last_name", 1);
         field.put("first_name", 1);

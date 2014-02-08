@@ -1,1 +1,16 @@
-<label>qwerrty</label>
+<h3>Список допущенных к экзамену</h3>
+<form class="form-horizontal" ng-controller="AllowedListController">
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="group">Группа:</label>
+
+        <div class="col-sm-3">
+            <select id="group" class="form-control" ng-model="groupId" ng-options="g._id as g._id for g in groups"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 col-sm-offset-2">
+            <input type="button" class="btn btn-primary" value="Сформировать отчет" ng-click="generateReport()"/>
+        </div>
+        <a type="button" href="" id="download" hidden="true">Загрузить отчет</a>
+    </div>
+</form>

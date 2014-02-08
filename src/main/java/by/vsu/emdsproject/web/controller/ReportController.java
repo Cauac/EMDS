@@ -5,10 +5,7 @@ import by.vsu.emdsproject.dao.SpecialtyDAO;
 import by.vsu.emdsproject.dao.StudentDAO;
 import by.vsu.emdsproject.dao.TeacherDAO;
 import by.vsu.emdsproject.report.aspose.generator.AsposeDocxReportGenerator;
-import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
-import by.vsu.emdsproject.report.datasource.ExamProtocolDS;
-import by.vsu.emdsproject.report.datasource.ExamStatementDS;
-import by.vsu.emdsproject.report.datasource.PersonCardDS;
+import by.vsu.emdsproject.report.datasource.*;
 import com.aspose.words.Document;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
@@ -90,6 +87,23 @@ public class ReportController {
         params.put(ExamProtocolDS.DataSourceParameter.SPECIALTY, specialtyDAO.read(specialtyId));
         response.setStatus(HttpServletResponse.SC_OK);
         return generateDocx(new ExamProtocolDS(), params);
+    }
+
+    @RequestMapping(value = "/allowedList", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String allowedList(@RequestBody String stringData, HttpServletResponse response) {
+        DBObject data = (DBObject) JSON.parse(stringData);
+        String groupId = (String) data.get("group");
+        DBObject group = groupDAO.read(groupId);
+        String specialtyId = group.get("specialty").toString();
+        Map params = new HashMap();
+        params.put(AllowedListDS.DataSourceParameter.GROUP, group);
+        params.put(AllowedListDS.DataSourceParameter.CHIEF, teacherDAO.readChief());
+        params.put(AllowedListDS.DataSourceParameter.STUDENTS, studentDAO.readByGroup(groupId));
+        params.put(AllowedListDS.DataSourceParameter.SPECIALTY, specialtyDAO.read(specialtyId));
+        response.setStatus(HttpServletResponse.SC_OK);
+        return generateDocx(new AllowedListDS(), params);
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)

@@ -1,10 +1,9 @@
 package by.vsu.emdsproject.report.datasource;
 
 import by.vsu.emdsproject.common.ReportUtil;
-import by.vsu.emdsproject.model.Group;
-import by.vsu.emdsproject.model.Student;
 import by.vsu.emdsproject.model.comparator.StudentComparator;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mongodb.BasicDBList;
+import com.mongodb.DBObject;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,6 +20,9 @@ public class AllowedListDS extends AbstractReportDataSource {
     public static class DataSourceParameter extends AbstractReportDataSource.DataSourceParameter {
 
         public static final String GROUP = "group";
+        public static final String SPECIALTY = "specialty";
+        public static final String STUDENTS = "students";
+        public static final String CHIEF = "chief";
     }
 
     public static class ReportParameter extends AbstractReportDataSource.ReportParameter {
@@ -50,35 +52,41 @@ public class AllowedListDS extends AbstractReportDataSource {
 
     @Override
     protected void initializeParameters(Map parameters) throws Exception {
-        Group group = (Group) parameters.get(DataSourceParameter.GROUP);
-//        Teacher chief = teacherService.getChief();
-        title += " " + group.getTitle();
-        addParameter(ReportParameter.GROUP_NAME, group.getTitle());
-        addParameter(ReportParameter.VUS, group.getSpecialty().getNumber());
-        addParameter(ReportParameter.PROFILE, group.getSpecialty().getDescription());
+        DBObject group = (DBObject) parameters.get(DataSourceParameter.GROUP);
+        DBObject specialty = (DBObject) parameters.get(DataSourceParameter.SPECIALTY);
+        BasicDBList students = (BasicDBList) parameters.get(DataSourceParameter.STUDENTS);
+        Object chief = parameters.get(DataSourceParameter.CHIEF);
 
-        if (!group.getStudents().isEmpty()) {
-            String faculty = group.getStudents().iterator().next().getQuestionnaire().getFaculty();
+        title += " " + group.get("_id");
+        addParameter(ReportParameter.GROUP_NAME, group.get("_id"));
+        addParameter(ReportParameter.VUS, specialty.get("_id"));
+        addParameter(ReportParameter.PROFILE, specialty.get("description"));
+
+        if (!students.isEmpty()) {
+            String faculty = ((DBObject) students.get(0)).get("faculty").toString();
             addParameter(ReportParameter.FACULTY, ReportUtil.getFacultyInCase(faculty));
         }
 
-//        if (chief != null) {
-//            addParameter(ReportParameter.CHIEF_FIO, ReportUtil.getReversShortFIO(chief));
-//            addParameter(ReportParameter.CHIEF_RANK, chief.getRank());
-//        }
-
+        if (chief != null) {
+            DBObject c = (DBObject) chief;
+            addParameter(ReportParameter.CHIEF_FIO, ReportUtil.getReversShortFIO(c));
+            addParameter(ReportParameter.CHIEF_RANK, c.get("rank"));
+        } else {
+            addParameter(ReportParameter.CHIEF_FIO, "Начальник кафедры не назначен");
+            addParameter(ReportParameter.CHIEF_RANK, "");
+        }
     }
 
     @Override
     protected void initializeReportData(Map parameters) throws Exception {
-        Group group = (Group) parameters.get(DataSourceParameter.GROUP);
-        reportData = new ArrayList<HashMap>();
+        BasicDBList students = (BasicDBList) parameters.get(DataSourceParameter.STUDENTS);
+        reportData = new ArrayList();
 
-        ArrayList<Student> students = new ArrayList<Student>(group.getStudents());
         Collections.sort(students, new StudentComparator());
-        for (Student student : students) {
+
+        for (int i = 0; i < students.size(); i++) {
             HashMap fields = new HashMap<String, String>();
-            fields.put(Field.FIO, ReportUtil.getFullFIO(student));
+            fields.put(Field.FIO, ReportUtil.getShortFIO((DBObject) students.get(i)));
             reportData.add(fields);
         }
     }

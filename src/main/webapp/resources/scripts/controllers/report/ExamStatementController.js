@@ -11,7 +11,7 @@ var ExamStatementController = function ($scope, $http) {
     };
 
     $scope.readTeacherList = function () {
-        $http.get('teacher/getAll').success(function (list) {
+        $http.get('teacher/getAll?select=true').success(function (list) {
             $scope.teachers = list;
         })
     };

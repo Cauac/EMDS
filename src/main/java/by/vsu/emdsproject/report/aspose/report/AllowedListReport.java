@@ -11,6 +11,7 @@ public class AllowedListReport extends AsposeReport {
     public static final Pattern LIST_START = Pattern.compile("<startList>");
 
     public AllowedListReport(AbstractReportDataSource dataSource) {
+        setDataSource(dataSource);
         templateName = "AllowedList.docx";
     }
 

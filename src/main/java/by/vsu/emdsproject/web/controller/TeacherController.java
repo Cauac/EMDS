@@ -23,8 +23,8 @@ public class TeacherController {
     @RequestMapping(value = "getAll", method = RequestMethod.GET)
     public
     @ResponseBody
-    BasicDBList getTeacherList() {
-        return teacherDAO.readAll();
+    BasicDBList getTeacherList(boolean select) {
+        return select ? teacherDAO.readAllForSelect() : teacherDAO.readAll();
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
@@ -48,5 +48,6 @@ public class TeacherController {
         teacherDAO.chooseChief(id);
         response.setStatus(HttpServletResponse.SC_OK);
     }
+
 
 }
