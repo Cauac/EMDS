@@ -1,6 +1,9 @@
 package by.vsu.emdsproject.dao;
 
 import by.vsu.emdsproject.common.Transliterator;
+import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 public class AbiturientDAO extends MongoDAO {
@@ -27,6 +30,16 @@ public class AbiturientDAO extends MongoDAO {
 
     public void saveQuestionnaire(String abiturientId, DBObject questionnaire) {
         updateField(abiturientId,"questionnaire",questionnaire);
+    }
+
+    public BasicDBList readByFaculty(String faculty) {
+        DBObject query = new BasicDBObject("faculty", faculty);
+        DBCursor cursor = database.getCollection(getCollectionName()).find(query);
+        BasicDBList result = new BasicDBList();
+        while (cursor.hasNext()) {
+            result.add(cursor.next());
+        }
+        return result;
     }
 
     private String generateIdentity(DBObject abiturient) {

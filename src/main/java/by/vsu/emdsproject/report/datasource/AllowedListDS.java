@@ -4,14 +4,12 @@ import by.vsu.emdsproject.common.ReportUtil;
 import by.vsu.emdsproject.model.comparator.StudentComparator;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component("allowedListDataSource")
 public class AllowedListDS extends AbstractReportDataSource {
 
     String title = "Список допущенных";

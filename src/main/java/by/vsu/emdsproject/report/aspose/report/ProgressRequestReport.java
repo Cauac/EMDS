@@ -10,6 +10,7 @@ import com.aspose.words.Table;
 public class ProgressRequestReport extends AsposeReport {
 
     public ProgressRequestReport(AbstractReportDataSource dataSource) {
+        super(dataSource);
         templateName = "ProgressRequest.docx";
     }
 

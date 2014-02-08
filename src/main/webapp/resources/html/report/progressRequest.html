@@ -1,9 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<h3>Сведения о успеваемости студентов</h3>
+<form class="form-horizontal" ng-controller="ProgressRequestController">
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="faculty">Факультет:</label>
 
-</body>
-</html>
+        <div class="col-sm-5">
+            <select id="faculty" class="form-control" ng-model="faculty">
+                <option value="Математический">Математический</option>
+                <option value="Физический">Физический</option>
+                <option value="Биологический">Физической культуры и спорта</option>
+                <option value="Исторический">Исторический</option>
+                <option value="Социальной педагогики и психологии">Социальной педагогики и психологии</option>
+                <option value="Филологический">Филологический</option>
+                <option value="Белорусской филологии и культры">Белорусской филологии и культры</option>
+                <option value="Юридический">Юридический</option>
+                <option value="Художественно-графический">Художественно-графический</option>
+                <option value="Педагогический">Педагогический</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-2 col-sm-offset-2">
+            <input type="button" class="btn btn-primary" value="Сформировать отчет" ng-click="generateReport()"/>
+        </div>
+        <a type="button" href="" id="download" hidden="true">Загрузить отчет</a>
+    </div>
+</form>

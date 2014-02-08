@@ -1,9 +1,6 @@
 package by.vsu.emdsproject.web.controller;
 
-import by.vsu.emdsproject.dao.GroupDAO;
-import by.vsu.emdsproject.dao.SpecialtyDAO;
-import by.vsu.emdsproject.dao.StudentDAO;
-import by.vsu.emdsproject.dao.TeacherDAO;
+import by.vsu.emdsproject.dao.*;
 import by.vsu.emdsproject.report.aspose.generator.AsposeDocxReportGenerator;
 import by.vsu.emdsproject.report.datasource.*;
 import com.aspose.words.Document;
@@ -30,16 +27,19 @@ public class ReportController {
     public static final Map<String, Document> documentMap = new HashMap();
 
     @Autowired
-    StudentDAO studentDAO;
+    GroupDAO groupDAO;
 
     @Autowired
     TeacherDAO teacherDAO;
 
     @Autowired
-    GroupDAO groupDAO;
+    StudentDAO studentDAO;
 
     @Autowired
     SpecialtyDAO specialtyDAO;
+
+    @Autowired
+    AbiturientDAO abiturientDAO;
 
     @Autowired
     AsposeDocxReportGenerator generator;
@@ -92,9 +92,7 @@ public class ReportController {
     @RequestMapping(value = "/allowedList", method = RequestMethod.POST)
     public
     @ResponseBody
-    String allowedList(@RequestBody String stringData, HttpServletResponse response) {
-        DBObject data = (DBObject) JSON.parse(stringData);
-        String groupId = (String) data.get("group");
+    String allowedList(@RequestBody String groupId, HttpServletResponse response) {
         DBObject group = groupDAO.read(groupId);
         String specialtyId = group.get("specialty").toString();
         Map params = new HashMap();
@@ -104,6 +102,18 @@ public class ReportController {
         params.put(AllowedListDS.DataSourceParameter.SPECIALTY, specialtyDAO.read(specialtyId));
         response.setStatus(HttpServletResponse.SC_OK);
         return generateDocx(new AllowedListDS(), params);
+    }
+
+    @RequestMapping(value = "/progressRequest", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String progressRequest(@RequestBody String faculty, HttpServletResponse response) {
+        Map params = new HashMap();
+        params.put(ProgressRequestDS.DataSourceParameter.FACULTY_NAME, faculty);
+        params.put(ProgressRequestDS.DataSourceParameter.CHIEF, teacherDAO.readChief());
+        params.put(ProgressRequestDS.DataSourceParameter.STUDENTS, abiturientDAO.readByFaculty(faculty));
+        response.setStatus(HttpServletResponse.SC_OK);
+        return generateDocx(new ProgressRequestDS(), params);
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
