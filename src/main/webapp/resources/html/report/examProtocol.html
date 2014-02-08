@@ -1,33 +1,33 @@
 <h3>Протокол экзаменационной комиссии</h3>
-<form class="form-horizontal" ng-controller="ExamStatementController">
+<form class="form-horizontal" ng-controller="ExamProtocolController">
     <div class="form-group">
         <label class="col-sm-2 control-label" for="group">Группа:</label>
 
         <div class="col-sm-3">
-            <select id="group" class="form-control" ng-model="group"
-                    ng-options="g._id as g._id for g in groups"></select>
+            <select id="group" class="form-control" ng-model="groupId" ng-options="g._id as g._id for g in groups"></select>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="commander">Председатель комиссии:</label>
+        <label class="col-sm-2 control-label" for="commander1">Председатель комиссии:</label>
 
         <div class="col-sm-3">
-            <input id="commander" class="form-control"/>
+            <select id="commander1" class="form-control" ng-model="members.member1" ng-options="t as t.last_name+' '+t.first_name for t in teachers"></select>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label" for="commander2">Председатель комиссии:</label>
 
         <div class="col-sm-3">
-            <input id="commander2" class="form-control"/>
+            <select id="commander2" class="form-control" ng-model="members.member2" ng-options="t as t.last_name+' '+t.first_name for t in teachers"></select>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Члены экзаменационной комиссии:</label>
 
         <div class="col-sm-3">
-            <input class="form-control"/> <br>
-            <input class="form-control"/>
+            <select id="commander3" class="form-control" ng-model="members.member3" ng-options="t as t.last_name+' '+t.first_name for t in teachers"></select>
+            <br>
+            <select id="commander4" class="form-control" ng-model="members.member4" ng-options="t as t.last_name+' '+t.first_name for t in teachers"></select>
         </div>
     </div>
     <div class="form-group">

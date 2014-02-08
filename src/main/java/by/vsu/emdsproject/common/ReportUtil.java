@@ -60,7 +60,7 @@ public class ReportUtil {
     public static String printAddress(Object o) {
         if (o == null) return "";
         DBObject adr = (DBObject) o;
-        return getString(adr, "city") + " ул." + getString(adr, "street") + " д." + getString(adr, "house") + " кв." + getString(adr, "apartment");
+        return String.format("%s ул. %s д. %s кв. %s", getString(adr, "city"), getString(adr, "street"), getString(adr, "house"), getString(adr, "apartment"));
     }
 
     public static String getString(DBObject o, String field) {
@@ -77,23 +77,10 @@ public class ReportUtil {
     }
 
     public static String getShortFIO(DBObject o) {
-        return String.format("%s %s.%s.", o.get("last_name"), o.get("first_name"), o.get("middle_name"));
-    }
-
-    public static String getShortFIO(Person p) {
-        String result = p.getLastName() + " "
-                + p.getFirstName().charAt(0) + "."
-                + p.getMiddleName().charAt(0) + ".";
-        return result;
+        return String.format("%s %s.%s.", o.get("last_name"), o.get("first_name").toString().charAt(0), o.get("middle_name").toString().charAt(0));
     }
 
     public static String getReversShortFIO(DBObject o) {
         return String.format("%s.%s. %s", o.get("first_name").toString().charAt(0), o.get("middle_name").toString().charAt(0), o.get("last_name"));
     }
-
-    public static String getYearInString(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-        return sdf.format(date);
-    }
-
 }

@@ -1,10 +1,12 @@
 package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.dao.GroupDAO;
+import by.vsu.emdsproject.dao.SpecialtyDAO;
 import by.vsu.emdsproject.dao.StudentDAO;
 import by.vsu.emdsproject.dao.TeacherDAO;
 import by.vsu.emdsproject.report.aspose.generator.AsposeDocxReportGenerator;
 import by.vsu.emdsproject.report.datasource.AbstractReportDataSource;
+import by.vsu.emdsproject.report.datasource.ExamProtocolDS;
 import by.vsu.emdsproject.report.datasource.ExamStatementDS;
 import by.vsu.emdsproject.report.datasource.PersonCardDS;
 import com.aspose.words.Document;
@@ -40,6 +42,9 @@ public class ReportController {
     GroupDAO groupDAO;
 
     @Autowired
+    SpecialtyDAO specialtyDAO;
+
+    @Autowired
     AsposeDocxReportGenerator generator;
 
     @RequestMapping(value = "/personCard", method = RequestMethod.POST)
@@ -67,6 +72,24 @@ public class ReportController {
         params.put(ExamStatementDS.DataSourceParameter.CHIEF, teacherDAO.readChief());
         response.setStatus(HttpServletResponse.SC_OK);
         return generateDocx(new ExamStatementDS(), params);
+    }
+
+    @RequestMapping(value = "/examProtocol", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String examProtocol(@RequestBody String stringData, HttpServletResponse response) {
+        DBObject data = (DBObject) JSON.parse(stringData);
+        String groupId = (String) data.get("group");
+        DBObject members = (DBObject) data.get("members");
+        DBObject group = groupDAO.read(groupId);
+        String specialtyId = group.get("specialty").toString();
+        Map params = new HashMap();
+        params.put(ExamProtocolDS.DataSourceParameter.GROUP, group);
+        params.put(ExamProtocolDS.DataSourceParameter.MEMBERS, members);
+        params.put(ExamProtocolDS.DataSourceParameter.STUDENTS, studentDAO.readByGroup(groupId));
+        params.put(ExamProtocolDS.DataSourceParameter.SPECIALTY, specialtyDAO.read(specialtyId));
+        response.setStatus(HttpServletResponse.SC_OK);
+        return generateDocx(new ExamProtocolDS(), params);
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)

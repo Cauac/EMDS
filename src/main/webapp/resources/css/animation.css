@@ -1,16 +1,12 @@
 .slide-animate-container {
     position:relative;
-    /*background:white;*/
-    /*border:1px solid black;*/
-    /*height:40px;*/
-    /*overflow:hidden;*/
 }
 
 .slide-animate {
     padding:10px;
 }
 
-.slide-animate.ng-enter, .slide-animate.ng-leave {
+.slide-animate.ng-enter{
     -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
     transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
 
@@ -28,11 +24,4 @@
 }
 .slide-animate.ng-enter.ng-enter-active {
     top:0;
-}
-
-.slide-animate.ng-leave {
-    top:0;
-}
-.slide-animate.ng-leave.ng-leave-active {
-    top:50px;
 }

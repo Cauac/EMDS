@@ -18,7 +18,7 @@ public class ExamStatementDS extends AbstractReportDataSource {
 
         public static final String GROUP = "group";
         public static final String TEACHERS = "teachers";
-        public static final String STUDENTS = "student";
+        public static final String STUDENTS = "students";
         public static final String CHIEF = "chief";
     }
 

@@ -21,6 +21,8 @@ public class TeacherDAO extends MongoDAO {
             teacher.put("password", "12345");
             teacher.put(IS_CHIEF, false);
             teacher.put("default_password", true);
+        } else {
+            //TODO : merge with current version
         }
         database.getCollection(TEACHER_COLLECTION_NAME).save(teacher);
     }
@@ -53,5 +55,16 @@ public class TeacherDAO extends MongoDAO {
 
     public long getCount() {
         return database.getCollection(TEACHER_COLLECTION_NAME).getCount();
+    }
+
+    @Override
+    public BasicDBList readAll() {
+        DBObject field = new BasicDBObject();
+        field.put("last_name", 1);
+        field.put("first_name", 1);
+        field.put("middle_name", 1);
+        field.put("rank", 1);
+        field.put("is_chief", 1);
+        return readAll(field);
     }
 }
