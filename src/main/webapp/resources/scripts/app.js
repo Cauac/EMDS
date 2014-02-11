@@ -2,7 +2,7 @@
 
 var EMDS = {};
 
-var App = angular.module('EMDS', ['EMDS.filters', 'EMDS.services', 'EMDS.directives', 'ui.bootstrap.modal','ngRoute','ngAnimate']);
+var App = angular.module('EMDS', ['EMDS.filters', 'EMDS.services', 'EMDS.directives', 'ui.bootstrap.modal', 'ui.bootstrap.alert', 'ngRoute', 'ngAnimate']);
 
 App.config(['$routeProvider', function ($routeProvider) {
 
@@ -46,6 +46,11 @@ App.config(['$routeProvider', function ($routeProvider) {
         controller: ReportController
     });
 
+    $routeProvider.when('/profile', {
+        templateUrl: 'resources/html/profile.html',
+        controller: ProfileController
+    });
+
     $routeProvider.otherwise({redirectTo: '/teachers'});
 
 }]);
@@ -57,8 +62,8 @@ App.factory("CommonService", function ($filter) {
                 to[attr] = from[attr];
             }
         },
-        currentDate:function(){
-            return $filter('date')(Date.now(),'dd.MM.yyyy');
+        currentDate: function () {
+            return $filter('date')(Date.now(), 'dd.MM.yyyy');
         }
     }
 });
@@ -100,7 +105,7 @@ App.directive('subMenu', [ function () {
         restrict: 'A',
         link: function (scope, element) {
             element.bind('click', function () {
-                var parent=element.parent();
+                var parent = element.parent();
                 if (parent.hasClass('open')) {
                     parent.removeClass('open');
                 } else {
@@ -122,7 +127,7 @@ App.directive("fileread", [function () {
                 var reader = new FileReader();
                 reader.onload = function (loadEvent) {
                     scope.$apply(function () {
-                       scope.fileread = loadEvent.target.result;
+                        scope.fileread = loadEvent.target.result;
                     });
                 }
                 reader.readAsDataURL(changeEvent.target.files[0]);

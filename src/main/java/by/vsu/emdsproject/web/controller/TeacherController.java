@@ -6,6 +6,7 @@ import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,5 +54,10 @@ public class TeacherController {
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
-
+    @RequestMapping(value = "getCurrentUser", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    DBObject personalPageView() {
+        return teacherDAO.read(SecurityContextHolder.getContext().getAuthentication().getName());
+    }
 }

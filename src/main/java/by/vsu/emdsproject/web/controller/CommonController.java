@@ -26,11 +26,6 @@ public class CommonController {
         return "/resources/html/loginfailed.html";
     }
 
-    @RequestMapping("/personal")
-    public String personalPageView() {
-        return "personal";
-    }
-
     @RequestMapping(value = "/developers")
     public String developers() {
         return "/support/developers";

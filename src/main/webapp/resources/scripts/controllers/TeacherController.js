@@ -6,16 +6,23 @@
  */
 var TeacherController = function ($scope, $http, $modal) {
 
+    $scope.alerts = [];
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
+
     $scope.readTeacherList = function () {
         $http.get('teacher/getAll?sort=true').success(function (list) {
             $scope.teachers = list;
-        })
+        });
     };
 
     $scope.readTeacherList();
 
     $scope.removeTeacher = function (teacher) {
-        $http.delete('teacher/delete?id=' + teacher._id);
+        $http.delete('teacher/delete?id=' + teacher._id).success(function(){
+            $scope.alerts.push({ type: 'success', msg: 'Запись удалена успешно.' });
+        });
         var index = $scope.teachers.indexOf(teacher);
         $scope.teachers.splice(index, 1);
     };
@@ -30,6 +37,7 @@ var TeacherController = function ($scope, $http, $modal) {
             $http.post('teacher/save', result)
                 .success(function (response) {
                     $scope.teachers.push(response);
+                    $scope.alerts.push({ type: 'success', msg: 'Учетная запись добавлена. Текущий пароль: 12345. Рекомендуется сменить после входа.' });
                 })
         });
     };
