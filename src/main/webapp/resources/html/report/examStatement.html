@@ -1,11 +1,11 @@
 <h3>Зачетно-экзаменационная ведомость</h3>
-<form class="form-horizontal" ng-controller="ExamStatementController">
+<form name="form" class="form-horizontal" ng-controller="ExamStatementController">
     <div class="form-group">
         <label class="col-sm-2 control-label" for="group">Группа:</label>
 
         <div class="col-sm-3">
             <select id="group" class="form-control" ng-model="group"
-                    ng-options="g._id as g._id for g in groups"></select>
+                    ng-options="g._id as g._id for g in groups" required></select>
         </div>
     </div>
     <div class="form-group">
@@ -13,12 +13,12 @@
 
         <div class="col-sm-3">
             <select id="teacher" class="form-control" multiple="multiple" ng-multiple="true" ng-model="selectedTeachers"
-                    ng-options="t as t.last_name+' '+t.first_name for t in teachers"></select>
+                    ng-options="t as t.last_name+' '+t.first_name for t in teachers" required></select>
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-2 col-sm-offset-2">
-            <input type="button" class="btn btn-primary" value="Сформировать отчет" ng-click="generateReport()"/>
+            <button class="btn btn-primary" ng-disabled="form.$invalid" ng-click="generateReport()">Сформировать отчет</button>
         </div>
         <a type="button" href="" id="download" hidden="true">Загрузить отчет</a>
     </div>

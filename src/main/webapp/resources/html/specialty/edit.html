@@ -2,18 +2,18 @@
     <h3 class="text-center">Специальность</h3>
 </div>
 <div class="modal-body">
-    <form>
+    <form name="form">
         <div class="form-group">
             <label for="_id">ВУС:</label>
-            <input type="text" class="form-control" id="_id" placeholder="ВУС" ng-model="specialty._id">
+            <input type="text" class="form-control" id="_id" placeholder="ВУС" ng-model="specialty._id" required/>
         </div>
         <div class="form-group">
             <label for="description">Описание:</label>
-            <input type="text" class="form-control" id="description" placeholder="Описание" ng-model="specialty.description">
+            <input type="text" class="form-control" id="description" placeholder="Описание" ng-model="specialty.description" required/>
         </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Сохранить</button>
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Сохранить</button>
     <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
 </div>

@@ -2,19 +2,19 @@
     <h3 class="text-center">Группа</h3>
 </div>
 <div class="modal-body">
-    <form>
+    <form name="form">
         <div class="form-group">
             <label for="_id">Название:</label>
-            <input type="text" class="form-control" id="_id" placeholder="Название" ng-model="group._id">
+            <input type="text" class="form-control" id="_id" placeholder="Название" ng-model="group._id" required/>
         </div>
         <div class="form-group">
             <label for="specialty">Специальность:</label>
-            <select class="form-control" id="specialty" ng-model="group.specialty" ng-options="s._id as s._id+' '+s.description for s in specialties">
+            <select class="form-control" id="specialty" ng-model="group.specialty" ng-options="s._id as s._id+' '+s.description for s in specialties" required>
             </select>
         </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Сохранить</button>
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="form.$invalid">Сохранить</button>
     <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
 </div>

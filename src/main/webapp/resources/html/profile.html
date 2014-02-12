@@ -11,15 +11,15 @@
         <dt>Логин:</dt>
         <dd>{{profile._id}}</dd>
     </dl>
-    <div class="form-inline" ng-show="tempPassword">
+    <form name="form" class="form-inline" ng-show="tempPassword">
         <div class="form-group">
             <label>Пароль:</label>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" id="password" ng-model="profile.password">
+            <input type="text" class="form-control" id="password" ng-model="profile.password" required/>
         </div>
-        <button class="btn btn-success" ng-click="save()">Сохранить</button>
+        <button class="btn btn-success" ng-click="save()" ng-disabled="form.$invalid">Сохранить</button>
         <button class="btn btn-danger" ng-click="cancelPassword()">Отмена</button>
-    </div>
+    </form>
     <button ng-show="!tempPassword" class="btn btn-primary" ng-click='changePassword()'>Сменить пароль</button>
 </div>
