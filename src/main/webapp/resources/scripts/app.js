@@ -2,7 +2,7 @@
 
 var EMDS = {};
 
-var App = angular.module('EMDS', ['EMDS.filters', 'EMDS.services', 'EMDS.directives', 'ui.bootstrap.modal', 'ui.bootstrap.alert', 'ngRoute', 'ngAnimate']);
+var App = angular.module('EMDS', ['EMDS.filters', 'EMDS.services', 'EMDS.directives', 'ui.bootstrap.modal', 'ui.bootstrap.alert','ui.bootstrap.pagination', 'ngRoute', 'ngAnimate']);
 
 App.config(['$routeProvider', function ($routeProvider) {
 

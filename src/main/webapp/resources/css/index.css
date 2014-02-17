@@ -63,3 +63,6 @@ div.alertbox{
 .hover .alert {
     border: 1px solid #ffffff;
 }
+.table{
+    margin-bottom: 5px;
+}

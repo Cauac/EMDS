@@ -6,16 +6,25 @@
  */
 var AbiturientController = function ($scope, $http, $modal) {
 
-    $scope.readAbiturients = function () {
-        $http.get('abiturient/getAll').success(function (response) {
-            $scope.students = response;
+    $scope.pageNumber = 1;
+    $scope.faculty = '';
+    $scope.totalCount = 0;
+    $scope.perPage = 6;
+
+    $scope.readAbiturients = function (page) {
+        var options = {page: page, faculty: $scope.faculty};
+        $http.post('abiturient/getAll', options).success(function (result) {
+            $scope.totalCount = result.totalCount;
+            $scope.students = result.data;
         })
     };
 
+    $scope.readAbiturients(1);
+
     $scope.archiveStudent = function (student) {
-        $http.delete('abiturient/archive', {data: student._id});
-        var index = $scope.students.indexOf(student);
-        $scope.students.splice(index, 1);
+        $http.delete('abiturient/archive', {data: student._id}).success(function () {
+            $scope.readAbiturients($scope.pageNumber);
+        });
     };
 
     $scope.editStudent = function (student) {
@@ -42,12 +51,13 @@ var AbiturientController = function ($scope, $http, $modal) {
 
         modalInstance.result.then(function (result) {
             $http.post('abiturient/save', result).success(function (response) {
-                $scope.students.push(response);
+                if ($scope.perPage > ($scope.students.length)) {
+                    $scope.students.push(response);
+                }
+                $scope.totalCount = $scope.totalCount + 1;
             });
         });
     };
-
-    $scope.readAbiturients();
 
     $scope.documentExist = function (student, documentName) {
         return student.document && student.document[documentName];
@@ -73,8 +83,7 @@ var AbiturientController = function ($scope, $http, $modal) {
             });
             modalInstance.result.then(function (result) {
                 $http.post("abiturient/studentialize", {id: student._id, group_id: result}).success(function () {
-                    var index = $scope.students.indexOf(student);
-                    $scope.students.splice(index, 1);
+                    $scope.readAbiturients($scope.pageNumber);
                 });
             });
         });

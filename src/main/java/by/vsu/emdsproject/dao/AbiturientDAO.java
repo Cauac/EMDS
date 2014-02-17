@@ -15,6 +15,22 @@ public class AbiturientDAO extends MongoDAO {
         return ABITURIENT_COLLECTION_NAME;
     }
 
+    public DBObject getList(int page, int perPage, String faculty) {
+        DBObject query = null;
+        if (!faculty.isEmpty()) {
+            query = new BasicDBObject("faculty", faculty);
+        }
+        DBCursor cursor = database.getCollection(getCollectionName()).find(query);
+        DBObject list = new BasicDBObject("totalCount", cursor.count());
+        cursor.skip((page - 1) * perPage).limit(perPage);
+        BasicDBList data = new BasicDBList();
+        while (cursor.hasNext()) {
+            data.add(cursor.next());
+        }
+        list.put("data", data);
+        return list;
+    }
+
     @Override
     public void save(DBObject abiturient) {
         if (!abiturient.containsField(IDENTITY)) {
@@ -29,7 +45,7 @@ public class AbiturientDAO extends MongoDAO {
     }
 
     public void saveQuestionnaire(String abiturientId, DBObject questionnaire) {
-        updateField(abiturientId,"questionnaire",questionnaire);
+        updateField(abiturientId, "questionnaire", questionnaire);
     }
 
     public BasicDBList readByFaculty(String faculty) {

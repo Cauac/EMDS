@@ -29,11 +29,14 @@ public class AbiturientController {
     @Autowired
     StudentDAO studentDAO;
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAll", method = RequestMethod.POST)
     public
     @ResponseBody
-    BasicDBList getAll() {
-        return abiturientDAO.readAll();
+    DBObject getAll(@RequestBody String jsonOptions) {
+        DBObject options = (DBObject) JSON.parse(jsonOptions);
+        int page = (int) options.get("page");
+        String faculty = options.get("faculty").toString();
+        return abiturientDAO.getList(page, 6, faculty);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)

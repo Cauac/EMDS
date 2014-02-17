@@ -5,7 +5,22 @@
     <thead>
     <tr class="row">
         <th class="col-sm-3"></th>
-        <th class="col-sm-1">Факультет</th>
+        <th class="col-sm-1">Факультет
+            <select id="faculty" ng-model="faculty" ng-change="readAbiturients(pageNumber)">
+                <option value="">Все факультеты</option>
+                <option value="Математический">Математический</option>
+                <option value="Физический">Физический</option>
+                <option value="Физической культуры и спорта">Физической культуры и спорта</option>
+                <option value="Биологический">Биологический</option>
+                <option value="Исторический">Исторический</option>
+                <option value="Социальной педагогики и психологии">Социальной педагогики и психологии</option>
+                <option value="Филологический">Филологический</option>
+                <option value="Белорусской филологии и культры">Белорусской филологии и культры</option>
+                <option value="Юридический">Юридический</option>
+                <option value="Художественно-графический">Художественно-графический</option>
+                <option value="Педагогический">Педагогический</option>
+            </select>
+        </th>
         <th class="col-sm-1">Заявление</th>
         <th class="col-sm-1">Анкета</th>
         <th class="col-sm-1">Ксерокопия паспорта</th>
@@ -62,6 +77,7 @@
     </tr>
     </tbody>
 </table>
+<pagination direction-links="false" total-items="totalCount" page="pageNumber" items-per-page="perPage" on-select-page="readAbiturients(page)"></pagination>
 <div>
     <a class="btn" ng-click="addStudent()"><img class="ico" src="resources/images/icons/112.png"/> Добавить студента</a>
 </div>
