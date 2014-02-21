@@ -20,9 +20,19 @@ public class StudentDAO extends MongoDAO {
         addFilterValue("group", groupId, id);
     }
 
-    public BasicDBList readAll(String type) {
+    public DBObject readList(String type, int page, int perPage, String faculty, String group) {
         BasicDBList studentIds = getFilterIds("student", type);
-        return readObjectsByIds(STUDENT_COLLECTION_NAME, studentIds);
+        if (!group.isEmpty()) {
+            BasicDBList groupStudent = getFilterIds("group", group);
+            BasicDBList temp = (BasicDBList) studentIds.clone();
+            temp.removeAll(groupStudent);
+            studentIds.removeAll(temp);
+        }
+
+        if (!faculty.isEmpty()) {
+            return readList(studentIds, page, perPage, new BasicDBObject("faculty", faculty));
+        }
+        return readList(studentIds, page, perPage, new BasicDBObject());
     }
 
     public BasicDBList readByGroup(String groupId) {
@@ -55,5 +65,4 @@ public class StudentDAO extends MongoDAO {
         removeFilterValue("group", oldGroupId, id);
         updateField(id, "group", groupId);
     }
-
 }

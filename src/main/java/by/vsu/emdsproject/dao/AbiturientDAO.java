@@ -15,20 +15,12 @@ public class AbiturientDAO extends MongoDAO {
         return ABITURIENT_COLLECTION_NAME;
     }
 
-    public DBObject getList(int page, int perPage, String faculty) {
-        DBObject query = null;
+    public DBObject getAbiturients(int page, int perPage, String faculty) {
         if (!faculty.isEmpty()) {
-            query = new BasicDBObject("faculty", faculty);
+            return readList(page, perPage, new BasicDBObject("faculty", faculty));
+        } else {
+            return readList(page, perPage, null);
         }
-        DBCursor cursor = database.getCollection(getCollectionName()).find(query);
-        DBObject list = new BasicDBObject("totalCount", cursor.count());
-        cursor.skip((page - 1) * perPage).limit(perPage);
-        BasicDBList data = new BasicDBList();
-        while (cursor.hasNext()) {
-            data.add(cursor.next());
-        }
-        list.put("data", data);
-        return list;
     }
 
     @Override

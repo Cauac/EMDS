@@ -2,7 +2,6 @@ package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.dao.ArchiveDAO;
 import by.vsu.emdsproject.dao.StudentDAO;
-import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +23,15 @@ public class Student2Controller {
     @Autowired
     ArchiveDAO archiveDAO;
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/getList", method = RequestMethod.POST)
     public
     @ResponseBody
-    BasicDBList getAll() {
-        return studentDAO.readAll(StudentDAO.STUDENT2);
+    DBObject getAll(@RequestBody String jsonOptions) {
+        DBObject options = (DBObject) JSON.parse(jsonOptions);
+        int page = (int) options.get("page");
+        String faculty = options.get("faculty").toString();
+        String group = options.get("group").toString();
+        return studentDAO.readList(StudentDAO.STUDENT2, page, 10, faculty, group);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)

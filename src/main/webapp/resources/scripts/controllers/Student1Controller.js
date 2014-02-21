@@ -5,14 +5,21 @@
 var Student1Controller = function ($scope, $http, $modal) {
 
     $scope.label = "Студенты: 1 уровень подготовки";
+    $scope.pageNumber = 1;
+    $scope.faculty = '';
+    $scope.group = '';
+    $scope.totalCount = 0;
+    $scope.perPage = 6
 
-    $scope.readAll = function () {
-        $http.get('student1/getAll').success(function (response) {
-            $scope.students = response;
+    $scope.readStudents = function (page) {
+        var options = {page: page, faculty: $scope.faculty, group: $scope.group};
+        $http.post('student1/getList', options).success(function (result) {
+            $scope.students = result.data;
+            $scope.totalCount = result.totalCount;
         })
     };
 
-    $scope.readAll();
+    $scope.readStudents($scope.pageNumber);
 
     $scope.archive = function (student) {
         $http.delete('student1/archive', {data: student._id});
