@@ -12,7 +12,7 @@ var AbiturientController = function ($scope, $http, $modal) {
     $scope.perPage = 6;
     $scope.alerts = [];
 
-    $scope.closeAlert = function(index) {
+    $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
     };
 
@@ -130,6 +130,17 @@ var AbiturientController = function ($scope, $http, $modal) {
             $http.post('abiturient/saveQuestionnaire', result);
         });
     };
+
+    $scope.addProgress = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'resources/html/abiturient/uploadProgress.html',
+            controller: ProgressFileDialog
+        });
+
+        modalInstance.result.then(function (result) {
+            $http.post('abiturient/uploadProgressFile', result);
+        });
+    };
 };
 
 var AddStudentDialog = function ($scope, $modalInstance) {
@@ -213,4 +224,15 @@ var StudentializeDialog = function ($scope, $modalInstance, student, groups) {
         $modalInstance.dismiss('cancel');
     };
 };
+
+var ProgressFileDialog = function ($scope, $modalInstance) {
+    $scope.faculty = '1';
+    $scope.file = '';
+    $scope.ok = function (faculty,file) {
+        $modalInstance.close({faculty: faculty, file: file});
+    };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+}
 

@@ -1,10 +1,13 @@
 package by.vsu.emdsproject.dao;
 
+import by.vsu.emdsproject.common.ReportUtil;
 import by.vsu.emdsproject.common.Transliterator;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+
+import java.util.Map;
 
 public class AbiturientDAO extends MongoDAO {
 
@@ -56,5 +59,15 @@ public class AbiturientDAO extends MongoDAO {
         String middle_name = (String) abiturient.get("middle_name");
         String identity = Transliterator.transliterate(last_name + first_name.charAt(0) + middle_name.charAt(0));
         return identity + System.currentTimeMillis();
+    }
+
+    public void setProgress(Map<String, String> progressMap, String faculty) {
+        String value;
+        for (Object o : readByFaculty(faculty)) {
+            DBObject student = (DBObject) o;
+            if ((value = progressMap.get(ReportUtil.getFullFIO(student))) != null) {
+                database.getCollection(getCollectionName()).update(student, new BasicDBObject("$set", new BasicDBObject("document.score.score", value)));
+            }
+        }
     }
 }

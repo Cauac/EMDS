@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h3 class="text-center">Загрузить файл с успеваемостью студентов</h3>
+</div>
+<div class="modal-body">
+    <form name="form" enctype="multipart/form-data">
+        <h4>Выбор файла</h4>
+
+        <div class="form-group">
+            <label for="faculty">Факультет:</label>
+            <select id="faculty" class="form-control input-lg" ng-model="faculty" required>
+                <option value="Математический">Математический</option>
+                <option value="Физический">Физический</option>
+                <option value="Физической культуры и спорта">Физической культуры и спорта</option>
+                <option value="Биологический">Биологический</option>
+                <option value="Исторический">Исторический</option>
+                <option value="Социальной педагогики и психологии">Социальной педагогики и психологии</option>
+                <option value="Филологический">Филологический</option>
+                <option value="Белорусской филологии и культры">Белорусской филологии и культры</option>
+                <option value="Юридический">Юридический</option>
+                <option value="Художественно-графический">Художественно-графический</option>
+                <option value="Педагогический">Педагогический</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input name="file" type="file" fileread="file" required/>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    {{faculty}}
+    <button class="btn btn-primary" ng-click="ok(faculty,file)" ng-disabled="form.$invalid">Загрузить</button>
+    <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+</div>
