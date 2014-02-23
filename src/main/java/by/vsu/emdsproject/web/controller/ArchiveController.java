@@ -21,11 +21,15 @@ public class ArchiveController {
     @Autowired
     ArchiveDAO archiveDAO;
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/getList", method = RequestMethod.POST)
     public
     @ResponseBody
-    BasicDBList getAll() {
-        return archiveDAO.readAll();
+    DBObject getAll(@RequestBody String jsonOptions) {
+        DBObject options = (DBObject) JSON.parse(jsonOptions);
+        int page = (int) options.get("page");
+        String faculty = options.get("faculty").toString();
+        String status = options.get("status").toString();
+        return archiveDAO.readList(page, 10, faculty, status);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)

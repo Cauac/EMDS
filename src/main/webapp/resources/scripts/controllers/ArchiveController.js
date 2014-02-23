@@ -6,19 +6,31 @@
  */
 var ArchiveController = function ($scope, $http, $modal) {
 
+    $scope.pageNumber = 1;
+    $scope.faculty = '';
+    $scope.status = '';
+    $scope.totalCount = 0;
+    $scope.perPage = 10;
+    $scope.alerts = [];
 
-    $scope.readAll = function () {
-        $http.get('archive/getAll').success(function (response) {
-            $scope.students = response;
+    $scope.closeAlert = function (index) {
+        $scope.alerts.splice(index, 1);
+    };
+
+    $scope.readStudents = function (page) {
+        var options = {page: page, faculty: $scope.faculty, status: $scope.status};
+        $http.post('archive/getList', options).success(function (result) {
+            $scope.students = result.data;
+            $scope.totalCount = result.totalCount;
         })
     };
 
-    $scope.readAll();
+    $scope.readStudents(1);
 
     $scope.delete = function (student) {
         $http.delete('archive/delete', {data: student._id});
-        var index = $scope.students.indexOf(student);
-        $scope.students.splice(index, 1);
+        $scope.readStudents($scope.pageNumber);
+        $scope.alerts.push({ type: 'success', msg: 'Данные о студенте успешно удалены.'});
     };
 
     $scope.edit = function (student) {

@@ -1,13 +1,38 @@
 <div id="content-header">
     <h1>Студенты</h1>
 </div>
+<div class="alertbox">
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+</div>
 <table class="table table-condensed">
     <thead>
     <tr class="row">
         <th class="col-sm-5">Студент</th>
-        <th class="col-sm-2">Факультет</th>
-        <th class="col-sm-2">Год поступления</th>
-        <th class="col-sm-1">Статус</th>
+        <th class="col-sm-2">Факультет
+            <select id="faculty" ng-model="faculty" ng-change="readStudents(pageNumber)">
+                <option value="">Все факультеты</option>
+                <option value="Математический">Математический</option>
+                <option value="Физический">Физический</option>
+                <option value="Физической культуры и спорта">Физической культуры и спорта</option>
+                <option value="Биологический">Биологический</option>
+                <option value="Исторический">Исторический</option>
+                <option value="Социальной педагогики и психологии">Социальной педагогики и психологии</option>
+                <option value="Филологический">Филологический</option>
+                <option value="Белорусской филологии и культры">Белорусской филологии и культры</option>
+                <option value="Юридический">Юридический</option>
+                <option value="Художественно-графический">Художественно-графический</option>
+                <option value="Педагогический">Педагогический</option>
+            </select>
+        </th>
+        <th class="col-sm-1">Год поступления</th>
+        <th class="col-sm-2"> Статус
+            <select id="status" ng-model="status" ng-change="readStudents(pageNumber)">
+                <option value="">Все</option>
+                <option value="Не принят">Не принят</option>
+                <option value="Отчислен">Отчислен</option>
+                <option value="Завершившил обучение">Завершившил обучение</option>
+            </select>
+        </th>
         <th class="col-sm-1"></th>
         <th class="col-sm-1"></th>
     </tr>
@@ -17,7 +42,7 @@
         <td class="col-sm-5">{{student.last_name}} {{student.first_name}} {{student.middle_name}}</td>
         <td class="col-sm-2">{{student.faculty}}</td>
         <td class="col-sm-2">{{student.questionnaire.admissionYear}}</td>
-        <td class="col-sm-1">{{student.type}}</td>
+        <td class="col-sm-1">{{student.status}}</td>
         <td class="col-sm-1">
             <img ng-click="edit(student)" class="ico" src="resources/images/icons/13.png"/>
         </td>
@@ -27,3 +52,4 @@
     </tr>
     </tbody>
 </table>
+<pagination ng-show="perPage<totalCount" direction-links="false" total-items="totalCount" page="pageNumber" items-per-page="perPage" on-select-page="readStudents(page)"></pagination>

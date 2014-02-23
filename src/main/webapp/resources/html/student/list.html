@@ -45,7 +45,8 @@
             <img ng-really-message="Вы действительно хотите отчислить студента ?" ng-really-click="archive(student)" class="ico" src="resources/images/icons/118.png"/>
         </td>
         <td class="col-sm-1">
-            <img ng-click="promote(student)" class="ico" src="resources/images/icons/104.png"/>
+            <img ng-show="showPromote" ng-click="promote(student)" class="ico" src="resources/images/icons/104.png"/>
+            <img ng-show="showReserve" ng-really-message="Присвоить звание офицера и перенести в архив?" ng-really-click="promote(student)" class="ico" src="resources/images/icons/104.png"/>
         </td>
     </tr>
     </tbody>

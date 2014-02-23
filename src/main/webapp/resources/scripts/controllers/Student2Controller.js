@@ -11,8 +11,10 @@ var Student2Controller = function ($scope, $http, $modal) {
     $scope.totalCount = 0;
     $scope.perPage = 10;
     $scope.alerts = [];
+    $scope.showReserve = true;
+    $scope.showPromote = false;
 
-    $scope.closeAlert = function(index) {
+    $scope.closeAlert = function (index) {
         $scope.alerts.splice(index, 1);
     };
 
@@ -26,7 +28,7 @@ var Student2Controller = function ($scope, $http, $modal) {
 
     $scope.readGroups = function () {
         $http.get('group/getAll?select=true').success(function (response) {
-            $scope.groups=response;
+            $scope.groups = response;
         })
     };
 
@@ -57,25 +59,9 @@ var Student2Controller = function ($scope, $http, $modal) {
     };
 
     $scope.promote = function (student) {
-        $http.get('group/getAll').success(function (groups) {
-            var modalInstance = $modal.open({
-                templateUrl: 'resources/html/student/promote2.html',
-                controller: StudentializeDialog,
-                resolve: {
-                    student: function () {
-                        return student;
-                    },
-                    groups: function () {
-                        return groups;
-                    }
-                }
-            });
-            modalInstance.result.then(function (result) {
-                $http.post("student1/promote", {id: student._id, group_id: result}).success(function () {
-                    $scope.readStudents($scope.pageNumber);
-                    $scope.alerts.push({ type: 'success', msg: 'Данные о студенте перенесены в архив.'});
-                });
-            });
+        $http.post("student2/reserve", student._id).success(function () {
+            $scope.readStudents($scope.pageNumber);
+            $scope.alerts.push({ type: 'success', msg: 'Данные о студенте перенесены в архив.'});
         });
     };
 };

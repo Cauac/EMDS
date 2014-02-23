@@ -11,6 +11,8 @@ var Student1Controller = function ($scope, $http, $modal) {
     $scope.totalCount = 0;
     $scope.perPage = 10;
     $scope.alerts = [];
+    $scope.showReserve = false;
+    $scope.showPromote = true;
 
     $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);

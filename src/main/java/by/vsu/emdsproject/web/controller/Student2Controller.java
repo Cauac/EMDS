@@ -43,13 +43,17 @@ public class Student2Controller {
 
     @RequestMapping(value = "/archive", method = RequestMethod.DELETE)
     public void delete(@RequestBody String id, HttpServletResponse response) {
-        archiveDAO.save(studentDAO.read(id));
+        archiveDAO.save(studentDAO.read(id), "Отчислен");
         studentDAO.delete(id, StudentDAO.STUDENT2);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
-    @RequestMapping(value = "/promote", method = RequestMethod.POST)
-    public void promote(@RequestBody String stringData, HttpServletResponse response) {
+    @RequestMapping(value = "/reserve", method = RequestMethod.POST)
+    public void promote(@RequestBody String id, HttpServletResponse response) {
+        DBObject student = studentDAO.read(id);
+        student.put("rank", "Лейтенант запаса");
+        archiveDAO.save(studentDAO.read(id), "Завершившил обучение");
+        studentDAO.delete(id, StudentDAO.STUDENT2);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 }
