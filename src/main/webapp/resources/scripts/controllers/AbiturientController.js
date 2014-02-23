@@ -10,6 +10,11 @@ var AbiturientController = function ($scope, $http, $modal) {
     $scope.faculty = '';
     $scope.totalCount = 0;
     $scope.perPage = 6;
+    $scope.alerts = [];
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
 
     $scope.readAbiturients = function (page) {
         var options = {page: page, faculty: $scope.faculty};
@@ -24,6 +29,7 @@ var AbiturientController = function ($scope, $http, $modal) {
     $scope.archiveStudent = function (student) {
         $http.delete('abiturient/archive', {data: student._id}).success(function () {
             $scope.readAbiturients($scope.pageNumber);
+            $scope.alerts.push({ type: 'success', msg: 'Данные о студенте перенесены в архив.'});
         });
     };
 
@@ -84,6 +90,7 @@ var AbiturientController = function ($scope, $http, $modal) {
             modalInstance.result.then(function (result) {
                 $http.post("abiturient/studentialize", {id: student._id, group_id: result}).success(function () {
                     $scope.readAbiturients($scope.pageNumber);
+                    $scope.alerts.push({ type: 'success', msg: 'Студент зачислен на военную кафедру.'});
                 });
             });
         });

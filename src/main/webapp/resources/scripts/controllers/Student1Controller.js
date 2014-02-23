@@ -9,7 +9,12 @@ var Student1Controller = function ($scope, $http, $modal) {
     $scope.faculty = '';
     $scope.group = '';
     $scope.totalCount = 0;
-    $scope.perPage = 6
+    $scope.perPage = 10;
+    $scope.alerts = [];
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
 
     $scope.readStudents = function (page) {
         var options = {page: page, faculty: $scope.faculty, group: $scope.group};
@@ -19,12 +24,20 @@ var Student1Controller = function ($scope, $http, $modal) {
         })
     };
 
+    $scope.readGroups = function () {
+        $http.get('group/getAll?select=true').success(function (response) {
+            $scope.groups=response;
+        })
+    };
+
     $scope.readStudents($scope.pageNumber);
+    $scope.readGroups();
 
     $scope.archive = function (student) {
-        $http.delete('student1/archive', {data: student._id});
-        var index = $scope.students.indexOf(student);
-        $scope.students.splice(index, 1);
+        $http.delete('student1/archive', {data: student._id}).success(function () {
+            $scope.readStudents($scope.pageNumber);
+            $scope.alerts.push({ type: 'success', msg: 'Данные о студенте перенесены в архив.'});
+        });
     };
 
     $scope.edit = function (student) {
@@ -59,8 +72,8 @@ var Student1Controller = function ($scope, $http, $modal) {
             });
             modalInstance.result.then(function (result) {
                 $http.post("student1/promote", {id: student._id, group_id: result}).success(function () {
-                    var index = $scope.students.indexOf(student);
-                    $scope.students.splice(index, 1);
+                    $scope.readStudents($scope.pageNumber);
+                    $scope.alerts.push({ type: 'success', msg: 'Студент зачислен на второй курс.'});
                 });
             });
         });
