@@ -241,6 +241,10 @@ a {
 #sidebar > ul > li.active > a{
 	background: url("../images/menu-active.png") no-repeat scroll right center transparent !important;
 }
+
+#sidebar > ul > li>ul>li.active > a {
+    background: url("../images/menu-active.png") no-repeat scroll right center transparent !important;
+}
 #sidebar > ul > li > a > .label, #jPanelMenu-menu > ul > li > a > .label {
 	margin: 2px 20px 0 0;
 	float: right;
