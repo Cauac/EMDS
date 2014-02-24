@@ -138,7 +138,9 @@ var AbiturientController = function ($scope, $http, $modal) {
         });
 
         modalInstance.result.then(function (result) {
-            $http.post('abiturient/uploadProgressFile', result);
+            $http.post('abiturient/uploadProgressFile', result).success(function(){
+                $scope.readAbiturients($scope.pageNumber);
+            });
         });
     };
 };

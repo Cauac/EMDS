@@ -6,6 +6,7 @@ import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import org.apache.commons.lang.math.NumberUtils;
 
 import java.util.Map;
 
@@ -66,7 +67,9 @@ public class AbiturientDAO extends MongoDAO {
         for (Object o : readByFaculty(faculty)) {
             DBObject student = (DBObject) o;
             if ((value = progressMap.get(ReportUtil.getFullFIO(student))) != null) {
-                database.getCollection(getCollectionName()).update(student, new BasicDBObject("$set", new BasicDBObject("document.score.score", value)));
+                value = value.replaceAll("[^\\x20-\\x7e]", "");
+                double score = NumberUtils.toDouble(value, 0.0);
+                database.getCollection(getCollectionName()).update(student, new BasicDBObject("$set", new BasicDBObject("document.score.score", score)));
             }
         }
     }

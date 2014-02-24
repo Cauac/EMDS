@@ -4,7 +4,6 @@ import by.vsu.emdsproject.dao.AbiturientDAO;
 import by.vsu.emdsproject.dao.ArchiveDAO;
 import by.vsu.emdsproject.dao.StudentDAO;
 import com.aspose.words.*;
-import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,21 +91,16 @@ public class AbiturientController {
     public void uploadProgressFile(@RequestBody String jsonData, HttpServletResponse response) throws Exception {
         DBObject data = (DBObject) JSON.parse(jsonData);
         String faculty = data.get("faculty").toString();
+        String fileInString = data.get("file").toString();
         BASE64Decoder decoder = new BASE64Decoder();
-        byte[] fileBytes = decoder.decodeBuffer(data.get("file").toString());
-//        ByteArrayInputStream bis = new ByteArrayInputStream(fileBytes);
-        File f=File.createTempFile("file",".docx");
-        FileOutputStream stream=new FileOutputStream(f);
-        stream.write(fileBytes);
-        stream.flush();
-        stream.close();
-        Document document = new Document(f.getAbsolutePath());
-//        try {
-//            Map<String, String> progressMap = extractStudentProgress(bis);
-//            abiturientDAO.setProgress(progressMap,faculty);
-//        } catch (Exception e) {
-//            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//        }
+        byte[] fileBytes = decoder.decodeBuffer(fileInString.substring(fileInString.indexOf("base64,") + 7));
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(fileBytes);
+        try {
+            Map<String, String> progressMap = extractStudentProgress(inputStream);
+            abiturientDAO.setProgress(progressMap, faculty);
+        } catch (Exception e) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
