@@ -2,44 +2,27 @@
     .modal-dialog {
         width: 90%;
     }
+    .modal-body{
+        height: 477px;
+    }
 
     label {
         margin-bottom: 0px;
-    }
-    .animate-show {
-        -webkit-transition:all linear 0.5s;
-        transition:all linear 0.5s;
-        line-height:20px;
-        opacity:1;
-        padding:10px;
-        border:1px solid black;
-        background:white;
-    }
-
-    .animate-show.ng-hide-add,
-    .animate-show.ng-hide-remove {
-        display:block!important;
-    }
-
-    .animate-show.ng-hide {
-        line-height:0;
-        opacity:0;
-        padding:0 10px;
     }
 </style>
 <div class="modal-header">
     <h3 class="text-center">{{student.last_name}} {{student.first_name}} :: Анкета</h3>
 </div>
 <div class="modal-body">
-    <form>
-
-        <fieldset class="border animate-show" ng-show="pageNumber==1">
+    <form ng-switch="pageNumber">
+        <fieldset class="border" ng-switch-when="1">
             <legend class="border">Паспортные данные</legend>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="birthDate">Дата рождения:</label>
-                        <input class="form-control" id="birthDate" ng-model="questionnaire.birthDate" placeholder="ДД.ММ.ГГГГ"/>
+                        <input class="form-control" id="birthDate" ng-model="questionnaire.birthDate"
+                               placeholder="ДД.ММ.ГГГГ"/>
                     </div>
                     <div class="form-group">
                         <label for="birthPlace">Место рождения:</label>
@@ -57,16 +40,18 @@
                     </div>
                     <div class="form-group">
                         <label for="passportNumber">Номер паспорта:</label>
-                        <input class="form-control" id="passportNumber" ng-model="questionnaire.passportNumber"/>
+                        <input class="form-control" id="passportNumber"
+                               ng-model="questionnaire.passportNumber"/>
                     </div>
                     <div class="form-group">
                         <label for="personalNumber">Личный номер:</label>
-                        <input class="form-control" id="personalNumber" ng-model="questionnaire.personalNumber"/>
+                        <input class="form-control" id="personalNumber"
+                               ng-model="questionnaire.personalNumber"/>
                     </div>
                 </div>
             </div>
         </fieldset>
-        <fieldset class="border animate-show" ng-show="pageNumber==2">
+        <fieldset class="border" ng-switch-when="2">
             <legend class="border">Контактная информация</legend>
             <div class="row">
                 <div class="col-sm-3">
@@ -92,20 +77,30 @@
                 <label>Адрес:</label>
 
                 <div class="row">
-                    <div class="col-sm-4">г.<input class="form-control" ng-model="questionnaire.address.city" placeholder="Город"/></div>
-                    <div class="col-sm-4">ул.<input class="form-control" ng-model="questionnaire.address.street" placeholder="Улица"/></div>
-                    <div class="col-sm-2">д.<input class="form-control" ng-model="questionnaire.address.house"/></div>
-                    <div class="col-sm-2">кв.<input class="form-control" ng-model="questionnaire.address.apartment"/></div>
+                    <div class="col-sm-4">г.<input class="form-control" ng-model="questionnaire.address.city"
+                                                   placeholder="Город"/></div>
+                    <div class="col-sm-4">ул.<input class="form-control" ng-model="questionnaire.address.street"
+                                                    placeholder="Улица"/></div>
+                    <div class="col-sm-2">д.<input class="form-control" ng-model="questionnaire.address.house"/>
+                    </div>
+                    <div class="col-sm-2">кв.<input class="form-control"
+                                                    ng-model="questionnaire.address.apartment"/></div>
                 </div>
             </div>
             <div class="form-group">
                 <label>Адрес родителей:</label>
 
                 <div class="row">
-                    <div class="col-sm-4">г.<input class="form-control" ng-model="questionnaire.parentAddress.city" placeholder="Город"/></div>
-                    <div class="col-sm-4">ул.<input class="form-control" ng-model="questionnaire.parentAddress.street" placeholder="Улица"/></div>
-                    <div class="col-sm-2">д.<input class="form-control" ng-model="questionnaire.parentAddress.house"/></div>
-                    <div class="col-sm-2">кв.<input class="form-control" ng-model="questionnaire.parentAddress.apartment"/></div>
+                    <div class="col-sm-4">г.<input class="form-control"
+                                                   ng-model="questionnaire.parentAddress.city"
+                                                   placeholder="Город"/></div>
+                    <div class="col-sm-4">ул.<input class="form-control"
+                                                    ng-model="questionnaire.parentAddress.street"
+                                                    placeholder="Улица"/></div>
+                    <div class="col-sm-2">д.<input class="form-control"
+                                                   ng-model="questionnaire.parentAddress.house"/></div>
+                    <div class="col-sm-2">кв.<input class="form-control"
+                                                    ng-model="questionnaire.parentAddress.apartment"/></div>
                 </div>
             </div>
             <div class="form-group">
@@ -117,7 +112,7 @@
                 <input class="form-control" id="father" ng-model="questionnaire.father"/>
             </div>
         </fieldset>
-        <fieldset class="border animate-show" ng-show="pageNumber==3">
+        <fieldset class="border" ng-switch-when="3">
             <legend class="border">Обучение в университете</legend>
 
             <div class="row">
@@ -170,7 +165,7 @@
                 <input class="form-control" id="facultyPublicLife" ng-model="questionnaire.facultyPublicLife"/>
             </div>
         </fieldset>
-        <fieldset class="border animate-show" ng-show="pageNumber==4">
+        <fieldset class="border" ng-switch-when="4">
             <legend class="border">Общая информация</legend>
             <div class="form-group">
                 <label for="hobby">Увлечения:</label>
@@ -178,7 +173,8 @@
             </div>
             <div class="form-group">
                 <label for="publicOrganization">Общественные организации:</label>
-                <input class="form-control" id="publicOrganization" ng-model="questionnaire.publicOrganization"/>
+                <input class="form-control" id="publicOrganization"
+                       ng-model="questionnaire.publicOrganization"/>
             </div>
             <div class="form-group">
                 <label for="employment">Работа:</label>
@@ -186,12 +182,14 @@
             </div>
             <div class="form-group">
                 <label for="howDidYouHearAbout">Источники информации о военной кафедре:</label>
-                <input class="form-control" id="howDidYouHearAbout" ng-model="questionnaire.howDidYouHearAbout"/>
+                <input class="form-control" id="howDidYouHearAbout"
+                       ng-model="questionnaire.howDidYouHearAbout"/>
             </div>
         </fieldset>
-        <fieldset class="border animate-show" ng-show="pageNumber==5">
+        <fieldset class="border" ng-switch-when="5">
             <div class="form-group">
-                <label for="desireToContinue">Планирует ли продолжить обучение по программе офицеров запаса:</label>
+                <label for="desireToContinue">Планирует ли продолжить обучение по программе офицеров
+                    запаса:</label>
                 <input class="form-control" id="desireToContinue" ng-model="questionnaire.desireToContinue"/>
             </div>
             <div class="form-group">
