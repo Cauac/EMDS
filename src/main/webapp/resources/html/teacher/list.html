@@ -19,8 +19,8 @@
     <tbody>
     <tr ng-repeat="teacher in teachers" class="row">
         <td class="col-sm-1">
-            <img ng-show="teacher.is_chief" src="resources/images/icons/33.png"/>
-            <img ng-show="!teacher.is_chief" src="resources/images/icons/101.png" width="20px" height="20px"  ng-really-message="Сделать преподавателя начальником кафедры?" ng-really-click="setChief(teacher)"/>
+            <img ng-show="teacher.is_chief" src="resources/images/icons/i6.png" width="20px" height="20px" title='Начальник кафедры'/>
+            <img ng-show="!teacher.is_chief" src="resources/images/icons/i5.png" width="20px" height="20px" title='Назначить начальником кафедры' ng-really-message="Сделать преподавателя начальником кафедры?" ng-really-click="setChief(teacher)"/>
         </td>
         <td class="col-sm-4">{{teacher.last_name}} {{teacher.first_name}} {{teacher.middle_name}}</td>
         <td class="col-sm-3">
@@ -33,13 +33,13 @@
             <img class="pog" alt="teacher.rank" src="resources/images/pog/pl.png" ng-show="teacher.rank=='Полковник'"/>
         </td>
         <td class="col-sm-2">{{teacher._id}}</td>
-        <td class="col-sm-1"><a ng-click="editTeacher(teacher)"><img class="ico" src="resources/images/icons/13.png"/></a></td>
-        <td class="col-sm-1"><a ng-really-message="Удалить преподавателя?" ng-really-click="removeTeacher(teacher)"><img class="ico" src="resources/images/icons/118.png"/></a></td>
+        <td class="col-sm-1"><a ng-click="editTeacher(teacher)"><img class="ico" src="resources/images/icons/i4.png" title='Редактировать'/></a></td>
+        <td class="col-sm-1"><a ng-really-message="Удалить преподавателя?" ng-really-click="removeTeacher(teacher)"><img class="ico" src="resources/images/icons/i3.png" title='Удалить'/></a></td>
     </tr>
     </tbody>
 </table>
 <div>
     <a class="btn" ng-click="addTeacher()">
-        <img class="ico" src="resources/images/icons/112.png"/> Добавить преподавателя
+        <img class="ico" src="resources/images/icons/i7.png"/> Добавить преподавателя
     </a>
 </div>
