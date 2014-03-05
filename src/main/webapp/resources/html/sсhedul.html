@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app='drag'>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <!--<script src="sheduling.js"></script>-->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        div .box {
+            height: 50px;
+            width: 20px;
+            background-color: #808080;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller='Controller'>
+    <h3>Осенний семестр</h3>
+    <table class="table">
+        <thead>
+        <th ng-repeat='w in weeks'>{{w}}</th>
+        </thead>
+        <tbody>
+        <tr>
+            <td ng-repeat='w in weeks' class="box"></td>
+        </tr>
+        <tr>
+            <td ng-repeat='w in weeks' class="box"></td>
+        </tr>
+        <tr>
+            <td ng-repeat='w in weeks' class="box"></td>
+        </tr>
+        <tr>
+            <td ng-repeat='w in weeks' class="box"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div draggable style="background-color: blue; width: 50px; height: 50px"></div>
+</div>
+</body>
+</html>
+<script>
+    angular.module('drag', []).
+            directive('draggable', function ($document) {
+                return function (scope, element, attr) {
+                    var startX = 0, startY = 0, x = 0, y = 0;
+                    element.css({
+                        position: 'relative',
+                        border: '1px solid red',
+                        backgroundColor: 'lightgrey',
+                        cursor: 'pointer'
+                    });
+                    element.on('mousedown', function (event) {
+                        // Prevent default dragging of selected content
+                        event.preventDefault();
+                        startX = event.screenX - x;
+                        startY = event.screenY - y;
+                        $document.on('mousemove', mousemove);
+                        $document.on('mouseup', mouseup);
+                    });
+
+                    function mousemove(event) {
+                        y = event.screenY - startY;
+                        x = event.screenX - startX;
+                        element.css({
+                            top: y + 'px',
+                            left: x + 'px'
+                        });
+                    }
+
+                    function mouseup() {
+                        $document.unbind('mousemove', mousemove);
+                        $document.unbind('mouseup', mouseup);
+                    }
+                };
+            });
+
+    function Controller($scope) {
+        $scope.weeks = [];
+        $scope.year = 2013;
+        var date = new Date($scope.year, 8, 1);
+        var inc = 1;
+        var weekNumber = 1;
+        while (date.getFullYear() === $scope.year) {
+            if (date.getDay() == 4) {
+                $scope.weeks.push(weekNumber);
+                inc = 7;
+                weekNumber++;
+            }
+            date.setDate(date.getDate() + inc);
+        }
+    }
+</script>
