@@ -31,7 +31,7 @@ public class Student1Controller {
         int page = (int) options.get("page");
         String faculty = options.get("faculty").toString();
         String group = options.get("group").toString();
-        return studentDAO.readList(StudentDAO.STUDENT1, page, 10, faculty, group);
+        return studentDAO.readListStudent1(page, 10, faculty, group);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -44,7 +44,7 @@ public class Student1Controller {
     @RequestMapping(value = "/archive", method = RequestMethod.DELETE)
     public void delete(@RequestBody String id, HttpServletResponse response) {
         archiveDAO.save(studentDAO.read(id), "Отчислен");
-        studentDAO.delete(id, StudentDAO.STUDENT1);
+        studentDAO.delete(id);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 

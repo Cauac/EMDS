@@ -40,7 +40,7 @@ public class AbiturientController {
         DBObject options = (DBObject) JSON.parse(jsonOptions);
         int page = (int) options.get("page");
         String faculty = options.get("faculty").toString();
-        return abiturientDAO.getAbiturients(page, 6, faculty);
+        return abiturientDAO.getPerPage(page, 6, faculty);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)

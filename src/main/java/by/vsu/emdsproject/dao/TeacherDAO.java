@@ -5,12 +5,11 @@ import com.mongodb.*;
 
 public class TeacherDAO extends MongoDAO {
 
-    public static final String TEACHER_COLLECTION_NAME = "teacher";
     public static final String IS_CHIEF = "is_chief";
 
     @Override
     public String getCollectionName() {
-        return TEACHER_COLLECTION_NAME;
+        return "teacher";
     }
 
     public void save(DBObject teacher) {
@@ -20,11 +19,10 @@ public class TeacherDAO extends MongoDAO {
             teacher.put(IS_CHIEF, false);
             teacher.put("default_password", true);
         }
-        database.getCollection(TEACHER_COLLECTION_NAME).save(teacher);
+        collection.save(teacher);
     }
 
     public void chooseChief(String id) {
-        DBCollection collection = database.getCollection(TEACHER_COLLECTION_NAME);
         DBObject currentChief = collection.findOne(new BasicDBObject(IS_CHIEF, true));
         if (currentChief != null) {
             if (id.equals(currentChief.get(IDENTITY))) {
@@ -39,18 +37,11 @@ public class TeacherDAO extends MongoDAO {
     }
 
     public DBObject readChief() {
-        return database.getCollection(getCollectionName()).findOne(new BasicDBObject(IS_CHIEF, true));
-    }
-
-    private String generateLogin(DBObject teacher) {
-        String first_name = (String) teacher.get("first_name");
-        String last_name = (String) teacher.get("last_name");
-        String middle_name = (String) teacher.get("middle_name");
-        return Transliterator.transliterate(last_name + first_name.charAt(0) + middle_name.charAt(0));
+        return collection.findOne(new BasicDBObject(IS_CHIEF, true));
     }
 
     public long getCount() {
-        return database.getCollection(TEACHER_COLLECTION_NAME).getCount();
+        return collection.getCount();
     }
 
     public BasicDBList readAllForSelect() {
@@ -61,5 +52,12 @@ public class TeacherDAO extends MongoDAO {
         field.put("rank", 1);
         field.put("is_chief", 1);
         return readAll(field);
+    }
+
+    private String generateLogin(DBObject teacher) {
+        String first_name = (String) teacher.get("first_name");
+        String last_name = (String) teacher.get("last_name");
+        String middle_name = (String) teacher.get("middle_name");
+        return Transliterator.transliterate(last_name + first_name.charAt(0) + middle_name.charAt(0));
     }
 }

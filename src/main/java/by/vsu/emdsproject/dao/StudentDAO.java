@@ -1,68 +1,87 @@
 package by.vsu.emdsproject.dao;
 
+import by.vsu.emdsproject.dao.filter.Filter;
 import com.mongodb.*;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class StudentDAO extends MongoDAO {
 
-    public static final String STUDENT_COLLECTION_NAME = "student";
-    public static final String STUDENT1 = "student1";
-    public static final String STUDENT2 = "student2";
+    @Autowired
+    Filter studentFacultyFilter;
+    @Autowired
+    Filter groupFilter;
+    @Autowired
+    Filter student1Filter;
+    @Autowired
+    Filter student2Filter;
 
     public String getCollectionName() {
-        return STUDENT_COLLECTION_NAME;
+        return "student";
     }
 
     public void addStudent(DBObject student, String groupId) {
         student.put("group", groupId);
-        database.getCollection(STUDENT_COLLECTION_NAME).save(student);
-        String id = student.get("_id").toString();
-        addFilterValue("student", STUDENT1, id);
-        addFilterValue("group", groupId, id);
+        collection.save(student);
+        studentFacultyFilter.add(student);
+        groupFilter.add(student);
+        student1Filter.add(student);
     }
 
-    public DBObject readList(String type, int page, int perPage, String faculty, String group) {
-        BasicDBList studentIds = getFilterIds("student", type);
+    public DBObject readListStudent1(int page, int perPage, String faculty, String group) {
+        Set set = new HashSet(student1Filter.filter(""));
         if (!group.isEmpty()) {
-            BasicDBList groupStudent = getFilterIds("group", group);
-            BasicDBList temp = (BasicDBList) studentIds.clone();
-            temp.removeAll(groupStudent);
-            studentIds.removeAll(temp);
+            set.removeAll(groupFilter.filter(group));
         }
-
         if (!faculty.isEmpty()) {
-            return readList(studentIds, page, perPage, new BasicDBObject("faculty", faculty));
+            set.removeAll(studentFacultyFilter.filter(faculty));
         }
-        return readList(studentIds, page, perPage, new BasicDBObject());
+        return readList(page, perPage, new ArrayList(set));
+    }
+
+    public DBObject readListStudent2(int page, int perPage, String faculty, String group) {
+        Set set = new HashSet(student2Filter.filter(""));
+        if (!group.isEmpty()) {
+            set.removeAll(groupFilter.filter(group));
+        }
+        if (!faculty.isEmpty()) {
+            set.removeAll(studentFacultyFilter.filter(faculty));
+        }
+        return readList(page, perPage, new ArrayList(set));
     }
 
     public BasicDBList readByGroup(String groupId) {
-        BasicDBList studentIds = getFilterIds("group", groupId);
-        return readObjectsByIds(STUDENT_COLLECTION_NAME, studentIds);
+        BasicDBList filter = groupFilter.filter(groupId);
+        return readObjectsByIds(filter);
     }
 
     public BasicDBList readByGroupForSelect(String groupId) {
         DBObject field = new BasicDBObject();
         field.put("last_name", 1);
         field.put("first_name", 1);
-        BasicDBList studentIds = getFilterIds("group", groupId);
-        return readObjectsByIds(STUDENT_COLLECTION_NAME, studentIds, field);
+        BasicDBList filter = groupFilter.filter(groupId);
+        return readObjectsByIds(filter, field);
     }
 
-    public void delete(String id, String type) {
+    public void delete(String id) {
         DBObject student = read(id);
-        String groupId = student.get("group").toString();
-        removeFilterValue("student", type, id);
-        removeFilterValue("group", groupId, id);
         super.delete(id);
+        studentFacultyFilter.remove(student);
+        groupFilter.remove(student);
+        student1Filter.remove(student);
+        student2Filter.remove(student);
     }
 
     public void promote(String id, String groupId) {
         DBObject student = read(id);
-        String oldGroupId = student.get("group").toString();
-        addFilterValue("student", STUDENT2, id);
-        addFilterValue("group", groupId, id);
-        removeFilterValue("student", STUDENT1, id);
-        removeFilterValue("group", oldGroupId, id);
         updateField(id, "group", groupId);
+        student1Filter.remove(student);
+        groupFilter.remove(student);
+        student.put("group", groupId);
+        student2Filter.add(student);
+        groupFilter.add(student);
     }
 }

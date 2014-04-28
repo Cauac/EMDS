@@ -18,7 +18,10 @@
             <value type="java.lang.Integer">27017</value>
         </constructor-arg>
     </bean>
-
+    <bean name="filterDAO" class="by.vsu.emdsproject.dao.filter.FilterDAO">
+        <property name="mongoClient" ref="MongoClient"/>
+        <property name="dbName" value="local"/>
+    </bean>
     <bean class="by.vsu.emdsproject.dao.TeacherDAO">
         <property name="mongoClient" ref="MongoClient"/>
         <property name="dbName" value="local"/>
@@ -42,5 +45,27 @@
     <bean class="by.vsu.emdsproject.dao.StudentDAO">
         <property name="mongoClient" ref="MongoClient"/>
         <property name="dbName" value="local"/>
+    </bean>
+
+    <bean name="abiturientFacultyFilter" class="by.vsu.emdsproject.dao.filter.AbiturientFacultyFilter">
+        <constructor-arg ref="filterDAO"/>
+    </bean>
+    <bean name="studentFacultyFilter" class="by.vsu.emdsproject.dao.filter.StudentFacultyFilter">
+        <constructor-arg ref="filterDAO"/>
+    </bean>
+    <bean name="groupFilter" class="by.vsu.emdsproject.dao.filter.GroupFilter">
+        <constructor-arg ref="filterDAO"/>
+    </bean>
+    <bean name="student1Filter" class="by.vsu.emdsproject.dao.filter.Student1Filter">
+        <constructor-arg ref="filterDAO"/>
+    </bean>
+    <bean name="student2Filter" class="by.vsu.emdsproject.dao.filter.Student2Filter">
+        <constructor-arg ref="filterDAO"/>
+    </bean>
+    <bean name="archiveFacultyFilter" class="by.vsu.emdsproject.dao.filter.ArchiveFacultyFilter">
+        <constructor-arg ref="filterDAO"/>
+    </bean>
+    <bean name="archiveStatusFilter" class="by.vsu.emdsproject.dao.filter.ArchiveStatusFilter">
+        <constructor-arg ref="filterDAO"/>
     </bean>
 </beans>

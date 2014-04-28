@@ -1,7 +1,6 @@
 package by.vsu.emdsproject.web.controller;
 
 import by.vsu.emdsproject.dao.ArchiveDAO;
-import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
