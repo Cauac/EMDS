@@ -1,7 +1,6 @@
 package by.vsu.emdsproject.dao;
 
 import by.vsu.emdsproject.common.ReportUtil;
-import by.vsu.emdsproject.common.Transliterator;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
@@ -27,15 +26,6 @@ public class AbiturientDAO extends MongoDAO {
         }
     }
 
-    @Override
-    public void save(DBObject abiturient) {
-        if (!abiturient.containsField(IDENTITY)) {
-            abiturient.put(IDENTITY, generateIdentity(abiturient));
-        }
-        super.save(abiturient);
-
-    }
-
     public void saveDocument(String abiturientId, String documentType, DBObject document) {
         updateField(abiturientId, "document." + documentType, document);
     }
@@ -52,14 +42,6 @@ public class AbiturientDAO extends MongoDAO {
             result.add(cursor.next());
         }
         return result;
-    }
-
-    private String generateIdentity(DBObject abiturient) {
-        String first_name = (String) abiturient.get("first_name");
-        String last_name = (String) abiturient.get("last_name");
-        String middle_name = (String) abiturient.get("middle_name");
-        String identity = Transliterator.transliterate(last_name + first_name.charAt(0) + middle_name.charAt(0));
-        return identity + System.currentTimeMillis();
     }
 
     public void setProgress(Map<String, String> progressMap, String faculty) {

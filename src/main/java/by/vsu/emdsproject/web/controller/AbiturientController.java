@@ -48,7 +48,17 @@ public class AbiturientController {
     @ResponseBody
     DBObject save(@RequestBody String studentJSON, HttpServletResponse response) {
         DBObject student = (DBObject) JSON.parse(studentJSON);
-        abiturientDAO.save(student);
+        abiturientDAO.insert(student);
+        response.setStatus(HttpServletResponse.SC_OK);
+        return student;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    DBObject update(@RequestBody String studentJSON, HttpServletResponse response) {
+        DBObject student = (DBObject) JSON.parse(studentJSON);
+        abiturientDAO.update(student);
         response.setStatus(HttpServletResponse.SC_OK);
         return student;
     }

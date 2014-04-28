@@ -38,6 +38,14 @@ public abstract class MongoDAO implements InitializingBean {
         return result;
     }
 
+    public void insert(DBObject object) {
+        database.getCollection(getCollectionName()).insert(object);
+    }
+
+    public void update(DBObject object) {
+        database.getCollection(getCollectionName()).save(object);
+    }
+
     public void save(DBObject object) {
         database.getCollection(getCollectionName()).save(object);
     }
@@ -82,7 +90,7 @@ public abstract class MongoDAO implements InitializingBean {
     protected DBObject readList(int page, int perPage, DBObject query) {
         DBCursor cursor = database.getCollection(getCollectionName()).find(query);
         DBObject list = new BasicDBObject("totalCount", cursor.count());
-        cursor.sort(new BasicDBObject("_id",1)).skip((page - 1) * perPage).limit(perPage);
+        cursor.sort(new BasicDBObject("_id", 1)).skip((page - 1) * perPage).limit(perPage);
         BasicDBList data = new BasicDBList();
         try {
             while (cursor.hasNext()) {
@@ -100,7 +108,7 @@ public abstract class MongoDAO implements InitializingBean {
         q.putAll(query);
         DBCursor cursor = database.getCollection(getCollectionName()).find(q);
         DBObject list = new BasicDBObject("totalCount", cursor.count());
-        cursor.sort(new BasicDBObject("_id",1)).skip((page - 1) * perPage).limit(perPage);
+        cursor.sort(new BasicDBObject("_id", 1)).skip((page - 1) * perPage).limit(perPage);
         BasicDBList data = new BasicDBList();
         try {
             while (cursor.hasNext()) {

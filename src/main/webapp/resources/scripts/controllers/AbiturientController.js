@@ -21,15 +21,24 @@ var AbiturientController = function ($scope, $http, $modal) {
         $http.post('abiturient/getAll', options).success(function (result) {
             $scope.totalCount = result.totalCount;
             $scope.students = result.data;
-        })
+        });
     };
 
     $scope.readAbiturients(1);
 
-    $scope.archiveStudent = function (student) {
-        $http.delete('abiturient/archive', {data: student._id}).success(function () {
-            $scope.readAbiturients($scope.pageNumber);
-            $scope.alerts.push({ type: 'success', msg: 'Данные о студенте перенесены в архив.'});
+    $scope.addStudent = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'resources/html/abiturient/edit.html',
+            controller: AddStudentDialog
+        });
+
+        modalInstance.result.then(function (result) {
+            $http.post('abiturient/save', result).success(function (response) {
+                if ($scope.perPage > ($scope.students.length)) {
+                    $scope.students.push(response);
+                }
+                $scope.totalCount = $scope.totalCount + 1;
+            });
         });
     };
 
@@ -45,23 +54,14 @@ var AbiturientController = function ($scope, $http, $modal) {
         });
 
         modalInstance.result.then(function (result) {
-            $http.post('abiturient/save', result);
+            $http.post('abiturient/update', result);
         });
     };
 
-    $scope.addStudent = function () {
-        var modalInstance = $modal.open({
-            templateUrl: 'resources/html/abiturient/edit.html',
-            controller: AddStudentDialog
-        });
-
-        modalInstance.result.then(function (result) {
-            $http.post('abiturient/save', result).success(function (response) {
-                if ($scope.perPage > ($scope.students.length)) {
-                    $scope.students.push(response);
-                }
-                $scope.totalCount = $scope.totalCount + 1;
-            });
+    $scope.archiveStudent = function (student) {
+        $http.delete('abiturient/archive', {data: student._id}).success(function () {
+            $scope.readAbiturients($scope.pageNumber);
+            $scope.alerts.push({ type: 'success', msg: 'Данные о студенте перенесены в архив.'});
         });
     };
 
@@ -138,7 +138,7 @@ var AbiturientController = function ($scope, $http, $modal) {
         });
 
         modalInstance.result.then(function (result) {
-            $http.post('abiturient/uploadProgressFile', result).success(function(){
+            $http.post('abiturient/uploadProgressFile', result).success(function () {
                 $scope.readAbiturients($scope.pageNumber);
             });
         });
@@ -158,56 +158,13 @@ var AddStudentDialog = function ($scope, $modalInstance) {
     };
 };
 
-var EditStudentDialog = function ($scope, $modalInstance, $http, student, CommonService) {
+var EditStudentDialog = function ($scope, $modalInstance, $http, student) {
 
-    $scope.student = {};
-    CommonService.copyAttr(student, $scope.student);
+    $scope.student = angular.copy(student);
 
     $scope.ok = function () {
-        CommonService.copyAttr($scope.student, student);
+        angular.copy($scope.student, student);
         $modalInstance.close($scope.student);
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-};
-
-var DocumentDialog = function ($scope, $modalInstance, student, documentType, CommonService) {
-
-    $scope.student = student;
-    $scope.document = {};
-    if (student.document && student.document[documentType]) {
-        CommonService.copyAttr(student.document[documentType], $scope.document);
-    } else {
-        $scope.document = {commentary: 'Дата подачи : ' + CommonService.currentDate()};
-    }
-
-    $scope.ok = function () {
-        if (!$scope.student.document) {
-            $scope.student.document = {};
-        }
-        $scope.student.document[documentType] = $scope.document;
-        $modalInstance.close({id: $scope.student._id, documentType: documentType, data: $scope.document});
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-};
-
-var QuestionnaireDialog = function ($scope, $modalInstance, student, CommonService) {
-
-    $scope.student = student;
-    $scope.questionnaire = {};
-    $scope.pageNumber = 1;
-    if (student.questionnaire) {
-        CommonService.copyAttr(student.questionnaire, $scope.questionnaire);
-    }
-
-    $scope.ok = function () {
-        $scope.student['questionnaire'] = $scope.questionnaire;
-        $modalInstance.close({id: $scope.student._id, data: $scope.questionnaire});
     };
 
     $scope.cancel = function () {
@@ -227,10 +184,52 @@ var StudentializeDialog = function ($scope, $modalInstance, student, groups) {
     };
 };
 
+var DocumentDialog = function ($scope, $modalInstance, student, documentType, CommonService) {
+
+    $scope.student = student;
+    $scope.document = {};
+    if (student.document && student.document[documentType]) {
+        angular.copy(student.document[documentType], $scope.document);
+    } else {
+        $scope.document = {commentary: 'Дата подачи : ' + CommonService.currentDate()};
+    }
+
+    $scope.ok = function () {
+        if (!$scope.student.document) {
+            $scope.student.document = {};
+        }
+        $scope.student.document[documentType] = $scope.document;
+        $modalInstance.close({id: $scope.student._id, documentType: documentType, data: $scope.document});
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+};
+
+var QuestionnaireDialog = function ($scope, $modalInstance, student) {
+
+    $scope.student = student;
+    $scope.questionnaire = {};
+    $scope.pageNumber = 1;
+    if (student.questionnaire) {
+        angular.copy(student.questionnaire, $scope.questionnaire);
+    }
+
+    $scope.ok = function () {
+        $scope.student['questionnaire'] = $scope.questionnaire;
+        $modalInstance.close({id: $scope.student._id, data: $scope.questionnaire});
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+};
+
 var ProgressFileDialog = function ($scope, $modalInstance) {
     $scope.faculty = '1';
     $scope.file = '';
-    $scope.ok = function (faculty,file) {
+    $scope.ok = function (faculty, file) {
         $modalInstance.close({faculty: faculty, file: file});
     };
     $scope.cancel = function () {
