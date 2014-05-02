@@ -48,6 +48,6 @@ public abstract class MongoBean implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         database = mongoClient.getDB(dbName);
-        collection.getCollection(getCollectionName());
+        collection = database.getCollection(getCollectionName());
     }
 }
