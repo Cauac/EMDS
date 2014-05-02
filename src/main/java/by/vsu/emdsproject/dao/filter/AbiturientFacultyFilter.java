@@ -17,7 +17,7 @@ public class AbiturientFacultyFilter implements Filter {
     @Override
     public void add(DBObject object) {
         String faculty = object.get(FACULTY).toString();
-        String id = object.get(MongoBean.IDENTITY).toString();
+        Object id = object.get(MongoBean.IDENTITY);
         dao.addFilterValue(FILTER_NAME, faculty, id);
     }
 

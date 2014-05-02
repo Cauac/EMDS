@@ -125,9 +125,9 @@ public class SpecialtyTest {
             DBObject student = new BasicDBObject();
             student.put("faculty", "Математический");
             String[] split = name.split(" ");
-            student.put("firstName", split[0]);
-            student.put("middleName", split[1]);
-            student.put("lastName", split[2]);
+            student.put("first_name", split[0]);
+            student.put("middle_name", split[1]);
+            student.put("last_name", split[2]);
             dao.insert(student);
         }
         names = data[1].split("\n");
@@ -135,9 +135,9 @@ public class SpecialtyTest {
             DBObject student = new BasicDBObject();
             student.put("faculty", "Физический");
             String[] split = name.split(" ");
-            student.put("firstName", split[0]);
-            student.put("middleName", split[1]);
-            student.put("lastName", split[2]);
+            student.put("first_name", split[0]);
+            student.put("middle_name", split[1]);
+            student.put("last_name", split[2]);
             dao.insert(student);
         }
         names = data[2].split("\n");
@@ -145,9 +145,9 @@ public class SpecialtyTest {
             DBObject student = new BasicDBObject();
             student.put("faculty", "Биологический");
             String[] split = name.split(" ");
-            student.put("firstName", split[0]);
-            student.put("middleName", split[1]);
-            student.put("lastName", split[2]);
+            student.put("first_name", split[0]);
+            student.put("middle_name", split[1]);
+            student.put("last_name", split[2]);
             dao.insert(student);
         }
         names = data[3].split("\n");
@@ -155,9 +155,9 @@ public class SpecialtyTest {
             DBObject student = new BasicDBObject();
             student.put("faculty", "Исторический");
             String[] split = name.split(" ");
-            student.put("firstName", split[0]);
-            student.put("middleName", split[1]);
-            student.put("lastName", split[2]);
+            student.put("first_name", split[0]);
+            student.put("middle_name", split[1]);
+            student.put("last_name", split[2]);
             dao.insert(student);
         }
         names = data[4].split("\n");
@@ -165,9 +165,9 @@ public class SpecialtyTest {
             DBObject student = new BasicDBObject();
             student.put("faculty", "Юридический");
             String[] split = name.split(" ");
-            student.put("firstName", split[0]);
-            student.put("middleName", split[1]);
-            student.put("lastName", split[2]);
+            student.put("first_name", split[0]);
+            student.put("middle_name", split[1]);
+            student.put("last_name", split[2]);
             dao.insert(student);
         }
     }

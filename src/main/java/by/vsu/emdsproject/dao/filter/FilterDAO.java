@@ -12,7 +12,7 @@ public class FilterDAO extends MongoBean {
         return "filter";
     }
 
-    protected void addFilterValue(String filterName, String listName, String id) {
+    protected void addFilterValue(String filterName, String listName, Object id) {
         collection.update(new BasicDBObject(IDENTITY, filterName),
                 new BasicDBObject("$push", new BasicDBObject(listName, id)), true, false);
     }
