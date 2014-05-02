@@ -97,7 +97,7 @@ public abstract class MongoDAO extends MongoBean {
         } finally {
             cursor.close();
         }
-        return null;
+        return data;
     }
 
     protected DBObject readList(int page, int perPage, List ids) {
