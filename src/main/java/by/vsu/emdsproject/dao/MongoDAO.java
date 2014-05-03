@@ -102,8 +102,10 @@ public abstract class MongoDAO extends MongoBean {
 
     protected DBObject readList(int page, int perPage, List ids) {
         DBObject list = new BasicDBObject("totalCount", ids.size());
-        List<Object> idsPerPage = ids.subList(page * perPage, page * perPage + perPage);
-        list.put("data", readObjectsByIds(idsPerPage));
+        if (ids.size() > perPage) {
+            ids = ids.subList((page - 1) * perPage, page * perPage + perPage);
+        }
+        list.put("data", readObjectsByIds(ids));
         return list;
     }
 }
